@@ -38,6 +38,7 @@ This starts:
 - Research Backend (Port 8001)
 - Legal QA Backend (Port 8002)
 - Summary Backend (Port 8003)
+- Document Retrieval Backend (Port 8004)
 - Frontend (Port 5173)
 
 Access the application at: http://localhost:5173
@@ -83,12 +84,16 @@ python app.py
 # Terminal 4 - Summary Backend
 cd Legal_Summary\backend
 python app.py
+
+# Terminal 5 - Document Retrieval Backend
+cd indiankanoon-mcp\ui
+python app.py
 ```
 
 ### Frontend
 
 ```batch
-# Terminal 5 - Frontend
+# Terminal 6 - Frontend
 cd front-end
 npm run dev
 ```
@@ -101,6 +106,7 @@ npm run dev
 | Research Backend | 8001 | http://localhost:8001 |
 | Legal QA Backend | 8002 | http://localhost:8002 |
 | Summary Backend | 8003 | http://localhost:8003 |
+| Document Retrieval Backend | 8004 | http://localhost:8004 |
 | Frontend | 5173 | http://localhost:5173 |
 
 ## Project Structure
