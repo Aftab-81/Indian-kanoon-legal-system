@@ -1,0 +1,158 @@
+# ==================== CORE DEPENDENCIES ====================
+
+# Flask Framework (Main Backend - Port 8000)
+Flask==3.0.0
+flask-cors==4.0.0
+Werkzeug==3.0.1
+
+# FastAPI Framework (Research Backend - Port 8001, Legal QA - Port 8002, Summary - Port 8003)
+fastapi==0.108.0
+uvicorn[standard]==0.25.0
+python-multipart==0.0.6
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# ==================== AI & ML LIBRARIES ====================
+
+# OpenAI API
+openai==1.7.0
+
+# Vector Database & Embeddings
+# faiss-cpu==1.7.4
+faiss-cpu
+# If you have GPU: faiss-gpu==1.7.4
+numpy
+sentence-transformers>=2.7.0
+
+# ==================== PDF & DOCUMENT PROCESSING ====================
+
+# PDF Processing
+pdfplumber==0.10.3
+PyPDF2==3.0.1
+pdf2image==1.16.3
+pdfminer.six==20221105
+
+# Word Document Processing
+python-docx==1.1.0
+
+# OCR (Optional - for scanned PDFs)
+pytesseract==0.3.10
+Pillow==10.1.0
+
+# ==================== WEB SCRAPING & APIs ====================
+
+# Web Scraping
+requests==2.31.0 
+beautifulsoup4==4.12.2
+lxml==4.9.3
+html5lib==1.1
+
+# Search APIs
+google-search-results==2.4.2
+
+# ==================== DATABASE ====================
+
+# SQLite (Built-in with Python)
+# PostgreSQL (Optional)
+# psycopg2-binary==2.9.9
+
+# SQLAlchemy (ORM)
+SQLAlchemy==2.0.23
+
+# ==================== DATA PROCESSING ====================
+
+# Data Manipulation
+pandas==2.1.4
+
+# Text Processing
+nltk==3.8.1
+spacy==3.7.2
+# Run after install: python -m spacy download en_core_web_sm
+
+# ==================== UTILITIES ====================
+
+# Environment Variables
+python-dotenv==1.0.0
+
+# Date & Time
+python-dateutil==2.8.2
+
+# JSON & YAML
+PyYAML==6.0.1
+
+# File Handling
+openpyxl==3.1.2
+
+# Async Support
+aiofiles==23.2.1
+httpx==0.25.2
+
+# ==================== TESTING & DEVELOPMENT ====================
+
+# Testing
+pytest==7.4.3
+pytest-asyncio==0.21.1
+pytest-cov==4.1.0
+
+# Code Quality
+black==23.12.1
+flake8==6.1.0
+pylint==3.0.3
+
+# ==================== STREAMLIT (Optional - for rfrontend) ====================
+
+streamlit==1.29.0
+
+# ==================== LANGUAGE SUPPORT ====================
+
+# Multilingual Support (Hindi, Marathi)
+indic-transliteration==2.3.44
+# googletrans==4.0.0-rc1  # Commented out due to httpx dependency conflict
+
+# ==================== CACHING ====================
+
+# Redis (Optional - for production caching)
+# redis==5.0.1
+
+# ==================== MONITORING & LOGGING ====================
+
+# Logging
+colorlog==6.8.0
+
+# Progress Bars
+tqdm==4.66.1
+
+# ==================== SECURITY ====================
+
+# Password Hashing
+bcrypt==4.1.2
+
+# JWT Tokens
+PyJWT==2.8.0
+
+# ==================== OPTIONAL: GPU SUPPORT ====================
+
+# If using GPU acceleration:
+# torch==2.1.2
+# torchvision==0.16.2
+# torchaudio==2.1.2
+
+# ==================== VERSION NOTES ====================
+
+# Python Version: 3.10+ recommended
+# Some packages may need system dependencies:
+#
+# For PDF processing:
+#   - Poppler (for pdf2image)
+#   
+# For OCR:
+#   - Tesseract OCR
+#
+# For FAISS GPU:
+#   - CUDA toolkit
+#
+# Installation commands:
+# pip install -r requirements.txt
+#
+# For development:
+# pip install -r requirements.txt --upgrade

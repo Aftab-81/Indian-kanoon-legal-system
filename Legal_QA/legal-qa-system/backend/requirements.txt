@@ -1,0 +1,21 @@
+# Backend Framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+python-dotenv==1.0.0
+
+# LLM & NLP
+openai>=1.30.0
+sentence-transformers>=2.7.0
+torch
+
+# Vector Database
+faiss-cpu
+
+# PDF Processing
+PyPDF2
+
+# Request handling
+requests==2.31.0
+
+# Utilities
+numpy>=1.26.0

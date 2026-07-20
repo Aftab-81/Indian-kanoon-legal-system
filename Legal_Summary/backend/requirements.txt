@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+pydantic
+pydantic-settings
+python-multipart
+PyPDF2
+openai
+python-dotenv
+# SQLite is included in Python standard library

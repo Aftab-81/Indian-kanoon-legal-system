@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "case_title": "Rajnish Singh @ Soni v. State of U.P. and Another",
+    "court_name": "Supreme Court",
+    "case_number": "Criminal Appeal No. 1055 of 2025",
+    "judge_names": [
+      "Vikram Nath",
+      "Sandeep Mehta"
+    ],
+    "date_of_judgement": "2025-03-03",
+    "jurisdiction": "India",
+    "summary": "The Supreme Court quashed the criminal proceedings against the appellant, Rajnish Singh @ Soni, in a case involving allegations of rape based on a false promise of marriage. The Court found that the complainant, a highly qualified and major woman, had been in a consensual sexual relationship with the appellant for 16 years, which negated the element of force or deceit. The allegations were deemed full of contradictions and unbelievable, especially considering the complainant's silence over the prolonged period until learning about the appellant's marriage to another woman. The Court concluded that continuing the prosecution would be an abuse of the process of law.",
+    "sections_invoked": [
+      "376",
+      "384",
+      "323",
+      "504",
+      "506",
+      "482"
+    ]
+  },
+  "detailed_available": true,
+  "confidence_score": {
+    "overall_confidence": 78.0,
+    "confidence_level": "medium",
+    "reliability_assessment": "Good - Review recommended for critical decisions",
+    "factors": {
+      "extraction_quality": 100,
+      "metadata_completeness": 100.0,
+      "content_quality": 70.0,
+      "legal_terminology": 6.67,
+      "compression_ratio": 2.07,
+      "data_validation": 80.0
+    },
+    "detailed_breakdown": {
+      "extraction_quality": {
+        "score": 25.0,
+        "max_points": 25,
+        "percentage": 100,
+        "description": "PDF text extraction quality and readability"
+      },
+      "metadata_completeness": {
+        "score": 20,
+        "max_points": 20,
+        "percentage": 100.0,
+        "missing_fields": [],
+        "description": "Presence of essential case metadata"
+      },
+      "content_quality": {
+        "score": 14.0,
+        "max_points": 20,
+        "percentage": 70.0,
+        "word_count": 104,
+        "issues": [
+          "Low information density",
+          "Missing key case elements"
+        ],
+        "description": "Summary content quality and specificity"
+      },
+      "legal_terminology": {
+        "score": 1.0,
+        "max_points": 15,
+        "percentage": 6.67,
+        "terms_by_category": {
+          "court_terms": 1,
+          "case_terms": 1,
+          "legal_process": 0,
+          "legal_sections": 0,
+          "decisions": 0
+        },
+        "description": "Presence of legal vocabulary and terminology"
+      },
+      "length_appropriateness": {
+        "score": 10.0,
+        "max_points": 10,
+        "percentage": 100.0,
+        "compression_ratio": 2.07,
+        "doc_words": 5025,
+        "summary_words": 104,
+        "description": "Summary length relative to source document"
+      },
+      "data_validation": {
+        "score": 8.0,
+        "max_points": 10,
+        "percentage": 80.0,
+        "issues": [
+          "Judge names lack proper titles",
+          "Sections lack act/code references"
+        ],
+        "description": "Format and structure validation of extracted data"
+      }
+    },
+    "recommendations": [
+      "⚠️ Medium Confidence: Review summary for accuracy before critical use",
+      "✍️ Content Quality: Low information density; Missing key case elements",
+      "⚖️ Legal Context: Limited legal terminology - Verify document is a legal case judgment",
+      "✓ Data Validation: Judge names lack proper titles; Sections lack act/code references"
+    ]
+  },
+  "id": "4a62b775-50d1-4efd-9567-32ea47acba52",
+  "summary_type": "quick",
+  "created_at": "2026-01-01T19:54:07.530965"
+}

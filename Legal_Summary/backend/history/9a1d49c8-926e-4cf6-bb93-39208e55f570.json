@@ -1,0 +1,88 @@
+{
+  "case_title": "Rajnish Singh @ Soni v. State of U.P. and Another",
+  "important_dates": {
+    "incident_date": "Not Available",
+    "fir_date": "2022-07-05",
+    "judgement_date": "2025-03-03"
+  },
+  "court_and_judge": {
+    "court_name": "Supreme Court of India",
+    "judge_names": [
+      "Vikram Nath",
+      "Sandeep Mehta"
+    ]
+  },
+  "charges_and_sections": [
+    {
+      "section": "Section 376 IPC",
+      "description": "Punishment for rape"
+    },
+    {
+      "section": "Section 384 IPC",
+      "description": "Punishment for extortion"
+    },
+    {
+      "section": "Section 323 IPC",
+      "description": "Punishment for voluntarily causing hurt"
+    },
+    {
+      "section": "Section 504 IPC",
+      "description": "Intentional insult with intent to provoke breach of the peace"
+    },
+    {
+      "section": "Section 506 IPC",
+      "description": "Punishment for criminal intimidation"
+    }
+  ],
+  "brief_facts": "The complainant, a lecturer, alleged that the appellant, initially a constable and later a bank clerk, had sexually assaulted her since 2006 under a false promise of marriage, leading to a prolonged relationship of 16 years. Despite threats and an abortion induced by the appellant, the complainant remained silent until the appellant married another woman in 2022, prompting her to file an FIR.",
+  "key_issues": [
+    "Whether the appellant is liable for prosecution for committing rape under a false promise of marriage."
+  ],
+  "arguments": {
+    "prosecution": "The complainant was sexually exploited under a false promise of marriage, with the appellant later marrying another woman.",
+    "defense": "The relationship was consensual, with no deceit involved, and prosecuting the appellant would be an abuse of the legal process."
+  },
+  "evidence_summary": {
+    "witnesses": [],
+    "material_evidence": []
+  },
+  "legal_analysis": "The court found the allegations of sexual exploitation under a false promise of marriage to be unbelievable, considering the prolonged period of the relationship and the absence of any complaint during this time. It concluded that the relationship was consensual.",
+  "precedents_cited": [],
+  "decision_summary": {
+    "final_order": "Quashed the impugned order and FIR against the appellant.",
+    "sentence": "Not Applicable",
+    "important_observations": "A prolonged consensual relationship cannot be considered as rape under the pretext of a false promise of marriage."
+  },
+  "one_page_summary_for_judges": "In Rajnish Singh @ Soni v. State of U.P. and Another, the Supreme Court quashed the criminal proceedings against the appellant, who was accused of raping the complainant under a false promise of marriage over 16 years. The court found the allegations unbelievable, emphasizing the consensual nature of their relationship and the lack of any complaint during the lengthy period. The decision underscores the distinction between consensual relationships and exploitation under false pretenses.",
+  "risk_flags": {
+    "missing_evidence": [],
+    "contradictions": [
+      "Complainant's delayed reporting and portrayal as wife"
+    ],
+    "procedural_lapses": []
+  },
+  "extracted_entities": {
+    "accused": [
+      "Rajnish Singh @ Soni"
+    ],
+    "victim": [
+      "Ms. A"
+    ],
+    "witnesses": [],
+    "locations": [
+      "Police Station Bakewar, District Etawah"
+    ],
+    "dates": [
+      "2022-07-05"
+    ]
+  },
+  "confidence_score": {
+    "overall_confidence": 100,
+    "confidence_level": "high",
+    "sections_completed": "10/10",
+    "completeness_percentage": 100.0
+  },
+  "id": "9a1d49c8-926e-4cf6-bb93-39208e55f570",
+  "summary_type": "detailed",
+  "created_at": "2026-01-01T19:55:14.486832"
+}

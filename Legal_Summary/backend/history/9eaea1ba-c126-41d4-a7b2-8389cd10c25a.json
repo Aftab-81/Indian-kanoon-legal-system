@@ -1,0 +1,90 @@
+{
+  "case_title": "Arvind Kejriwal vs Central Bureau of Investigation (Criminal Appeal No. 3816/2024)",
+  "important_dates": {
+    "incident_date": "Not Available",
+    "fir_date": "2022-08-17",
+    "judgement_date": "2024-09-13"
+  },
+  "court_and_judge": {
+    "court_name": "Supreme Court of India",
+    "judge_names": [
+      "Hon'ble Mr. Justice Suryakant",
+      "Hon'ble Mr. Justice Ujjal Bhuyan"
+    ]
+  },
+  "charges_and_sections": [
+    {
+      "section": "Indian Penal Code, 1860 - Section 477A",
+      "description": "Falsification of accounts"
+    },
+    {
+      "section": "Prevention of Corruption Act, 1988 - Section 7",
+      "description": "Public servant taking gratification other than legal remuneration in respect of an official act"
+    },
+    {
+      "section": "Code of Criminal Procedure, 1973 - Section 41",
+      "description": "When police may arrest without warrant"
+    }
+  ],
+  "brief_facts": "Arvind Kejriwal, a prominent political figure and three-time Chief Minister of Delhi, was implicated in a case filed by the CBI related to alleged irregularities, fraud, undue advantage, and conspiracy in the formulation and implementation of an excise policy for the year 2021-2022. Although Kejriwal's name was not initially in the FIR, subsequent investigations by the CBI and ED led to his arrest under various charges including falsification of accounts and corruption. Despite being granted interim bail in an ED case, Kejriwal was taken into custody by the CBI following a special court's permission for further interrogation.",
+  "key_issues": [
+    "Validity of Arvind Kejriwal's arrest and detention by the CBI",
+    "Eligibility for regular bail under the circumstances of prolonged pre-trial detention and existing interim bail in a related ED case"
+  ],
+  "arguments": {
+    "prosecution": "The prosecution argued that Kejriwal's arrest was justified due to non-cooperation and evasion in responses during the investigation, which necessitated his detention for further interrogation.",
+    "defense": "The defense contended that Kejriwal's arrest and continued detention were illegal, arguing that his rights under Article 21 of the Constitution were violated due to the lack of a valid basis for arrest and the procedural lapses in the process."
+  },
+  "evidence_summary": {
+    "witnesses": [],
+    "material_evidence": [
+      "Not Available"
+    ]
+  },
+  "legal_analysis": "The court analyzed the compliance of CBI's actions with Section 41 of the CrPC, the validity of the arrest, and the criteria for bail. It was concluded that while the arrest met legal standards, continuous detention without trial violated Kejriwal's constitutional rights, particularly in light of Article 21.",
+  "precedents_cited": [],
+  "decision_summary": {
+    "final_order": "The Supreme Court granted bail to Arvind Kejriwal, overturning the High Court's decision to uphold his detention.",
+    "sentence": "Not Applicable",
+    "important_observations": "The court emphasized the principle of bail over jail and highlighted the importance of safeguarding personal liberty under Article 21 of the Constitution."
+  },
+  "one_page_summary_for_judges": "In a landmark judgment, the Supreme Court granted bail to Arvind Kejriwal, challenging his prolonged detention by the CBI over alleged corruption and falsification of accounts in the excise policy case. Despite the High Court's earlier refusal to grant bail, the Supreme Court underscored the necessity to uphold the constitutional rights under Article 21, stressing the 'bail not jail' principle. The court's decision was influenced by the procedural adherence to arrest norms and the undue delay in trial commencement, which was deemed a violation of Kejriwal's right to personal liberty.",
+  "risk_flags": {
+    "missing_evidence": [
+      "Lack of direct evidence linking Kejriwal to the alleged corruption"
+    ],
+    "contradictions": [
+      "Discrepancies in the prosecution's rationale for continued detention"
+    ],
+    "procedural_lapses": [
+      "Potential non-compliance with Section 41 of CrPC during arrest"
+    ]
+  },
+  "extracted_entities": {
+    "accused": [
+      "Arvind Kejriwal"
+    ],
+    "victim": [
+      "Not Available"
+    ],
+    "witnesses": [
+      "Not Available"
+    ],
+    "locations": [
+      "Delhi"
+    ],
+    "dates": [
+      "2022-08-17",
+      "2024-09-13"
+    ]
+  },
+  "confidence_score": {
+    "overall_confidence": 100,
+    "confidence_level": "high",
+    "sections_completed": "10/10",
+    "completeness_percentage": 100.0
+  },
+  "id": "9eaea1ba-c126-41d4-a7b2-8389cd10c25a",
+  "summary_type": "detailed",
+  "created_at": "2025-12-17T18:53:21.920126"
+}

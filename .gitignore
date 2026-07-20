@@ -1,0 +1,169 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.log
+*.pot
+.coverage
+.pytest_cache/
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+venv/
+ENV/
+env/
+.venv
+
+# Node.js / React
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.next/
+out/
+dist/
+build/
+coverage/
+.eslintcache
+.parcel-cache/
+.cache/
+
+# Environment Variables (KEEP THESE SECRET!)
+.env
+*.env
+!.env.example
+
+# API Keys & Secrets
+secrets/
+config/secrets.json
+.api_keys
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+legal_cases.db
+legal_qa.db
+summary.db
+
+# FAISS Index files
+*.faiss
+vector_index.faiss
+*.index
+
+# Metadata & Cache
+vector_metadata.json
+query_cache.json
+remarks.json
+*_cache.json
+*.pkl
+*.pickle
+
+# Uploaded Files & Results
+Uploads/
+Results/
+IKResults/
+uploads/
+results/
+temp/
+tmp/
+
+# PDF Files (Don't commit large PDFs)
+*.pdf
+!sample.pdf
+
+# Log files
+logs/
+*.log
+log.txt
+error.log
+debug.log
+
+# IDE / Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+.history/
+
+# OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# Backup files
+*.bak
+*.backup
+*~
+*.orig
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+
+# Documentation builds
+docs/_build/
+site/
+
+# Streamlit
+.streamlit/secrets.toml
+
+# React build artifacts
+front-end/build/
+front-end/dist/
+rfrontend/build/
+
+# Package manager locks (optional - some teams commit these)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml

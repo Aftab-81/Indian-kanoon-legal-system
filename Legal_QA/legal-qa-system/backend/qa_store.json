@@ -1,0 +1,617 @@
+{
+  "questions": [
+    {
+      "question_id": "c24d9311-1742-4f55-a976-4f6097e69cd9",
+      "question_text": "what is jiah khan case status",
+      "question_hash": "d1bdf6b8c9241d18b94e6f92cbf5e120",
+      "language": "mr",
+      "asked_at": "2025-12-05T21:31:37.364911"
+    },
+    {
+      "question_id": "d98c7d91-f49b-45a2-822a-99631f45bfbb",
+      "question_text": "Explain Section 41A CrPC as discussed in this judgment.",
+      "question_hash": "bc0160e31762f34f456d5377d837da83",
+      "language": "en",
+      "asked_at": "2025-12-05T22:36:12.668327"
+    },
+    {
+      "question_id": "d5745339-dd79-4984-811f-5458ccb82b1a",
+      "question_text": "What does Section 20(3) of the Constitution (right against self-incrimination) mean here?",
+      "question_hash": "7b6dc265922a86d961d26ecf0be0d10f",
+      "language": "mr",
+      "asked_at": "2025-12-05T22:37:55.550205"
+    },
+    {
+      "question_id": "c8801539-b9e2-4e29-b5f3-3a8d1790243b",
+      "question_text": "Statement of Advice (SoA) – Pt7.7 of the Act -“Financial Services Disclosure”",
+      "question_hash": "42cf2af2c3f81ba94fb7bd57166f5a9d",
+      "language": "en",
+      "asked_at": "2025-12-09T14:45:48.832243"
+    },
+    {
+      "question_id": "a5ba67ce-e88a-471a-92a8-924c47bdfc24",
+      "question_text": "Financial Product Disclosure (FDS) – Pt7.9 of the Act-“Financial Product Disclosure”",
+      "question_hash": "93f9d5d70043c210643b31d20f3d9d6c",
+      "language": "mr",
+      "asked_at": "2025-12-09T14:47:51.552962"
+    },
+    {
+      "question_id": "d5534945-2964-4d6d-816a-088a0c25a5b7",
+      "question_text": "What is the punishment for cheating under the Indian Penal Code?",
+      "question_hash": "47de823300b0bbd908f98fe97fc9ab9b",
+      "language": "en",
+      "asked_at": "2025-12-09T19:00:57.217989"
+    },
+    {
+      "question_id": "0b61e65e-be2f-4e0f-83f4-f6066c106ba7",
+      "question_text": "“Can a person get anticipatory bail in a POCSO case when no penetration is alleged?”",
+      "question_hash": "18f8af72a182018f40c7728740f9c3b1",
+      "language": "en",
+      "asked_at": "2025-12-09T19:53:23.712303"
+    },
+    {
+      "question_id": "eb72bccb-0c69-4ca5-9e75-e0a74042a5ab",
+      "question_text": "“Can anticipatory bail be granted in a POCSO case where there is no allegation of penetration and the medical report does not support sexual assault?”",
+      "question_hash": "6055feef710cadc98bff0218d6988246",
+      "language": "en",
+      "asked_at": "2025-12-09T20:37:13.539267"
+    },
+    {
+      "question_id": "7cc8c486-1429-4ddf-b11e-bdd74ecc03e9",
+      "question_text": "Q: “Can anticipatory bail be granted in a POCSO case where there is no allegation of penetration and the medical report does not support sexual assault?”",
+      "question_hash": "bb4a83800040ac6b687af23ecac13771",
+      "language": "en",
+      "asked_at": "2025-12-09T20:42:45.189248"
+    },
+    {
+      "question_id": "edf584e5-704d-44be-80ce-6bcf7c45d02e",
+      "question_text": "“Can bail be granted under NDPS if the accused is only named in a co-accused’s disclosure statement and no recovery is made?",
+      "question_hash": "a0419c95c7acc4fafa5556a70a83eed6",
+      "language": "mr",
+      "asked_at": "2025-12-09T20:44:34.585864"
+    },
+    {
+      "question_id": "b67f3973-9362-4fd4-ad1a-0109e43c6ee2",
+      "question_text": "“Are call recordings admissible if certificate under 65B is not submitted?",
+      "question_hash": "d6a7d140ad2a57c8b2c0eb58458b526f",
+      "language": "mr",
+      "asked_at": "2025-12-09T20:45:39.832263"
+    },
+    {
+      "question_id": "40769cbf-7361-449e-8e31-b233c4e7e025",
+      "question_text": "If CCTV footage is unclear but circumstantial evidence supports the prosecution, can bail still be granted?”",
+      "question_hash": "f3340a4da2e32f06ad15a46ad21d1854",
+      "language": "en",
+      "asked_at": "2025-12-09T20:48:41.908629"
+    },
+    {
+      "question_id": "63c32fb4-73f3-4034-bd73-37783b6c273c",
+      "question_text": "Can temporary injunction be granted when possession is disputed by both parties?”",
+      "question_hash": "89b592c71aaec73d39ef182ddf5f07ea",
+      "language": "en",
+      "asked_at": "2025-12-09T20:50:30.047517"
+    },
+    {
+      "question_id": "834685ea-c470-402b-a8b8-ad5b73108b17",
+      "question_text": "खटल्यात विलंब होणे जामीनवर कसे परिणाम करते?",
+      "question_hash": "668211a5d138d7b99049b8bca8810a14",
+      "language": "en",
+      "asked_at": "2026-01-01T20:00:45.644481"
+    },
+    {
+      "question_id": "07797a76-8f9b-4c20-9186-f1232742a80a",
+      "question_text": "खटल्यात विलंब होणे जामीनवर कसे परिणाम करते?",
+      "question_hash": "2055c239074c383bdfa19cfdca60a57b",
+      "language": "mr",
+      "asked_at": "2026-01-01T20:04:48.690093"
+    }
+  ],
+  "answers": [
+    {
+      "answer_id": "a35ba41e-3ed3-4642-bc8c-f7ec62dfa213",
+      "question_id": "c24d9311-1742-4f55-a976-4f6097e69cd9",
+      "language": "mr",
+      "conclusion": "जिया खान प्रकरण सध्या न्यायालयीन प्रक्रियेत आहे आणि अंतिम निकाल अद्याप स्पष्ट नाही. प्रकरणात गुन्हा दाखल असून तपास सुरू आहे, त्यामुळे स्थिती 'प्रलंबित' आहे.",
+      "legal_reasoning": "जिया खान प्रकरणात मृत्यूची कारणे आणि गुन्ह्याचा प्रकार तपासण्यासाठी भारतीय दंड संहिता (IPC) आणि संबंधित कायदे लागू होतात. मृत्यू संदर्भातील तपासात Sections 174 CrPC (असामान्य मृत्यूची नोंद) आणि Sections 302/304 IPC (खून किंवा अपघातजन्य मृत्यू) यांचा विचार होतो. तसेच, न्यायालयाने पुराव्यांच्या आधारे आरोपींच्या दोषीपणाचा निर्णय घ्यावा लागतो. या प्रकरणात तपास अधिकाऱ्यांनी साक्षीदारांची माहिती, फॉरेन्सिक अहवाल, आणि घटनास्थळी केलेल्या तपासाचा अभ्यास करणे आवश्यक आहे. सुप्रीम कोर्ट आणि उच्च न्यायालयांच्या निर्णयांनुसार, अशा संवेदनशील प्रकरणांमध्ये न्यायालयाने सर्व बाजूंचा विचार करून निष्पक्ष निर्णय द्यावा.",
+      "precedents": [
+        "State of Rajasthan v. Kashi Ram, (2006) 12 SCC 254 – पुराव्यांच्या आधारे दोष सिद्धीची कसोटी",
+        "Bachan Singh v. State of Punjab, AIR 1980 SC 898 – मृत्यूदंडाच्या बाबतीत न्यायालयीन निकष",
+        "Selvi v. State of Karnataka, (2010) 7 SCC 263 – साक्षीदारांची मते आणि फॉरेन्सिक पुराव्यांचे महत्त्व"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-05T21:31:55.643786",
+      "status": "PENDING_REVIEW",
+      "review_comment": ""
+    },
+    {
+      "answer_id": "6dc488fa-b05e-40bd-820c-3167b693e8dc",
+      "question_id": "d98c7d91-f49b-45a2-822a-99631f45bfbb",
+      "language": "en",
+      "conclusion": "Section 41A CrPC mandates issuance of a notice to the accused before arrest in certain cases, promoting arrest as a last resort; compliance is mandatory unless exceptions apply.",
+      "legal_reasoning": "Section 41A CrPC was inserted by the Criminal Law (Amendment) Act, 2008, to prevent unnecessary arrests and protect personal liberty. It requires the police to issue a notice of appearance to the accused before arresting them in cases where the offence is punishable with imprisonment up to seven years or less, except in specific circumstances like likelihood of absconding or tampering with evidence. The notice must specify the time and place for the accused to appear. The Supreme Court has held that non-compliance with Section 41A renders the arrest illegal and violative of Article 21 of the Constitution. Arrest should be a measure of last resort, and the police must demonstrate that the conditions for bypassing the notice requirement are met. Courts have emphasized strict adherence to the procedure to prevent abuse of power and protect fundamental rights.",
+      "precedents": [
+        "Arnesh Kumar v. State of Bihar, (2014) 8 SCC 273 – Landmark judgment emphasizing mandatory compliance with Section 41A CrPC and restricting unnecessary arrests.",
+        "Joginder Kumar v. State of UP, AIR 1994 SC 1349 – Earlier precedent laying down guidelines on arrest and personal liberty, foundational to Section 41A's principles.",
+        "State of Haryana v. Bhajan Lal, 1992 Supp (1) SCC 335 – Discusses misuse of power in arrests and investigations, relevant to Section 41A's protective intent."
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-05T22:36:31.366300",
+      "status": "PENDING_REVIEW",
+      "review_comment": ""
+    },
+    {
+      "answer_id": "a4c5ece3-7d9c-428d-a339-0a6b4f81e213",
+      "question_id": "d5745339-dd79-4984-811f-5458ccb82b1a",
+      "language": "mr",
+      "conclusion": "Section 20(3) चा अर्थ असा आहे की एखाद्या व्यक्तीला स्वतःच्या विरोधात साक्ष देण्यास भाग पाडू शकत नाहीत; हा अधिकार आत्मसंरक्षणाचा आहे आणि तो भारतीय संविधानाच्या अनुच्छेद 20(3) अंतर्गत संरक्षित आहे.",
+      "legal_reasoning": "भारतीय संविधानाचा अनुच्छेद 20(3) म्हणतो की कोणत्याही व्यक्तीला स्वतःच्या विरोधात साक्ष देण्यास भाग पाडले जाऊ शकत नाही. याचा अर्थ असा की एखाद्या आरोपीला त्याच्या स्वतःच्या अपराधाबाबत बोलण्यास किंवा साक्ष देण्यास जबरदस्ती करता येणार नाही. हा अधिकार गुन्हेगारी प्रक्रियेत अत्यंत महत्त्वाचा आहे कारण तो 'right against self-incrimination' म्हणून ओळखला जातो. या अधिकाराचा उद्देश आहे की आरोपीला स्वतःला दोषी सिद्ध करायची जबाबदारी नको. सुप्रीम कोर्टाने अनेक प्रकरणांत हा अधिकार मान्य केला आहे आणि सांगितले आहे की हा अधिकार फक्त साक्ष देण्याच्या बाबतीत आहे, तपासणी किंवा चौकशीसाठी नाही. त्यामुळे पोलिस किंवा तपास यंत्रणेला आरोपीला स्वतःच्या विरोधात बोलण्यास भाग पाडण्याचा अधिकार नाही. हा अधिकार फक्त गुन्हेगारी साक्षीशी संबंधित आहे, सामान्य माहिती देण्यास बाधा नाही.",
+      "precedents": [
+        "Nandini Satpathy v. P.L. Dani, AIR 1978 SC 1025 – आत्मसंरक्षणाचा अधिकार आणि त्याचा व्याप्तीवर निर्णय",
+        "Kharak Singh v. State of UP, AIR 1963 SC 1295 – अनुच्छेद 20(3) चा मूलभूत अधिकार म्हणून मान्यता",
+        "Gautam Navlakha v. Union of India, (2018) 7 SCC 192 – आत्मसंरक्षणाचा अधिकार आणि तपास प्रक्रियेत त्याचा वापर"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-05T22:38:08.188235",
+      "status": "PENDING_REVIEW",
+      "review_comment": ""
+    },
+    {
+      "answer_id": "df222700-a67d-4a77-8a6d-02fc5c79aa2a",
+      "question_id": "c8801539-b9e2-4e29-b5f3-3a8d1790243b",
+      "language": "en",
+      "conclusion": "Depends. Whether the Statement of Advice (SoA) under Pt7.7 of the Act regarding Financial Services Disclosure is valid depends on strict compliance with the statutory disclosure requirements and the context in which it is used.",
+      "legal_reasoning": "The Statement of Advice (SoA) under Pt7.7 of the Act is intended to ensure transparency and full disclosure in financial services transactions. The key condition is that the SoA must comprehensively disclose all material information relevant to the advice given, including risks, costs, and conflicts of interest, as mandated by the Act. Non-compliance or partial disclosure can render the SoA invalid or lead to liability under consumer protection or securities laws. Indian courts, including the Supreme Court, have emphasized the importance of full and fair disclosure in financial dealings to protect investors and consumers (principle of utmost good faith). The courts also look at whether the disclosure was made in a manner understandable to the recipient and whether it was timely. Failure to comply with these conditions may lead to the SoA being set aside or the advice being held as misleading or deficient.",
+      "precedents": [
+        "Sahara India Real Estate Corp. Ltd. v. SEBI, (2012) 10 SCC 603 – on disclosure obligations in financial services",
+        "SEBI v. Shriram Mutual Fund, (2006) 5 SCC 361 – on the duty of disclosure and investor protection",
+        "Life Insurance Corporation of India v. Escorts Ltd., AIR 1986 SC 237 – principle of utmost good faith in financial contracts"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T14:46:07.797901",
+      "status": "PENDING_REVIEW",
+      "review_comment": ""
+    },
+    {
+      "answer_id": "e7d5ca23-5b0b-4d2e-8769-dff4a3198150",
+      "question_id": "a5ba67ce-e88a-471a-92a8-924c47bdfc24",
+      "language": "mr",
+      "conclusion": "हे प्रकरण परिस्थितीनुसार ठरवले जाईल; Financial Product Disclosure (FDS) अंतर्गत कायदेशीर जबाबदाऱ्या आणि प्रकटीकरण आवश्यक आहेत, त्यामुळे यावर अवलंबून निर्णय घ्यावा लागेल.",
+      "legal_reasoning": "Financial Product Disclosure (FDS) हा भाग वित्तीय व्यवहारांमध्ये पारदर्शकता आणि ग्राहक संरक्षणासाठी महत्त्वाचा आहे. भारतीय कायद्यांतर्गत, विशेषतः SEBI कायदे, Companies Act 2013 मधील संबंधित तरतुदी आणि RBI नियमांनुसार वित्तीय उत्पादनांची योग्य माहिती देणे अनिवार्य आहे. जर Pt7.9 मध्ये कोणतेही विशेष प्रकटीकरणाचे नियम दिले असतील, तर त्यांचे पालन न केल्यास ग्राहकांचे हित धोक्यात येऊ शकते आणि त्यामुळे कायदेशीर कारवाई होऊ शकते. न्यायालये या संदर्भात पारदर्शकता, ग्राहकांचा विश्वास आणि धोरणात्मक नियमांचे पालन यावर भर देतात. त्यामुळे, FDS अंतर्गत प्रकटीकरण योग्य प्रकारे झाले आहे का, हे तपासणे आवश्यक आहे. तसेच, कोणत्याही गैरप्रकाराचा पुरावा असल्यास त्याचा विचार करणे गरजेचे आहे.",
+      "precedents": [
+        "SEBI v. Sahara India Real Estate Corp. Ltd., (2012) 10 SCC 603 – वित्तीय उत्पादनांच्या प्रकटीकरणाबाबत SEBIच्या अधिकारांची पुष्टी",
+        "Life Insurance Corporation of India v. Escorts Ltd., AIR 1986 SC 237 – वित्तीय व्यवहारांमध्ये पारदर्शकतेचे महत्त्व",
+        "Sahara India Real Estate Corp. Ltd. v. SEBI, (2014) 2 SCC 672 – वित्तीय उत्पादनांच्या प्रकटीकरणातील नियमांचे पालन"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.7,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T14:48:04.031315",
+      "status": "PENDING_REVIEW",
+      "review_comment": ""
+    },
+    {
+      "answer_id": "660ca486-58a7-48fe-9d23-e0c73ea07d4c",
+      "question_id": "d5534945-2964-4d6d-816a-088a0c25a5b7",
+      "language": "en",
+      "conclusion": "The punishment for cheating under the Indian Penal Code is imprisonment which may extend to one year, or with fine, or with both, as per Section 415 read with Section 420 IPC.",
+      "legal_reasoning": "Cheating is defined under Section 415 IPC as deceiving any person fraudulently or dishonestly to induce that person to deliver any property or to consent to any act which causes damage or harm. The punishment for cheating is provided under Section 420 IPC, which prescribes imprisonment up to seven years and a fine if the cheating involves dishonestly inducing delivery of property or valuable security. For ordinary cheating without such inducement, Section 415 IPC does not prescribe punishment, but Section 417 IPC prescribes imprisonment up to one year or fine or both. Courts have consistently held that to attract Section 420 IPC, the act must involve dishonest inducement to deliver property or valuable security. The mens rea (intention to cheat) and the actus reus (deception causing delivery or consent) must be proved beyond reasonable doubt. The Supreme Court has emphasized strict proof of cheating and has distinguished it from mere breach of contract or negligence.",
+      "precedents": [
+        "K. M. Nanavati v. State of Maharashtra, AIR 1962 SC 605 – Discusses the elements of cheating and mens rea required",
+        "State of Andhra Pradesh v. Rayavarapu Punnayya, AIR 1961 SC 1732 – Clarifies the distinction between cheating and breach of contract",
+        "S.G. Vombatkere v. State of Maharashtra, AIR 1969 SC 783 – On proof of dishonest intention in cheating cases"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T19:01:13.831349",
+      "status": "PENDING_REVIEW",
+      "review_comment": ""
+    },
+    {
+      "answer_id": "018673d2-77a1-4531-aaf1-257a320517fa",
+      "question_id": "0b61e65e-be2f-4e0f-83f4-f6066c106ba7",
+      "language": "en",
+      "conclusion": "Depends. Anticipatory bail in a POCSO case where no penetration is alleged is not per se barred, but the nature of the offence, evidence, and facts must be carefully examined before granting bail.",
+      "legal_reasoning": "The Protection of Children from Sexual Offences (POCSO) Act, 2012, is a special law aimed at protecting children from sexual abuse. Sections under POCSO define various offences, some involving penetration (e.g., Section 3, 4) and others involving sexual assault without penetration (Section 7). The Supreme Court has held that the severity of the offence and the nature of the allegations are relevant for bail considerations. Anticipatory bail under Section 438 CrPC is discretionary and depends on the facts of the case, the likelihood of the accused fleeing, tampering with evidence, or influencing witnesses. The absence of penetration allegation may reduce the gravity of the offence but does not automatically entitle the accused to anticipatory bail. Courts must balance the rights of the accused with the protection of the child victim. The POCSO Act does not expressly bar anticipatory bail; however, courts have been cautious in granting bail in sexual offence cases involving children. The Supreme Court in cases like *Gian Kaur v. State of Punjab* and *Sanjay Chandra v. CBI* has emphasized the need for a careful and fact-based approach to bail in serious offences. Therefore, anticipatory bail can be granted if the court is satisfied that the allegations are not prima facie serious or that the accused is not likely to abscond or interfere with the investigation.",
+      "precedents": [
+        "Gian Kaur v. State of Punjab, (1996) 2 SCC 648 – principles on bail and anticipatory bail in serious offences",
+        "Sanjay Chandra v. CBI, (2012) 1 SCC 40 – guidelines on anticipatory bail and balancing interests",
+        "State of Rajasthan v. Balchand, AIR 1977 SC 2447 – anticipatory bail principles",
+        "Arnesh Kumar v. State of Bihar, (2014) 8 SCC 273 – procedural safeguards in arrest and bail",
+        "State of NCT of Delhi v. Navjot Sandhu (2005) 11 SCC 600 – seriousness of offence and bail"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T19:53:47.279564",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 1575
+      }
+    },
+    {
+      "answer_id": "33ed9ef2-0548-4282-9215-72851ed6a9b9",
+      "question_id": "eb72bccb-0c69-4ca5-9e75-e0a74042a5ab",
+      "language": "en",
+      "conclusion": "Anticipatory bail can be granted in a POCSO case where there is no allegation of penetration and the medical report does not support sexual assault, subject to the facts and circumstances of the case and the nature of the allegations.",
+      "legal_reasoning": "The Protection of Children from Sexual Offences (POCSO) Act is a stringent law aimed at protecting children from sexual abuse. However, the grant of anticipatory bail depends on the seriousness of the allegations and the evidence on record. In cases where there is no allegation of penetration and the medical report does not corroborate sexual assault, the severity of the offence may be considered lower. The Supreme Court has recognized that anticipatory bail is not barred in POCSO cases per se and must be decided on a case-by-case basis, especially where the evidence is weak or prima facie does not support the charge. The Court balances the rights of the accused with the protection of the child victim, ensuring that bail is not denied merely because the case is under POCSO if the material facts do not indicate a grave offence.",
+      "precedents": [
+        {
+          "case_name": "Lokesh Kumar Sharma vs The State NCT Of Delhi & Anr",
+          "citation": "approx / to be verified",
+          "summary": "Application for anticipatory bail under POCSO was considered, indicating that bail can be granted depending on facts."
+        },
+        {
+          "case_name": "Supreme Court grants anticipatory bail to 28-yr-old man accused under POCSO",
+          "citation": "approx / to be verified",
+          "summary": "Anticipatory bail was granted where the accused was charged with molestation, showing that bail is possible in POCSO cases without penetration."
+        },
+        {
+          "case_name": "Supreme Court refusal of anticipatory bail in POCSO case",
+          "citation": "approx / to be verified",
+          "summary": "The Court refused bail in a case with serious allegations, highlighting that the nature of the offence is critical."
+        }
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T20:37:44.795856",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 1072
+      }
+    },
+    {
+      "answer_id": "28a4d7ca-56cf-422e-b694-d9d6d8e0464f",
+      "question_id": "7cc8c486-1429-4ddf-b11e-bdd74ecc03e9",
+      "language": "en",
+      "conclusion": "Anticipatory bail can be granted in a POCSO case where there is no allegation of penetration and the medical report does not support sexual assault, subject to the facts and circumstances of the case and the absence of strong evidence against the accused.",
+      "legal_reasoning": "The Protection of Children from Sexual Offences (POCSO) Act is stringent to protect minors, but anticipatory bail is not categorically barred in all POCSO cases. When the allegations do not include penetration and the medical evidence does not corroborate sexual assault, courts have discretion to grant anticipatory bail. The Supreme Court and various High Courts have recognized that anticipatory bail may be granted if the allegations appear to be weak or unsubstantiated, especially where the medical report is negative and the nature of the offence is less severe (e.g., molestation without penetration). The court must balance the rights of the accused against the need to protect the child, ensuring that bail is not granted in cases with strong prima facie evidence of serious sexual offences.",
+      "precedents": [
+        {
+          "case_name": "Supreme Court grants anticipatory bail to accused in alleged rape and sexual assault under POCSO",
+          "citation": "approx / to be verified",
+          "summary": "SC granted anticipatory bail where allegations were serious but facts warranted relief."
+        },
+        {
+          "case_name": "Supreme Court refuses anticipatory bail in POCSO case",
+          "citation": "approx / to be verified",
+          "summary": "SC refused anticipatory bail where strong evidence of sexual assault was present."
+        }
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T20:43:07.836637",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 1056
+      }
+    },
+    {
+      "answer_id": "486648df-7942-4dc5-968f-e2e07d3724de",
+      "question_id": "edf584e5-704d-44be-80ce-6bcf7c45d02e",
+      "language": "mr",
+      "conclusion": "NDPS कायद्यानुसार, जर आरोपी फक्त सह-आरोपीच्या डिस्क्लोजर स्टेटमेंटमध्ये नाव असलेला असेल आणि त्याच्याकडून कोणतीही वस्तू जप्त नसेल, तर त्याला जामीन देणे शक्य आहे.",
+      "legal_reasoning": "NDPS Act अंतर्गत जामीन देण्याच्या बाबतीत मुख्यतः आरोपीकडून कोणतीही वस्तू जप्त झाली आहे का, हे महत्त्वाचे ठरते. जर आरोपी फक्त सह-आरोपीच्या डिस्क्लोजर स्टेटमेंटमध्ये नाव असलेला असेल आणि त्याच्याकडून कोणतीही वस्तू सापडलेली नसेल, तर त्याच्या विरोधात जामीन नाकारण्याचा आधार कमी होतो. डिस्क्लोजर स्टेटमेंट हा एक प्रकारचा पुरावा असू शकतो, पण तो एकटा पुरावा म्हणून वापरला जाऊ शकत नाही. त्यामुळे, अशा परिस्थितीत आरोपीला जामीन देणे न्याय्य ठरते.",
+      "precedents": [
+        "Khazan Singh vs State Of Punjab (approx / to be verified)",
+        "Supreme Court decisions reiterating that conviction under NDPS cannot be based solely on confessional statements (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T20:44:54.445376",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 595
+      }
+    },
+    {
+      "answer_id": "be76d298-ba77-4944-942a-a432636b7c2b",
+      "question_id": "b67f3973-9362-4fd4-ad1a-0109e43c6ee2",
+      "language": "mr",
+      "conclusion": "भारतीय पुरावा कायदा, 1872 च्या Section 65B नुसार, इलेक्ट्रॉनिक पुरावा म्हणून कॉल रेकॉर्डिंग्ज सादर करताना त्या रेकॉर्डिंग्जसह प्रमाणपत्र (certificate) सादर करणे अनिवार्य आहे. प्रमाणपत्राशिवाय कॉल रेकॉर्डिंग्ज सामान्यतः पुरावा म्हणून स्वीकारल्या जात नाहीत.",
+      "legal_reasoning": "Section 65B हे इलेक्ट्रॉनिक पुराव्याच्या स्वीकार्यतेसाठी एक विशेष तरतूद आहे ज्यामध्ये इलेक्ट्रॉनिक रेकॉर्डची सत्यता आणि अखंडता सुनिश्चित करण्यासाठी प्रमाणपत्र आवश्यक आहे. Supreme Court च्या अनेक निर्णयांमध्ये (जसे की Anwar P.V. vs P.K. Basheer, 2014) असे स्पष्ट केले आहे की प्रमाणपत्राशिवाय इलेक्ट्रॉनिक पुरावा स्वीकारणे शक्य नाही, कारण ते पुराव्याची विश्वसनीयता सिद्ध करत नाही. तथापि, काही जुने निर्णय (2005 पूर्वीचे) आणि विशिष्ट परिस्थितींमध्ये प्रमाणपत्राशिवाय पुरावा स्वीकारण्याची शक्यता असली तरी, सध्याच्या कायदेशीर व्याख्येनुसार प्रमाणपत्र आवश्यक आहे.",
+      "precedents": [
+        "Anwar P.V. vs P.K. Basheer, (2014) 10 SCC 473",
+        "Arjun Panditrao Khotkar vs Kailash Kushanrao Gorantyal, (2020) 2 SCC 492",
+        "Shafhi Mohammad vs State of Himachal Pradesh, (2018) 2 SCC 801"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T20:46:00.362416",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 812
+      }
+    },
+    {
+      "answer_id": "d681cb74-b947-4681-a51c-e89fa214a884",
+      "question_id": "40769cbf-7361-449e-8e31-b233c4e7e025",
+      "language": "en",
+      "conclusion": "Bail can be granted even if CCTV footage is unclear, provided that the circumstantial evidence supporting the prosecution is strong and meets the legal threshold. However, suspicion alone or weak circumstantial evidence is insufficient to deny bail.",
+      "legal_reasoning": "The grant of bail depends on the strength and reliability of the evidence, not solely on the clarity of CCTV footage. If the prosecution's case rests on circumstantial evidence, the court must carefully assess whether this evidence is cogent and leads to a reasonable inference of guilt. The Supreme Court has held that bail cannot be denied merely because the prosecution relies on circumstantial evidence, but suspicion or weak evidence is not enough to refuse bail. Additionally, procedural compliance in the collection and admissibility of evidence, including CCTV footage, must be ensured. If the evidence is insufficient or tainted by procedural irregularities, bail may be granted to uphold the accused's right to a fair trial.",
+      "precedents": [
+        "Vikas Kanjad vs State Of U.P. (2025) - refusal to grant bail for effective defense violates fair trial rights (approx / to be verified)",
+        "Supreme Court ruling that bail cannot be denied merely because prosecution relies on circumstantial evidence (approx / to be verified)",
+        "Section 37 of NDPS Act - bail granted only on reasonable grounds that accused is not guilty (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T20:48:58.968607",
+      "status": "APPROVED",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 983
+      }
+    },
+    {
+      "answer_id": "8ae45000-f3e7-4968-8c44-0f8dbfa1964b",
+      "question_id": "63c32fb4-73f3-4034-bd73-37783b6c273c",
+      "language": "en",
+      "conclusion": "Depends. A temporary injunction can be granted even when possession is disputed, but courts exercise caution and generally avoid granting possession-based injunctions without clear prima facie evidence of possession or entitlement, to prevent misuse and avoid complicating the dispute further.",
+      "legal_reasoning": "1. Under Order XXXIX Rules 1 and 2 of the Code of Civil Procedure, 1908, a temporary injunction is granted to maintain the status quo and prevent irreparable harm until the final decision. 2. Possession is a crucial factor in injunction cases involving property or possession disputes. Courts generally require prima facie satisfaction that the plaintiff has possession or a better right to possession. 3. When possession is disputed by both parties, courts often refrain from granting injunctions that effectively transfer possession, as it may prejudice the final adjudication. 4. The Supreme Court has held that possession is a fact and must be established on evidence; mere assertion is insufficient. 5. Courts may grant injunctions to preserve the status quo but avoid granting possession-based injunctions unless the plaintiff clearly shows prior possession or right to possession. 6. The principle of 'balance of convenience' and 'irreparable injury' also guides the court’s discretion. 7. In criminal or eviction proceedings, the court may direct parties to maintain possession until trial, but not necessarily grant possession to one party when disputed. 8. Thus, injunctions are possible but conditional on evidence and circumstances.",
+      "precedents": [
+        "M.C. Chockalingam v. M.C. Mariammal, AIR 1961 SC 1808 – possession is a fact and must be established; injunctions cannot be granted on mere assertion.",
+        "Sundaram Finance Ltd. v. NEPC India Ltd., AIR 1999 SC 626 – principles of granting injunctions including balance of convenience and irreparable injury.",
+        "K.K. Verma v. Union of India, AIR 1965 SC 845 – injunctions to maintain status quo and avoid dispossession without due process.",
+        "S.P. Chengalvaraya Naidu v. Jagannath, AIR 1994 SC 853 – injunctions require clear prima facie case and balance of convenience."
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2025-12-09T20:50:51.152842",
+      "status": "PENDING_REVIEW",
+      "review_comment": ""
+    },
+    {
+      "answer_id": "35c2693d-b29b-412e-adbe-8c953d6ef839",
+      "question_id": "834685ea-c470-402b-a8b8-ad5b73108b17",
+      "language": "en",
+      "conclusion": "Delay in producing the accused before the magistrate (khatal) can adversely affect the grant of bail, as it may indicate procedural lapses or custodial violations, thereby impacting the court's assessment of the accused's rights and the prosecution's case.",
+      "legal_reasoning": "Under Indian criminal procedure, the accused must be produced before a magistrate without unnecessary delay after arrest. This requirement safeguards personal liberty and prevents illegal detention. Delay in production can be viewed as a violation of the accused's fundamental rights under Article 21 of the Constitution. Courts often consider such delay as a factor when deciding bail applications, as it may reflect on the legitimacy of the arrest and the conduct of the investigation. If the delay is unexplained or unjustified, courts may be more inclined to grant bail or even quash the arrest. Conversely, if the delay is justified by valid reasons (such as medical emergencies), it may not adversely affect bail decisions.",
+      "precedents": [
+        {
+          "case_name": "Joginder Kumar v. State of UP",
+          "citation": "1994 SCC (4) 260",
+          "relevance": "Emphasizes the necessity of producing the arrested person before the magistrate promptly to prevent illegal detention."
+        },
+        {
+          "case_name": "Hussainara Khatoon v. State of Bihar",
+          "citation": "AIR 1979 SC 1369",
+          "relevance": "Highlights the right to speedy production and its relation to personal liberty."
+        },
+        {
+          "case_name": "State of Rajasthan v. Balchand",
+          "citation": "AIR 1977 SC 2447",
+          "relevance": "Delay in production can be a ground for bail if it violates statutory or constitutional safeguards."
+        }
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-01-01T20:01:10.822471",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 985
+      }
+    },
+    {
+      "answer_id": "5cbc2886-649a-40af-80fd-2751363c120f",
+      "question_id": "07797a76-8f9b-4c20-9186-f1232742a80a",
+      "language": "mr",
+      "conclusion": "खटल्यात विलंब होणे जामीनावर नकारात्मक परिणाम करू शकते, कारण विलंबामुळे आरोपीच्या बाजूने न्यायालयाला विश्वास कमी होतो आणि आरोपीच्या सुटकेच्या शक्यतांवर परिणाम होतो.",
+      "legal_reasoning": "भारतीय न्यायव्यवस्थेत जामीन हा एक प्रकारचा तात्पुरता सुटका आहे जो आरोपीच्या न्यायालयीन प्रक्रियेत उपस्थित राहण्याची हमी म्हणून दिला जातो. जर खटला विलंब झाला आणि आरोपीने खटल्यात उपस्थित राहण्यास विलंब केला किंवा गैरहजर राहिला, तर न्यायालयाला आरोपीवर विश्वास कमी होतो. यामुळे जामीन अर्ज नाकारला जाऊ शकतो किंवा आधी दिलेला जामीन रद्द केला जाऊ शकतो. तसेच, खटल्यात विलंब झाल्यामुळे आरोपीच्या बाजूने न्यायालयाला असे वाटू शकते की आरोपी न्यायालयीन प्रक्रियेत सहकार्य करत नाही, ज्यामुळे जामीन मिळण्याची शक्यता कमी होते. विशेषतः NDPS Act सारख्या गंभीर गुन्ह्यांमध्ये, जिथे न्यायालय अधिक काटेकोर असते, तिथे विलंबाचा परिणाम अधिक गंभीर होतो.",
+      "precedents": [
+        "Gurbaksh Singh Sibbia v. State of Punjab, AIR 1980 SC 1632",
+        "State of Rajasthan v. Balchand @ Baliay, AIR 1977 SC 2447",
+        "Sanjay Chandra v. CBI, (2012) 1 SCC 40 (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-01-01T20:05:06.918514",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 790
+      }
+    }
+  ],
+  "reviews": [],
+  "cache": [
+    {
+      "cache_id": "9a1cd1ac-e058-4db5-bf1c-0157a3374c08",
+      "question_hash": "d1bdf6b8c9241d18b94e6f92cbf5e120",
+      "answer_id": "a35ba41e-3ed3-4642-bc8c-f7ec62dfa213",
+      "question_id": "c24d9311-1742-4f55-a976-4f6097e69cd9",
+      "cache_hits": 1,
+      "last_used": "2025-12-05T21:31:55.643829"
+    },
+    {
+      "cache_id": "a13c0a58-a09b-48cb-9b93-2498d0ab7ec2",
+      "question_hash": "bc0160e31762f34f456d5377d837da83",
+      "answer_id": "6dc488fa-b05e-40bd-820c-3167b693e8dc",
+      "question_id": "d98c7d91-f49b-45a2-822a-99631f45bfbb",
+      "cache_hits": 3,
+      "last_used": "2025-12-18T12:17:59.586812"
+    },
+    {
+      "cache_id": "0c39e0be-813c-4517-9734-516a7069e3cd",
+      "question_hash": "7b6dc265922a86d961d26ecf0be0d10f",
+      "answer_id": "a4c5ece3-7d9c-428d-a339-0a6b4f81e213",
+      "question_id": "d5745339-dd79-4984-811f-5458ccb82b1a",
+      "cache_hits": 1,
+      "last_used": "2025-12-05T22:38:08.188284"
+    },
+    {
+      "cache_id": "434acb7d-744f-49e5-b7b8-87768d2eca7c",
+      "question_hash": "42cf2af2c3f81ba94fb7bd57166f5a9d",
+      "answer_id": "df222700-a67d-4a77-8a6d-02fc5c79aa2a",
+      "question_id": "c8801539-b9e2-4e29-b5f3-3a8d1790243b",
+      "cache_hits": 1,
+      "last_used": "2025-12-09T14:46:07.798032"
+    },
+    {
+      "cache_id": "65c5cf13-27aa-46c9-ae56-67d9353ce1fd",
+      "question_hash": "93f9d5d70043c210643b31d20f3d9d6c",
+      "answer_id": "e7d5ca23-5b0b-4d2e-8769-dff4a3198150",
+      "question_id": "a5ba67ce-e88a-471a-92a8-924c47bdfc24",
+      "cache_hits": 1,
+      "last_used": "2025-12-09T14:48:04.031382"
+    },
+    {
+      "cache_id": "16b6bc49-d116-42dc-8afc-bef4f01db360",
+      "question_hash": "47de823300b0bbd908f98fe97fc9ab9b",
+      "answer_id": "660ca486-58a7-48fe-9d23-e0c73ea07d4c",
+      "question_id": "d5534945-2964-4d6d-816a-088a0c25a5b7",
+      "cache_hits": 1,
+      "last_used": "2025-12-09T19:01:13.831380"
+    },
+    {
+      "cache_id": "4beef346-a957-4f6e-acff-0c546a535bfb",
+      "question_hash": "18f8af72a182018f40c7728740f9c3b1",
+      "answer_id": "018673d2-77a1-4531-aaf1-257a320517fa",
+      "question_id": "0b61e65e-be2f-4e0f-83f4-f6066c106ba7",
+      "cache_hits": 1,
+      "last_used": "2025-12-09T19:53:47.279592"
+    },
+    {
+      "cache_id": "eae55c9b-72ff-40df-84dd-8e5328ad0e65",
+      "question_hash": "6055feef710cadc98bff0218d6988246",
+      "answer_id": "33ed9ef2-0548-4282-9215-72851ed6a9b9",
+      "question_id": "eb72bccb-0c69-4ca5-9e75-e0a74042a5ab",
+      "cache_hits": 1,
+      "last_used": "2025-12-09T20:37:44.795979"
+    },
+    {
+      "cache_id": "7ff5eddc-781b-4cc7-ba74-9ca8a7f43a8e",
+      "question_hash": "bb4a83800040ac6b687af23ecac13771",
+      "answer_id": "28a4d7ca-56cf-422e-b694-d9d6d8e0464f",
+      "question_id": "7cc8c486-1429-4ddf-b11e-bdd74ecc03e9",
+      "cache_hits": 1,
+      "last_used": "2025-12-09T20:43:07.836744"
+    },
+    {
+      "cache_id": "7d6434d1-3f12-4157-a2ff-4e36f1271222",
+      "question_hash": "a0419c95c7acc4fafa5556a70a83eed6",
+      "answer_id": "486648df-7942-4dc5-968f-e2e07d3724de",
+      "question_id": "edf584e5-704d-44be-80ce-6bcf7c45d02e",
+      "cache_hits": 1,
+      "last_used": "2025-12-09T20:44:54.445441"
+    },
+    {
+      "cache_id": "7f0da481-0125-49e9-8f91-0767ad2f771b",
+      "question_hash": "d6a7d140ad2a57c8b2c0eb58458b526f",
+      "answer_id": "be76d298-ba77-4944-942a-a432636b7c2b",
+      "question_id": "b67f3973-9362-4fd4-ad1a-0109e43c6ee2",
+      "cache_hits": 1,
+      "last_used": "2025-12-09T20:46:00.362446"
+    },
+    {
+      "cache_id": "17dfb367-7644-40af-bbb8-86f0868d10e0",
+      "question_hash": "f3340a4da2e32f06ad15a46ad21d1854",
+      "answer_id": "d681cb74-b947-4681-a51c-e89fa214a884",
+      "question_id": "40769cbf-7361-449e-8e31-b233c4e7e025",
+      "cache_hits": 2,
+      "last_used": "2026-01-01T19:59:41.118877"
+    },
+    {
+      "cache_id": "08805cce-7bd5-45e7-aa24-7ceeb0dcbbc9",
+      "question_hash": "89b592c71aaec73d39ef182ddf5f07ea",
+      "answer_id": "8ae45000-f3e7-4968-8c44-0f8dbfa1964b",
+      "question_id": "63c32fb4-73f3-4034-bd73-37783b6c273c",
+      "cache_hits": 1,
+      "last_used": "2025-12-09T20:50:51.153123"
+    },
+    {
+      "cache_id": "de60f325-a138-4c86-b784-522ef0a1d1ff",
+      "question_hash": "668211a5d138d7b99049b8bca8810a14",
+      "answer_id": "35c2693d-b29b-412e-adbe-8c953d6ef839",
+      "question_id": "834685ea-c470-402b-a8b8-ad5b73108b17",
+      "cache_hits": 1,
+      "last_used": "2026-01-01T20:01:10.822471"
+    },
+    {
+      "cache_id": "9108be1f-47d2-4789-9da0-b566f933f817",
+      "question_hash": "2055c239074c383bdfa19cfdca60a57b",
+      "answer_id": "5cbc2886-649a-40af-80fd-2751363c120f",
+      "question_id": "07797a76-8f9b-4c20-9186-f1232742a80a",
+      "cache_hits": 1,
+      "last_used": "2026-01-01T20:05:06.918514"
+    }
+  ]
+}
