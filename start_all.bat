@@ -38,12 +38,17 @@ start "Legal QA Backend (8002)" cmd /k "cd /d "%ROOT_DIR%Legal_QA\legal-qa-syste
 timeout /t 2 /nobreak >nul
 
 REM Start Summary Backend (Port 8003)
-echo [4/5] Starting Summary Backend on port 8003...
+echo [4/6] Starting Summary Backend on port 8003...
 start "Summary Backend (8003)" cmd /k "cd /d "%ROOT_DIR%Legal_Summary\backend" && call "%ROOT_DIR%venv\Scripts\activate" && python app.py"
 timeout /t 5 /nobreak >nul
 
+REM Start Document Retrieval Backend (Port 8004)
+echo [5/6] Starting Document Retrieval Backend on port 8004...
+start "Document Retrieval Backend (8004)" cmd /k "cd /d "%ROOT_DIR%indiankanoon-mcp\ui" && call "%ROOT_DIR%venv\Scripts\activate" && python app.py"
+timeout /t 2 /nobreak >nul
+
 REM Start Frontend (Port 5173)
-echo [5/5] Starting Frontend on port 5173...
+echo [6/6] Starting Frontend on port 5173...
 start "Frontend (5173)" cmd /k "cd /d "%ROOT_DIR%front-end" && npm run dev"
 
 echo.
@@ -56,6 +61,7 @@ echo   Main Backend:      http://localhost:8000
 echo   Research Backend:  http://localhost:8001
 echo   Legal QA Backend:  http://localhost:8002
 echo   Summary Backend:   http://localhost:8003
+echo   Doc Retrieval:     http://localhost:8004
 echo   Frontend:          http://localhost:5173
 echo.
 echo Press any key to exit this window...
