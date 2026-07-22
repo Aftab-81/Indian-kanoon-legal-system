@@ -121,7 +121,7 @@ def download_worker(task_id: str, year: int, month: str, court: str, max_count: 
                     "path": result["path"],
                     "filename": os.path.basename(result["path"]),
                     "skipped": result.get("skipped", False),
-                    "type": "PDF" if result["path"].endswith(".pdf") else "HTML",
+                    "file_type": "PDF" if result["path"].endswith(".pdf") else "HTML",
                 }
                 downloaded_files.append(file_entry)
                 push_event(task_id, "file_done", file_entry)
