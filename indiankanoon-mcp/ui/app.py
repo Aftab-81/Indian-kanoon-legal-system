@@ -30,6 +30,7 @@ sys.path.insert(0, str(MCP_SERVER_DIR))
 from scraper import (
     fetch_all_judgements,
     download_judgement,
+    fetch_judgement_count,
     COURT_TYPES,
     MONTH_MAP,
 )
@@ -193,6 +194,23 @@ def start_download():
     thread.start()
 
     return jsonify({"task_id": task_id})
+
+
+@app.route("/api/count", methods=["POST"])
+def get_count():
+    data = request.get_json()
+    year = int(data.get("year", 2025))
+    month = data.get("month", "January")
+    court = data.get("court", "All Courts")
+
+    if month not in MONTH_MAP:
+        return jsonify({"error": "Invalid month"}), 400
+
+    try:
+        count = fetch_judgement_count(year, month, court)
+        return jsonify({"count": count})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @app.route("/api/stream/<task_id>")

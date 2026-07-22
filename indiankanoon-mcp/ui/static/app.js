@@ -43,6 +43,11 @@ const btnPdf   = document.getElementById("btn-pdf");
 const btnHtml  = document.getElementById("btn-html");
 const formatNote = document.getElementById("format-note");
 
+const yearSelect = document.getElementById("year-select");
+const monthSelect = document.getElementById("month-select");
+const courtSelect = document.getElementById("court-select");
+const totalCountValue = document.getElementById("total-count-value");
+
 // ─── Init ─────────────────────────────────────────────────
 document.addEventListener("DOMContentLoaded", () => {
   // Enable download button only when form is valid
@@ -65,7 +70,41 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Open folder
   openFolderBtn.addEventListener("click", onOpenFolder);
+
+  // Dynamic count updates
+  yearSelect.addEventListener("change", fetchCount);
+  monthSelect.addEventListener("change", fetchCount);
+  courtSelect.addEventListener("change", fetchCount);
+
+  // Initial fetch
+  fetchCount();
 });
+
+function fetchCount() {
+  if (!totalCountValue) return;
+  totalCountValue.innerHTML = '<div class="spinner" style="width:14px;height:14px;border-width:2px;display:inline-block;margin-right:6px"></div><span style="font-size:14px">Calculating...</span>';
+  
+  const year = parseInt(yearSelect.value);
+  const month = monthSelect.value;
+  const court = courtSelect.value;
+  
+  fetch("/api/count", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ year, month, court })
+  })
+  .then(res => res.json())
+  .then(data => {
+    if(data.error) {
+      totalCountValue.textContent = "Error";
+    } else {
+      totalCountValue.textContent = data.count.toLocaleString();
+    }
+  })
+  .catch(err => {
+    totalCountValue.textContent = "Failed";
+  });
+}
 
 function enableDownloadBtn() {
   downloadBtn.disabled = false;

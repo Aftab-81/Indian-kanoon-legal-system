@@ -156,6 +156,26 @@ def fetch_judgement_list(year: int, month_name: str, court: str = "", page: int 
     return {"total": total, "page": page, "judgements": judgements}
 
 
+def fetch_judgement_count(year: int, month_name: str, court: str = "") -> int:
+    """Fetch only the total result count for a given year/month/court."""
+    url = build_search_url(year, month_name, court, 0)
+    logger.info(f"Fetching count: {url}")
+    try:
+        response = requests.get(url, headers=HEADERS, timeout=10)
+        response.raise_for_status()
+    except requests.RequestException as e:
+        logger.error(f"Failed to fetch count: {e}")
+        return 0
+
+    soup = BeautifulSoup(response.text, "lxml")
+    count_span = soup.find("span", class_="results-count")
+    if count_span:
+        match = re.search(r"of\s+([\d,]+)", count_span.get_text())
+        if match:
+            return int(match.group(1).replace(",", ""))
+    return 0
+
+
 def fetch_all_judgements(
     year: int,
     month_name: str,
@@ -574,13 +594,16 @@ def download_judgement(
     pdf_path = os.path.join(output_dir, f"{filename}.pdf")
     html_path = os.path.join(output_dir, f"{filename}.html")
 
-    # Skip if already downloaded
-    if os.path.exists(pdf_path):
-        logger.info(f"Already exists: {pdf_path}")
-        return {"success": True, "path": pdf_path, "skipped": True}
-    if os.path.exists(html_path):
-        logger.info(f"Already exists: {html_path}")
-        return {"success": True, "path": html_path, "skipped": True}
+    # Robust duplicate check by doc_id
+    prefix = f"{doc_id}_"
+    try:
+        for existing_file in os.listdir(output_dir):
+            if existing_file.startswith(prefix):
+                existing_path = os.path.join(output_dir, existing_file)
+                logger.info(f"Already exists (matched ID): {existing_path}")
+                return {"success": True, "path": existing_path, "skipped": True}
+    except Exception as e:
+        logger.warning(f"Error checking duplicates: {e}")
 
     doc_url = f"{BASE_URL}/doc/{doc_id}/"
 
