@@ -8,7 +8,9 @@ let currentTaskId = null;
 let eventSource = null;
 let selectedFormat = "pdf";
 let downloadedCount = 0;
+let skippedCount = 0;
 let failedCount = 0;
+let totalAvailable = 0;
 
 // ─── DOM Refs ─────────────────────────────────────────────
 const form         = document.getElementById("download-form");
@@ -193,6 +195,7 @@ function handleEvent(data) {
 
     case "search_done":
       countTotal.textContent = data.total;
+      totalAvailable = data.total;
       setStatus("running", "⬇", "Downloading...", data.message);
       if (data.total > 0) {
         resultsHeader.style.display = "flex";
@@ -209,10 +212,15 @@ function handleEvent(data) {
       break;
 
     case "file_done":
-      downloadedCount++;
-      addFileCard(data, false);
+      if (data.skipped) {
+        skippedCount++;
+      } else {
+        downloadedCount++;
+        addFileCard(data, false);
+      }
       tagSuccess.textContent = `${downloadedCount} saved`;
-      countDone.textContent = downloadedCount;
+      countDone.textContent = downloadedCount + skippedCount;
+      updateSummary();
       break;
 
     case "file_error":
@@ -220,6 +228,7 @@ function handleEvent(data) {
       addFileCard(data, true);
       tagError.style.display = "inline";
       tagError.textContent = `${failedCount} failed`;
+      updateSummary();
       break;
 
     case "done":
@@ -245,19 +254,50 @@ function onDownloadDone(data) {
   eventSource && eventSource.close();
   currentFileEl.style.display = "none";
   updateProgress(100, 100, 100);
+
+  let title = `Complete! ${downloadedCount} downloaded`;
+  let sub = `${data.failed > 0 ? data.failed + " failed" : ""}`;
+
+  if (skippedCount > 0 && downloadedCount === 0) {
+    title = `Complete! 0 downloaded, ${skippedCount} skipped`;
+    sub = `All ${skippedCount} judgements already exist. No new files were downloaded.`;
+    
+    emptyState.innerHTML = `
+      <div class="empty-icon" aria-hidden="true" style="margin-bottom: 16px;">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="color: #4a5568;"><path d="M22 12h-6l-2 3h-4l-2-3H2"></path><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path><line x1="9" y1="15" x2="15" y2="15"></line></svg>
+      </div>
+      <h3 style="font-size: 18px; margin-bottom: 8px;">No newly downloaded files</h3>
+      <p style="color: var(--text-secondary); max-width: 300px; margin: 0 auto; line-height: 1.5;">All available judgements for the selected filters<br>have already been downloaded.</p>
+    `;
+    emptyState.style.display = "flex";
+  } else if (skippedCount > 0 && downloadedCount > 0) {
+    title = `Complete! ${downloadedCount} downloaded, ${skippedCount} skipped`;
+  } else if (totalAvailable === 0) {
+    title = `0 judgements found`;
+  }
+
   setStatus(
     "done", "✅",
-    `Complete! ${data.downloaded} downloaded`,
-    `${data.failed > 0 ? data.failed + " failed · " : ""}Saved to ${data.save_dir}`
+    title,
+    sub
   );
   resetButtons();
-  let toastMsg = `✅ ${data.downloaded} judgements downloaded!`;
-  if (data.downloaded === 0 && data.failed === 0) {
-    toastMsg = `⚠️ 0 judgements found for the selected criteria.`;
+  
+  if (totalAvailable === 0 && data.failed === 0) {
+    showToast(`⚠️ 0 judgements found for the selected criteria.`);
   } else if (data.failed > 0) {
-    toastMsg = `⚠️ ${data.downloaded} downloaded, ${data.failed} failed. (Check console or server logs for blocks)`;
+    showToast(`⚠️ ${downloadedCount} downloaded, ${data.failed} failed. (Check console or server logs for blocks)`);
   }
-  showToast(toastMsg);
+}
+
+function updateSummary() {
+  const summaryBlock = document.getElementById("download-summary");
+  if (summaryBlock) {
+    summaryBlock.style.display = "block";
+    document.getElementById("summary-total").textContent = totalAvailable;
+    document.getElementById("summary-downloaded").textContent = downloadedCount;
+    document.getElementById("summary-skipped").textContent = skippedCount;
+  }
 }
 
 async function onCancel() {
@@ -285,14 +325,27 @@ async function onOpenFolder() {
 // ─── UI Helpers ──────────────────────────────────────────
 function resetUI() {
   downloadedCount = 0;
+  skippedCount = 0;
   failedCount = 0;
+  totalAvailable = 0;
   fileList.innerHTML = "";
   fileList.appendChild(emptyState);
+  emptyState.innerHTML = `
+    <div class="empty-icon" aria-hidden="true"></div>
+    <h3>No downloads yet</h3>
+    <p>Choose your filters and click <strong>Start Download</strong> to begin fetching judgements.</p>
+  `;
   emptyState.style.display = "none";
-  tagSuccess.textContent = "0 saved";
+  tagSuccess.textContent = "0 processed";
   tagError.style.display = "none";
   tagError.textContent = "0 failed";
   resultsHeader.style.display = "none";
+  
+  const summaryBlock = document.getElementById("download-summary");
+  if (summaryBlock) {
+    summaryBlock.style.display = "none";
+  }
+  
   updateProgress(0, 0, 0);
   currentFileEl.style.display = "none";
   countDone.textContent = "0";
@@ -328,12 +381,12 @@ function addFileCard(data, isError) {
   card.className = `file-card ${isError ? "error" : ""}`;
   card.setAttribute("role", "listitem");
 
-  const icon = isError ? "❌" : (data.type === "PDF" ? "📄" : "🌐");
+  const icon = isError ? "❌" : (data.file_type === "PDF" ? "📄" : "🌐");
   const meta = [];
 
   if (data.court && !isError) meta.push(data.court);
   if (data.date && !isError)  meta.push(data.date);
-  if (data.type && !isError)  meta.push(`<span class="file-type-badge">${data.type}</span>`);
+  if (data.file_type && !isError)  meta.push(`<span class="file-type-badge">${data.file_type}</span>`);
   if (data.skipped)           meta.push('<span style="color:#f6ad55;font-size:10px">↩ Skipped (cached)</span>');
 
   card.innerHTML = `
