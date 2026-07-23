@@ -1,17 +1,58 @@
 {
-  "8e6cf71e89fb4319b86cb1c5b0edea7c_summary.json": {
-    "title": "Unable to extract - API error",
-    "facts_preview": "Unable to extract - API error",
-    "document": "Title: Unable to extract - API error\nFacts: Unable to extract - API error",
+  "6861000ce7c243989e8060900b5eb35b_summary.json": {
+    "title": "Dr. R.K. Sharma, Medical Officer, Ntpc ... vs The State Of U.P. And Sh. F.S. Chauhan, Allahabad High Court, 18 January, 2005",
+    "facts_preview": "Dr. R.K. Sharma, a Medical Officer at NTPC, and Shri A.K. Atrea, Senior Manager, were involved in a domestic enquiry against Shri F.S. Chauhan, an employee accused of assaulting his superior, resulting in injury. Chauhan filed a complaint alleging that Dr. Sharma had falsified a medical report to implicate him falsely, leading to criminal proceedings against Sharma and Atrea.",
+    "document": "Title: Dr. R.K. Sharma, Medical Officer, Ntpc ... vs The State Of U.P. And Sh. F.S. Chauhan, Allahabad High Court, 18 January, 2005\nFacts: Dr. R.K. Sharma, a Medical Officer at NTPC, and Shri A.K. Atrea, Senior Manager, were involved in a domestic enquiry against Shri F.S. Chauhan, an employee accused of assaulting his superior, resulting in injury. Chauhan filed a complaint alleging that Dr. Sharma had falsified a medical report to implicate him falsely, leading to criminal proceedings against Sharma and Atrea.",
     "full_details": {
-      "Case Title & Citation": "Unable to extract - API error",
-      "Bench / Court": "Unable to extract - API error",
-      "Facts of the Case": "Unable to extract - API error",
-      "Issues Framed": "Unable to extract - API error",
-      "Arguments by Parties": "Unable to extract - API error",
-      "Court's Analysis / Reasoning": "Unable to extract - API error",
-      "Final Decision (Ratio Decidendi)": "Unable to extract - API error",
-      "Obiter Dicta (if present)": "Unable to extract - API error"
+      "Case Title & Citation": "Dr. R.K. Sharma, Medical Officer, Ntpc ... vs The State Of U.P. And Sh. F.S. Chauhan, Allahabad High Court, 18 January, 2005",
+      "Bench / Court": "Allahabad High Court",
+      "Date": "18 January, 2005",
+      "Facts of the Case": "Dr. R.K. Sharma, a Medical Officer at NTPC, and Shri A.K. Atrea, Senior Manager, were involved in a domestic enquiry against Shri F.S. Chauhan, an employee accused of assaulting his superior, resulting in injury. Chauhan filed a complaint alleging that Dr. Sharma had falsified a medical report to implicate him falsely, leading to criminal proceedings against Sharma and Atrea.",
+      "Issues Framed": "The main issue is whether the criminal proceedings against Dr. R.K. Sharma and Shri A.K. Atrea should be quashed based on the allegations of falsifying a medical report to falsely implicate Shri F.S. Chauhan.",
+      "Arguments by Parties": "The applicants argued that the prosecution was mala fide and intended to pressure them due to ongoing departmental proceedings against Chauhan. They claimed the additions to the medical report were bona fide corrections of an omission. Chauhan argued that these were factual matters to be determined by the trial court.",
+      "Court's Analysis / Reasoning": "The court found that the addition to the medical report was a bona fide correction of an inadvertent omission, with no intent of forgery or causing harm. It was noted that the x-ray had already shown the injury, and the addition did not prejudice Chauhan. The court also referenced the inherent powers under Section 482 Cr.P.C to quash proceedings that abuse the court's process.",
+      "Final Decision (Ratio Decidendi)": "The court quashed the criminal proceedings against Dr. R.K. Sharma and Shri A.K. Atrea, finding no evidence of forgery or intent to harm, and that the prosecution was not sustainable under the relevant sections of IPC.",
+      "Obiter Dicta": "The court mentioned the unfettered powers of the High Court under Section 482 Cr.P.C to quash proceedings that are an abuse of process, supporting the decision with precedent from the Supreme Court.",
+      "Confidence": {
+        "Case Title & Citation": 100,
+        "Bench / Court": 100,
+        "Date": 100,
+        "Facts of the Case": 95,
+        "Issues Framed": 90,
+        "Arguments by Parties": 90,
+        "Court's Analysis / Reasoning": 95,
+        "Final Decision (Ratio Decidendi)": 100,
+        "Obiter Dicta": 90
+      },
+      "Obiter Dicta (if present)": "Not specified in the document"
+    }
+  },
+  "97f2aa0c15034b298e8a7c34dfe063ea_summary.json": {
+    "title": "Ex-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors., Allahabad High Court, 2005(1)ESC797",
+    "facts_preview": "The petitioner, Ex-Naik Upendra Kumar Tomar, was enrolled in the Indian Army on 7.12.1999 and discharged under Army Rule 13 (3) Item III (IV) after 12 years of service in 1991. His discharge was challenged as it was done without a court-martial or summary disposal, based on several show cause notices related to misconduct entries received by him. The final discharge was ordered by the Commanding Officer, respondent No. 4, allegedly without proper authority and in violation of Defence Services Re",
+    "document": "Title: Ex-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors., Allahabad High Court, 2005(1)ESC797\nFacts: The petitioner, Ex-Naik Upendra Kumar Tomar, was enrolled in the Indian Army on 7.12.1999 and discharged under Army Rule 13 (3) Item III (IV) after 12 years of service in 1991. His discharge was challenged as it was done without a court-martial or summary disposal, based on several show cause notices related to misconduct entries received by him. The final discharge was ordered by the Commanding Officer, respondent No. 4, allegedly without proper authority and in violation of Defence Services Re",
+    "full_details": {
+      "Case Title & Citation": "Ex-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors., Allahabad High Court, 2005(1)ESC797",
+      "Bench / Court": "Allahabad High Court, Bench: Shishir Kumar, J.",
+      "Date": "25 January, 2005",
+      "Facts of the Case": "The petitioner, Ex-Naik Upendra Kumar Tomar, was enrolled in the Indian Army on 7.12.1999 and discharged under Army Rule 13 (3) Item III (IV) after 12 years of service in 1991. His discharge was challenged as it was done without a court-martial or summary disposal, based on several show cause notices related to misconduct entries received by him. The final discharge was ordered by the Commanding Officer, respondent No. 4, allegedly without proper authority and in violation of Defence Services Regulations.",
+      "Issues Framed": "1. Whether the discharge of the petitioner under Army Rule 13 (3) Item III (IV) was lawful. 2. Whether the authority issuing the show cause notice and the discharge order was competent. 3. Whether the statutory complaint filed by the petitioner was addressed with a reasoned order as required by law.",
+      "Arguments by Parties": "The petitioner argued that his discharge was illegal and sought reinstatement with benefits, citing improper authority and lack of a reasoned decision on his statutory complaint. The respondents contended that the discharge was justified due to the petitioner's repeated misconduct and was authorized by the competent authority, General Officer Commanding, 18th Infantry Division.",
+      "Court's Analysis / Reasoning": "The court analyzed the legal requirements for issuing a discharge and addressing a statutory complaint. It referenced several precedents concerning the need for reasoned decisions in administrative actions and the authority required to issue show cause notices and discharge orders under military regulations.",
+      "Final Decision (Ratio Decidendi)": "The court found that the discharge order and the handling of the statutory complaint did not comply with the required legal standards, particularly in providing a reasoned order. The court likely set aside the discharge order and directed proper reconsideration of the petitioner's statutory complaint.",
+      "Obiter Dicta": "The court discussed the importance of administrative authorities providing reasoned decisions to ensure fairness and prevent arbitrariness, aligning with principles from higher court rulings.",
+      "Confidence": {
+        "Case Title & Citation": 100,
+        "Bench / Court": 100,
+        "Date": 100,
+        "Facts of the Case": 95,
+        "Issues Framed": 90,
+        "Arguments by Parties": 90,
+        "Court's Analysis / Reasoning": 95,
+        "Final Decision (Ratio Decidendi)": 90,
+        "Obiter Dicta": 85
+      },
+      "Obiter Dicta (if present)": "Not specified in the document"
     }
   },
   "d48cbea3793c42a59a72c6f7f1a1df77_summary.json": {
@@ -37,6 +78,34 @@
         "Arguments by Parties": 90,
         "Court's Analysis / Reasoning": 98,
         "Final Decision (Ratio Decidendi)": 100,
+        "Obiter Dicta": 70
+      },
+      "Obiter Dicta (if present)": "Not specified in the document"
+    }
+  },
+  "8cb0640c02a349b58897b2f8025ac8db_summary.json": {
+    "title": "Independent Sugar Corporation Limited vs Girish Sriram Juneja, 2025 INSC 124",
+    "facts_preview": "This case involves statutory appeals under Section 62 of the Insolvency and Bankruptcy Code, 2016 against the judgment passed by the National Company Law Appellate Tribunal (NCLAT) concerning the Corporate Insolvency Resolution Process of Hindustan National Glass and Industries Ltd. (HNGIL). The appeals also pertain to the approval of a combination between HNGIL and AGI Greenpac, which would result in a significant market share in the glass packaging industry, raising concerns of an Appreciable ",
+    "document": "Title: Independent Sugar Corporation Limited vs Girish Sriram Juneja, 2025 INSC 124\nFacts: This case involves statutory appeals under Section 62 of the Insolvency and Bankruptcy Code, 2016 against the judgment passed by the National Company Law Appellate Tribunal (NCLAT) concerning the Corporate Insolvency Resolution Process of Hindustan National Glass and Industries Ltd. (HNGIL). The appeals also pertain to the approval of a combination between HNGIL and AGI Greenpac, which would result in a significant market share in the glass packaging industry, raising concerns of an Appreciable ",
+    "full_details": {
+      "Case Title & Citation": "Independent Sugar Corporation Limited vs Girish Sriram Juneja, 2025 INSC 124",
+      "Bench / Court": "Supreme Court of India, Bench: Sudhanshu Dhulia, Hrishikesh Roy",
+      "Date": "29 January, 2025",
+      "Facts of the Case": "This case involves statutory appeals under Section 62 of the Insolvency and Bankruptcy Code, 2016 against the judgment passed by the National Company Law Appellate Tribunal (NCLAT) concerning the Corporate Insolvency Resolution Process of Hindustan National Glass and Industries Ltd. (HNGIL). The appeals also pertain to the approval of a combination between HNGIL and AGI Greenpac, which would result in a significant market share in the glass packaging industry, raising concerns of an Appreciable Adverse Effect on Competition (AAEC). Independent Sugar Corporation Ltd. (INSCO) contested the approval of AGI Greenpac's resolution plan, which lacked requisite approval from the Competition Commission of India (CCI) at the time of voting.",
+      "Issues Framed": "1. Whether the combination of HNGIL and AGI Greenpac resulting in a significant market share constitutes an Appreciable Adverse Effect on Competition (AAEC). 2. Whether the approval of AGI Greenpac's resolution plan without the requisite CCI approval at the time of voting was valid.",
+      "Arguments by Parties": "INSCO argued that AGI Greenpac's resolution plan was improperly approved without the required CCI approval, violating the conditions set forth in the Expression of Interest and the stipulated procedures. AGI Greenpac presumably defended the procedural aspects and the timing of obtaining CCI approval.",
+      "Court's Analysis / Reasoning": "The court analyzed the statutory framework under the IBC, the role and timing of obtaining CCI approval in the resolution process, and the implications of market concentration on competition. The court considered the literal and purposive interpretation of relevant statutes, the principles of plain meaning, and the procedural requirements under the Competition Act.",
+      "Final Decision (Ratio Decidendi)": "The court's decision will likely address the legality of the approval process of the resolution plan and the competition law implications of the combination of HNGIL and AGI Greenpac. Specific details of the decision are not provided in the text.",
+      "Obiter Dicta": "The court may discuss broader implications for the interpretation of competition law and insolvency proceedings, especially regarding the timing and sequence of regulatory approvals in corporate resolutions.",
+      "Confidence": {
+        "Case Title & Citation": 100,
+        "Bench / Court": 100,
+        "Date": 100,
+        "Facts of the Case": 95,
+        "Issues Framed": 90,
+        "Arguments by Parties": 85,
+        "Court's Analysis / Reasoning": 90,
+        "Final Decision (Ratio Decidendi)": 80,
         "Obiter Dicta": 70
       },
       "Obiter Dicta (if present)": "Not specified in the document"

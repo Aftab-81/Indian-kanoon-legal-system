@@ -1,9 +1,10 @@
-import PyPDF2
+import pdfplumber
 import re
 from typing import List, Dict, Tuple
 import os
 import hashlib
 from openai import OpenAI
+from exceptions import InvalidPDFError
 
 class LegalDocumentProcessor:
     def __init__(self):
@@ -18,17 +19,18 @@ class LegalDocumentProcessor:
         
     def extract_text_from_pdf(self, pdf_path: str) -> str:
         """
-        Extract text from PDF using PyPDF2
+        Extract text from PDF using pdfplumber
         """
         try:
-            with open(pdf_path, 'rb') as file:
-                pdf_reader = PyPDF2.PdfReader(file)
-                text = ""
-                for page in pdf_reader.pages:
-                    text += page.extract_text() + "\n"
-                return text
+            text = ""
+            with pdfplumber.open(pdf_path) as pdf:
+                for page in pdf.pages:
+                    page_text = page.extract_text()
+                    if page_text:
+                        text += page_text + "\n"
+            return text
         except Exception as e:
-            raise Exception(f"Error reading PDF: {str(e)}")
+            raise InvalidPDFError(f"EOF marker not found or other parsing error: {str(e)}")
     
     def _get_document_fingerprint(self, text: str) -> str:
         """

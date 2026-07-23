@@ -12,13 +12,14 @@ import csv
 import datetime
 import time
 import multiprocessing
+from logger_setup import get_logger
 
 def print_usage(progname):
     print ('''python %s -t token -o offset -n limit -d datadir''' % progname)
 
 class IKApi:
     def __init__(self, args, storage):
-        self.logger     = logging.getLogger('ikapi')
+        self.logger     = get_logger('ikapi')
 
         self.headers    = {'Authorization': 'Token %s' % args.token, \
                            'Accept': 'application/json'}
@@ -41,6 +42,7 @@ class IKApi:
             self.maxpages = 100
 
     def call_api_direct(self, url):
+        self.logger.info(f"IndianKanoon API request to: {url}")
         connection = http.client.HTTPSConnection(self.basehost)
         connection.request('POST', url, headers = self.headers)
         response = connection.getresponse()
@@ -57,7 +59,7 @@ class IKApi:
             try:
                 results = self.call_api_direct(url)
             except Exception as e:
-                self.logger.warning('Error in call_api %s %s', url, e)
+                self.logger.error('Error in call_api %s: %s', url, e, exc_info=True)
                 count += 1
                 time.sleep(count * 100)
                 continue

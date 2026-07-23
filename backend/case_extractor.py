@@ -7,6 +7,10 @@ import httpx
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
+from logger_setup import get_logger
+from exceptions import OpenAIExtractionError
+
+logger = get_logger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -17,8 +21,9 @@ class CaseExtractor:
         if not self.api_key:
             raise ValueError("OPENAI_API_KEY environment variable not set")
         self.client = OpenAI(api_key=self.api_key)  # Initialize the client
+        self.model = os.getenv('OPENAI_MODEL', 'gpt-3.5-turbo')
 
-    def extract_case_details(self, case_text: str) -> Dict[str, str]:
+    def extract_case_details(self, case_text: str, source_identifier: str = "unknown") -> Dict[str, str]:
         """
         Extract the 8 key fields from a legal case using LLM
         """
@@ -31,7 +36,7 @@ class CaseExtractor:
         
         # Count words to verify we're handling the requested amount
         word_count = len(truncated_text.split())
-        print(f"Processing approximately {word_count} words")
+        logger.info(f"Processing approximately {word_count} words for {source_identifier}")
         
         # Prepare the prompt for the LLM with clearer instructions
         prompt = f"""
@@ -72,8 +77,9 @@ class CaseExtractor:
         """
 
         try:
+            logger.info(f"Calling OpenAI API for case details extraction ({source_identifier})")
             response = self.client.chat.completions.create(  # Updated syntax
-                model="gpt-4-turbo-preview",
+                model=self.model,
                 messages=[
                     {"role": "system", "content": """You are a legal expert analyzing Indian Supreme Court judgments. 
                     Extract the following information and provide confidence scores (0-100) for each field:
@@ -120,23 +126,24 @@ class CaseExtractor:
                     else:
                         result[field] = "Not specified in the document"
             
+            logger.info(f"Successfully extracted case details from OpenAI for {source_identifier}")
             return result
             
         except Exception as e:
-            print(f"Error extracting case details: {str(e)}")
-            return self._create_error_response()
+            logger.error(f"Error extracting case details for {source_identifier}: {str(e)}", exc_info=True)
+            raise OpenAIExtractionError(f"Failed to extract case details: {str(e)}")
             
             response_text = completion.choices[0].message.content
             
             try:
                 case_details = json.loads(response_text if response_text is not None else "")
             except json.JSONDecodeError as json_err:
-                print(f"JSON parsing error: {str(json_err)}")
+                logger.error(f"JSON parsing error for {source_identifier}: {str(json_err)}", exc_info=True)
                 cleaned_text = self._clean_json_text(response_text if response_text is not None else "")
                 try:
                     case_details = json.loads(cleaned_text)
                 except Exception as e:
-                    print(f"Failed to parse cleaned JSON: {str(e)}")
+                    logger.error(f"Failed to parse cleaned JSON for {source_identifier}: {str(e)}", exc_info=True)
                     return self._extract_fallback_method(case_text)
 
             # Validate and ensure all fields are present
@@ -156,14 +163,14 @@ class CaseExtractor:
             return case_details
             
         except Exception as e:
-            print(f"API call failed: {str(e)}")
-            return self._extract_fallback_method(case_text)
+            logger.error(f"API call failed for {source_identifier}: {str(e)}", exc_info=True)
+            raise OpenAIExtractionError(f"API call failed: {str(e)}")
 
     def _extract_fallback_method(self, case_text: str) -> Dict[str, str]:
         """
         Fallback method to extract case details when the primary method fails
         """
-        print("Using fallback extraction method...")
+        logger.info("Using fallback extraction method...")
         result = {}
         fields = [
             "Case Title & Citation", "Bench / Court", "Facts of the Case",
@@ -215,7 +222,7 @@ class CaseExtractor:
                 time.sleep(2)  # Delay between field extractions
                 
             except Exception as e:
-                print(f"Failed to extract {field}: {str(e)}")
+                logger.error(f"Failed to extract {field}: {str(e)}", exc_info=True)
                 result[field] = "Not specified in the document."
         
         return result
@@ -310,7 +317,7 @@ class CaseExtractor:
         # We should only have one case per PDF now
         case = cases[0]
         
-        print(f"Extracting details for judgment...")
+        logger.info(f"Extracting details for judgment from {file_path}")
         
         # Extract fingerprint if present
         fingerprint = None
@@ -333,14 +340,14 @@ class CaseExtractor:
         # Check if this case analysis already exists
         existing_file = self._find_existing_case_file(case)
         if existing_file:
-            print(f"Analysis for this judgment already exists. Using existing analysis...")
+            logger.info(f"Analysis for this judgment already exists. Using existing analysis from {existing_file}...")
             with open(existing_file, 'r') as f:
                 case_details = json.load(f)
             results.append((case_details, os.path.basename(existing_file)))
             return results
             
         # Extract the 8 key fields using LLM
-        case_details = self.extract_case_details(case)
+        case_details = self.extract_case_details(case, source_identifier=filename)
         results.append((case_details, filename))
         
         return results
@@ -383,7 +390,7 @@ class CaseExtractor:
                             best_score = score
                             best_match = os.path.join(results_dir, filename)
                 except Exception as e:
-                    print(f"Error checking existing case file {filename}: {str(e)}")
+                    logger.error(f"Error checking existing case file {filename}: {str(e)}", exc_info=True)
                     continue
                     
         return best_match if best_match else ""
