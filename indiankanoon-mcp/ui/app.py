@@ -62,7 +62,8 @@ def download_worker(task_id: str, year: int, month: str, court: str, max_count: 
     task = download_tasks[task_id]
     task["status"] = "running"
 
-    save_dir = str(DOWNLOADS_DIR / str(year) / month)
+    court_name = court if court else "All_Courts"
+    save_dir = str(DOWNLOADS_DIR / court_name / str(year) / month)
     os.makedirs(save_dir, exist_ok=True)
 
     push_event(task_id, "start", {"message": f"Searching for {month} {year} judgements..."})
