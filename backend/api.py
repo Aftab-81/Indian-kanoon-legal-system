@@ -2,14 +2,18 @@ from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from pdf_processor import LegalDocumentProcessor
 from case_extractor import CaseExtractor
+from case_index import CaseIndex
+from ikapi import IKApi, FileStorage
+from exceptions import InvalidPDFError, OpenAIExtractionError
 import os
 import json
 import time
 import uuid
-from case_index import CaseIndex
-from ikapi import IKApi, FileStorage
 import argparse
 from serpapi import GoogleSearch
+from logger_setup import get_logger
+
+logger = get_logger(__name__)
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -152,14 +156,14 @@ def upload_file():
             
             try:
                 # Extract text from PDF (now treating as a single judgment)
-                print(f"Processing PDF: {file.filename}")
+                logger.info(f"Processing PDF: {file.filename}")
                 cases = processor.process_document(file_path)
-                print(f"Extracted {len(cases)} case(s)")
+                logger.info(f"Extracted {len(cases)} case(s) from {file.filename}")
                 
                 # Process the judgment and save results
-                print("Starting case extraction with OpenAI...")
+                logger.info(f"Starting case extraction with OpenAI for {file.filename}")
                 case_results = extractor.process_cases(cases, file_path)
-                print(f"Extracted {len(case_results)} case result(s)")
+                logger.info(f"Extracted {len(case_results)} case result(s) for {file.filename}")
                 
                 case_summaries = []
                 for i, (case_details, filename) in enumerate(case_results, 1):
@@ -168,7 +172,7 @@ def upload_file():
                     
                     if existing_file:
                         # Use the existing file instead of creating a new one
-                        print(f"Case already exists as {existing_file}")
+                        logger.info(f"Case already exists as {existing_file}")
                         with open(os.path.join(RESULTS_FOLDER, existing_file), 'r') as f:
                             existing_case_data = json.load(f)
                         
@@ -198,7 +202,7 @@ def upload_file():
                 try:
                     os.remove(file_path)
                 except Exception as e:
-                    print(f"Warning: Could not remove temporary file {file_path}: {str(e)}")
+                    logger.warning(f"Could not remove temporary file {file_path}: {str(e)}")
                 
                 return jsonify({
                     'success': True,
@@ -206,23 +210,35 @@ def upload_file():
                     'cases': case_summaries
                 })
                 
+            except InvalidPDFError as e:
+                try:
+                    os.remove(file_path)
+                except:
+                    pass
+                logger.error(f"Invalid PDF Error: {str(e)}", exc_info=True)
+                return jsonify({'error': f'Invalid or corrupted PDF. Unable to extract text. {str(e)}'}), 400
+                
+            except OpenAIExtractionError as e:
+                try:
+                    os.remove(file_path)
+                except:
+                    pass
+                logger.error(f"OpenAI API Error: {str(e)}", exc_info=True)
+                return jsonify({'error': f'OpenAI API extraction failed: {str(e)}'}), 502
+                
             except Exception as e:
                 # Clean up on error
                 try:
                     os.remove(file_path)
                 except:
                     pass
-                print(f"Error processing file: {str(e)}")
-                import traceback
-                traceback.print_exc()
-                return jsonify({'error': f'Processing error: {str(e)}'}), 500
+                logger.error(f"Error processing file: {str(e)}", exc_info=True)
+                return jsonify({'error': f'Internal processing error: {str(e)}'}), 500
         
         return jsonify({'error': 'Invalid file format. Please upload a PDF file'}), 400
         
     except Exception as e:
-        print(f"Upload endpoint error: {str(e)}")
-        import traceback
-        traceback.print_exc()
+        logger.error(f"Upload endpoint error: {str(e)}", exc_info=True)
         return jsonify({'error': f'Server error: {str(e)}'}), 500
 
 @app.route('/api/google-search', methods=['POST'])
@@ -236,7 +252,7 @@ def google_search():
         }), 500
     
     data = request.json
-    print(f"Received Google search request: {data}")
+    logger.info(f"Received Google search request: {data}")
     
     if not data or 'query' not in data:
         return jsonify({'error': 'No query provided'}), 400
@@ -267,12 +283,12 @@ def google_search():
     if not contains_legal_term:
         # We'll proceed but add legal context to the search
         modified_query = f"{original_query} legal law court case"
-        print(f"Modified query to include legal context: {modified_query}")
+        logger.info(f"Modified query to include legal context: {modified_query}")
     else:
         # Query already has legal terms, use as is
         modified_query = original_query
     
-    print(f"Searching Google for: {modified_query}")
+    logger.info(f"Searching Google for: {modified_query}")
     
     # Optional parameters
     engine = data.get('engine', 'google')
@@ -327,7 +343,7 @@ def google_search():
             })
             
     except Exception as e:
-        print(f"Google search error: {str(e)}")
+        logger.error(f"Google search error: {str(e)}", exc_info=True)
         return jsonify({'success': False, 'error': str(e)}), 500
 
 @app.route('/api/process', methods=['POST'])
