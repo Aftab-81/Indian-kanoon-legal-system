@@ -100,7 +100,23 @@ function fetchCount() {
     if(data.error) {
       totalCountValue.textContent = "Error";
     } else {
-      totalCountValue.textContent = data.count.toLocaleString();
+      const available = data.count;
+      totalCountValue.textContent = available.toLocaleString();
+      
+      // Dynamically update Max Judgements slider
+      const newMax = Math.max(1, available);
+      maxCountSlider.max = newMax;
+      
+      const maxCountLabel = document.getElementById("max-count-label");
+      if (maxCountLabel) {
+        maxCountLabel.textContent = newMax;
+      }
+      
+      // Adjust current value if it exceeds new max
+      if (parseInt(maxCountSlider.value) > newMax) {
+        maxCountSlider.value = newMax;
+        maxCountDisplay.textContent = newMax;
+      }
     }
   })
   .catch(err => {
