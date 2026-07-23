@@ -183,25 +183,26 @@ def fetch_all_judgements(
     max_count: int = 50,
     delay_seconds: float = 1.5,
     progress_callback=None,
+    save_dir: str = None,
 ) -> list[dict]:
     """
     Fetch ALL judgements for a given month, paginating through results.
-
-    Args:
-        year: e.g. 2025
-        month_name: e.g. "January"
-        court: court name string (see COURT_TYPES)
-        max_count: maximum number of judgements to return
-        delay_seconds: seconds to wait between requests (to avoid rate limiting)
-        progress_callback: optional callable(fetched, total) for progress updates
-
-    Returns:
-        List of judgement dicts
+    Stops when `max_count` NEW judgements are found, or all results are exhausted.
     """
     all_judgements = []
     page = 0
+    new_collected = 0
 
-    while len(all_judgements) < max_count:
+    existing_ids = set()
+    if save_dir and os.path.exists(save_dir):
+        try:
+            for f in os.listdir(save_dir):
+                if "_" in f:
+                    existing_ids.add(f.split("_")[0])
+        except Exception as e:
+            logger.warning(f"Failed to read save_dir for existing IDs: {e}")
+
+    while new_collected < max_count:
         result = fetch_judgement_list(year, month_name, court, page)
 
         if result.get("error"):
@@ -214,20 +215,26 @@ def fetch_all_judgements(
             break
 
         total = result["total"]
-        all_judgements.extend(judgements)
+        
+        for j in judgements:
+            all_judgements.append(j)
+            if j["id"] not in existing_ids:
+                new_collected += 1
+            if new_collected >= max_count:
+                break
 
         if progress_callback:
-            progress_callback(len(all_judgements), min(total, max_count))
+            progress_callback(len(all_judgements), min(total, len(all_judgements) + max_count - new_collected))
 
-        logger.info(f"Accumulated {len(all_judgements)} / {min(total, max_count)} judgements")
+        logger.info(f"Accumulated {len(all_judgements)} judgements ({new_collected} new)")
 
-        if len(all_judgements) >= max_count:
+        if new_collected >= max_count:
             break
 
         page += 1
         time.sleep(delay_seconds)
 
-    return all_judgements[:max_count]
+    return all_judgements
 
 
 def fetch_judgement_html(doc_id: str) -> Optional[str]:
