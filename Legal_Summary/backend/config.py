@@ -4,7 +4,7 @@ import os
 
 class Settings(BaseSettings):
     openai_api_key: Optional[str] = None
-    openai_model: str = "gpt-4-turbo-preview"
+    openai_model: str = "gpt-3.5-turbo"
     
     class Config:
         env_file = ".env"
