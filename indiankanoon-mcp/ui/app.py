@@ -80,6 +80,7 @@ def download_worker(task_id: str, year: int, month: str, court: str, max_count: 
                 task_id, "search_progress",
                 {"fetched": fetched, "total": total, "message": f"Found {fetched} / {total} judgements..."}
             ),
+            save_dir=save_dir,
         )
 
         total = len(judgements)
