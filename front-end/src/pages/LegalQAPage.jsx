@@ -50,29 +50,24 @@ function LegalQAPage() {
 
       <main className="container mx-auto px-6 py-8">
         {/* Page Title with Back Button */}
-        <div className="text-center mb-8">
-          <div className="flex items-center justify-center gap-4 mb-3">
-            <button
-              onClick={() => navigate('/modules')}
-              className={`px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2 ${
-                darkMode
-                  ? 'bg-slate-800 hover:bg-slate-700 text-gray-300 border border-slate-700'
-                  : 'bg-white hover:bg-gray-50 text-gray-700 border border-gray-300 shadow-sm'
-              }`}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-              </svg>
-              Back to Modules
-            </button>
-            <h1 className={`text-4xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+        <div className="mb-8 flex justify-between items-center">
+          <button
+            onClick={() => navigate('/modules')}
+            className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-slate-700 hover:bg-slate-600 text-white' : 'bg-white hover:bg-gray-100 text-gray-800'} transition-colors shadow-sm flex items-center gap-2`}
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Modules
+          </button>
+          <div className="text-right">
+            <h1 className={`text-2xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>
               Legal QA System
             </h1>
-            <div className="w-40"></div> {/* Spacer for centering */}
+            <p className={`text-sm mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              AI-Powered Legal Question Answering with Supreme Court Precedents
+            </p>
           </div>
-          <p className={`text-lg ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            AI-Powered Legal Question Answering with Supreme Court Precedents
-          </p>
         </div>
 
         {/* Tab Navigation */}

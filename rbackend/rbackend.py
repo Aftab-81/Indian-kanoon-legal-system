@@ -350,7 +350,7 @@ def find_similar_document(text: str) -> Optional[str]:
         return None
     text_embedding = generate_embedding(text[:1000])
     query_vector = np.array([text_embedding], dtype='float32')
-    k = min(5, vector_index.ntotal)
+    k = min(5, vector_index.ntotal) # How many nearest documents should FAISS return?
     distances, indices = vector_index.search(query_vector, k)
     for i, idx in enumerate(indices[0]):
         if idx >= 0:

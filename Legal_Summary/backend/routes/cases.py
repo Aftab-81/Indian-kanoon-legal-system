@@ -1,3 +1,6 @@
+from logger_setup import get_logger
+logger = get_logger(__name__)
+
 from fastapi import APIRouter, HTTPException, UploadFile, File, Form
 from schemas import Preferences, SummarizeResponse, DetailedResponse
 from services import generate_summary, generate_detailed_summary
@@ -19,14 +22,14 @@ async def summarize(
 ):
     """Accept PDF and preferences, return summary based on length/focus."""
     try:
-        print(f"\n[API] Received PDF: {pdf_file.filename}, Size: {pdf_file.size} bytes")
-        print(f"[API] Preferences: {preferences}")
+        logger.info(f"\n[API] Received PDF: {pdf_file.filename}, Size: {pdf_file.size} bytes")
+        logger.info(f"[API] Preferences: {preferences}")
         
         # Parse preferences JSON
         prefs_dict = json.loads(preferences)
         preferences_obj = Preferences(**prefs_dict)
         
-        print(f"[API] Parsed preferences: length={preferences_obj.summary_length}, areas={preferences_obj.focus_area}, lang={preferences_obj.output_language}")
+        logger.info(f"[API] Parsed preferences: length={preferences_obj.summary_length}, areas={preferences_obj.focus_area}, lang={preferences_obj.output_language}")
         
         # Extract text with quality metrics
         extraction_result = extract_text_with_metadata(pdf_file.file)
@@ -36,28 +39,28 @@ async def summarize(
         if not case_text.strip():
             raise HTTPException(status_code=400, detail="PDF contains no extractable text")
         
-        print(f"[API] Extracted text length: {len(case_text)} chars")
+        logger.info(f"[API] Extracted text length: {len(case_text)} chars")
         
         # Warn if extraction quality is low
         if extraction_quality["quality_level"] == "low":
-            print(f"[API] WARNING: Low extraction quality - {extraction_quality['issues']}")
+            logger.warning(f"[API] WARNING: Low extraction quality - {extraction_quality['issues']}")
         
         # Generate summary using GPT with quality metrics
-        print(f"[API] Calling GPT for summary generation...")
+        logger.info(f"[API] Calling GPT for summary generation...")
         result = generate_summary(preferences_obj.dict(), case_text, extraction_quality)
         
-        print(f"[API] Summary generated successfully")
-        print(f"[API] Result metadata: {result.get('metadata', {}).get('case_title', 'N/A')}")
+        logger.info(f"[API] Summary generated successfully")
+        logger.info(f"[API] Result metadata: {result.get('metadata', {}).get('case_title', 'N/A')}")
         
         return result
     except json.JSONDecodeError:
-        print(f"[API] ERROR: Invalid preferences JSON")
+        logger.info(f"[API] ERROR: Invalid preferences JSON")
         raise HTTPException(status_code=400, detail="Invalid preferences JSON")
     except ValueError as ve:
-        print(f"[API] ERROR: {str(ve)}")
+        logger.info(f"[API] ERROR: {str(ve)}")
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:
-        print(f"[API] ERROR: {str(e)}")
+        logger.info(f"[API] ERROR: {str(e)}")
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
@@ -70,9 +73,9 @@ async def detailed_summary(
 ):
     """Accept PDF and return comprehensive detailed summary with focus area filtering."""
     try:
-        print(f"\n[API] Detailed analysis for: {pdf_file.filename}")
-        print(f"[API] Output language: {output_language}")
-        print(f"[API] Focus areas: {focus_areas}")
+        logger.info(f"\n[API] Detailed analysis for: {pdf_file.filename}")
+        logger.info(f"[API] Output language: {output_language}")
+        logger.info(f"[API] Focus areas: {focus_areas}")
         
         # Validate language
         if output_language not in ["english", "marathi"]:
@@ -94,25 +97,25 @@ async def detailed_summary(
         
         # Warn if extraction quality is low
         if extraction_quality["quality_level"] == "low":
-            print(f"[API] WARNING: Low extraction quality - {extraction_quality['issues']}")
+            logger.warning(f"[API] WARNING: Low extraction quality - {extraction_quality['issues']}")
         
         # Log detected language
         detected_lang = extraction_quality.get("detected_language", "unknown")
-        print(f"[API] Detected document language: {detected_lang}")
+        logger.info(f"[API] Detected document language: {detected_lang}")
         
         # Generate detailed summary using GPT with quality metrics and focus areas
-        print(f"[API] Calling GPT for detailed analysis...")
+        logger.info(f"[API] Calling GPT for detailed analysis...")
         result = generate_detailed_summary(case_text, extraction_quality, output_language, focus_list)
         
-        print(f"[API] Detailed analysis completed")
-        print(f"[API] Result: {result.get('case_title', 'N/A')}")
+        logger.info(f"[API] Detailed analysis completed")
+        logger.info(f"[API] Result: {result.get('case_title', 'N/A')}")
         
         return result
     except ValueError as ve:
-        print(f"[API] ERROR: {str(ve)}")
+        logger.info(f"[API] ERROR: {str(ve)}")
         raise HTTPException(status_code=400, detail=str(ve))
     except Exception as e:
-        print(f"[API] ERROR: {str(e)}")
+        logger.info(f"[API] ERROR: {str(e)}")
         import traceback
         traceback.print_exc()
         raise HTTPException(status_code=500, detail=str(e))
@@ -140,7 +143,7 @@ async def get_history():
                             'created_at': data.get('created_at', '')
                         })
                     except Exception as e:
-                        print(f"[API] ERROR reading history file {filename}: {str(e)}")
+                        logger.info(f"[API] ERROR reading history file {filename}: {str(e)}")
                         continue
         
         # Sort by creation date (newest first)
@@ -148,7 +151,7 @@ async def get_history():
         
         return {'history': history_files}
     except Exception as e:
-        print(f"[API] ERROR fetching history: {str(e)}")
+        logger.info(f"[API] ERROR fetching history: {str(e)}")
         return {'history': []}
 
 @router.get("/history/{summary_id}")
@@ -167,7 +170,7 @@ async def get_summary_detail(summary_id: str):
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Summary not found")
     except Exception as e:
-        print(f"[API] ERROR fetching summary {summary_id}: {str(e)}")
+        logger.info(f"[API] ERROR fetching summary {summary_id}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @router.delete("/history/{summary_id}")
@@ -185,5 +188,5 @@ async def delete_summary(summary_id: str):
     except FileNotFoundError:
         raise HTTPException(status_code=404, detail="Summary not found")
     except Exception as e:
-        print(f"[API] ERROR deleting summary {summary_id}: {str(e)}")
+        logger.info(f"[API] ERROR deleting summary {summary_id}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
