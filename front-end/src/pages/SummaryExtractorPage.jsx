@@ -63,22 +63,28 @@ function SummaryExtractorPage() {
       return;
     }
 
+    const isAnySelected = Object.values(focusAreas).some(Boolean);
+    if (!isAnySelected) {
+      setError('Please select at least one Focus Area to include in the output');
+      return;
+    }
+
     setLoading(true);
     setError('');
 
     const formData = new FormData();
     formData.append('pdf_file', uploadedFile);
-    
+
     const selectedFocusAreas = Object.entries(focusAreas)
       .filter(([_, checked]) => checked)
       .map(([key, _]) => key.replace('_', ' '));
-    
+
     const preferences = {
       summary_length: summaryLength,
       focus_area: selectedFocusAreas,
       output_language: language
     };
-    
+
     formData.append('preferences', JSON.stringify(preferences));
 
     try {
@@ -109,17 +115,23 @@ function SummaryExtractorPage() {
       return;
     }
 
+    const isAnySelected = Object.values(focusAreas).some(Boolean);
+    if (!isAnySelected) {
+      setError('Please select at least one Focus Area to include in the output');
+      return;
+    }
+
     setLoading(true);
     setError('');
 
     const formData = new FormData();
     formData.append('pdf_file', uploadedFile);
     formData.append('output_language', language);
-    
+
     const selectedFocusAreas = Object.entries(focusAreas)
       .filter(([_, checked]) => checked)
       .map(([key, _]) => key.replace('_', ' '));
-    
+
     formData.append('focus_areas', JSON.stringify(selectedFocusAreas));
 
     try {
@@ -183,29 +195,27 @@ function SummaryExtractorPage() {
                 setDetailedResult(null);
                 setShowDetailed(false);
               }}
-              className={`px-6 py-3 font-medium transition-colors border-b-2 ${
-                activePage === 'home'
+              className={`px-6 py-3 font-medium transition-colors border-b-2 ${activePage === 'home'
                   ? darkMode
                     ? 'border-indigo-500 text-indigo-400'
                     : 'border-indigo-600 text-indigo-600'
                   : darkMode
-                  ? 'border-transparent text-gray-400 hover:text-gray-300'
-                  : 'border-transparent text-gray-600 hover:text-gray-800'
-              }`}
+                    ? 'border-transparent text-gray-400 hover:text-gray-300'
+                    : 'border-transparent text-gray-600 hover:text-gray-800'
+                }`}
             >
               📄 Generate Summary
             </button>
             <button
               onClick={() => setActivePage('history')}
-              className={`px-6 py-3 font-medium transition-colors border-b-2 ${
-                activePage === 'history'
+              className={`px-6 py-3 font-medium transition-colors border-b-2 ${activePage === 'history'
                   ? darkMode
                     ? 'border-indigo-500 text-indigo-400'
                     : 'border-indigo-600 text-indigo-600'
                   : darkMode
-                  ? 'border-transparent text-gray-400 hover:text-gray-300'
-                  : 'border-transparent text-gray-600 hover:text-gray-800'
-              }`}
+                    ? 'border-transparent text-gray-400 hover:text-gray-300'
+                    : 'border-transparent text-gray-600 hover:text-gray-800'
+                }`}
             >
               📋 History
             </button>
@@ -222,7 +232,7 @@ function SummaryExtractorPage() {
                 <h2 className={`text-xl font-serif font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
                   <span>📄</span> Upload Document
                 </h2>
-                
+
                 <input
                   type="file"
                   accept=".pdf"
@@ -230,12 +240,11 @@ function SummaryExtractorPage() {
                   ref={fileInputRef}
                   className="hidden"
                 />
-                
+
                 <button
                   onClick={() => fileInputRef.current?.click()}
-                  className={`w-full p-8 border-2 border-dashed rounded-xl ${
-                    darkMode ? 'border-slate-600 hover:border-slate-500' : 'border-gray-300 hover:border-gray-400'
-                  } transition-colors cursor-pointer`}
+                  className={`w-full p-8 border-2 border-dashed rounded-xl ${darkMode ? 'border-slate-600 hover:border-slate-500' : 'border-gray-300 hover:border-gray-400'
+                    } transition-colors cursor-pointer`}
                 >
                   <div className="text-center">
                     <div className="text-5xl mb-3">📤</div>
@@ -277,9 +286,8 @@ function SummaryExtractorPage() {
                   <select
                     value={summaryLength}
                     onChange={(e) => setSummaryLength(e.target.value)}
-                    className={`w-full px-4 py-2 rounded-lg border ${
-                      darkMode ? 'bg-slate-700 border-slate-600 text-white' : 'bg-gray-50 border-gray-300'
-                    } focus:ring-2 focus:ring-indigo-500 focus:outline-none`}
+                    className={`w-full px-4 py-2 rounded-lg border ${darkMode ? 'bg-slate-700 border-slate-600 text-white' : 'bg-gray-50 border-gray-300'
+                      } focus:ring-2 focus:ring-indigo-500 focus:outline-none`}
                   >
                     <option value="short">Short</option>
                     <option value="medium">Medium</option>
@@ -295,21 +303,19 @@ function SummaryExtractorPage() {
                   <div className="flex gap-2">
                     <button
                       onClick={() => setLanguage('english')}
-                      className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all ${
-                        language === 'english'
+                      className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all ${language === 'english'
                           ? 'bg-indigo-600 text-white shadow-lg'
                           : darkMode ? 'bg-slate-700 text-gray-300 hover:bg-slate-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
+                        }`}
                     >
                       English
                     </button>
                     <button
                       onClick={() => setLanguage('marathi')}
-                      className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all ${
-                        language === 'marathi'
+                      className={`flex-1 px-4 py-2 rounded-lg font-medium transition-all ${language === 'marathi'
                           ? 'bg-indigo-600 text-white shadow-lg'
                           : darkMode ? 'bg-slate-700 text-gray-300 hover:bg-slate-600' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                      }`}
+                        }`}
                     >
                       मराठी
                     </button>
@@ -322,7 +328,15 @@ function SummaryExtractorPage() {
                     Focus Areas
                   </label>
                   <div className="space-y-2">
-                    {Object.entries(focusAreas).map(([key, checked]) => (
+                    {Object.entries(focusAreas).map(([key, checked]) => {
+                      const labels = {
+                        facts: 'Title',
+                        arguments: 'Confidence',
+                        evidence: 'Case Information',
+                        legal_reasoning: 'Sections Invoked',
+                        precedents: 'Summary'
+                      };
+                      return (
                       <label key={key} className="flex items-center gap-2 cursor-pointer">
                         <input
                           type="checkbox"
@@ -331,10 +345,10 @@ function SummaryExtractorPage() {
                           className="w-4 h-4 text-indigo-600 rounded focus:ring-2 focus:ring-indigo-500"
                         />
                         <span className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                          {key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ')}
+                          {labels[key] || (key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' '))}
                         </span>
                       </label>
-                    ))}
+                    )})}
                   </div>
                 </div>
               </div>
@@ -380,16 +394,16 @@ function SummaryExtractorPage() {
               )}
 
               {summaryResult && !showDetailed && (
-                <SummaryView result={summaryResult} darkMode={darkMode} />
+                <SummaryView result={summaryResult} focusAreas={focusAreas} darkMode={darkMode} />
               )}
 
               {detailedResult && showDetailed && (
-                <DetailedView 
-                  result={detailedResult} 
+                <DetailedView
+                  result={detailedResult}
                   focusAreas={Object.entries(focusAreas)
                     .filter(([_, checked]) => checked)
-                    .map(([key, _]) => key.replace('_', ' '))} 
-                  darkMode={darkMode} 
+                    .map(([key, _]) => key.replace('_', ' '))}
+                  darkMode={darkMode}
                 />
               )}
             </div>
@@ -407,7 +421,7 @@ function SummaryExtractorPage() {
 // =====================
 // SUMMARY VIEW
 // =====================
-function SummaryView({ result, darkMode }) {
+function SummaryView({ result, focusAreas, darkMode }) {
   const metadata = result.metadata || {};
   const confidence = result.confidence_score || {};
   const cardClass = darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200';
@@ -418,10 +432,21 @@ function SummaryView({ result, darkMode }) {
     return '#ef4444';
   };
 
+  const shouldShow = (area) => !focusAreas || focusAreas[area];
+
   return (
     <div className="space-y-6">
+      {/* Title */}
+      {shouldShow('facts') && metadata.case_title && (
+        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
+          <h2 className={`text-2xl font-serif font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            {metadata.case_title}
+          </h2>
+        </div>
+      )}
+
       {/* Confidence Score */}
-      {confidence && confidence.overall_confidence && (
+      {shouldShow('arguments') && confidence && confidence.overall_confidence && (
         <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
           <div className="flex justify-between items-center mb-4">
             <h3 className={`text-xl font-serif font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -445,22 +470,24 @@ function SummaryView({ result, darkMode }) {
       )}
 
       {/* Case Metadata */}
-      <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-        <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-          Case Information
-        </h3>
-        <div className="grid md:grid-cols-2 gap-4">
-          <MetadataField label="Case Title" value={metadata.case_title} darkMode={darkMode} />
-          <MetadataField label="Court" value={metadata.court_name} darkMode={darkMode} />
-          <MetadataField label="Case Number" value={metadata.case_number} darkMode={darkMode} />
-          <MetadataField label="Judgment Date" value={metadata.date_of_judgement} darkMode={darkMode} />
-          <MetadataField label="Judges" value={metadata.judge_names?.join(', ')} darkMode={darkMode} />
-          <MetadataField label="Jurisdiction" value={metadata.jurisdiction} darkMode={darkMode} />
+      {shouldShow('evidence') && (
+        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
+          <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            Case Information
+          </h3>
+          <div className="grid md:grid-cols-2 gap-4">
+            <MetadataField label="Case Title" value={metadata.case_title} darkMode={darkMode} />
+            <MetadataField label="Court" value={metadata.court_name} darkMode={darkMode} />
+            <MetadataField label="Case Number" value={metadata.case_number} darkMode={darkMode} />
+            <MetadataField label="Judgment Date" value={metadata.date_of_judgement} darkMode={darkMode} />
+            <MetadataField label="Judges" value={metadata.judge_names?.join(', ')} darkMode={darkMode} />
+            <MetadataField label="Jurisdiction" value={metadata.jurisdiction} darkMode={darkMode} />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Sections Invoked */}
-      {metadata.sections_invoked && metadata.sections_invoked.length > 0 && (
+      {shouldShow('legal_reasoning') && metadata.sections_invoked && metadata.sections_invoked.length > 0 && (
         <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
           <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Sections Invoked
@@ -469,9 +496,8 @@ function SummaryView({ result, darkMode }) {
             {metadata.sections_invoked.map((section, i) => (
               <span
                 key={i}
-                className={`px-3 py-1 rounded-full text-sm font-medium ${
-                  darkMode ? 'bg-indigo-900/30 text-indigo-300' : 'bg-indigo-100 text-indigo-700'
-                }`}
+                className={`px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-indigo-900/30 text-indigo-300' : 'bg-indigo-100 text-indigo-700'
+                  }`}
               >
                 {section}
               </span>
@@ -481,14 +507,16 @@ function SummaryView({ result, darkMode }) {
       )}
 
       {/* Summary */}
-      <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-        <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-          Summary
-        </h3>
-        <p className={`leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-          {metadata.summary}
-        </p>
-      </div>
+      {shouldShow('precedents') && (
+        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
+          <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            Summary
+          </h3>
+          <p className={`leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            {metadata.summary}
+          </p>
+        </div>
+      )}
     </div>
   );
 }
@@ -571,7 +599,7 @@ function DetailedView({ result, focusAreas, darkMode }) {
       {shouldShow('facts') && result.brief_facts && (
         <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
           <h3 className={`text-xl font-serif font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            <span>📝</span> Brief Facts
+            <span>📝</span> Title
           </h3>
           <p className={`leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
             {result.brief_facts}
@@ -631,11 +659,10 @@ function DetailedView({ result, focusAreas, darkMode }) {
                 {result.evidence_summary.witnesses.map((witness, i) => (
                   <div key={i} className={`p-2 rounded ${darkMode ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
                     <span className="font-medium">{witness.name}</span> - {witness.role}
-                    <span className={`ml-2 text-xs px-2 py-1 rounded ${
-                      witness.reliability === 'High' ? 'bg-green-500/20 text-green-600' :
-                      witness.reliability === 'Medium' ? 'bg-yellow-500/20 text-yellow-600' :
-                      'bg-red-500/20 text-red-600'
-                    }`}>
+                    <span className={`ml-2 text-xs px-2 py-1 rounded ${witness.reliability === 'High' ? 'bg-green-500/20 text-green-600' :
+                        witness.reliability === 'Medium' ? 'bg-yellow-500/20 text-yellow-600' :
+                          'bg-red-500/20 text-red-600'
+                      }`}>
                       {witness.reliability}
                     </span>
                   </div>
@@ -753,12 +780,12 @@ function DetailedView({ result, focusAreas, darkMode }) {
             </ul>
           </div>
         )}
-        {(!result.risk_flags || 
-          (!result.risk_flags.missing_evidence?.length && 
-           !result.risk_flags.contradictions?.length && 
-           !result.risk_flags.procedural_lapses?.length)) && (
-          <p className="text-green-600 font-medium">✓ No risk flags identified</p>
-        )}
+        {(!result.risk_flags ||
+          (!result.risk_flags.missing_evidence?.length &&
+            !result.risk_flags.contradictions?.length &&
+            !result.risk_flags.procedural_lapses?.length)) && (
+            <p className="text-green-600 font-medium">✓ No risk flags identified</p>
+          )}
       </div>
 
       {/* Extracted Entities */}
@@ -908,16 +935,15 @@ function HistoryPage({ darkMode }) {
           <h2 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Summary History
           </h2>
-          
+
           {/* Search */}
           <input
             type="text"
             placeholder="Search by case title or number..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className={`w-full px-4 py-2 rounded-lg border mb-4 ${
-              darkMode ? 'bg-slate-700 border-slate-600 text-white placeholder-gray-400' : 'bg-gray-50 border-gray-300 placeholder-gray-500'
-            } focus:ring-2 focus:ring-indigo-500 focus:outline-none`}
+            className={`w-full px-4 py-2 rounded-lg border mb-4 ${darkMode ? 'bg-slate-700 border-slate-600 text-white placeholder-gray-400' : 'bg-gray-50 border-gray-300 placeholder-gray-500'
+              } focus:ring-2 focus:ring-indigo-500 focus:outline-none`}
           />
 
           {/* History Items */}
@@ -925,11 +951,10 @@ function HistoryPage({ darkMode }) {
             {filteredHistory.map((item) => (
               <div
                 key={item.id}
-                className={`p-4 rounded-lg border cursor-pointer transition-all ${
-                  selectedSummary && selectedSummary.id === item.id
+                className={`p-4 rounded-lg border cursor-pointer transition-all ${selectedSummary && selectedSummary.id === item.id
                     ? darkMode ? 'bg-indigo-900/30 border-indigo-600' : 'bg-indigo-50 border-indigo-500'
                     : darkMode ? 'bg-slate-700/50 border-slate-600 hover:bg-slate-700' : 'bg-gray-50 border-gray-200 hover:bg-gray-100'
-                }`}
+                  }`}
                 onClick={() => handleViewSummary(item.id)}
               >
                 <h3 className={`font-semibold mb-1 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -939,9 +964,8 @@ function HistoryPage({ darkMode }) {
                   {new Date(item.created_at).toLocaleDateString()} {new Date(item.created_at).toLocaleTimeString()}
                 </p>
                 {item.summary_type && (
-                  <span className={`inline-block mt-2 px-2 py-1 rounded text-xs ${
-                    darkMode ? 'bg-indigo-900/50 text-indigo-300' : 'bg-indigo-100 text-indigo-700'
-                  }`}>
+                  <span className={`inline-block mt-2 px-2 py-1 rounded text-xs ${darkMode ? 'bg-indigo-900/50 text-indigo-300' : 'bg-indigo-100 text-indigo-700'
+                    }`}>
                     {item.summary_type}
                   </span>
                 )}
@@ -982,15 +1006,15 @@ function HistoryPage({ darkMode }) {
 
             {/* Display summary based on type */}
             {selectedSummary.summary_type === 'detailed' ? (
-              <DetailedView 
-                result={selectedSummary} 
-                focusAreas={[]} 
-                darkMode={darkMode} 
+              <DetailedView
+                result={selectedSummary}
+                focusAreas={[]}
+                darkMode={darkMode}
               />
             ) : (
-              <SummaryView 
-                result={selectedSummary} 
-                darkMode={darkMode} 
+              <SummaryView
+                result={selectedSummary}
+                darkMode={darkMode}
               />
             )}
           </div>

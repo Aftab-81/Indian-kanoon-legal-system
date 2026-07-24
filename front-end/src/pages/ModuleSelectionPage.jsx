@@ -34,7 +34,7 @@ function ModuleSelectionPage() {
         </h1>
 
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {/* Core Summary Extraction Module */}
+          {/* Case Comprehension Module */}
           <Link
             to="/core"
             className={`${darkMode ? 'bg-slate-800 border-slate-700 hover:bg-slate-700' : 'bg-white border-gray-200 hover:bg-gray-50'} 
@@ -50,7 +50,7 @@ function ModuleSelectionPage() {
               </div>
 
               <h2 className={`text-2xl font-medium mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-                Core Summary Extraction
+                Case Comprehension
               </h2>
 
               <p className={`mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>

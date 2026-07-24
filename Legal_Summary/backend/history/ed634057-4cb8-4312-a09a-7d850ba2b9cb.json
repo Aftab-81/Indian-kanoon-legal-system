@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "case_title": "Saraya Industries Ltd. vs State Of U.P. And Ors.",
+    "court_name": "Allahabad High Court",
+    "case_number": "Equivalent citations: 2005(1)AWC911",
+    "judge_names": [
+      "V.M. Sahai",
+      "Poonam Srivastava"
+    ],
+    "date_of_judgement": "2005-01-06",
+    "jurisdiction": "India",
+    "summary": "The case involves a dispute regarding the imposition of excise duty on wasted security holograms by distilleries in Uttar Pradesh. Saraya Industries Ltd., a liquor manufacturer, challenged the State Government's policy decision and circulars requiring hologram affixation. The petitioner argued that excise duty cannot be levied on holograms and no evasion was committed. The State contended that the duty was justified to prevent evasion and safeguard public health. The court considered the legal provisions and arguments to determine the validity of imposing excise duty on unaccounted holograms. The case highlighted the importance of regulatory measures and contractual obligations in the liquor manufacturing industry.",
+    "sections_invoked": [
+      "U.P. Excise Act, 1910",
+      "Section 24",
+      "Section 24A",
+      "Section 24B",
+      "Section 29",
+      "Section 31",
+      "Section 77"
+    ]
+  },
+  "detailed_available": true,
+  "confidence_score": {
+    "overall_confidence": 84.5,
+    "confidence_level": "medium",
+    "reliability_assessment": "Good - Review recommended for critical decisions",
+    "factors": {
+      "extraction_quality": 100,
+      "metadata_completeness": 100.0,
+      "content_quality": 90.0,
+      "legal_terminology": 16.67,
+      "compression_ratio": 2.39,
+      "data_validation": 90.0
+    },
+    "detailed_breakdown": {
+      "extraction_quality": {
+        "score": 25.0,
+        "max_points": 25,
+        "percentage": 100,
+        "description": "PDF text extraction quality and readability"
+      },
+      "metadata_completeness": {
+        "score": 20,
+        "max_points": 20,
+        "percentage": 100.0,
+        "missing_fields": [],
+        "description": "Presence of essential case metadata"
+      },
+      "content_quality": {
+        "score": 18.0,
+        "max_points": 20,
+        "percentage": 90.0,
+        "word_count": 103,
+        "issues": [
+          "Missing key case elements"
+        ],
+        "description": "Summary content quality and specificity"
+      },
+      "legal_terminology": {
+        "score": 2.5,
+        "max_points": 15,
+        "percentage": 16.67,
+        "terms_by_category": {
+          "court_terms": 1,
+          "case_terms": 2,
+          "legal_process": 1,
+          "legal_sections": 1,
+          "decisions": 0
+        },
+        "description": "Presence of legal vocabulary and terminology"
+      },
+      "length_appropriateness": {
+        "score": 10.0,
+        "max_points": 10,
+        "percentage": 100.0,
+        "compression_ratio": 2.39,
+        "doc_words": 4305,
+        "summary_words": 103,
+        "description": "Summary length relative to source document"
+      },
+      "data_validation": {
+        "score": 9.0,
+        "max_points": 10,
+        "percentage": 90.0,
+        "issues": [
+          "Judge names lack proper titles"
+        ],
+        "description": "Format and structure validation of extracted data"
+      }
+    },
+    "recommendations": [
+      "⚠️ Medium Confidence: Review summary for accuracy before critical use",
+      "✍️ Content Quality: Missing key case elements",
+      "⚖️ Legal Context: Limited legal terminology - Verify document is a legal case judgment",
+      "✓ Data Validation: Judge names lack proper titles"
+    ]
+  },
+  "id": "ed634057-4cb8-4312-a09a-7d850ba2b9cb",
+  "summary_type": "quick",
+  "created_at": "2026-07-24T16:22:27.384116"
+}
