@@ -2,6 +2,7 @@
 
 import os
 import json
+from logger_setup import get_logger
 import uuid
 import hashlib
 import PyPDF2
@@ -28,6 +29,7 @@ import re
 load_dotenv()
 
 app = Flask(__name__)
+logger = get_logger(__name__)
 CORS(app)
 
 # ======================
@@ -40,9 +42,9 @@ if OPENAI_API_KEY:
     OPENAI_API_KEY = OPENAI_API_KEY.strip().strip('"').strip("'")
 
 if not OPENAI_API_KEY:
-    print("⚠️ WARNING: OPENAI_API_KEY not found!")
+    logger.warning("⚠️ WARNING: OPENAI_API_KEY not found!")
 else:
-    print(f"✅ OpenAI Key loaded: {OPENAI_API_KEY[:10]}...")
+    logger.info(f"✅ OpenAI Key loaded: {OPENAI_API_KEY[:10]}...")
 
 # Load SerpAPI Key with fallback
 SERPAPI_KEY = os.getenv("SERPAPI_KEY")
@@ -50,13 +52,13 @@ SERPAPI_KEY = os.getenv("SERPAPI_KEY")
 if not SERPAPI_KEY:
     # ⚠️ HARDCODED API KEY - REPLACE WITH YOUR ACTUAL KEY OR USE .env
     SERPAPI_KEY = "9653fcf7650ed7562ceae3b9f149656731bc934a9940c740395c8751f7611e30"
-    print("🔑 Using hardcoded SERPAPI_KEY fallback (update this in app.py or .env)")
+    logger.info("🔑 Using hardcoded SERPAPI_KEY fallback (update this in app.py or .env)")
 
 if SERPAPI_KEY:
     SERPAPI_KEY = SERPAPI_KEY.strip().strip('"').strip("'").strip()
-    print(f"✅ SerpAPI Key loaded: {SERPAPI_KEY[:10]}...{SERPAPI_KEY[-10:]}")
+    logger.info(f"✅ SerpAPI Key loaded: {SERPAPI_KEY[:10]}...{SERPAPI_KEY[-10:]}")
 else:
-    print("⚠️ WARNING: SERPAPI_KEY not found! External web search will be disabled.")
+    logger.warning("⚠️ WARNING: SERPAPI_KEY not found! External web search will be disabled.")
 
 # Update OpenAI client initialization
 if OPENAI_NEW_VERSION:
@@ -75,7 +77,7 @@ _embedding_model = None
 def get_embedding_model():
     global _embedding_model
     if _embedding_model is None:
-        print("🔁 Loading SentenceTransformer embedding model...")
+        logger.info("🔁 Loading SentenceTransformer embedding model...")
         _embedding_model = SentenceTransformer('sentence-transformers/all-mpnet-base-v2')
     return _embedding_model
 
@@ -177,7 +179,7 @@ def extract_pdf_text(file_path):
                 if page_text:
                     text += f"\n[PAGE {page_num}]\n{page_text}\n"
     except Exception as e:
-        print(f"PDF Error: {e}")
+        logger.error(f"PDF Error: {e}", exc_info=True)
     return text
 
 # ======================
@@ -241,9 +243,9 @@ def create_faiss_index(embeddings):
 def save_vector_db(index):
     try:
         faiss.write_index(index, VECTOR_DB_FILE)
-        print(f"✅ Saved {index.ntotal} vectors")
+        logger.info(f"✅ Saved {index.ntotal} vectors")
     except Exception as e:
-        print(f"❌ Save FAISS error: {e}")
+        logger.error(f"❌ Save FAISS error: {e}", exc_info=True)
 
 def load_vector_db():
     """
@@ -259,10 +261,10 @@ def load_vector_db():
             cases_data = load_cases_data()
             _faiss_index = index
             _cases_cache = cases_data
-            print(f"✅ Loaded {index.ntotal} vectors")
+            logger.info(f"✅ Loaded {index.ntotal} vectors")
             return index, cases_data
     except Exception as e:
-        print(f"❌ Load FAISS error: {e}")
+        logger.error(f"❌ Load FAISS error: {e}", exc_info=True)
     return None, {"chunks": []}
 
 # ======================
@@ -303,7 +305,7 @@ def search_local_vector_db(query, top_k=10):
         retrieved = sorted(retrieved, key=lambda x: x['similarity'], reverse=True)
         return retrieved, len(retrieved)
     except Exception as e:
-        print(f"❌ Search error: {e}")
+        logger.error(f"❌ Search error: {e}", exc_info=True)
         return [], 0
 
 # ======================
@@ -317,16 +319,16 @@ def web_search_serpapi(query, num_results=6):
     """
     # Check if key is available
     if not SERPAPI_KEY:
-        print("🌐 SerpAPI key missing – skipping external search.")
+        logger.info("🌐 SerpAPI key missing – skipping external search.")
         return ""
 
     # Optional sanity check on key length
     if len(SERPAPI_KEY) < 30:
-        print(f"⚠️ SerpAPI key looks invalid (length: {len(SERPAPI_KEY)})")
+        logger.warning(f"⚠️ SerpAPI key looks invalid (length: {len(SERPAPI_KEY)})")
         return ""
 
     try:
-        print(f"🌐 SerpAPI search triggered for query: {query[:100]!r}")
+        logger.info(f"🌐 SerpAPI search triggered for query: {query[:100]!r}")
 
         params = {
             "engine": "google",
@@ -337,39 +339,39 @@ def web_search_serpapi(query, num_results=6):
             "gl": "in"
         }
 
-        print("🔍 DEBUG - Making request to SerpAPI...")
-        print(f"🔍 DEBUG - Using API key: {SERPAPI_KEY[:10]}...{SERPAPI_KEY[-10:]}")
+        logger.info("🔍 DEBUG - Making request to SerpAPI...")
+        logger.info(f"🔍 DEBUG - Using API key: {SERPAPI_KEY[:10]}...{SERPAPI_KEY[-10:]}")
 
         resp = requests.get("https://serpapi.com/search", params=params, timeout=12)
 
-        print(f"🔍 DEBUG - Response status: {resp.status_code}")
+        logger.info(f"🔍 DEBUG - Response status: {resp.status_code}")
 
         if resp.status_code != 200:
-            print(f"❌ SerpAPI returned status {resp.status_code}")
-            print(f"❌ Response body: {resp.text[:500]}")
+            logger.error(f"❌ SerpAPI returned status {resp.status_code}")
+            logger.error(f"❌ Response body: {resp.text[:500]}")
             return ""
 
         resp.raise_for_status()
         data = resp.json()
 
         if "error" in data:
-            print(f"❌ SerpAPI error: {data['error']}")
+            logger.error(f"❌ SerpAPI error: {data['error']}")
             return ""
 
-        print("✅ SerpAPI search successful!")
+        logger.info("✅ SerpAPI search successful!")
 
     except requests.exceptions.Timeout:
-        print("❌ SerpAPI timeout after 12 seconds")
+        logger.error("❌ SerpAPI timeout after 12 seconds")
         return ""
     except requests.exceptions.RequestException as e:
-        print(f"❌ SerpAPI request error: {e}")
+        logger.error(f"❌ SerpAPI request error: {e}", exc_info=True)
         return ""
     except json.JSONDecodeError as e:
-        print(f"❌ SerpAPI JSON decode error: {e}")
-        print(f"   Response text: {resp.text[:500]}")
+        logger.error(f"❌ SerpAPI JSON decode error: {e}", exc_info=True)
+        logger.info(f"   Response text: {resp.text[:500]}")
         return ""
     except Exception as e:
-        print(f"❌ SerpAPI unexpected error: {e}")
+        logger.error(f"❌ SerpAPI unexpected error: {e}", exc_info=True)
         import traceback
         traceback.print_exc()
         return ""
@@ -379,10 +381,10 @@ def web_search_serpapi(query, num_results=6):
     organic = data.get("organic_results", []) or []
 
     if not organic:
-        print("⚠️ No organic results returned from SerpAPI")
+        logger.warning("⚠️ No organic results returned from SerpAPI")
         return ""
 
-    print(f"✅ Found {len(organic)} search results")
+    logger.info(f"✅ Found {len(organic)} search results")
 
     for i, item in enumerate(organic[:num_results], start=1):
         title = item.get("title", "").strip()
@@ -393,7 +395,7 @@ def web_search_serpapi(query, num_results=6):
         lines.append(f"[RESULT {i}] {title}\nSnippet: {snippet}\nSource: {source}\n")
 
     result_text = "\n".join(lines)
-    print(f"✅ Returning {len(lines)} formatted results")
+    logger.info(f"✅ Returning {len(lines)} formatted results")
     return result_text
 
 # ======================
@@ -414,9 +416,9 @@ def test_serpapi():
 
     try:
         test_query = "Indian Supreme Court bail guidelines"
-        print("\n" + "=" * 60)
-        print(f"Testing SerpAPI with query: {test_query}")
-        print("=" * 60 + "\n")
+        logger.info("\n" + "=" * 60)
+        logger.info(f"Testing SerpAPI with query: {test_query}")
+        logger.info("=" * 60 + "\n")
 
         results = web_search_serpapi(test_query, num_results=3)
 
@@ -715,8 +717,8 @@ def call_reasoner_llm(question, retrieved_cases, refinement_note=None, language=
 
         return json.loads(answer_text)
     except json.JSONDecodeError as e:
-        print(f"❌ JSON Parse Error: {e}")
-        print(f"Raw: {answer_text[:300]}")
+        logger.error(f"❌ JSON Parse Error: {e}", exc_info=True)
+        logger.info(f"Raw: {answer_text[:300]}")
         return {
             "conclusion": "Error: Could not parse LLM response",
             "legal_reasoning": "System error",
@@ -730,7 +732,7 @@ def call_reasoner_llm(question, retrieved_cases, refinement_note=None, language=
             "confidence": 0.1
         }
     except Exception as e:
-        print(f"❌ GPT Error: {e}")
+        logger.error(f"❌ GPT Error: {e}", exc_info=True)
         return {
             "conclusion": f"System error: {str(e)}",
             "legal_reasoning": "Unable to process",
@@ -832,7 +834,7 @@ IMPORTANT:
         return json.loads(answer_text)
 
     except Exception as e:
-        print(f"❌ External Reasoner Error: {e}")
+        logger.error(f"❌ External Reasoner Error: {e}", exc_info=True)
         return {
             "conclusion": f"Error: {str(e)}",
             "legal_reasoning": "Could not produce external legal reasoning",
@@ -879,7 +881,7 @@ IMPORTANT:
 
         return json.loads(answer_text)
     except Exception as e:
-        print(f"❌ External Reasoner Error: {e}")
+        logger.error(f"❌ External Reasoner Error: {e}", exc_info=True)
         return {
             "conclusion": f"System error during external reasoning: {str(e)}",
             "legal_reasoning": "Unable to process external legal query",
@@ -924,7 +926,7 @@ def call_validator_llm(answer_json, source_text):
         base = json.loads(review_text)
         return base
     except Exception as e:
-        print(f"❌ Validator Error: {e}")
+        logger.error(f"❌ Validator Error: {e}", exc_info=True)
         return {
             "is_valid": True,
             "hallucinations_found": 0,
@@ -1194,7 +1196,7 @@ def upload_pdf():
         })
 
     except Exception as e:
-        print(f"❌ Upload error: {e}")
+        logger.error(f"❌ Upload error: {e}", exc_info=True)
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/ask', methods=['POST'])
@@ -1232,7 +1234,7 @@ def ask_legal_question():
         if cached_answer:
             cached_answer["from_cache"] = True
             cached_answer["message"] = "⚡ Retrieved from cache (duplicate question)"
-            print("💾 Cache hit for question.")
+            logger.info("💾 Cache hit for question.")
             return jsonify(cached_answer)
 
         # 2️⃣ — Register new question record
@@ -1251,7 +1253,7 @@ def ask_legal_question():
         retrieved_cases, retrieval_count = search_local_vector_db(question, top_k=10)
         max_sim = max((rc["similarity"] for rc in retrieved_cases), default=0.0)
 
-        print(f"🔎 Retrieval_count={retrieval_count}, max_sim={max_sim:.3f}")
+        logger.info(f"🔎 Retrieval_count={retrieval_count}, max_sim={max_sim:.3f}")
 
         # AUTOMATIC decision:
         # Use LOCAL_PDF only if at least 1 strong hit and similarity high
@@ -1263,7 +1265,7 @@ def ask_legal_question():
         # 4️⃣ — Decide between LOCAL PDF vs EXTERNAL reasoning
         if not use_local:
             used_mode = "EXTERNAL"
-            print("🌐 Using EXTERNAL reasoning (SerpAPI + general legal knowledge)")
+            logger.info("🌐 Using EXTERNAL reasoning (SerpAPI + general legal knowledge)")
             answer_json = call_external_legal_reasoner(
                 question, refinement_note=refinement_note, language=language
             )
@@ -1275,7 +1277,7 @@ def ask_legal_question():
 
         else:
             used_mode = "LOCAL_PDF"
-            print("📚 Using LOCAL_PDF RAG reasoning (uploaded judgments)")
+            logger.info("📚 Using LOCAL_PDF RAG reasoning (uploaded judgments)")
             answer_json = call_reasoner_llm(
                 question,
                 retrieved_cases,
@@ -1530,7 +1532,7 @@ def delete_history():
 
         return jsonify({"status": "deleted", "question_id": question_id})
     except Exception as e:
-        print("Delete history error:", e)
+        logger.error("Delete history error:", e)
         return jsonify({"error": str(e)}), 500
 
 @app.route('/api/stats', methods=['GET'])
@@ -1552,7 +1554,7 @@ def get_stats():
             "system_status": "operational"
         })
     except Exception as e:
-        print("Stats error:", e)
+        logger.error("Stats error:", e)
         return jsonify({
             "total_cases_uploaded": 0,
             "total_questions_asked": 0,
@@ -1562,15 +1564,15 @@ def get_stats():
         })
 
 if __name__ == '__main__':
-    print("\n" + "="*60)
-    print("🚀 Legal QA System - RAG + External Conditional QA")
-    print("="*60)
-    print(f"✅ Smart chunking: 800 words with 200 overlap")
-    print(f"✅ JSON-based questions, answers, cache, reviews")
-    print(f"✅ FAISS vector store for judgments")
-    print(f"✅ OpenAI: {'Configured' if OPENAI_API_KEY else '❌ NOT CONFIGURED'}")
-    print(f"✅ SerpAPI: {'Configured' if SERPAPI_KEY else '❌ NOT CONFIGURED'}")
-    print(f"✅ Server running on: http://localhost:8002")
-    print("="*60 + "\n")
+    logger.info("\n" + "="*60)
+    logger.info("🚀 Legal QA System - RAG + External Conditional QA")
+    logger.info("="*60)
+    logger.info(f"✅ Smart chunking: 800 words with 200 overlap")
+    logger.info(f"✅ JSON-based questions, answers, cache, reviews")
+    logger.info(f"✅ FAISS vector store for judgments")
+    logger.error(f"✅ OpenAI: {'Configured' if OPENAI_API_KEY else '❌ NOT CONFIGURED'}")
+    logger.error(f"✅ SerpAPI: {'Configured' if SERPAPI_KEY else '❌ NOT CONFIGURED'}")
+    logger.info(f"✅ Server running on: http://localhost:8002")
+    logger.info("="*60 + "\n")
 
     app.run(debug=False, host='0.0.0.0', port=8002)  # Changed to port 8002

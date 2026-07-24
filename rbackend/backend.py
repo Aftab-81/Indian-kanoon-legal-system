@@ -64,9 +64,10 @@ from fastapi.background import BackgroundTasks
 import threading
 from threading import Event
 
+from logger_setup import get_logger
+
 # Configure logging
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
+logger = get_logger(__name__)
 
 # Load environment variables
 load_dotenv()
@@ -119,7 +120,7 @@ def background_save_data():
         save_faiss_index()
         logger.info("✅ Background save completed")
     except Exception as e:
-        logger.error(f"❌ Error in background save: {str(e)}")
+        logger.error(f"❌ Error in background save: {str(e)}", exc_info=True)
 
 def init_backend_async():
     """Initialize backend components in background thread"""
@@ -134,7 +135,7 @@ def init_backend_async():
         backend_ready = True
         logger.info("✅ Backend initialization complete!")
     except Exception as e:
-        logger.error(f"❌ Error during initialization: {str(e)}")
+        logger.error(f"❌ Error during initialization: {str(e)}", exc_info=True)
         backend_ready = True
 
 @asynccontextmanager
@@ -166,7 +167,7 @@ def load_remarks() -> Dict[str, Dict[str, str]]:
                 return json.load(f)
         return {}
     except Exception as e:
-        logger.error(f"Error loading remarks: {str(e)}")
+        logger.error(f"Error loading remarks: {str(e)}", exc_info=True)
         return {}
 
 def save_remarks(remarks: Dict[str, Dict[str, str]]) -> None:
@@ -174,7 +175,7 @@ def save_remarks(remarks: Dict[str, Dict[str, str]]) -> None:
         with open(REMARKS_FILE, "w") as f:
             json.dump(remarks, f, indent=2)
     except Exception as e:
-        logger.error(f"Error saving remarks: {str(e)}")
+        logger.error(f"Error saving remarks: {str(e)}", exc_info=True)
 
 def load_vector_metadata() -> Dict[str, Dict[str, Any]]:
     try:
@@ -187,7 +188,7 @@ def load_vector_metadata() -> Dict[str, Dict[str, Any]]:
                 return data
         return {}
     except Exception as e:
-        logger.error(f"Error loading vector metadata: {str(e)}")
+        logger.error(f"Error loading vector metadata: {str(e)}", exc_info=True)
         return {}
 
 def save_vector_metadata() -> None:
@@ -202,7 +203,7 @@ def save_vector_metadata() -> None:
             json.dump(data_to_save, f, indent=2)
         logger.info(f"✅ Saved {len(data_to_save)} documents")
     except Exception as e:
-        logger.error(f"Error saving vector metadata: {str(e)}")
+        logger.error(f"Error saving vector metadata: {str(e)}", exc_info=True)
 
 def load_query_cache() -> Dict[str, Dict[str, Any]]:
     try:
@@ -215,7 +216,7 @@ def load_query_cache() -> Dict[str, Dict[str, Any]]:
                 return data
         return {}
     except Exception as e:
-        logger.error(f"Error loading query cache: {str(e)}")
+        logger.error(f"Error loading query cache: {str(e)}", exc_info=True)
         return {}
 
 def save_query_cache() -> None:
@@ -229,14 +230,14 @@ def save_query_cache() -> None:
         with open(QUERY_CACHE_FILE, "w") as f:
             json.dump(data_to_save, f, indent=2)
     except Exception as e:
-        logger.error(f"Error saving query cache: {str(e)}")
+        logger.error(f"Error saving query cache: {str(e)}", exc_info=True)
 
 def save_faiss_index():
     try:
         faiss.write_index(vector_index, FAISS_INDEX_FILE)
         logger.info(f"✅ Saved FAISS index")
     except Exception as e:
-        logger.error(f"Error saving FAISS index: {str(e)}")
+        logger.error(f"Error saving FAISS index: {str(e)}", exc_info=True)
 
 def load_faiss_index():
     global vector_index, vector_metadata
@@ -276,7 +277,7 @@ def load_faiss_index():
         else:
             vector_metadata = {}
     except Exception as e:
-        logger.error(f"Error loading FAISS: {str(e)}")
+        logger.error(f"Error loading FAISS: {str(e)}", exc_info=True)
         vector_index = faiss.IndexFlatL2(EMBEDDING_DIM)
         vector_metadata = {}
 
@@ -290,7 +291,7 @@ def generate_embedding(text: str) -> List[float]:
         )
         return response.data[0].embedding
     except Exception as e:
-        logger.error(f"Error generating embedding: {str(e)}")
+        logger.error(f"Error generating embedding: {str(e)}", exc_info=True)
         return [0.0] * EMBEDDING_DIM
 
 def query_llm(prompt: str, text: str, source: str = "document") -> str:
@@ -319,7 +320,7 @@ def query_llm(prompt: str, text: str, source: str = "document") -> str:
         )
         return completion.choices[0].message.content
     except Exception as e:
-        logger.error(f"LLM Error: {str(e)}")
+        logger.error(f"LLM Error: {str(e)}", exc_info=True)
         return json.dumps({"summary": "Analysis failed", "error": str(e)})
 
 def extract_text_from_pdf(content: bytes) -> str:
@@ -440,7 +441,7 @@ def save_to_vector_db(file_hash: str, filename: str, text: str, analysis: Dict[s
         }
         logger.info(f"✅ Saved '{filename}' to vector DB")
     except Exception as e:
-        logger.error(f"Save error: {str(e)}")
+        logger.error(f"Save error: {str(e)}", exc_info=True)
 
 def semantic_search(query: str, k: int = 5) -> List[Dict[str, Any]]:
     if vector_index.ntotal == 0:
@@ -471,7 +472,7 @@ def semantic_search(query: str, k: int = 5) -> List[Dict[str, Any]]:
         
         return sorted(results, key=lambda x: x["confidence"], reverse=True)
     except Exception as e:
-        logger.error(f"Semantic search error: {str(e)}")
+        logger.error(f"Semantic search error: {str(e)}", exc_info=True)
         return []
 
 # ==================== API Endpoints ====================
@@ -542,7 +543,7 @@ async def analyze_legal_document(file: UploadFile = File(...), background_tasks:
     except HTTPException:
         raise
     except Exception as e:
-        logger.error(f"Analyze error: {str(e)}")
+        logger.error(f"Analyze error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/api/search/query")
@@ -568,7 +569,7 @@ async def search_legal_query(query: str = Form(...)):
             "timestamp": datetime.now().isoformat()
         })
     except Exception as e:
-        logger.error(f"Search error: {str(e)}")
+        logger.error(f"Search error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/api/documents")
@@ -598,7 +599,7 @@ async def get_documents():
             "total": len(documents)
         })
     except Exception as e:
-        logger.error(f"Error fetching documents: {str(e)}")
+        logger.error(f"Error fetching documents: {str(e)}", exc_info=True)
         return JSONResponse({
             "success": False,
             "error": str(e),
@@ -630,7 +631,7 @@ async def get_history():
             "total": len(history)
         })
     except Exception as e:
-        logger.error(f"History error: {str(e)}")
+        logger.error(f"History error: {str(e)}", exc_info=True)
         return JSONResponse({
             "success": False,
             "error": str(e),

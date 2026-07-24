@@ -1,3 +1,6 @@
+from logger_setup import get_logger
+logger = get_logger(__name__)
+
 import PyPDF2
 from typing import BinaryIO, Dict, Any
 import re
@@ -176,8 +179,8 @@ def extract_text_with_metadata(pdf_file: BinaryIO) -> Dict[str, Any]:
         pdf_metadata = extract_metadata_from_pdf(pdf_reader)
         detected_lang = pdf_metadata["detected_language"]
         
-        print(f"[PDF Extractor] Pages: {pdf_metadata['num_pages']}, Extractable: {pdf_metadata['extractable_pages']}")
-        print(f"[PDF Extractor] Detected language: {detected_lang}")
+        logger.info(f"[PDF Extractor] Pages: {pdf_metadata['num_pages']}, Extractable: {pdf_metadata['extractable_pages']}")
+        logger.info(f"[PDF Extractor] Detected language: {detected_lang}")
         
         # Extract text with language-aware cleaning
         for idx, page in enumerate(pdf_reader.pages):
@@ -187,23 +190,23 @@ def extract_text_with_metadata(pdf_file: BinaryIO) -> Dict[str, Any]:
                 if cleaned_text:
                     text_content.append(cleaned_text)
                     if idx == 0:  # Log first page sample
-                        print(f"[PDF Extractor] First page sample (200 chars): {cleaned_text[:200]}")
+                        logger.info(f"[PDF Extractor] First page sample (200 chars): {cleaned_text[:200]}")
         
         full_text = "\n\n".join(text_content)
         
         if not full_text.strip():
             raise ValueError("No text could be extracted from PDF")
         
-        print(f"[PDF Extractor] Total extracted text length: {len(full_text)} characters")
-        print(f"[PDF Extractor] Word count: {len(full_text.split())}")
+        logger.info(f"[PDF Extractor] Total extracted text length: {len(full_text)} characters")
+        logger.info(f"[PDF Extractor] Word count: {len(full_text.split())}")
         
         # Assess quality
         quality_assessment = assess_extraction_quality(pdf_metadata, full_text)
         
-        print(f"[PDF Extractor] Quality score: {quality_assessment['extraction_quality_score']}%")
-        print(f"[PDF Extractor] Quality level: {quality_assessment['quality_level']}")
+        logger.info(f"[PDF Extractor] Quality score: {quality_assessment['extraction_quality_score']}%")
+        logger.info(f"[PDF Extractor] Quality level: {quality_assessment['quality_level']}")
         if quality_assessment['issues']:
-            print(f"[PDF Extractor] Issues: {quality_assessment['issues']}")
+            logger.info(f"[PDF Extractor] Issues: {quality_assessment['issues']}")
         
         return {
             "text": full_text,
@@ -211,5 +214,5 @@ def extract_text_with_metadata(pdf_file: BinaryIO) -> Dict[str, Any]:
             "quality": quality_assessment
         }
     except Exception as e:
-        print(f"[PDF Extractor] ERROR: {str(e)}")
+        logger.info(f"[PDF Extractor] ERROR: {str(e)}")
         raise ValueError(f"Failed to extract text from PDF: {str(e)}")

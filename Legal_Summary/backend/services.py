@@ -1,3 +1,6 @@
+from logger_setup import get_logger
+logger = get_logger(__name__)
+
 from typing import Dict, Any, List
 from schemas import Metadata
 from openai import OpenAI
@@ -29,10 +32,10 @@ def save_to_history(data, summary_type='quick'):
         with open(filepath, 'w', encoding='utf-8') as f:
             json.dump(data, f, indent=2, ensure_ascii=False)
         
-        print(f"[History] Saved summary {summary_id} to history")
+        logger.info(f"[History] Saved summary {summary_id} to history")
         return summary_id
     except Exception as e:
-        print(f"[History] ERROR saving to history: {str(e)}")
+        logger.info(f"[History] ERROR saving to history: {str(e)}")
         return None
 
 def calculate_summary_confidence(
@@ -541,8 +544,8 @@ def _call_gpt(prompt: str) -> Dict[str, Any]:
         # Validate API key is set
         settings.validate_api_key()
         
-        print(f"[GPT] Calling OpenAI API with model: {settings.openai_model}")
-        print(f"[GPT] Prompt length: {len(prompt)} characters")
+        logger.info(f"[GPT] Calling OpenAI API with model: {settings.openai_model}")
+        logger.info(f"[GPT] Prompt length: {len(prompt)} characters")
         
         response = client.chat.completions.create(
             model=settings.openai_model,
@@ -555,19 +558,19 @@ def _call_gpt(prompt: str) -> Dict[str, Any]:
         )
         
         content = response.choices[0].message.content
-        print(f"[GPT] Response received, length: {len(content)} characters")
-        print(f"[GPT] Response preview: {content[:200]}...")
+        logger.info(f"[GPT] Response received, length: {len(content)} characters")
+        logger.info(f"[GPT] Response preview: {content[:200]}...")
         
         parsed = json.loads(content)
-        print(f"[GPT] JSON parsed successfully, keys: {list(parsed.keys())}")
+        logger.info(f"[GPT] JSON parsed successfully, keys: {list(parsed.keys())}")
         
         return parsed
     except json.JSONDecodeError as je:
-        print(f"[GPT] ERROR: Invalid JSON response")
-        print(f"[GPT] Response was: {content[:500]}")
+        logger.info(f"[GPT] ERROR: Invalid JSON response")
+        logger.info(f"[GPT] Response was: {content[:500]}")
         raise ValueError(f"GPT returned invalid JSON: {str(je)}")
     except Exception as e:
-        print(f"[GPT] ERROR: {str(e)}")
+        logger.info(f"[GPT] ERROR: {str(e)}")
         raise ValueError(f"OpenAI API error: {str(e)}")
 
 def generate_summary(preferences: Dict[str, Any], case_text: str, extraction_quality: Dict[str, Any] = None) -> Dict[str, Any]:

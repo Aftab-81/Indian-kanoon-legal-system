@@ -1,3 +1,6 @@
+from logger_setup import get_logger
+logger = get_logger(__name__)
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from routes.cases import router as cases_router
@@ -23,10 +26,10 @@ app.include_router(cases_router, prefix="/api")
 # ...existing code...
 if __name__ == "__main__":
     import uvicorn
-    print("\n" + "="*60)
-    print("🚀 Legal Case Summarizer Backend")
-    print("="*60)
-    print(f"✅ Server running on: http://localhost:8003")
-    print(f"✅ API docs: http://localhost:8003/docs")
-    print("="*60 + "\n")
+    logger.info("\n" + "="*60)
+    logger.info("🚀 Legal Case Summarizer Backend")
+    logger.info("="*60)
+    logger.info(f"✅ Server running on: http://localhost:8003")
+    logger.info(f"✅ API docs: http://localhost:8003/docs")
+    logger.info("="*60 + "\n")
     uvicorn.run("app:app", host="0.0.0.0", port=8003, reload=True)  # Changed to port 8003

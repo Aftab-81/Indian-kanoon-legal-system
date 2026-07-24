@@ -1,3 +1,6 @@
+from logger_setup import get_logger
+logger = get_logger(__name__)
+
 import requests
 import json
 from pathlib import Path
@@ -8,9 +11,9 @@ SAMPLE_PDF_PATH = "admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025
 
 def print_section(title: str):
     """Print formatted section header."""
-    print("\n" + "="*80)
-    print(f"  {title}")
-    print("="*80 + "\n")
+    logger.info("\n" + "="*80)
+    logger.info(f"  {title}")
+    logger.info("="*80 + "\n")
 
 def test_summarize_short():
     """Test short summary with focus on facts."""
@@ -30,15 +33,15 @@ def test_summarize_short():
             
         if response.status_code == 200:
             result = response.json()
-            print("✓ Success!")
-            print(json.dumps(result, indent=2))
+            logger.info("✓ Success!")
+            logger.info(json.dumps(result, indent=2))
         else:
-            print(f"✗ Error: {response.status_code}")
-            print(response.text)
+            logger.error(f"✗ Error: {response.status_code}")
+            logger.info(response.text)
     except FileNotFoundError:
-        print(f"✗ PDF file not found: {SAMPLE_PDF_PATH}")
+        logger.info(f"✗ PDF file not found: {SAMPLE_PDF_PATH}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        logger.error(f"✗ Error: {str(e)}")
 
 def test_summarize_medium():
     """Test medium summary with multiple focus areas."""
@@ -58,19 +61,19 @@ def test_summarize_medium():
             
         if response.status_code == 200:
             result = response.json()
-            print("✓ Success!")
-            print(f"\nCase Title: {result['metadata']['case_title']}")
-            print(f"Court: {result['metadata']['court_name']}")
-            print(f"Judges: {', '.join(result['metadata']['judge_names'])}")
-            print(f"\nSummary:\n{result['metadata']['summary']}")
-            print(f"\nSections: {', '.join(result['metadata']['sections_invoked'])}")
+            logger.info("✓ Success!")
+            logger.info(f"\nCase Title: {result['metadata']['case_title']}")
+            logger.info(f"Court: {result['metadata']['court_name']}")
+            logger.info(f"Judges: {', '.join(result['metadata']['judge_names'])}")
+            logger.info(f"\nSummary:\n{result['metadata']['summary']}")
+            logger.info(f"\nSections: {', '.join(result['metadata']['sections_invoked'])}")
         else:
-            print(f"✗ Error: {response.status_code}")
-            print(response.text)
+            logger.error(f"✗ Error: {response.status_code}")
+            logger.info(response.text)
     except FileNotFoundError:
-        print(f"✗ PDF file not found: {SAMPLE_PDF_PATH}")
+        logger.info(f"✗ PDF file not found: {SAMPLE_PDF_PATH}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        logger.error(f"✗ Error: {str(e)}")
 
 def test_summarize_detailed():
     """Test detailed summary."""
@@ -90,16 +93,16 @@ def test_summarize_detailed():
             
         if response.status_code == 200:
             result = response.json()
-            print("✓ Success!")
-            print(f"\nDetailed Available: {result['detailed_available']}")
-            print(f"\nFull Metadata:\n{json.dumps(result['metadata'], indent=2)}")
+            logger.info("✓ Success!")
+            logger.info(f"\nDetailed Available: {result['detailed_available']}")
+            logger.info(f"\nFull Metadata:\n{json.dumps(result['metadata'], indent=2)}")
         else:
-            print(f"✗ Error: {response.status_code}")
-            print(response.text)
+            logger.error(f"✗ Error: {response.status_code}")
+            logger.info(response.text)
     except FileNotFoundError:
-        print(f"✗ PDF file not found: {SAMPLE_PDF_PATH}")
+        logger.info(f"✗ PDF file not found: {SAMPLE_PDF_PATH}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        logger.error(f"✗ Error: {str(e)}")
 
 def test_detailed_endpoint():
     """Test the comprehensive detailed summary endpoint."""
@@ -113,45 +116,45 @@ def test_detailed_endpoint():
             
         if response.status_code == 200:
             result = response.json()
-            print("✓ Success!")
+            logger.info("✓ Success!")
             
             # Print key sections
-            print(f"\n📋 Case Title: {result['case_title']}")
-            print(f"\n📅 Important Dates:")
-            print(json.dumps(result['important_dates'], indent=2))
+            logger.info(f"\n📋 Case Title: {result['case_title']}")
+            logger.info(f"\n📅 Important Dates:")
+            logger.info(json.dumps(result['important_dates'], indent=2))
             
-            print(f"\n⚖️ Court & Judge:")
-            print(json.dumps(result['court_and_judge'], indent=2))
+            logger.info(f"\n⚖️ Court & Judge:")
+            logger.info(json.dumps(result['court_and_judge'], indent=2))
             
-            print(f"\n📜 Charges & Sections:")
+            logger.info(f"\n📜 Charges & Sections:")
             for charge in result['charges_and_sections'][:3]:  # First 3
-                print(f"  - {charge['section']}: {charge['description']}")
+                logger.info(f"  - {charge['section']}: {charge['description']}")
             
-            print(f"\n📝 Brief Facts:")
-            print(f"{result['brief_facts'][:300]}...")
+            logger.info(f"\n📝 Brief Facts:")
+            logger.info(f"{result['brief_facts'][:300]}...")
             
-            print(f"\n❓ Key Issues:")
+            logger.info(f"\n❓ Key Issues:")
             for issue in result['key_issues'][:2]:  # First 2
-                print(f"  - {issue}")
+                logger.info(f"  - {issue}")
             
-            print(f"\n⚡ Risk Flags:")
-            print(json.dumps(result['risk_flags'], indent=2))
+            logger.info(f"\n⚡ Risk Flags:")
+            logger.info(json.dumps(result['risk_flags'], indent=2))
             
-            print(f"\n👥 Extracted Entities:")
-            print(f"  Accused: {', '.join(result['extracted_entities'].get('accused', []))}")
-            print(f"  Victim: {', '.join(result['extracted_entities'].get('victim', []))}")
-            print(f"  Witnesses: {', '.join(result['extracted_entities'].get('witnesses', [])[:5])}")
+            logger.info(f"\n👥 Extracted Entities:")
+            logger.info(f"  Accused: {', '.join(result['extracted_entities'].get('accused', []))}")
+            logger.info(f"  Victim: {', '.join(result['extracted_entities'].get('victim', []))}")
+            logger.info(f"  Witnesses: {', '.join(result['extracted_entities'].get('witnesses', [])[:5])}")
             
-            print(f"\n📄 One-Page Summary for Judges:")
-            print(result['one_page_summary_for_judges'])
+            logger.info(f"\n📄 One-Page Summary for Judges:")
+            logger.info(result['one_page_summary_for_judges'])
             
         else:
-            print(f"✗ Error: {response.status_code}")
-            print(response.text)
+            logger.error(f"✗ Error: {response.status_code}")
+            logger.info(response.text)
     except FileNotFoundError:
-        print(f"✗ PDF file not found: {SAMPLE_PDF_PATH}")
+        logger.info(f"✗ PDF file not found: {SAMPLE_PDF_PATH}")
     except Exception as e:
-        print(f"✗ Error: {str(e)}")
+        logger.error(f"✗ Error: {str(e)}")
 
 def create_sample_pdf_guide():
     """Print guide for creating sample PDF."""
@@ -192,11 +195,11 @@ if __name__ == "__main__":
     try:
         response = requests.get(f"{BASE_URL.rsplit('/', 1)[0]}/docs")
         if response.status_code != 200:
-            print("⚠️  Warning: Server might not be running at http://localhost:8000")
-            print("   Start server: python app.py\n")
+            logger.warning("⚠️  Warning: Server might not be running at http://localhost:8000")
+            logger.info("   Start server: python app.py\n")
     except:
-        print("✗ Error: Cannot connect to server at http://localhost:8000")
-        print("   Make sure to start the server first: python app.py\n")
+        logger.error("✗ Error: Cannot connect to server at http://localhost:8000")
+        logger.info("   Make sure to start the server first: python app.py\n")
         exit(1)
     
     # Run all tests
@@ -207,9 +210,9 @@ if __name__ == "__main__":
         test_detailed_endpoint()
         
         print_section("All Tests Completed")
-        print("✓ Demo testing finished successfully!")
+        logger.info("✓ Demo testing finished successfully!")
         
     except KeyboardInterrupt:
-        print("\n\n✗ Tests interrupted by user")
+        logger.info("\n\n✗ Tests interrupted by user")
     except Exception as e:
-        print(f"\n\n✗ Unexpected error: {str(e)}")
+        logger.error(f"\n\n✗ Unexpected error: {str(e)}")

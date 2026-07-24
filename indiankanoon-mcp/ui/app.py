@@ -17,6 +17,9 @@ import threading
 from pathlib import Path
 from datetime import datetime
 
+from logger_setup import get_logger
+logger = get_logger(__name__)
+
 from flask import Flask, render_template, request, jsonify, Response
 from flask_cors import CORS
 
