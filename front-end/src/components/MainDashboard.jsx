@@ -248,7 +248,7 @@ function MainDashboard() {
             </svg>
             Back to Modules
           </Link>
-          <h1 className={`text-2xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>Core Summary Extraction</h1>
+          <h1 className={`text-2xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>Case Comprehension</h1>
         </div>
 
         {/* Unified Search Link */}

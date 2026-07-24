@@ -1,0 +1,95 @@
+{
+  "metadata": {
+    "case_title": "Om Prakash Verma vs State Of U.P. And Ors.",
+    "court_name": "Allahabad High Court",
+    "case_number": "(2005)1UPLBEC774",
+    "judge_names": [
+      "V.K. Shukla"
+    ],
+    "date_of_judgement": "2005-01-07",
+    "jurisdiction": "India",
+    "summary": "The case involved a dispute regarding the appointment of a Principal at Lal Bahadur Shastri Smarak Inter College in Moradabad, Uttar Pradesh. Om Prakash Verma, an Assistant Teacher, challenged the appointment of Ram Swaroop Singh as Principal, claiming he was more qualified. The court examined the educational qualifications required for the Principal's position as per the U.P. Intermediate Education Act, 1921. It was found that Om Prakash Verma met the eligibility criteria based on his experience and certifications. The court ruled in favor of Om Prakash Verma, stating that the order disqualifying him was unwarranted and illegal.",
+    "sections_invoked": [
+      "U.P. Intermediate Education Act, 1921"
+    ]
+  },
+  "detailed_available": true,
+  "confidence_score": {
+    "overall_confidence": 82.5,
+    "confidence_level": "medium",
+    "reliability_assessment": "Good - Review recommended for critical decisions",
+    "factors": {
+      "extraction_quality": 100,
+      "metadata_completeness": 100.0,
+      "content_quality": 85.0,
+      "legal_terminology": 10.0,
+      "compression_ratio": 2.87,
+      "data_validation": 90.0
+    },
+    "detailed_breakdown": {
+      "extraction_quality": {
+        "score": 25.0,
+        "max_points": 25,
+        "percentage": 100,
+        "description": "PDF text extraction quality and readability"
+      },
+      "metadata_completeness": {
+        "score": 20,
+        "max_points": 20,
+        "percentage": 100.0,
+        "missing_fields": [],
+        "description": "Presence of essential case metadata"
+      },
+      "content_quality": {
+        "score": 17.0,
+        "max_points": 20,
+        "percentage": 85.0,
+        "word_count": 97,
+        "issues": [
+          "Missing key case elements"
+        ],
+        "description": "Summary content quality and specificity"
+      },
+      "legal_terminology": {
+        "score": 1.5,
+        "max_points": 15,
+        "percentage": 10.0,
+        "terms_by_category": {
+          "court_terms": 1,
+          "case_terms": 1,
+          "legal_process": 0,
+          "legal_sections": 1,
+          "decisions": 0
+        },
+        "description": "Presence of legal vocabulary and terminology"
+      },
+      "length_appropriateness": {
+        "score": 10.0,
+        "max_points": 10,
+        "percentage": 100.0,
+        "compression_ratio": 2.87,
+        "doc_words": 3374,
+        "summary_words": 97,
+        "description": "Summary length relative to source document"
+      },
+      "data_validation": {
+        "score": 9.0,
+        "max_points": 10,
+        "percentage": 90.0,
+        "issues": [
+          "Judge names lack proper titles"
+        ],
+        "description": "Format and structure validation of extracted data"
+      }
+    },
+    "recommendations": [
+      "⚠️ Medium Confidence: Review summary for accuracy before critical use",
+      "✍️ Content Quality: Missing key case elements",
+      "⚖️ Legal Context: Limited legal terminology - Verify document is a legal case judgment",
+      "✓ Data Validation: Judge names lack proper titles"
+    ]
+  },
+  "id": "9d41f124-3056-4a80-b9f9-4a5e556ff0cb",
+  "summary_type": "quick",
+  "created_at": "2026-07-24T16:31:16.023832"
+}
