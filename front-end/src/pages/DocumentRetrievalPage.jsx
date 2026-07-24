@@ -49,7 +49,7 @@ function DocumentRetrievalPage() {
         
         <div className="flex-grow w-full">
           <iframe 
-            src="http://localhost:8004" 
+            src={`http://localhost:8004?theme=${darkMode ? 'dark' : 'light'}`}
             title="Document Retrieval System"
             className="w-full h-full min-h-[calc(100vh-140px)] border-0"
             allowFullScreen
