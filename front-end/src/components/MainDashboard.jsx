@@ -248,7 +248,12 @@ function MainDashboard() {
             </svg>
             Back to Modules
           </Link>
-          <h1 className={`text-2xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>Case Comprehension</h1>
+          <div className="text-right">
+            <h1 className={`text-2xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>Case Comprehension</h1>
+            <p className={`text-sm mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+              AI-Powered Legal Case Analysis for Facts, Issues, and Judicial Reasoning
+            </p>
+          </div>
         </div>
 
         {/* Unified Search Link */}
