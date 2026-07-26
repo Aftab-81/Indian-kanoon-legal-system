@@ -193,7 +193,12 @@ function MainDashboard() {
     </svg>
     Back to Modules
   </Link>
-  <h1 className={`text-2xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>Document Reference System</h1>
+  <div className="text-right">
+    <h1 className={`text-2xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>Document Reference System</h1>
+    <p className={`text-sm mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+      AI-Powered Legal Reference Discovery Across Cases, Statutes, and Precedents
+    </p>
+  </div>
 </div>
         {/* Unified Search Link */}
         {/* <div className="mb-8 flex flex-wrap gap-4">

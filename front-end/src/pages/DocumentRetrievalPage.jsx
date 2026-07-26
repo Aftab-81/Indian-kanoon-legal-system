@@ -43,6 +43,9 @@ function DocumentRetrievalPage() {
               <h1 className={`text-2xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                 Document Retrieval
               </h1>
+              <p className={`text-sm mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+                AI-Powered Judicial Document Retrieval from Indian Kanoon
+              </p>
             </div>
           </div>
         </div>
