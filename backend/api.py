@@ -622,6 +622,19 @@ def ik_document(doc_id):
         # Clean up the content
         if content:
             content = content.strip()
+            import re
+            # Replace common block tags with newlines to preserve structure
+            content = re.sub(r'<br\s*/?>', '\n', content, flags=re.IGNORECASE)
+            content = re.sub(r'</p>', '\n\n', content, flags=re.IGNORECASE)
+            content = re.sub(r'</div>', '\n\n', content, flags=re.IGNORECASE)
+            # Remove all other HTML tags
+            content = re.sub(r'<[^>]+>', '', content)
+            # Decode HTML entities if any
+            import html as html_lib
+            content = html_lib.unescape(content)
+            # Clean up extra newlines and spaces
+            content = re.sub(r'\n{3,}', '\n\n', content)
+            content = content.strip()
             
         # Use the CaseExtractor to process the content with OpenAI LLM
         # This reuses the same extraction logic used for PDF uploads
@@ -672,31 +685,46 @@ def ik_document(doc_id):
         
         # Format each section with HTML
         formatted_sections = {}
+        import re
         for key, value in case_details.items():
             if key == "Confidence":
                 # Skip the confidence scores
                 continue
                 
             if value and isinstance(value, str) and value.strip() and value != "Not specified in the document" and value != "Not available in the document":
-                # Replace newlines with <br> tags
-                formatted_value = value.replace('\n', '<br>')
-                # Add paragraph tags
-                formatted_value = '<p>' + formatted_value.replace('<br><br>', '</p><p>') + '</p>'
-                formatted_sections[key] = formatted_value
+                if key in ["Case Title & Citation", "Bench / Court", "Date"]:
+                    # Strip any HTML tags from title and court, and do not add paragraph tags
+                    # because CaseDetails.jsx renders these as plain text
+                    clean_val = re.sub(r'<[^>]+>', '', value).strip()
+                    # Also unescape HTML entities like &amp;
+                    import html as html_lib
+                    clean_val = html_lib.unescape(clean_val)
+                    formatted_sections[key] = clean_val
+                else:
+                    # Replace newlines with <br> tags
+                    formatted_value = value.replace('\n', '<br>')
+                    # Add paragraph tags
+                    formatted_value = '<p>' + formatted_value.replace('<br><br>', '</p><p>') + '</p>'
+                    formatted_sections[key] = formatted_value
             else:
                 formatted_sections[key] = "Not specified in the document"
         
         # Also keep the original full content for reference
         if content:
-            # Format the full content with HTML
+            # Format the full content with HTML (content is already stripped of original HTML)
             formatted_content = content.replace('\n', '<br>')
             formatted_content = '<p>' + formatted_content.replace('<br><br>', '</p><p>') + '</p>'
         else:
             formatted_content = "<p>No content available for this document.</p>"
         
+        # Clean title for structured doc as well
+        clean_title = re.sub(r'<[^>]+>', '', parsed_doc.get('title', '')).strip()
+        import html as html_lib
+        clean_title = html_lib.unescape(clean_title)
+        
         # Create the structured document
         structured_doc = {
-            'title': parsed_doc.get('title', ''),
+            'title': clean_title,
             'court': parsed_doc.get('court', ''),
             'date': parsed_doc.get('date', ''),
             'content': formatted_content,  # Keep the full content
