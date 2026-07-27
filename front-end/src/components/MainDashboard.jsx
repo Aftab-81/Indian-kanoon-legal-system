@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { CaseList } from './dashboard/CaseList';
 import { CaseDetails } from './dashboard/CaseDetails';
@@ -20,6 +20,9 @@ function MainDashboard() {
   const [loadedCaseDetails, setLoadedCaseDetails] = useState({});
   const [ikApiToken, setIkApiToken] = useState('');
   const fileInputRef = useRef(null);
+  
+  const location = useLocation();
+  const navigate = useNavigate();
   
   const API_BASE = 'http://localhost:8000/api';  // Changed from 5000 to 8000
 
@@ -60,10 +63,13 @@ function MainDashboard() {
     }
   };
 
-  const fetchCaseDetails = async (caseFile) => {
+  const fetchCaseDetails = async (caseFile, isActive = true) => {
     try {
       const response = await axios.get(`${API_BASE}/case/${caseFile}`);
-      setCaseDetails(response.data);
+      
+      if (isActive) {
+        setCaseDetails(response.data);
+      }
       
       if (response.data.Confidence) {
         const confidenceValues = Object.values(response.data.Confidence);
@@ -203,7 +209,7 @@ function MainDashboard() {
     if (cases.length > 0) {
       const visibleCases = cases.slice(0, 5);
       visibleCases.forEach(caseItem => {
-        fetchCaseDetails(caseItem.file);
+        fetchCaseDetails(caseItem.file, false);
       });
       
       if (cases.length > 5) {
@@ -211,17 +217,28 @@ function MainDashboard() {
         setTimeout(() => {
           remainingCases.forEach((caseItem, index) => {
             setTimeout(() => {
-              fetchCaseDetails(caseItem.file);
+              fetchCaseDetails(caseItem.file, false);
             }, index * 300);
           });
         }, 2000);
       }
+      
+      // Auto-select case from navigation state if present
+      if (location.state && location.state.selectedCaseFile) {
+        const targetCase = cases.find(c => c.file === location.state.selectedCaseFile);
+        if (targetCase && (!selectedCase || selectedCase.file !== targetCase.file)) {
+          setSelectedCase(targetCase);
+          // Clear the state so it doesn't re-trigger on refresh
+          navigate(location.pathname, { replace: true, state: {} });
+        }
+      }
     }
-  }, [cases]);
+  }, [cases, location.state, navigate, location.pathname]);
 
   useEffect(() => {
     if (selectedCase) {
-      fetchCaseDetails(selectedCase.file);
+      setCaseDetails(null); // Clear previous state to prevent flickering
+      fetchCaseDetails(selectedCase.file, true);
     }
   }, [selectedCase]);
 

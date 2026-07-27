@@ -1,0 +1,104 @@
+{
+  "metadata": {
+    "case_title": "सराया इंडस्ट्रीज लिमिटेड व. उत्तर प्रदेश राज्य आणि इतर",
+    "court_name": "इलाहाबाद उच्च न्यायालय",
+    "case_number": "2005(1)AWC911",
+    "judge_names": [
+      "व्ही.एम. सहाय",
+      "पूनम श्रीवास्तव"
+    ],
+    "date_of_judgement": "2005-01-06",
+    "jurisdiction": "भारत",
+    "summary": "मुख्य तथ्य, वक्तव्य आणि निर्णयांचे सारांश: प्रारंभिक न्यायाधीशांच्या विचारांमध्ये उद्यापन झालेल्या प्रश्नाची तपासणी करण्यात येते की, जर डिस्टिलरीज द्वारे बाउंडवर बोतल्यांवर, पाउचेस आणि केन्सवर अफिक्स केलेले सुरक्षा होलोग्राम्स व्यर्थ झालेले असतील आणि त्यांनी त्यांच्या खात्यात उत्पादित करण्यास असमर्थ झाले तर उद्यापनातून येणारे उत्पादन विभागाच्या जागतिकरणासाठी डिस्टिलरीजविरुद्ध उत्पादक शुल्क लागू केले जाऊ शकते का.",
+    "sections_invoked": [
+      "Section 24",
+      "Section 24A",
+      "Section 24B",
+      "Section 29",
+      "Section 31",
+      "Section 28"
+    ]
+  },
+  "detailed_available": true,
+  "confidence_score": {
+    "overall_confidence": 73.0,
+    "confidence_level": "medium",
+    "reliability_assessment": "Good - Review recommended for critical decisions",
+    "factors": {
+      "extraction_quality": 100,
+      "metadata_completeness": 100.0,
+      "content_quality": 60.0,
+      "legal_terminology": 0.0,
+      "compression_ratio": 1.23,
+      "data_validation": 60.0
+    },
+    "detailed_breakdown": {
+      "extraction_quality": {
+        "score": 25.0,
+        "max_points": 25,
+        "percentage": 100,
+        "description": "PDF text extraction quality and readability"
+      },
+      "metadata_completeness": {
+        "score": 20,
+        "max_points": 20,
+        "percentage": 100.0,
+        "missing_fields": [],
+        "description": "Presence of essential case metadata"
+      },
+      "content_quality": {
+        "score": 12.0,
+        "max_points": 20,
+        "percentage": 60.0,
+        "word_count": 53,
+        "issues": [
+          "Low information density",
+          "Missing key case elements"
+        ],
+        "description": "Summary content quality and specificity"
+      },
+      "legal_terminology": {
+        "score": 0,
+        "max_points": 15,
+        "percentage": 0.0,
+        "terms_by_category": {
+          "court_terms": 0,
+          "case_terms": 0,
+          "legal_process": 0,
+          "legal_sections": 0,
+          "decisions": 0
+        },
+        "description": "Presence of legal vocabulary and terminology"
+      },
+      "length_appropriateness": {
+        "score": 10.0,
+        "max_points": 10,
+        "percentage": 100.0,
+        "compression_ratio": 1.23,
+        "doc_words": 4305,
+        "summary_words": 53,
+        "description": "Summary length relative to source document"
+      },
+      "data_validation": {
+        "score": 6.0,
+        "max_points": 10,
+        "percentage": 60.0,
+        "issues": [
+          "Judge names lack proper titles",
+          "Sections lack act/code references",
+          "Case title missing party separator"
+        ],
+        "description": "Format and structure validation of extracted data"
+      }
+    },
+    "recommendations": [
+      "⚠️ Medium Confidence: Review summary for accuracy before critical use",
+      "✍️ Content Quality: Low information density; Missing key case elements",
+      "⚖️ Legal Context: Limited legal terminology - Verify document is a legal case judgment",
+      "✓ Data Validation: Judge names lack proper titles; Sections lack act/code references; Case title missing party separator"
+    ]
+  },
+  "id": "110c3d48-7a83-4a7f-b717-41fe6e41083f",
+  "summary_type": "quick",
+  "created_at": "2026-07-26T13:15:30.216961"
+}
