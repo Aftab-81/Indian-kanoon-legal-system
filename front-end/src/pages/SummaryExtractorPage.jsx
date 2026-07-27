@@ -12,11 +12,14 @@ function SummaryExtractorPage() {
   const [summaryLength, setSummaryLength] = useState('medium');
   const [language, setLanguage] = useState('english');
   const [focusAreas, setFocusAreas] = useState({
-    facts: true,
-    arguments: true,
-    evidence: true,
-    legal_reasoning: true,
-    precedents: false
+    title: true,
+    confidence: true,
+    case_info: true,
+    court_composition: false,
+    citations: false,
+    case_category: false,
+    sections_invoked: true,
+    summary: true
   });
   const [loading, setLoading] = useState(false);
   const [summaryResult, setSummaryResult] = useState(null);
@@ -330,11 +333,14 @@ function SummaryExtractorPage() {
                   <div className="space-y-2">
                     {Object.entries(focusAreas).map(([key, checked]) => {
                       const labels = {
-                        facts: 'Title',
-                        arguments: 'Confidence',
-                        evidence: 'Case Information',
-                        legal_reasoning: 'Sections Invoked',
-                        precedents: 'Summary'
+                        title: 'Title',
+                        confidence: 'Confidence',
+                        case_info: 'Case Information',
+                        court_composition: 'Court Composition',
+                        citations: 'Citation(s)',
+                        case_category: 'Case Category',
+                        sections_invoked: 'Sections Invoked',
+                        summary: 'Summary'
                       };
                       return (
                       <label key={key} className="flex items-center gap-2 cursor-pointer">
@@ -437,7 +443,7 @@ function SummaryView({ result, focusAreas, darkMode }) {
   return (
     <div className="space-y-6">
       {/* Title */}
-      {shouldShow('facts') && metadata.case_title && (
+      {shouldShow('title') && metadata.case_title && (
         <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
           <h2 className={`text-2xl font-serif font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             {metadata.case_title}
@@ -446,7 +452,7 @@ function SummaryView({ result, focusAreas, darkMode }) {
       )}
 
       {/* Confidence Score */}
-      {shouldShow('arguments') && confidence && confidence.overall_confidence && (
+      {shouldShow('confidence') && confidence && confidence.overall_confidence && (
         <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
           <div className="flex justify-between items-center mb-4">
             <h3 className={`text-xl font-serif font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -470,7 +476,7 @@ function SummaryView({ result, focusAreas, darkMode }) {
       )}
 
       {/* Case Metadata */}
-      {shouldShow('evidence') && (
+      {shouldShow('case_info') && (
         <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
           <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Case Information
@@ -485,35 +491,86 @@ function SummaryView({ result, focusAreas, darkMode }) {
           </div>
         </div>
       )}
+      
+      {/* Court Composition */}
+      {shouldShow('court_composition') && (
+        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
+          <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            Court Composition
+          </h3>
+          <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            {metadata.court_composition || 'Not Available'}
+          </p>
+        </div>
+      )}
+
+      {/* Citations */}
+      {shouldShow('citations') && (
+        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
+          <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            Citation(s)
+          </h3>
+          {metadata.citations && metadata.citations.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {metadata.citations.map((citation, i) => (
+                <span
+                  key={i}
+                  className={`px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-indigo-900/30 text-indigo-300' : 'bg-indigo-100 text-indigo-700'}`}
+                >
+                  {citation}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Not Available</p>
+          )}
+        </div>
+      )}
+
+      {/* Case Category */}
+      {shouldShow('case_category') && (
+        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
+          <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
+            Case Category
+          </h3>
+          <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
+            {metadata.case_category || 'Not Available'}
+          </p>
+        </div>
+      )}
 
       {/* Sections Invoked */}
-      {shouldShow('legal_reasoning') && metadata.sections_invoked && metadata.sections_invoked.length > 0 && (
+      {shouldShow('sections_invoked') && (
         <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
           <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Sections Invoked
           </h3>
-          <div className="flex flex-wrap gap-2">
-            {metadata.sections_invoked.map((section, i) => (
-              <span
-                key={i}
-                className={`px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-indigo-900/30 text-indigo-300' : 'bg-indigo-100 text-indigo-700'
-                  }`}
-              >
-                {section}
-              </span>
-            ))}
-          </div>
+          {metadata.sections_invoked && metadata.sections_invoked.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {metadata.sections_invoked.map((section, i) => (
+                <span
+                  key={i}
+                  className={`px-3 py-1 rounded-full text-sm font-medium ${darkMode ? 'bg-indigo-900/30 text-indigo-300' : 'bg-indigo-100 text-indigo-700'
+                    }`}
+                >
+                  {section}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <p className={`text-sm ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>Not Available</p>
+          )}
         </div>
       )}
 
       {/* Summary */}
-      {shouldShow('precedents') && (
+      {shouldShow('summary') && (
         <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
           <h3 className={`text-xl font-serif font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
             Summary
           </h3>
           <p className={`leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-            {metadata.summary}
+            {metadata.summary || 'Not Available'}
           </p>
         </div>
       )}

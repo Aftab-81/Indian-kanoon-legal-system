@@ -118,6 +118,20 @@
       "question_hash": "c9677de64789b602da12673de99291cc",
       "language": "en",
       "asked_at": "2026-07-24T14:28:35.757278"
+    },
+    {
+      "question_id": "ea68c0c0-08fd-40e1-ae90-756dccb364d0",
+      "question_text": "what is dowry?",
+      "question_hash": "5ea12fb0fa0bf1e656f84a803f9fedf9",
+      "language": "en",
+      "asked_at": "2026-07-27T14:38:26.985611"
+    },
+    {
+      "question_id": "a1596cbe-c67b-4c8b-ab6c-e7a3d83fa496",
+      "question_text": "हुंडा म्हणजे?",
+      "question_hash": "842db9ec663feac14a4697dd7d1f2a05",
+      "language": "mr",
+      "asked_at": "2026-07-27T14:41:08.363441"
     }
   ],
   "answers": [
@@ -555,6 +569,61 @@
         "validator_hallucinations": null,
         "answer_length_chars": 1044
       }
+    },
+    {
+      "answer_id": "faea64c1-111f-4303-b54b-e0ceadeb6c0b",
+      "question_id": "ea68c0c0-08fd-40e1-ae90-756dccb364d0",
+      "language": "en",
+      "conclusion": "Dowry is a sum of money, goods, or property that is demanded or given as a condition of marriage, typically by the bride's family to the groom or his family. It is an illegal and socially harmful practice under Indian law, often leading to cruelty and dowry deaths.",
+      "legal_reasoning": "Under Indian law, dowry is recognized as a social evil and is prohibited by the Dowry Prohibition Act, 1961. The Indian Penal Code (IPC) addresses dowry-related offences, including dowry death (Section 304B IPC) and cruelty by husband or relatives (Section 498A IPC). The law presumes dowry demand when a woman dies under suspicious circumstances within seven years of marriage (Section 113B of the Evidence Act). Courts have consistently held that dowry demands and related cruelty are serious offences warranting strict judicial scrutiny and limited bail.",
+      "precedents": [
+        "Yogendra Pal Singh vs Raghvendra Singh Alias Prince (approx / to be verified) - principles on bail in dowry death cases under Section 304B IPC and presumption under Section 113B Evidence Act",
+        "Supreme Court judgments cancelling bail in dowry death cases emphasizing the social crime aspect and strict approach (approx / to be verified)",
+        "Supreme Court cancelling bail of in-laws for direct involvement in dowry demands and cruelty (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-07-27T14:38:43.989461",
+      "status": "APPROVED",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 822
+      }
+    },
+    {
+      "answer_id": "ae123245-8b09-48af-91f4-4aeb0e7d54ed",
+      "question_id": "a1596cbe-c67b-4c8b-ab6c-e7a3d83fa496",
+      "language": "mr",
+      "conclusion": "हुंडा हा एक पारंपरिक आर्थिक व्यवहार आहे ज्यामध्ये पैसे किंवा माल एका व्यक्तीकडून दुसऱ्या व्यक्तीकडे हस्तांतरित केले जातात, विशेषतः व्यापारात किंवा आर्थिक व्यवहारांमध्ये, ज्यामध्ये अधिकृत बँकिंग प्रणालीचा वापर न करता व्यवहार केले जातात.",
+      "legal_reasoning": "भारतीय कायद्यानुसार, हुंडा हा एक व्यवहार आहे ज्यामध्ये दोन पक्षांमध्ये पैसे किंवा माल हस्तांतरित करण्यासाठी एक प्रकारची चलनव्यवस्था किंवा चलन हस्तांतरण प्रणाली वापरली जाते. हा व्यवहार बँकिंग प्रणालीच्या बाहेर असतो आणि त्याचा उपयोग विशेषतः व्यापारात किंवा आर्थिक व्यवहारांमध्ये केला जातो. हुंडा व्यवहाराचा वापर कधीकधी कर टाळण्यासाठी किंवा बँकिंग नियमांपासून बचाव करण्यासाठी केला जातो, त्यामुळे त्यावर कायदेशीर नियंत्रण असू शकते. भारतीय दंड संहिता (IPC) च्या काही कलमांत हुंडा व्यवहाराशी संबंधित गैरकायदेशीर क्रियाकलापांवर कारवाईची तरतूद आहे. त्यामुळे, हुंडा हा व्यवहार कायदेशीर आणि गैरकायदेशीर दोन्ही स्वरूपात असू शकतो, त्याचा वापर आणि हेतू पाहून त्याचे मूल्यांकन करणे आवश्यक आहे.",
+      "precedents": [
+        "K. M. Nanavati v. State of Maharashtra, AIR 1962 SC 605 (approx / to be verified) - हुंडा व्यवहाराच्या संदर्भातील काही न्यायनिर्णय",
+        "State of Maharashtra v. Ratanlal Ramprasad Gupta, AIR 1967 SC 1263 (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-07-27T14:41:30.632992",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 914
+      }
     }
   ],
   "reviews": [],
@@ -694,6 +763,22 @@
       "question_id": "6ffc1657-09e0-4721-baac-a0760b021a0b",
       "cache_hits": 2,
       "last_used": "2026-07-24T14:33:20.865178"
+    },
+    {
+      "cache_id": "60f76182-2c6d-4334-a369-05bd7a17a804",
+      "question_hash": "5ea12fb0fa0bf1e656f84a803f9fedf9",
+      "answer_id": "faea64c1-111f-4303-b54b-e0ceadeb6c0b",
+      "question_id": "ea68c0c0-08fd-40e1-ae90-756dccb364d0",
+      "cache_hits": 1,
+      "last_used": "2026-07-27T14:38:43.989461"
+    },
+    {
+      "cache_id": "cf69b460-4d17-4497-941d-e77349a10c05",
+      "question_hash": "842db9ec663feac14a4697dd7d1f2a05",
+      "answer_id": "ae123245-8b09-48af-91f4-4aeb0e7d54ed",
+      "question_id": "a1596cbe-c67b-4c8b-ab6c-e7a3d83fa496",
+      "cache_hits": 1,
+      "last_used": "2026-07-27T14:41:30.632992"
     }
   ]
 }

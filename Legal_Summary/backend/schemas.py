@@ -17,6 +17,9 @@ class Metadata(BaseModel):
     judge_names: Optional[List[str]]
     date_of_judgement: Optional[str]
     jurisdiction: Optional[str]
+    court_composition: Optional[str]
+    citations: Optional[List[str]] = []
+    case_category: Optional[str]
     summary: Optional[str]
     sections_invoked: Optional[List[str]] = []
 

@@ -403,10 +403,13 @@ INSTRUCTIONS:
 4. For case_number: Copy the case/appeal number exactly
 5. For judge_names: List all judges with proper titles (e.g., ["न्या. ए.बी. शाह", "न्या. सी.डी. पटेल"] or ["Justice A.B. Shah", "Justice C.D. Patel"])
 6. For date_of_judgement: Convert to YYYY-MM-DD format
-7. For sections_invoked: List ALL legal sections mentioned exactly as they appear
-8. For summary: Write in the requested language using proper Unicode characters
-9. Use ONLY standard Unicode Devanagari characters (U+0900 to U+097F range)
-10. Avoid any special symbols, placeholders, or encoding artifacts
+7. For court_composition: E.g., "Single Judge", "Division Bench", "Full Bench", etc. If missing, use "Not Available"
+8. For citations: List all citations found (e.g. ["2005(1)AWC911"]). If none, use []
+9. For case_category: E.g., "Criminal Appeal", "Civil Writ Petition", etc. If missing, use "Not Available"
+10. For sections_invoked: List ALL legal sections mentioned exactly as they appear
+11. For summary: Write in the requested language using proper Unicode characters
+12. Use ONLY standard Unicode Devanagari characters (U+0900 to U+097F range)
+13. Avoid any special symbols, placeholders, or encoding artifacts
 
 Case Document Text:
 {case_text[:15000]}
@@ -419,6 +422,9 @@ Return ONLY this JSON structure with clean Unicode text:
   "judge_names": ["list of judges with proper names"],
   "date_of_judgement": "YYYY-MM-DD",
   "jurisdiction": "India",
+  "court_composition": "composition or Not Available",
+  "citations": ["list of citations"],
+  "case_category": "category or Not Available",
   "summary": "clean summary in requested language",
   "sections_invoked": ["list of sections"]
 }}"""
@@ -591,7 +597,10 @@ def generate_summary(preferences: Dict[str, Any], case_text: str, extraction_qua
         "judge_names": gpt_response.get("judge_names", []),
         "date_of_judgement": gpt_response.get("date_of_judgement", "N/A"),
         "jurisdiction": gpt_response.get("jurisdiction", "India"),
-        "summary": gpt_response.get("summary", ""),
+        "court_composition": gpt_response.get("court_composition", "Not Available"),
+        "citations": gpt_response.get("citations", []),
+        "case_category": gpt_response.get("case_category", "Not Available"),
+        "summary": gpt_response.get("summary", "Not Available"),
         "sections_invoked": gpt_response.get("sections_invoked", [])
     }
     

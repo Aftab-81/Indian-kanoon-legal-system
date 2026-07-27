@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "case_title": "MYAKALA DHARMARAJAM & ORS. ETC. vs THE STATE OF TELANGANA & ANR.",
+    "court_name": "Supreme Court of India",
+    "case_number": "Criminal Appeal Nos. 1974- 1975 of 2019 (@ SLP (Crl.) Nos.8882-8883 of 2019)",
+    "judge_names": [
+      "L. Nageswara Rao",
+      "Hemant Gupta"
+    ],
+    "date_of_judgement": "2020-01-07",
+    "jurisdiction": "India",
+    "court_composition": "Not Available",
+    "citations": [
+      "AIR 2020 SUPREME COURT 317",
+      "2020 (2) SCC 743",
+      "AIRONLINE 2020 SC 5",
+      "2020 CRILR(SC MAH GUJ) 90",
+      "9) 206 ALLINDCAS 7"
+    ],
+    "case_category": "Criminal Appeal",
+    "summary": "Respondent No.2 filed a complaint under various sections of the IPC alleging that the Appellants attacked her husband resulting in his death. The Appellants were granted bail by the Sessions Judge with certain conditions. However, the High Court cancelled the bail citing reasons of not considering criminal antecedents and witness tampering. The Supreme Court emphasized the factors to be considered while granting bail and held that the Sessions Court's decision was not perverse. The complaint of witness tampering was found vague, leading to the Appeals being allowed and the High Court's judgment being set aside.",
+    "sections_invoked": [
+      "Sections 148",
+      "120 B",
+      "302",
+      "149 of the Indian Penal Code, 1860",
+      "Section 439(2) Cr. P.C."
+    ]
+  },
+  "detailed_available": true,
+  "confidence_score": {
+    "overall_confidence": 88.0,
+    "confidence_level": "high",
+    "reliability_assessment": "Excellent - Results are highly reliable",
+    "factors": {
+      "extraction_quality": 100,
+      "metadata_completeness": 100.0,
+      "content_quality": 100.0,
+      "legal_terminology": 26.67,
+      "compression_ratio": 6.44,
+      "data_validation": 90.0
+    },
+    "detailed_breakdown": {
+      "extraction_quality": {
+        "score": 25.0,
+        "max_points": 25,
+        "percentage": 100,
+        "description": "PDF text extraction quality and readability"
+      },
+      "metadata_completeness": {
+        "score": 20,
+        "max_points": 20,
+        "percentage": 100.0,
+        "missing_fields": [],
+        "description": "Presence of essential case metadata"
+      },
+      "content_quality": {
+        "score": 20.0,
+        "max_points": 20,
+        "percentage": 100.0,
+        "word_count": 95,
+        "issues": [],
+        "description": "Summary content quality and specificity"
+      },
+      "legal_terminology": {
+        "score": 4.0,
+        "max_points": 15,
+        "percentage": 26.67,
+        "terms_by_category": {
+          "court_terms": 2,
+          "case_terms": 1,
+          "legal_process": 1,
+          "legal_sections": 3,
+          "decisions": 1
+        },
+        "description": "Presence of legal vocabulary and terminology"
+      },
+      "length_appropriateness": {
+        "score": 10.0,
+        "max_points": 10,
+        "percentage": 100.0,
+        "compression_ratio": 6.44,
+        "doc_words": 1475,
+        "summary_words": 95,
+        "description": "Summary length relative to source document"
+      },
+      "data_validation": {
+        "score": 9.0,
+        "max_points": 10,
+        "percentage": 90.0,
+        "issues": [
+          "Judge names lack proper titles"
+        ],
+        "description": "Format and structure validation of extracted data"
+      }
+    },
+    "recommendations": [
+      "✅ High Confidence: Summary is reliable and comprehensive",
+      "⚖️ Legal Context: Limited legal terminology - Verify document is a legal case judgment",
+      "✓ Data Validation: Judge names lack proper titles"
+    ]
+  },
+  "id": "f4b38cb4-7865-4176-a132-e7c1761932f9",
+  "summary_type": "quick",
+  "created_at": "2026-07-27T15:33:14.661696"
+}
