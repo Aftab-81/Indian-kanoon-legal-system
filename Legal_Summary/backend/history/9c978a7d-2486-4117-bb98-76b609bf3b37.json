@@ -1,0 +1,84 @@
+{
+  "case_title": "National Insurance Company Ltd. vs Birender",
+  "important_dates": {
+    "incident_date": "2014-10-20",
+    "fir_date": "Not Available",
+    "judgement_date": "2020-01-13"
+  },
+  "court_and_judge": {
+    "court_name": "Supreme Court of India",
+    "judge_names": [
+      "A.M. Khanwilkar"
+    ]
+  },
+  "charges_and_sections": [
+    {
+      "section": "Motor Vehicles Act, 1988",
+      "description": "Claim for compensation by legal representatives of deceased"
+    }
+  ],
+  "brief_facts": "The case involves a fatal accident where the deceased, Smt. Sunheri Devi, was riding a motorcycle as a pillion rider and was hit by a dumper/tipper. The claimants, her major sons, sought compensation for loss of dependency. The insurance company disputed the claim stating the accident did not involve their vehicle and the claimants were not entitled to compensation.",
+  "key_issues": [
+    "Entitlement of major sons as legal representatives to claim compensation under the Motor Vehicles Act, 1988",
+    "Deduction of financial assistance under the 2006 Rules from compensation amount"
+  ],
+  "arguments": {
+    "prosecution": "Claimants argued for compensation based on loss of dependency and negligence of the offending vehicle's driver.",
+    "defense": "Insurance company argued against compensation, claiming the accident did not involve their vehicle and the claimants were not dependant on the deceased."
+  },
+  "evidence_summary": {
+    "witnesses": [
+      {
+        "name": "Not Available",
+        "role": "Not Available",
+        "reliability": "Not Available"
+      }
+    ],
+    "material_evidence": [
+      "Driving license, insurance policy, public carrier permit, registration certificate of offending vehicle"
+    ]
+  },
+  "legal_analysis": "The Court held that major sons, even if married and earning, can claim compensation as legal representatives under the Act. The amount receivable under the 2006 Rules should be deducted from the compensation amount. The Court emphasized the broad definition of 'legal representative' and the duty of the Tribunal to consider applications for compensation.",
+  "precedents_cited": [],
+  "decision_summary": {
+    "final_order": "The compensation amount was reduced by the High Court based on deductions under the 2006 Rules. The Court upheld the entitlement of major sons as legal representatives to claim compensation.",
+    "sentence": "Not Available",
+    "important_observations": "The Court clarified the scope of 'legal representative' under the Motor Vehicles Act, 1988 and the deduction of financial assistance from compensation."
+  },
+  "one_page_summary_for_judges": "The case involved a claim for compensation by major sons as legal representatives of the deceased under the Motor Vehicles Act, 1988. The Court upheld their entitlement to claim compensation and clarified the deduction of financial assistance under the 2006 Rules.",
+  "risk_flags": {
+    "missing_evidence": [
+      "Witness testimonies"
+    ],
+    "contradictions": [],
+    "procedural_lapses": []
+  },
+  "extracted_entities": {
+    "accused": [
+      "Not Available"
+    ],
+    "victim": [
+      "Smt. Sunheri Devi"
+    ],
+    "witnesses": [
+      "Not Available"
+    ],
+    "locations": [
+      "Tehsildar, Uchana",
+      "Dharoli Khera village"
+    ],
+    "dates": [
+      "2014-10-20",
+      "2020-01-13"
+    ]
+  },
+  "confidence_score": {
+    "overall_confidence": 100,
+    "confidence_level": "high",
+    "sections_completed": "10/10",
+    "completeness_percentage": 100.0
+  },
+  "id": "9c978a7d-2486-4117-bb98-76b609bf3b37",
+  "summary_type": "detailed",
+  "created_at": "2026-07-27T13:03:03.852749"
+}
