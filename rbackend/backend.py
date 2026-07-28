@@ -321,7 +321,41 @@ def query_llm(prompt: str, text: str, source: str = "document") -> str:
         return completion.choices[0].message.content
     except Exception as e:
         logger.error(f"LLM Error: {str(e)}", exc_info=True)
-        return json.dumps({"summary": "Analysis failed", "error": str(e)})
+        # Fallback regex-based extraction if LLM fails (e.g., due to invalid API key)
+        import re
+        
+        # Extract case laws (Pattern: X v. Y)
+        case_laws = []
+        for match in re.finditer(r'([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,3})\s+v\.?\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+){0,3})', text):
+            case_name = match.group(0).strip().replace('\n', ' ')
+            if not any(c["case_name"] == case_name for c in case_laws) and len(case_laws) < 10:
+                case_laws.append({"case_name": case_name, "citation": "Extracted from text", "year": "N/A", "court": "Unknown", "context": f"Referenced in context: {text[max(0, match.start()-30):min(len(text), match.end()+30)]}..."})
+                
+        # Extract statutes (Pattern: Section X of Y Act)
+        statutes = []
+        for match in re.finditer(r'Section\s+(\d+[A-Za-z]?)\s+of\s+(?:the\s+)?([A-Za-z\s]+?(?:Act|Code|Constitution))', text, re.IGNORECASE):
+            section = match.group(1)
+            statute_name = match.group(2).strip().replace('\n', ' ')
+            if not any(s["statute_name"] == statute_name for s in statutes) and len(statutes) < 10:
+                statutes.append({"statute_name": statute_name, "section": section, "full_reference": match.group(0).replace('\n', ' '), "context": "Statutory reference found in document"})
+                
+        # Extract constitutional provisions (Pattern: Article X)
+        constitutional_provisions = []
+        for match in re.finditer(r'Article\s+(\d+[A-Za-z]?(?:\(\d+\))?)', text, re.IGNORECASE):
+            article = match.group(1)
+            if not any(c["article"] == article for c in constitutional_provisions) and len(constitutional_provisions) < 5:
+                constitutional_provisions.append({"article": article, "subject": "Constitutional Right", "full_reference": match.group(0), "context": "Mentioned in document"})
+        
+        fallback_json = {
+            "summary": "Analysis completed via rule-based fallback system (LLM service unavailable). Extracted legal references automatically.",
+            "case_laws": case_laws,
+            "statutes": statutes,
+            "constitutional_provisions": constitutional_provisions,
+            "international_laws": [],
+            "legal_principles": ["Extracted via fallback rule-based system"],
+            "error": str(e)
+        }
+        return json.dumps(fallback_json)
 
 def extract_text_from_pdf(content: bytes) -> str:
     try:
@@ -509,14 +543,14 @@ async def analyze_legal_document(file: UploadFile = File(...), background_tasks:
             raise HTTPException(status_code=400, detail=text)
         
         file_hash = hashlib.md5(text.encode()).hexdigest()
-        similar_hash = find_similar_document(text)
         
-        if similar_hash and similar_hash in vector_metadata:
+        if file_hash in vector_metadata:
             return JSONResponse({
                 "status": "already_exists",
-                "filename": file.filename,
-                "analysis": vector_metadata[similar_hash]["analysis"],
-                "file_hash": similar_hash
+                "filename": vector_metadata[file_hash]["filename"],
+                "original_filename": file.filename,
+                "analysis": vector_metadata[file_hash]["analysis"],
+                "file_hash": file_hash
             })
         
         analysis_text = query_llm("Analyze", text, source="document")

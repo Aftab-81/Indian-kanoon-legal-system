@@ -290,7 +290,7 @@ function SearchComponent({ darkMode }) {
                           )}
                         </>
                       )}
-                      {/* <button
+                      <button
                         onClick={() => handleViewDetails(item.file_hash)}
                         className={`mt-2 flex items-center ${
                           darkMode 
@@ -303,7 +303,7 @@ function SearchComponent({ darkMode }) {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                         </svg>
                         View Full Details
-                      </button> */}
+                      </button>
                     </div>
                   ))}
                 </div>
@@ -339,7 +339,13 @@ function SearchComponent({ darkMode }) {
               </button>
             </div>
             
-            
+            <div className="relative z-10">
+              <DocumentDetails
+                document={documentDetails}
+                onSaveRemark={handleSaveRemark}
+                darkMode={darkMode}
+              />
+            </div>
           </div>
         )}
       </div>
