@@ -12,7 +12,8 @@ function UploadSection({ onSelectDocument, fileInputRef, handleFileUpload, isPro
       />
       
       <div 
-        className={`border-2 border-dashed rounded-xl p-6 mb-4 text-center transition-colors ${
+        onClick={!isProcessing ? onSelectDocument : undefined}
+        className={`border-2 border-dashed rounded-xl p-6 mb-4 text-center transition-colors ${!isProcessing ? 'cursor-pointer' : ''} ${
           darkMode 
             ? 'border-slate-600 hover:border-indigo-500/70 bg-slate-700/30' 
             : 'border-gray-300 hover:border-indigo-400/70 bg-gray-50'
