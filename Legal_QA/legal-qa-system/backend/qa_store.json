@@ -132,6 +132,27 @@
       "question_hash": "842db9ec663feac14a4697dd7d1f2a05",
       "language": "mr",
       "asked_at": "2026-07-27T14:41:08.363441"
+    },
+    {
+      "question_id": "21605268-1cbe-4e66-9deb-e34d2e0bae1f",
+      "question_text": "what will be the conclusion of this Ex-Naik Upendra Kumar Tomar vs Union Of India.",
+      "question_hash": "f5a0fbf4bfb188a07ad0bbcf2edd7930",
+      "language": "en",
+      "asked_at": "2026-07-28T16:53:48.680910"
+    },
+    {
+      "question_id": "b65a14dd-69a9-4fb6-bd4f-219b20b17d7f",
+      "question_text": "what is dowry",
+      "question_hash": "825a081ba81c1158d31dfccec2c1947f",
+      "language": "en",
+      "asked_at": "2026-07-28T16:58:07.283893"
+    },
+    {
+      "question_id": "6d361cb1-fdea-486f-be81-7d71fdcf8076",
+      "question_text": "what is the conclusion of case Ex-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005?",
+      "question_hash": "4f714d33f7b4e1da421cfcffbf4fe56e",
+      "language": "en",
+      "asked_at": "2026-07-28T16:59:19.993049"
     }
   ],
   "answers": [
@@ -624,6 +645,89 @@
         "validator_hallucinations": null,
         "answer_length_chars": 914
       }
+    },
+    {
+      "answer_id": "25c824a9-cd9b-44fd-a2b2-e331224393a5",
+      "question_id": "21605268-1cbe-4e66-9deb-e34d2e0bae1f",
+      "language": "en",
+      "conclusion": "The conviction of Ex-Naik Upendra Kumar Tomar under the NDPS Act is likely to be upheld unless there is substantial procedural irregularity or lack of evidence. Bail or suspension of sentence in NDPS cases is generally restricted and granted only under exceptional circumstances, considering the serious nature of offences under the NDPS Act.",
+      "legal_reasoning": "The NDPS Act is stringent and aims to curb drug-related offences with strict penalties. Supreme Court precedents emphasize that bail cannot be granted by ignoring the facts and records of the case. Conviction cannot be based solely on confessional statements without corroborative evidence. Suspension of sentence or bail after conviction requires careful consideration of the gravity of the offence and the risk to public safety and sovereignty. The presumption of innocence does not apply after conviction, and the court must balance personal liberty against national interest.",
+      "precedents": [
+        "Satendra Kumar Antil vs. CBI (guidelines on bail in NDPS cases) (approx / to be verified)",
+        "Supreme Court ruling that conviction under NDPS Act cannot be based solely on confessional statements (approx / to be verified)",
+        "Supreme Court decision emphasizing that personal liberty may be restricted in the interest of national sovereignty (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-07-28T16:54:04.978510",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 921
+      }
+    },
+    {
+      "answer_id": "1abfa072-4122-46e0-a25c-9bd70f7fbb51",
+      "question_id": "b65a14dd-69a9-4fb6-bd4f-219b20b17d7f",
+      "language": "en",
+      "conclusion": "Dowry refers to the property, gifts, or money that the bride's family gives to the groom or his family at the time of marriage. It is a social practice that has been legally prohibited under Indian law due to its association with harassment and violence against women.",
+      "legal_reasoning": "Under Indian law, dowry is recognized as a social evil that often leads to serious crimes such as dowry harassment and dowry death. The Dowry Prohibition Act, 1961, prohibits the giving or taking of dowry. The Indian Penal Code (IPC) also addresses dowry-related offences, including Section 304B which deals with dowry death. Courts treat dowry-related cases with strict scrutiny, often applying presumptions under Section 113B of the Indian Evidence Act to aid prosecution. The Supreme Court has emphasized the gravity of dowry-related offences and the need for stringent judicial measures to curb this menace.",
+      "precedents": [
+        "Mahesh Chand v. State of U.P. (bail cancelled in dowry death case)",
+        "Yogendra Pal Singh vs Raghvendra Singh Alias Prince (principles governing bail in dowry death cases)",
+        "Supreme Court judgments cancelling bail in dowry death cases highlighting social crime aspect (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2026-07-28T16:58:30.773436",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 879
+      }
+    },
+    {
+      "answer_id": "db32a8e0-e02a-4d88-9657-0c70705ac421",
+      "question_id": "6d361cb1-fdea-486f-be81-7d71fdcf8076",
+      "language": "en",
+      "conclusion": "The Supreme Court in Ex-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. (25 January 2005) held that the confessional statement alone is not sufficient to convict an accused under the Narcotic Drugs and Psychotropic Substances Act, 1985 (NDPS Act). Conviction requires corroborative evidence beyond the confession.",
+      "legal_reasoning": "The Court emphasized that confessional statements under the NDPS Act must be supported by independent evidence to ensure the reliability and fairness of the conviction. This is to prevent wrongful convictions based solely on confessions, which may be coerced or unreliable. The ruling aligns with the principle that the prosecution must establish guilt beyond reasonable doubt with credible evidence.",
+      "precedents": [
+        "State of Punjab v. Baldev Singh, AIR 1999 SC 2378 (approx / to be verified)",
+        "K. Narayana Swamy v. Public Prosecutor, AIR 1960 SC 430 (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.8,
+      "retrieved_chunks": [],
+      "created_at": "2026-07-28T16:59:31.043445",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 723
+      }
     }
   ],
   "reviews": [],
@@ -779,6 +883,30 @@
       "question_id": "a1596cbe-c67b-4c8b-ab6c-e7a3d83fa496",
       "cache_hits": 1,
       "last_used": "2026-07-27T14:41:30.632992"
+    },
+    {
+      "cache_id": "32372aa9-cd70-4273-84c8-a4e389ba1e6f",
+      "question_hash": "f5a0fbf4bfb188a07ad0bbcf2edd7930",
+      "answer_id": "25c824a9-cd9b-44fd-a2b2-e331224393a5",
+      "question_id": "21605268-1cbe-4e66-9deb-e34d2e0bae1f",
+      "cache_hits": 1,
+      "last_used": "2026-07-28T16:54:04.978510"
+    },
+    {
+      "cache_id": "6c7f6f9b-3907-46d9-849a-67e8fb463667",
+      "question_hash": "825a081ba81c1158d31dfccec2c1947f",
+      "answer_id": "1abfa072-4122-46e0-a25c-9bd70f7fbb51",
+      "question_id": "b65a14dd-69a9-4fb6-bd4f-219b20b17d7f",
+      "cache_hits": 1,
+      "last_used": "2026-07-28T16:58:30.773436"
+    },
+    {
+      "cache_id": "9b1cb704-0330-456e-a9c5-34da9a021bb9",
+      "question_hash": "4f714d33f7b4e1da421cfcffbf4fe56e",
+      "answer_id": "db32a8e0-e02a-4d88-9657-0c70705ac421",
+      "question_id": "6d361cb1-fdea-486f-be81-7d71fdcf8076",
+      "cache_hits": 1,
+      "last_used": "2026-07-28T16:59:31.043445"
     }
   ]
 }

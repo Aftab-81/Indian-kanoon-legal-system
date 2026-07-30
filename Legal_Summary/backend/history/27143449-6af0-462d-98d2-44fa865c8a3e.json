@@ -1,0 +1,106 @@
+{
+  "metadata": {
+    "case_title": "Commissioner Of Income-Tax vs Braj Bhushan Cold Storage",
+    "court_name": "Allahabad High Court",
+    "case_number": "Not Available",
+    "judge_names": [
+      "R.K. Agrawal",
+      "Prakash Krishna"
+    ],
+    "date_of_judgement": "2005-01-27",
+    "jurisdiction": "India",
+    "court_composition": "Not Available",
+    "citations": [
+      "(2005)197CTR(ALL)490",
+      "[2005]275ITR360(ALL)"
+    ],
+    "case_category": "Not Available",
+    "summary": "The case involved the revision of an order dropping penalty proceedings under section 271(1)(c) of the Income Tax Act, 1961, due to nil tax payable by the assessee. The Commissioner of Income-tax revised the order under section 263, holding the penalty imposable. The Tribunal allowed the appeal, questioning the revision under section 263 and the time bar for penalty imposition. The court held that the order revision was justified as the penalty was applicable, but the penalty order was time-barred. The court discussed the limitation provisions and the retrospective effect of amendments, ruling in favor of the Revenue on the penalty limitation issue.",
+    "sections_invoked": [
+      "Income Tax Act, 1961 s.263",
+      "Income Tax Act, 1961 s.271(1)(c)"
+    ]
+  },
+  "detailed_available": true,
+  "confidence_score": {
+    "overall_confidence": 82.5,
+    "confidence_level": "medium",
+    "reliability_assessment": "Good - Review recommended for critical decisions",
+    "factors": {
+      "extraction_quality": 100,
+      "metadata_completeness": 85.0,
+      "content_quality": 90.0,
+      "legal_terminology": 23.33,
+      "compression_ratio": 5.57,
+      "data_validation": 90.0
+    },
+    "detailed_breakdown": {
+      "extraction_quality": {
+        "score": 25.0,
+        "max_points": 25,
+        "percentage": 100,
+        "description": "PDF text extraction quality and readability"
+      },
+      "metadata_completeness": {
+        "score": 17,
+        "max_points": 20,
+        "percentage": 85.0,
+        "missing_fields": [
+          "case_number"
+        ],
+        "description": "Presence of essential case metadata"
+      },
+      "content_quality": {
+        "score": 18.0,
+        "max_points": 20,
+        "percentage": 90.0,
+        "word_count": 103,
+        "issues": [
+          "Missing key case elements"
+        ],
+        "description": "Summary content quality and specificity"
+      },
+      "legal_terminology": {
+        "score": 3.5,
+        "max_points": 15,
+        "percentage": 23.33,
+        "terms_by_category": {
+          "court_terms": 2,
+          "case_terms": 2,
+          "legal_process": 0,
+          "legal_sections": 2,
+          "decisions": 1
+        },
+        "description": "Presence of legal vocabulary and terminology"
+      },
+      "length_appropriateness": {
+        "score": 10.0,
+        "max_points": 10,
+        "percentage": 100.0,
+        "compression_ratio": 5.57,
+        "doc_words": 1849,
+        "summary_words": 103,
+        "description": "Summary length relative to source document"
+      },
+      "data_validation": {
+        "score": 9.0,
+        "max_points": 10,
+        "percentage": 90.0,
+        "issues": [
+          "Judge names lack proper titles"
+        ],
+        "description": "Format and structure validation of extracted data"
+      }
+    },
+    "recommendations": [
+      "⚠️ Medium Confidence: Review summary for accuracy before critical use",
+      "📋 Missing Metadata: case_number - Verify document completeness",
+      "✍️ Content Quality: Missing key case elements",
+      "⚖️ Legal Context: Limited legal terminology - Verify document is a legal case judgment",
+      "✓ Data Validation: Judge names lack proper titles"
+    ]
+  },
+  "id": "27143449-6af0-462d-98d2-44fa865c8a3e",
+  "summary_type": "quick",
+  "created_at": "2026-07-29T15:57:33.310876"
+}

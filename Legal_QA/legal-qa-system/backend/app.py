@@ -858,7 +858,7 @@ IMPORTANT:
         )
 
     language_block = build_language_instruction(language)
-
+    
     prompt = EXTERNAL_REASONER_PROMPT.format(
         question=final_question,
         web_context=web_context or "No web results found or SerpAPI not configured.",
