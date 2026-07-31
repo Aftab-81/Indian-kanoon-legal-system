@@ -28,7 +28,6 @@ function DocumentDetails({ document, onSaveRemark, darkMode }) {
   if (!document) return null;
   
   // Extract all analysis data from the analysis object
-  const summary = document.analysis?.summary || 'No summary available';
   const caseLaws = document.analysis?.case_laws || [];
   const statutes = document.analysis?.statutes || [];
   const constitutionalProvisions = document.analysis?.constitutional_provisions || [];
@@ -37,13 +36,6 @@ function DocumentDetails({ document, onSaveRemark, darkMode }) {
   
   // Define sections with icons for consistent styling
   const sections = [
-    { 
-      key: "summary", 
-      title: "Summary", 
-      icon: "M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-      content: summary,
-      type: "text"
-    },
     { 
       key: "caseLaws", 
       title: "Case Laws", 
@@ -122,16 +114,16 @@ function DocumentDetails({ document, onSaveRemark, darkMode }) {
 
         {/* Document content sections */}
         <div className="space-y-4">
-          {sections.map((section) => {
+          {sections.map((section, index) => {
             const isEmpty = Array.isArray(section.content) 
               ? section.content.length === 0 
-              : !section.content || section.content === 'No summary available';
+              : !section.content;
               
             return (
               <details 
                 key={section.key} 
                 className={`${darkMode ? 'bg-slate-700/50 hover:bg-slate-700' : 'bg-white hover:bg-gray-50'} rounded-xl shadow-sm overflow-hidden transition-all duration-300`}
-                open={section.key === 'summary'} // Keep summary open by default
+                open={index === 0} // Keep first section open by default
               >
                 <summary className={`flex items-center justify-between p-4 cursor-pointer ${darkMode ? 'text-white' : 'text-gray-800'}`}>
                   <div className="flex items-center gap-3">
@@ -167,11 +159,59 @@ function DocumentDetails({ document, onSaveRemark, darkMode }) {
                         
                         if (section.type === 'caseLaw') {
                           title = item.case_name;
+                          
+                          const determineCaseType = (caseItem) => {
+                            if (caseItem.case_type) return caseItem.case_type;
+                            
+                            const text = `${caseItem.case_name || ''} ${caseItem.context || ''}`.toLowerCase();
+                            if (text.includes('criminal') || text.includes('murder') || text.includes('bail') || text.includes('accused') || text.includes('conviction') || text.includes('ipc') || text.includes('cr.p.c')) return 'Criminal';
+                            if (text.includes('family') || text.includes('divorce') || text.includes('marriage') || text.includes('maintenance') || text.includes('custody')) return 'Family';
+                            if (text.includes('tax') || text.includes('income tax') || text.includes('gst') || text.includes('assessment')) return 'Tax';
+                            if (text.includes('consumer') || text.includes('deficiency')) return 'Consumer';
+                            if (text.includes('labour') || text.includes('workman') || text.includes('industrial') || text.includes('wages')) return 'Labour';
+                            if (text.includes('constitution') || text.includes('writ') || text.includes('fundamental right')) return 'Constitutional';
+                            if (text.includes('environment') || text.includes('pollution') || text.includes('forest') || text.includes('ngt')) return 'Environmental';
+                            if (text.includes('commercial') || text.includes('arbitration') || text.includes('contract') || text.includes('company')) return 'Commercial';
+                            if (text.includes('service') || text.includes('promotion') || text.includes('pension') || text.includes('dismissal')) return 'Service';
+                            if (text.includes('civil') || text.includes('property') || text.includes('suit') || text.includes('tenant') || text.includes('eviction')) return 'Civil';
+                            
+                            return 'Not Available';
+                          };
+
+                          const formatContext = (text) => {
+                            if (!text) return 'No context provided';
+                            
+                            const words = text.split(/\s+/);
+                            if (words.length <= 75) return text.trim();
+                            
+                            const sentences = text.match(/[^.!?]+[.!?]+(?:\s+|$)/g);
+                            if (!sentences) {
+                              return words.slice(0, 60).join(' ') + '.';
+                            }
+                            
+                            let summary = '';
+                            let wordCount = 0;
+                            
+                            for (let sentence of sentences) {
+                              const sentenceWords = sentence.trim().split(/\s+/).length;
+                              if (wordCount + sentenceWords > 75 && wordCount > 0) {
+                                break;
+                              }
+                              summary += sentence;
+                              wordCount += sentenceWords;
+                              if (wordCount >= 50) {
+                                break;
+                              }
+                            }
+                            
+                            return summary.trim() || sentences[0].trim();
+                          };
+
                           details = [
-                            { label: 'Citation', value: item.citation },
+                            { label: 'Case Type', value: determineCaseType(item) },
                             { label: 'Year', value: item.year },
                             { label: 'Court', value: item.court },
-                            { label: 'Context', value: `"${item.context}"`, isContext: true }
+                            { label: 'Context', value: `"${formatContext(item.context)}"`, isContext: true }
                           ];
                         } else if (section.type === 'statute') {
                           title = item.statute_name;

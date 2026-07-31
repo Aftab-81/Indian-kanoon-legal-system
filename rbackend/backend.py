@@ -298,13 +298,13 @@ def query_llm(prompt: str, text: str, source: str = "document") -> str:
     try:
         truncated_text = text[:8000]
         
-        legal_prompt = """Analyze this legal document and extract information in EXACTLY this JSON format:
+        legal_prompt = """Analyze this legal document and extract information in EXACTLY this JSON format. Extract all applicable items from the text. If none exist for a category, return an empty array []:
 {
     "case_laws": [{"case_name": "name", "citation": "citation", "year": "year", "court": "court", "context": "context"}],
     "statutes": [{"statute_name": "name", "section": "section", "full_reference": "reference", "context": "context"}],
     "constitutional_provisions": [{"article": "article", "subject": "subject", "full_reference": "reference", "context": "context"}],
     "international_laws": [{"name": "name", "article": "article", "full_reference": "reference", "context": "context"}],
-    "legal_principles": ["principle1"],
+    "legal_principles": ["list", "all", "applicable", "principles"],
     "summary": "Brief summary"
 }"""
         
@@ -352,7 +352,7 @@ def query_llm(prompt: str, text: str, source: str = "document") -> str:
             "statutes": statutes,
             "constitutional_provisions": constitutional_provisions,
             "international_laws": [],
-            "legal_principles": ["Extracted via fallback rule-based system"],
+            "legal_principles": [],
             "error": str(e)
         }
         return json.dumps(fallback_json)
@@ -559,6 +559,38 @@ async def analyze_legal_document(file: UploadFile = File(...), background_tasks:
             analysis = json.loads(analysis_text)
         except:
             analysis = {"summary": "Analysis completed", "case_laws": [], "statutes": []}
+            
+        # Deduplicate case laws
+        if "case_laws" in analysis and isinstance(analysis["case_laws"], list):
+            import re
+            
+            def normalize_name(name):
+                if not name: return ""
+                n = str(name).lower()
+                n = re.sub(r'\b(v\.?|vs\.?|versus)\b', ' v ', n)
+                n = re.sub(r'\b(and ors\.?|others|anr\.?|another)\b', '', n)
+                n = re.sub(r'[^a-z0-9\s]', '', n)
+                return ' '.join(n.split())
+                
+            unique_cases = {}
+            for case in analysis["case_laws"]:
+                case_name = str(case.get("case_name", ""))
+                if not case_name: continue
+                
+                norm = normalize_name(case_name)
+                
+                # Check if we already have this case (exact normalized match)
+                if norm in unique_cases:
+                    existing = unique_cases[norm]
+                    # Keep the one with more fields populated
+                    existing_score = sum(1 for k, v in existing.items() if v and str(v).lower() not in ('', 'unknown', 'n/a', 'na'))
+                    new_score = sum(1 for k, v in case.items() if v and str(v).lower() not in ('', 'unknown', 'n/a', 'na'))
+                    if new_score > existing_score:
+                        unique_cases[norm] = case
+                else:
+                    unique_cases[norm] = case
+                    
+            analysis["case_laws"] = list(unique_cases.values())
         
         save_to_vector_db(file_hash, file.filename, text, analysis, source="document")
         
