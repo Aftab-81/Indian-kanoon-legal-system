@@ -119,7 +119,7 @@ function LegalQAPage() {
         </div>
 
         {/* Stats Bar */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
           <div className={`p-4 rounded-xl ${darkMode ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-gray-200'} shadow-lg`}>
             <div className="text-sm text-gray-400 mb-1">Cases Uploaded</div>
             <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
@@ -136,12 +136,6 @@ function LegalQAPage() {
             <div className="text-sm text-gray-400 mb-1">Approved Answers</div>
             <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
               {stats?.approved_answers || 0}
-            </div>
-          </div>
-          <div className={`p-4 rounded-xl ${darkMode ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-gray-200'} shadow-lg`}>
-            <div className="text-sm text-gray-400 mb-1">Cached Queries</div>
-            <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              {stats?.cached_queries || 0}
             </div>
           </div>
         </div>
@@ -680,24 +674,6 @@ function UploadPage({ darkMode }) {
             </p>
           </div>
         )}
-      </div>
-
-      <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-        <label className={`block text-sm font-semibold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-          Case Name (Optional):
-        </label>
-        <input
-          type="text"
-          value={caseName}
-          onChange={(e) => setCaseName(e.target.value)}
-          placeholder="E.g., State of Goa v. XYZ (2025)"
-          disabled={loading}
-          className={`w-full px-4 py-3 rounded-lg border ${
-            darkMode
-              ? 'bg-slate-700 border-slate-600 text-white placeholder-gray-400'
-              : 'bg-gray-50 border-gray-300 placeholder-gray-500'
-          } focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all`}
-        />
       </div>
 
       {message && (

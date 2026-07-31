@@ -1,0 +1,103 @@
+{
+  "metadata": {
+    "case_title": "Cit vs S. Kamaljeet Singh",
+    "court_name": "Allahabad High Court",
+    "case_number": "Not Available",
+    "judge_names": [
+      "Not Available"
+    ],
+    "date_of_judgement": "2005-01-28",
+    "jurisdiction": "India",
+    "court_composition": "Not Available",
+    "citations": [
+      "[2005]147TAXMAN18(ALL)"
+    ],
+    "case_category": "Not Available",
+    "summary": "The case involved the Income-tax Appellate Tribunal referring questions of law under section 256(1) of the Income-tax Act, 1961 to the Allahabad High Court. The matter related to the assessment year 1974-75 and concerned undisclosed business transactions of the assessee. The High Court found that the assessee had adequately explained the cash credits in question, leading to the Tribunal's decision to reverse the order of the AAC. Consequently, the first question was answered in favor of the assessee, rendering the second question moot. No costs were awarded in the case.",
+    "sections_invoked": [
+      "256(1) of the Income-tax Act, 1961"
+    ]
+  },
+  "detailed_available": true,
+  "confidence_score": {
+    "overall_confidence": 79.52,
+    "confidence_level": "medium",
+    "reliability_assessment": "Good - Review recommended for critical decisions",
+    "factors": {
+      "extraction_quality": 100,
+      "metadata_completeness": 85.0,
+      "content_quality": 85.0,
+      "legal_terminology": 20.0,
+      "compression_ratio": 12.97,
+      "data_validation": 90.0
+    },
+    "detailed_breakdown": {
+      "extraction_quality": {
+        "score": 25.0,
+        "max_points": 25,
+        "percentage": 100,
+        "description": "PDF text extraction quality and readability"
+      },
+      "metadata_completeness": {
+        "score": 17,
+        "max_points": 20,
+        "percentage": 85.0,
+        "missing_fields": [
+          "case_number"
+        ],
+        "description": "Presence of essential case metadata"
+      },
+      "content_quality": {
+        "score": 17.0,
+        "max_points": 20,
+        "percentage": 85.0,
+        "word_count": 90,
+        "issues": [
+          "Missing key case elements"
+        ],
+        "description": "Summary content quality and specificity"
+      },
+      "legal_terminology": {
+        "score": 3.0,
+        "max_points": 15,
+        "percentage": 20.0,
+        "terms_by_category": {
+          "court_terms": 2,
+          "case_terms": 2,
+          "legal_process": 0,
+          "legal_sections": 2,
+          "decisions": 0
+        },
+        "description": "Presence of legal vocabulary and terminology"
+      },
+      "length_appropriateness": {
+        "score": 8.52,
+        "max_points": 10,
+        "percentage": 85.16,
+        "compression_ratio": 12.97,
+        "doc_words": 694,
+        "summary_words": 90,
+        "description": "Summary length relative to source document"
+      },
+      "data_validation": {
+        "score": 9.0,
+        "max_points": 10,
+        "percentage": 90.0,
+        "issues": [
+          "Judge names lack proper titles"
+        ],
+        "description": "Format and structure validation of extracted data"
+      }
+    },
+    "recommendations": [
+      "⚠️ Medium Confidence: Review summary for accuracy before critical use",
+      "📋 Missing Metadata: case_number - Verify document completeness",
+      "✍️ Content Quality: Missing key case elements",
+      "⚖️ Legal Context: Limited legal terminology - Verify document is a legal case judgment",
+      "✓ Data Validation: Judge names lack proper titles"
+    ]
+  },
+  "id": "fd00a5b3-069f-4a21-a632-fdd767ed5306",
+  "summary_type": "quick",
+  "created_at": "2026-07-30T15:48:21.213757"
+}
