@@ -95,9 +95,9 @@ function LegalQAPage() {
 
         {/* Dynamic Content */}
         <div className="w-full">
-          {activePage === 'home' && <ChatPage darkMode={darkMode} language={language} setLanguage={setLanguage} uploadedDoc={uploadedDoc} />}
-          {activePage === 'upload' && <UploadPage darkMode={darkMode} setUploadedDoc={setUploadedDoc} setActivePage={setActivePage} uploadedDoc={uploadedDoc} />}
-          {activePage === 'history' && <HistoryPage darkMode={darkMode} />}
+          {activePage === 'home' && <ChatPage darkMode={darkMode} language={language} setLanguage={setLanguage} source="external" />}
+          {activePage === 'upload' && <UploadPage darkMode={darkMode} language={language} setLanguage={setLanguage} setUploadedDoc={setUploadedDoc} setActivePage={setActivePage} uploadedDoc={uploadedDoc} />}
+          {activePage === 'history' && <HistoryPage darkMode={darkMode} source="external" />}
         </div>
       </main>
       <Footer darkMode={darkMode} />
@@ -108,7 +108,7 @@ function LegalQAPage() {
 // =====================
 // UPLOAD & DOC INFO PAGE
 // =====================
-function UploadPage({ darkMode, setUploadedDoc, setActivePage, uploadedDoc }) {
+function UploadPage({ darkMode, language, setLanguage, setUploadedDoc, setActivePage, uploadedDoc }) {
   const [file, setFile] = useState(null);
   const [isDragging, setIsDragging] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -223,12 +223,10 @@ function UploadPage({ darkMode, setUploadedDoc, setActivePage, uploadedDoc }) {
           <div><p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Court</p><p className="font-semibold">Supreme Court of India</p></div>
         </div>
 
-        <button 
-          onClick={() => setActivePage('home')}
-          className="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-bold text-lg shadow-lg shadow-blue-500/30 transition-all hover:scale-[1.01]"
-        >
-          Start Asking Questions →
-        </button>
+        <div className="mt-8 border-t pt-8 dark:border-slate-700">
+          <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Document Assistant</h3>
+          <ChatPage darkMode={darkMode} language={language} setLanguage={setLanguage} uploadedDoc={uploadedDoc} source="document" />
+        </div>
       </div>
     );
   }
@@ -282,7 +280,7 @@ function UploadPage({ darkMode, setUploadedDoc, setActivePage, uploadedDoc }) {
 // =====================
 // CHAT PAGE
 // =====================
-function ChatPage({ darkMode, language, setLanguage, uploadedDoc }) {
+function ChatPage({ darkMode, language, setLanguage, uploadedDoc, source }) {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -307,10 +305,14 @@ function ChatPage({ darkMode, language, setLanguage, uploadedDoc }) {
       const res = await fetch(`${API_BASE}/ask`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question: userMsg.content, language, case_id: uploadedDoc?.caseId })
+        body: JSON.stringify({ question: userMsg.content, language, case_id: uploadedDoc?.caseId, source })
       });
       const data = await res.json();
       
+      if (!res.ok || data.error) {
+        throw new Error(data.error || `Server responded with status ${res.status}`);
+      }
+
       setMessages(prev => [...prev, { 
         role: 'ai', 
         content: data.conclusion || data.legal_reasoning,
@@ -520,18 +522,22 @@ function ReferencesPanel({ cases, darkMode }) {
 // =====================
 // HISTORY PAGE
 // =====================
-function HistoryPage({ darkMode }) {
+function HistoryPage({ darkMode, source, caseId }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchHistory();
-  }, []);
+  }, [source, caseId]);
 
   const fetchHistory = async () => {
     try {
-      const res = await fetch(`${API_BASE}/history`);
+      const url = new URL(`${API_BASE}/history`);
+      if (source) url.searchParams.append('source', source);
+      if (caseId) url.searchParams.append('case_id', caseId);
+
+      const res = await fetch(url);
       const data = await res.json();
       setHistory(data.history || []);
     } catch (err) {

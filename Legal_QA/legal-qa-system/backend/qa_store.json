@@ -335,6 +335,155 @@
       "question_hash": "5a53dae9c41e89307679e3d964f8b8ba",
       "language": "en",
       "asked_at": "2026-08-04T11:46:15.618973"
+    },
+    {
+      "question_id": "18f00e2f-4567-49bb-8d54-eaa607ed825d",
+      "question_text": "Give me the summary of this document.",
+      "question_hash": "7525345367021f65baf890f2d5a9fb31",
+      "language": "en",
+      "asked_at": "2026-08-04T12:06:47.494517"
+    },
+    {
+      "question_id": "04218d46-19c2-4616-ae39-84f97958c39c",
+      "question_text": "What is the case about?",
+      "question_hash": "d4136dc38a84f413f64e14e9456b5101",
+      "language": "en",
+      "asked_at": "2026-08-04T12:09:11.431032"
+    },
+    {
+      "question_id": "fcc829df-66ec-46b8-a74f-6493e4e3dba1",
+      "question_text": "What is the case about?",
+      "question_hash": "2ec03f5f8c516007cd3d11de0b9cc366",
+      "language": "en",
+      "source": "document",
+      "case_id": "e2a4ec7e-bba9-4780-b8b1-ca8591ff2a96",
+      "asked_at": "2026-08-04T12:56:41.581536"
+    },
+    {
+      "question_id": "f5f186da-b456-417f-ac69-f16059b5b345",
+      "question_text": "What is the case about?",
+      "question_hash": "071bf51b324ac8b3c2af8edb0c9b16bb",
+      "language": "en",
+      "source": "document",
+      "case_id": "d3989bc3-a65d-4b74-9e8f-b904d1df20ef",
+      "asked_at": "2026-08-04T13:06:11.385785"
+    },
+    {
+      "question_id": "c988faec-d663-4b22-bcb7-7bc5b0fb7bfe",
+      "question_text": "On what date was the judgment delivered?",
+      "question_hash": "e1904301eaea8d785c05ac523cf5c6ca",
+      "language": "en",
+      "source": "document",
+      "case_id": "d3989bc3-a65d-4b74-9e8f-b904d1df20ef",
+      "asked_at": "2026-08-04T13:06:51.667642"
+    },
+    {
+      "question_id": "248a4637-cb51-4418-b63d-928ed899b9c6",
+      "question_text": "What was the Tribunal's opinion regarding the power of enhancement?",
+      "question_hash": "e96448ead95cfb90b79626b583e0156a",
+      "language": "en",
+      "source": "document",
+      "case_id": "d3989bc3-a65d-4b74-9e8f-b904d1df20ef",
+      "asked_at": "2026-08-04T13:26:36.384896"
+    },
+    {
+      "question_id": "91361d76-0920-445f-9621-94122b91c93b",
+      "question_text": "Summarize this judgment in simple language.",
+      "question_hash": "a887ae4c8d966db1fa4e04c0e09243ee",
+      "language": "en",
+      "source": "document",
+      "case_id": "d3989bc3-a65d-4b74-9e8f-b904d1df20ef",
+      "asked_at": "2026-08-04T13:27:08.592882"
+    },
+    {
+      "question_id": "722b6d1d-fa75-4875-9810-f3e8214e7909",
+      "question_text": "Why did the High Court rule in favour of the assessee?",
+      "question_hash": "1a57ae07b46c97cc3ab05a0fb6e88c8c",
+      "language": "en",
+      "source": "document",
+      "case_id": "d3989bc3-a65d-4b74-9e8f-b904d1df20ef",
+      "asked_at": "2026-08-04T13:28:42.596801"
+    },
+    {
+      "question_id": "f9770074-383b-4bec-a4b4-1c4473cd1f85",
+      "question_text": "What was the PAN of the creditors?",
+      "question_hash": "9bee15dca81984343d757a78ee53fc91",
+      "language": "en",
+      "source": "document",
+      "case_id": "d3989bc3-a65d-4b74-9e8f-b904d1df20ef",
+      "asked_at": "2026-08-04T13:29:20.923500"
+    },
+    {
+      "question_id": "9b95d971-fa2e-4cdf-83f4-5c287710d13e",
+      "question_text": "What questions of law were referred to the High Court?",
+      "question_hash": "8d0a66a72b4a992a312c423434b0c4d2",
+      "language": "en",
+      "source": "document",
+      "case_id": "d3989bc3-a65d-4b74-9e8f-b904d1df20ef",
+      "asked_at": "2026-08-04T14:02:57.043323"
+    },
+    {
+      "question_id": "2a09eff4-234b-402c-bfd4-9eff92002962",
+      "question_text": "What is the Bharatiya Nyaya Sanhita (BNS)?",
+      "question_hash": "52a58e4c725472b37b3d13fb15ac8d5c",
+      "language": "en",
+      "source": "document",
+      "case_id": "d3989bc3-a65d-4b74-9e8f-b904d1df20ef",
+      "asked_at": "2026-08-04T14:03:32.636087"
+    },
+    {
+      "question_id": "71d5761f-1086-420e-9894-35b575135aa6",
+      "question_text": "What is the Bharatiya Nyaya Sanhita (BNS)?",
+      "question_hash": "18cc477a3af391b743999d9f6a889f6a",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-04T14:05:58.285769"
+    },
+    {
+      "question_id": "d98fb4de-da5e-4a82-bea7-671aef4c629d",
+      "question_text": "Who is the current Chief Justice of India?",
+      "question_hash": "61370c5326566baa98276b0f3918794f",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-04T14:06:18.159852"
+    },
+    {
+      "question_id": "b995c7c7-17f7-4b5a-8121-9b1920291a80",
+      "question_text": "Explain Section 68 of the Income-tax Act with examples.",
+      "question_hash": "276eb14a33f2fdecc72c8d03e21b3225",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-04T14:07:40.867515"
+    },
+    {
+      "question_id": "3d09191d-752f-440e-a4b2-d51be4cc131c",
+      "question_text": "who's the author of why the constitution matters?",
+      "question_hash": "058adf430e3e6ec34b35c70887077de9",
+      "language": "en",
+      "source": "document",
+      "case_id": "d3989bc3-a65d-4b74-9e8f-b904d1df20ef",
+      "asked_at": "2026-08-04T14:12:32.458044"
+    },
+    {
+      "question_id": "38d66e99-7419-4e1e-875f-4dd3a212e703",
+      "question_text": "who's the author of \"why the constitution matters\"?",
+      "question_hash": "a8c06f04ead8b158440327ef69dfa770",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-04T14:13:05.076223"
+    },
+    {
+      "question_id": "e53b230b-ab1f-498f-ad62-73a40dcf6bab",
+      "question_text": "Who's Rakesh Telang?",
+      "question_hash": "c8702ab55dba0836754d4055b6310a7b",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-04T14:13:30.336530"
     }
   ],
   "answers": [
@@ -1621,9 +1770,751 @@
         "validator_hallucinations": null,
         "answer_length_chars": 685
       }
+    },
+    {
+      "answer_id": "ca67f828-f18f-498f-8524-1518da789774",
+      "question_id": "18f00e2f-4567-49bb-8d54-eaa607ed825d",
+      "language": "en",
+      "conclusion": "The Tribunal was correct in reversing the order of the AAC and setting aside the assessment order in favor of the assessee.",
+      "legal_reasoning": "The case involved a dispute regarding the assessment of cash credits in the account books of the assessee. The Income-tax Officer initially added certain cash loans in the hands of the assessee, which was set aside by the CIT(A) for further explanation. The D.C. (Appeals) issued a show-cause notice under section 251 to enhance the income, but the Tribunal found that the assessee had provided sufficient evidence to prove the genuineness of the cash credits. The Tribunal concluded that the power of enhancement was not properly exercised by the D.C. (Appeals), leading to the reversal of the order. Therefore, the Tribunal's decision was upheld in favor of the assessee.",
+      "precedents": [],
+      "facts_from_case": [
+        "The assessment year was 1974-75.",
+        "The dispute arose from cash credits found in the account books of the assessee during a search."
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T12:06:56.019104",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 796
+      }
+    },
+    {
+      "answer_id": "1f2fb029-0277-4555-9dba-01e2d7462261",
+      "question_id": "04218d46-19c2-4616-ae39-84f97958c39c",
+      "language": "en",
+      "conclusion": "The Tribunal was correct in reversing the order of the AAC and setting aside the assessment order. The first question is answered in favor of the assessee/respondent.",
+      "legal_reasoning": "The case involved a dispute regarding the assessment of cash credits in the account books of the assessee. The Income-tax Officer had added certain cash loans in the hands of the assessee, which was set aside by the CIT(A). The matter was remanded back to the ITO for fresh adjudication. The Tribunal found that the assessee had provided sufficient evidence to establish the genuineness of the cash credits, including confirmation letters, affidavits, and other details. As the assessee had discharged the onus to explain the nature and source of the cash credits, no addition to his total income was warranted. Therefore, the Tribunal was justified in reversing the order of the AAC and setting aside the assessment order.",
+      "precedents": [],
+      "facts_from_case": [
+        "The assessment year was 1974-75.",
+        "The dispute arose from cash credits found in the account books of the assessee during a search."
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T12:09:16.216812",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 889
+      }
+    },
+    {
+      "answer_id": "f019bad0-8bf6-4241-9ad3-2cfef8fe8a4f",
+      "question_id": "fcc829df-66ec-46b8-a74f-6493e4e3dba1",
+      "language": "en",
+      "conclusion": "System error: Error code: 404 - {'error': {'message': 'The model `gpt-4-turbo-preview` does not exist or you do not have access to it.', 'type': 'invalid_request_error', 'param': None, 'code': 'model_not_found'}}",
+      "legal_reasoning": "Unable to process",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1898332_Vijendra Sharma Alias Vijendra Kumar ... vs State Of U.P., Smt. Vimlesh Daughter Of ... on 12 January, 2005",
+          "similarity": 0.482649523915829
+        },
+        {
+          "case": "1898332_Vijendra Sharma Alias Vijendra Kumar ... vs State Of U.P., Smt. Vimlesh Daughter Of ... on 12 January, 2005",
+          "similarity": 0.45415023053979
+        },
+        {
+          "case": "1898332_Vijendra Sharma Alias Vijendra Kumar ... vs State Of U.P., Smt. Vimlesh Daughter Of ... on 12 January, 2005",
+          "similarity": 0.45273682186350955
+        }
+      ],
+      "created_at": "2026-08-04T12:56:50.547646",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.482649523915829,
+        "avg_retrieval_similarity": 0.4631788587730428,
+        "cosine_answer_source": 0.013362180441617966,
+        "grounding": {
+          "answer_token_count": 27,
+          "source_token_count": 2054,
+          "overlap_token_count": 6,
+          "answer_coverage_ratio": 0.2608695652173913,
+          "source_coverage_ratio": 0.017142857142857144
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 1,
+        "answer_length_chars": 229
+      }
+    },
+    {
+      "answer_id": "c3a0275b-11b3-4fcc-ab98-6eb7ff8213e3",
+      "question_id": "f5f186da-b456-417f-ac69-f16059b5b345",
+      "language": "en",
+      "conclusion": "The case involves a dispute regarding the termination of the respondent No. 3-workman's services and the applicability of the U.P. Industrial Disputes Act following the acquisition of the sugar mill by the petitioner.",
+      "legal_reasoning": "The petitioner contended that the respondent No. 3 was not an employee of the Corporation and had not completed the required 240 days of service under the U.P. Industrial Disputes Act. The Labour Court found that the termination was illegal and that the Corporation was accountable for the workman's reinstatement and back wages. The court referenced the Acquisition Act to determine the relationship between the Corporation and the workman, concluding that the workman was entitled to benefits from the date of his initial appointment.",
+      "precedents": [
+        "U.P. State Sugar Corporation Ltd. v. The Presiding Officer and Ors., 1999 (2) AWC-1777 – This case established that a workman employed before the acquisition is deemed to be in service of the Corporation post-acquisition."
+      ],
+      "facts_from_case": [
+        "The respondent No. 3-workman was appointed on 9.4.1981 and his services were terminated on 30.6.1991.",
+        "The petitioner acquired the Laxmi Devi Sugar Mills under the Acquisition Act and sought to substitute itself in the ongoing dispute."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.43048671956459333
+        },
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.41295924602297085
+        }
+      ],
+      "created_at": "2026-08-04T13:06:30.520550",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.43048671956459333,
+        "avg_retrieval_similarity": 0.42172298279378206,
+        "cosine_answer_source": 0.7481718063354492,
+        "grounding": {
+          "answer_token_count": 101,
+          "source_token_count": 1744,
+          "overlap_token_count": 44,
+          "answer_coverage_ratio": 0.8301886792452831,
+          "source_coverage_ratio": 0.10068649885583524
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 1,
+        "answer_length_chars": 753
+      }
+    },
+    {
+      "answer_id": "9af9290d-7fbc-4ec8-a26d-4cf3ac738d03",
+      "question_id": "c988faec-d663-4b22-bcb7-7bc5b0fb7bfe",
+      "language": "en",
+      "conclusion": "The judgment was delivered on 6 January, 2005.",
+      "legal_reasoning": "The judgment explicitly states the date of delivery as 'on 6 January, 2005'. This is a straightforward reference to the timing of the judicial decision.",
+      "precedents": [
+        "U.P. State Sugar Corporation Ltd. v. The Presiding Officer and Ors., 1999 (2) AWC-1777 – Cited for the principle that the workman shall be deemed to be in the service of the Corporation from the date of vesting, as the termination was illegal."
+      ],
+      "facts_from_case": [
+        "The respondent No. 3-workman was appointed as Turner on 9.4.1981 and his services were illegally terminated on 30.6.1991.",
+        "The petitioner filed a writ petition against the award dated 29.3.1988."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.423255764436186
+        },
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.40948895011577424
+        }
+      ],
+      "created_at": "2026-08-04T13:07:06.405513",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.423255764436186,
+        "avg_retrieval_similarity": 0.4163723572759801,
+        "cosine_answer_source": 0.355264276266098,
+        "grounding": {
+          "answer_token_count": 23,
+          "source_token_count": 1744,
+          "overlap_token_count": 9,
+          "answer_coverage_ratio": 0.5625,
+          "source_coverage_ratio": 0.020594965675057208
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 0,
+        "answer_length_chars": 198
+      }
+    },
+    {
+      "answer_id": "47565bf2-9690-4077-8f2d-431165ef4b88",
+      "question_id": "248a4637-cb51-4418-b63d-928ed899b9c6",
+      "language": "en",
+      "conclusion": "Not mentioned in retrieved text.",
+      "legal_reasoning": "The retrieved text does not provide any explicit opinion or statement from the Tribunal regarding the power of enhancement.",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.4329925046315691
+        },
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.39938822044403344
+        }
+      ],
+      "created_at": "2026-08-04T13:26:53.410436",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.4329925046315691,
+        "avg_retrieval_similarity": 0.4161903625378013,
+        "cosine_answer_source": 0.4290798604488373,
+        "grounding": {
+          "answer_token_count": 21,
+          "source_token_count": 1744,
+          "overlap_token_count": 6,
+          "answer_coverage_ratio": 0.375,
+          "source_coverage_ratio": 0.013729977116704805
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 1,
+        "answer_length_chars": 155
+      }
+    },
+    {
+      "answer_id": "757c27af-f777-4d90-9349-9aaa912d7919",
+      "question_id": "91361d76-0920-445f-9621-94122b91c93b",
+      "language": "en",
+      "conclusion": "The writ petition is dismissed, and the respondent-workman is entitled to back wages and benefits under the Voluntary Retirement Scheme.",
+      "legal_reasoning": "The court found that the respondent-workman was wrongfully terminated and that the petitioner Corporation is accountable for the workman's employment and benefits. The Labour Court's award was upheld, confirming the workman's entitlement to back wages and the calculation of benefits from the date of his initial appointment.",
+      "precedents": [
+        "U.P. State Sugar Corporation Ltd. v. The Presiding Officer and Ors., 1999 (2) AWC-1777 – This case established that a workman employed before the appointed day becomes an employee of the Corporation, and the termination was illegal."
+      ],
+      "facts_from_case": [
+        "The respondent No. 3-workman was appointed on 9.4.1981 and terminated on 30.6.1991.",
+        "The Labour Court awarded reinstatement and back wages on 29.3.1988."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.391194472003852
+        },
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.37183195034550426
+        }
+      ],
+      "created_at": "2026-08-04T13:27:22.753143",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.391194472003852,
+        "avg_retrieval_similarity": 0.3815132111746781,
+        "cosine_answer_source": 0.6172965168952942,
+        "grounding": {
+          "answer_token_count": 62,
+          "source_token_count": 1744,
+          "overlap_token_count": 31,
+          "answer_coverage_ratio": 0.8378378378378378,
+          "source_coverage_ratio": 0.07093821510297482
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 1,
+        "answer_length_chars": 461
+      }
+    },
+    {
+      "answer_id": "7563c862-c11c-4a59-97e7-bfff73fb8860",
+      "question_id": "722b6d1d-fa75-4875-9810-f3e8214e7909",
+      "language": "en",
+      "conclusion": "The High Court ruled in favour of the assessee because the termination of the respondent No. 3-workman was found to be illegal and in violation of the provisions of Section 6-N of the U.P. Industrial Disputes Act.",
+      "legal_reasoning": "The Labour Court concluded that the Corporation was accountable for the disputes arising from the previous employer and that the respondent No. 3-workman had been wrongfully terminated. The High Court upheld the Labour Court's award, stating that the findings were based on relevant material and did not suffer from any illegality. The court also noted that the respondent was entitled to back wages and benefits under the Voluntary Retirement Scheme, counting his service from the date of appointment.",
+      "precedents": [
+        "U.P. State Sugar Corporation Ltd. v. The Presiding Officer and Ors., 1999 (2) AWC-1777 – This case established that a workman employed before the appointed day is deemed to be in service of the Corporation, which was applied to affirm the respondent's employment status."
+      ],
+      "facts_from_case": [
+        "The respondent No. 3-workman was appointed on 9.4.1981 and his services were illegally terminated on 30.6.1991.",
+        "The Labour Court awarded reinstatement with back wages, concluding the termination violated Section 6-N of the Act."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.4906595441572112
+        },
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.4536491803567702
+        }
+      ],
+      "created_at": "2026-08-04T13:28:56.775837",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.4906595441572112,
+        "avg_retrieval_similarity": 0.4721543622569907,
+        "cosine_answer_source": 0.6655864119529724,
+        "grounding": {
+          "answer_token_count": 99,
+          "source_token_count": 1744,
+          "overlap_token_count": 50,
+          "answer_coverage_ratio": 0.8064516129032258,
+          "source_coverage_ratio": 0.11441647597254005
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 1,
+        "answer_length_chars": 715
+      }
+    },
+    {
+      "answer_id": "acec026e-9b8d-4a63-8f70-ad041d2b820d",
+      "question_id": "f9770074-383b-4bec-a4b4-1c4473cd1f85",
+      "language": "en",
+      "conclusion": "Not mentioned in retrieved text.",
+      "legal_reasoning": "The retrieved text does not provide any information regarding the PAN of the creditors involved in the case.",
+      "precedents": [
+        "U.P. State Sugar Corporation Ltd. v. The Presiding Officer and Ors., 1999 (2) AWC-1777 – Cited for the principle that a workman shall be deemed to be in the service of the Corporation from the date of vesting, and the termination of services was found to be illegal.",
+        "Not mentioned in retrieved text."
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.4064133856703639
+        },
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.40181272036905846
+        }
+      ],
+      "created_at": "2026-08-04T13:29:34.037984",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.4064133856703639,
+        "avg_retrieval_similarity": 0.4041130530197112,
+        "cosine_answer_source": 0.3595553934574127,
+        "grounding": {
+          "answer_token_count": 20,
+          "source_token_count": 1744,
+          "overlap_token_count": 6,
+          "answer_coverage_ratio": 0.42857142857142855,
+          "source_coverage_ratio": 0.013729977116704805
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 1,
+        "answer_length_chars": 140
+      }
+    },
+    {
+      "answer_id": "9f1246d3-c0d9-4ad9-b363-fb4ff1071e8e",
+      "question_id": "9b95d971-fa2e-4cdf-83f4-5c287710d13e",
+      "language": "en",
+      "conclusion": "The questions of law referred to the High Court include the accountability of the U.P. State Sugar Corporation for past liabilities and the applicability of the U.P. Industrial Disputes Act regarding the employment status of the respondent workman.",
+      "legal_reasoning": "The petitioner contended that the Corporation was not accountable for any past liabilities as it came into existence in 1984, and that the respondent workman had not completed 240 days of continuous service as required under Section 2-G of the U.P. Industrial Disputes Act. The Labour Court concluded that the Corporation was accountable for disputes with the previous employer and that the termination of the respondent's services violated Section 6-N of the Act. The High Court was tasked with determining the validity of these conclusions and the applicability of the Industrial Disputes Act in this context.",
+      "precedents": [
+        "U.P. State Sugar Corporation Ltd. v. The Presiding Officer and Ors., 1999 (2) AWC-1777 – This case established that a workman employed before the appointed day is deemed to be in service of the Corporation, which was applied to argue that the respondent was an employee of the Corporation."
+      ],
+      "facts_from_case": [
+        "The respondent No. 3-workman was appointed on 9.4.1981 and his services were terminated on 30.6.1991.",
+        "The petitioner Corporation acquired the Laxmi Devi Sugar Mills under the Acquisition Act and sought to substitute itself in the ongoing dispute."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.43843914850291826
+        },
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.4047838235633315
+        }
+      ],
+      "created_at": "2026-08-04T14:03:14.582858",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.43843914850291826,
+        "avg_retrieval_similarity": 0.42161148603312487,
+        "cosine_answer_source": 0.8018677234649658,
+        "grounding": {
+          "answer_token_count": 113,
+          "source_token_count": 1744,
+          "overlap_token_count": 44,
+          "answer_coverage_ratio": 0.7457627118644068,
+          "source_coverage_ratio": 0.10068649885583524
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 0,
+        "answer_length_chars": 859
+      }
+    },
+    {
+      "answer_id": "53533476-fb61-4231-99aa-5e72ccaf5846",
+      "question_id": "2a09eff4-234b-402c-bfd4-9eff92002962",
+      "language": "en",
+      "conclusion": "Not mentioned in retrieved text.",
+      "legal_reasoning": "Not mentioned in retrieved text.",
+      "precedents": [
+        "U.P. State Sugar Corporation Ltd. v. The Presiding Officer and Ors., 1999 (2) AWC-1777 – Cited for the principle that the workman shall be deemed to be in the service of the Corporation from the date of vesting, as the termination of services was illegal."
+      ],
+      "facts_from_case": [
+        "The respondent No. 3-workman was appointed as Turner on 9.4.1981 and his services were illegally terminated on 30.6.1991.",
+        "The petitioner raised an industrial dispute and a reference was made to the Labour Court on 23.4.1985."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.38665320822619287
+        },
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.3830227472904292
+        }
+      ],
+      "created_at": "2026-08-04T14:03:47.030271",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.38665320822619287,
+        "avg_retrieval_similarity": 0.384837977758311,
+        "cosine_answer_source": 0.21634288132190704,
+        "grounding": {
+          "answer_token_count": 8,
+          "source_token_count": 1744,
+          "overlap_token_count": 1,
+          "answer_coverage_ratio": 0.25,
+          "source_coverage_ratio": 0.002288329519450801
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 0,
+        "answer_length_chars": 64
+      }
+    },
+    {
+      "answer_id": "b44f13b7-a506-4c90-a57e-e0b68631006f",
+      "question_id": "71d5761f-1086-420e-9894-35b575135aa6",
+      "language": "en",
+      "conclusion": "The Bharatiya Nyaya Sanhita (BNS) is a new criminal law framework in India that consolidates and amends various provisions related to criminal offenses and procedures.",
+      "legal_reasoning": "The BNS aims to simplify and modernize the criminal justice system by reducing the number of sections and consolidating similar provisions. It replaces the Indian Penal Code (IPC) and is designed to enhance clarity and efficiency in legal proceedings.",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T14:06:04.539950",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 418
+      }
+    },
+    {
+      "answer_id": "e99dac35-e1ca-48bd-bac0-18fe79a9ca7a",
+      "question_id": "d98fb4de-da5e-4a82-bea7-671aef4c629d",
+      "language": "en",
+      "conclusion": "The current Chief Justice of India is Justice Dhananjaya Y. Chandrachud.",
+      "legal_reasoning": "Justice Dhananjaya Y. Chandrachud was appointed as the Chief Justice of India on November 9, 2022. His tenure is significant in the context of various landmark judgments and reforms in the Indian judiciary.",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 1.0,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T14:06:22.797077",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 278
+      }
+    },
+    {
+      "answer_id": "76344b77-6c0a-462e-ab62-2a2838555486",
+      "question_id": "b995c7c7-17f7-4b5a-8121-9b1920291a80",
+      "language": "en",
+      "conclusion": "Section 68 of the Income-tax Act allows the assessing officer to treat any sum found credited in the books of an assessee as income if the assessee does not provide satisfactory explanation for the source of that credit.",
+      "legal_reasoning": "The provision is aimed at ensuring that all income is accounted for and that the taxpayer can substantiate the source of any credits in their accounts. If the taxpayer fails to do so, the assessing officer has the authority to treat such credits as income, thereby increasing the taxable income of the taxpayer.",
+      "precedents": [
+        "CIT vs. Orissa Corporation Pvt. Ltd. (1986) 159 ITR 78 (SC) - The Supreme Court held that the burden of proof lies on the assessee to explain the source of the credits in their books."
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T14:07:49.336601",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 531
+      }
+    },
+    {
+      "answer_id": "d8b9c4b1-28fb-4024-929d-50269762198e",
+      "question_id": "3d09191d-752f-440e-a4b2-d51be4cc131c",
+      "language": "en",
+      "conclusion": "Not mentioned in retrieved text.",
+      "legal_reasoning": "Not mentioned in retrieved text.",
+      "precedents": [
+        "U.P. State Sugar Corporation Ltd. v. The Presiding Officer and Ors., 1999 (2) AWC-1777 – Cited for the principle that the workman shall be deemed to be in the service of the Corporation from the date of vesting, as the order terminating his services was illegal."
+      ],
+      "facts_from_case": [
+        "The respondent No. 3-workman was appointed as Turner on 9.4.1981 and his services were illegally terminated on 30.6.1991.",
+        "The petitioner Corporation acquired the Laxmi Devi Sugar Mills under The U.P. Sugar Undertaking (Acquisition) Act, 1971."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.3561833197191264
+        },
+        {
+          "case": "1189512_U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005",
+          "similarity": 0.3451713988369703
+        }
+      ],
+      "created_at": "2026-08-04T14:12:48.277520",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.3561833197191264,
+        "avg_retrieval_similarity": 0.35067735927804833,
+        "cosine_answer_source": 0.21634288132190704,
+        "grounding": {
+          "answer_token_count": 8,
+          "source_token_count": 1744,
+          "overlap_token_count": 1,
+          "answer_coverage_ratio": 0.25,
+          "source_coverage_ratio": 0.002288329519450801
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 0,
+        "answer_length_chars": 64
+      }
+    },
+    {
+      "answer_id": "4dcaeb9b-9022-4016-9613-6eeae58dd8c5",
+      "question_id": "38d66e99-7419-4e1e-875f-4dd3a212e703",
+      "language": "en",
+      "conclusion": "The author of 'Why the Constitution Matters' is Justice D.Y. Chandrachud.",
+      "legal_reasoning": "Justice D.Y. Chandrachud is a prominent figure in the Indian judiciary and has contributed significantly to legal discourse through his writings and speeches.",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 1.0,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T14:13:09.564439",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 231
+      }
+    },
+    {
+      "answer_id": "50db1d7b-096f-46aa-8548-753c4fcc5c71",
+      "question_id": "e53b230b-ab1f-498f-ad62-73a40dcf6bab",
+      "language": "en",
+      "conclusion": "Rakesh Telang appears to be a name associated with various legal cases in India, but specific details about his identity or role are not provided in the search results.",
+      "legal_reasoning": "Without additional context or specific case details, it is challenging to ascertain the significance of Rakesh Telang in the legal framework. The name may refer to a party in a legal case or a legal professional, but further information is required to clarify this.",
+      "precedents": [
+        "Rakesh Kumar v. State of Himachal Pradesh (approx / to be verified)",
+        "Rakesh v. State of Uttar Pradesh (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.5,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T14:13:46.937753",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 433
+      }
     }
   ],
-  "reviews": [],
+  "reviews": [
+    {
+      "review_id": "26b4cdc8-b4b0-4b5c-b255-a71d6961febd",
+      "answer_id": "f019bad0-8bf6-4241-9ad3-2cfef8fe8a4f",
+      "hallucinations_found": 1,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "Unable to process"
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-04T12:56:50.547646",
+      "comment": ""
+    },
+    {
+      "review_id": "24b08268-0668-4762-becf-9b4342de6fad",
+      "answer_id": "c3a0275b-11b3-4fcc-ab98-6eb7ff8213e3",
+      "hallucinations_found": 1,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "The petitioner contended that the respondent No. 3 was not an employee of the Corporation and had not completed the required 240 days of service under the U.P. Industrial Disputes Act."
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-04T13:06:30.520550",
+      "comment": ""
+    },
+    {
+      "review_id": "edec7fc1-8198-4717-a5aa-c5246b8295d7",
+      "answer_id": "9af9290d-7fbc-4ec8-a26d-4cf3ac738d03",
+      "hallucinations_found": 0,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "The judgment explicitly states the date of delivery as 'on 6 January, 2005'.",
+        "The workman is entitled to reinstatement and back wages as the termination was found to be illegal and in violation of the U.P. Industrial Disputes Act."
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-04T13:07:06.405513",
+      "comment": ""
+    },
+    {
+      "review_id": "7ec51e46-b03a-4f21-b409-0c2f6ae9e7fc",
+      "answer_id": "47565bf2-9690-4077-8f2d-431165ef4b88",
+      "hallucinations_found": 1,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "The Tribunal's opinion regarding the power of enhancement is not present in the retrieved text."
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-04T13:26:53.411436",
+      "comment": ""
+    },
+    {
+      "review_id": "2d99932b-5c0d-4e2f-8a91-7d24232ee95b",
+      "answer_id": "757c27af-f777-4d90-9349-9aaa912d7919",
+      "hallucinations_found": 1,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "The respondent-workman is entitled to back wages and benefits under the Voluntary Retirement Scheme."
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-04T13:27:22.754142",
+      "comment": ""
+    },
+    {
+      "review_id": "70549e11-2175-47f6-9af1-3f7d925af107",
+      "answer_id": "7563c862-c11c-4a59-97e7-bfff73fb8860",
+      "hallucinations_found": 1,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "The High Court ruled in favour of the assessee because the termination of the respondent No. 3-workman was found to be illegal and in violation of the provisions of Section 6-N of the U.P. Industrial Disputes Act."
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-04T13:28:56.775837",
+      "comment": ""
+    },
+    {
+      "review_id": "5fe9808a-e377-467c-9281-204ed0b291bc",
+      "answer_id": "acec026e-9b8d-4a63-8f70-ad041d2b820d",
+      "hallucinations_found": 1,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "The retrieved text does not provide any information regarding the PAN of the creditors involved in the case."
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-04T13:29:34.037984",
+      "comment": ""
+    },
+    {
+      "review_id": "318e9fba-a49a-4c76-a23b-a5fb904f142b",
+      "answer_id": "9f1246d3-c0d9-4ad9-b363-fb4ff1071e8e",
+      "hallucinations_found": 0,
+      "accuracy_score": 0.0,
+      "false_claims": [],
+      "approved": false,
+      "reviewed_at": "2026-08-04T14:03:14.582858",
+      "comment": ""
+    },
+    {
+      "review_id": "a665f99e-e785-4c77-b528-616d40236b97",
+      "answer_id": "53533476-fb61-4231-99aa-5e72ccaf5846",
+      "hallucinations_found": 0,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "Claim 1: conclusion",
+        "Claim 2: legal_reasoning",
+        "Claim 3: supreme_court_precedents",
+        "Claim 4: obiter_dicta",
+        "Claim 5: alternative_legal_routes",
+        "Claim 6: risk_analysis",
+        "Claim 7: suggested_decision"
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-04T14:03:47.030271",
+      "comment": ""
+    },
+    {
+      "review_id": "0869312e-a8b5-48b2-b9e0-d09d6d2db49f",
+      "answer_id": "d8b9c4b1-28fb-4024-929d-50269762198e",
+      "hallucinations_found": 0,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "Claim 1: conclusion",
+        "Claim 2: legal_reasoning",
+        "Claim 3: suggested_decision",
+        "Claim 4: obiter_dicta",
+        "Claim 5: alternative_legal_routes",
+        "Claim 6: risk_analysis"
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-04T14:12:48.277520",
+      "comment": ""
+    }
+  ],
   "cache": [
     {
       "cache_id": "9a1cd1ac-e058-4db5-bf1c-0157a3374c08",
@@ -1822,8 +2713,8 @@
       "question_hash": "868ac2ad9d88ee448280244d292d3771",
       "answer_id": "23a1a52f-c3a6-4f7b-8f20-c8fdd3e20f01",
       "question_id": "4aafe261-eba2-4ccd-992b-d157a308062a",
-      "cache_hits": 6,
-      "last_used": "2026-08-04T11:09:30.601784"
+      "cache_hits": 7,
+      "last_used": "2026-08-04T12:02:39.743999"
     },
     {
       "cache_id": "2b9ccead-ee0e-49ef-9985-5a4b1a004b7e",
@@ -2008,6 +2899,142 @@
       "question_id": "7e56f1df-3752-4be9-851f-65cf64b7ed6a",
       "cache_hits": 1,
       "last_used": "2026-08-04T11:46:28.299772"
+    },
+    {
+      "cache_id": "d444b07a-f9af-4dc6-ad1a-f2563c3aca76",
+      "question_hash": "7525345367021f65baf890f2d5a9fb31",
+      "answer_id": "ca67f828-f18f-498f-8524-1518da789774",
+      "question_id": "18f00e2f-4567-49bb-8d54-eaa607ed825d",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T12:06:56.019104"
+    },
+    {
+      "cache_id": "f3601421-4920-4677-a4e1-a437e584be41",
+      "question_hash": "d4136dc38a84f413f64e14e9456b5101",
+      "answer_id": "1f2fb029-0277-4555-9dba-01e2d7462261",
+      "question_id": "04218d46-19c2-4616-ae39-84f97958c39c",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T12:09:16.216812"
+    },
+    {
+      "cache_id": "b069f449-8dbe-4a5f-8195-75ea146a8da2",
+      "question_hash": "2ec03f5f8c516007cd3d11de0b9cc366",
+      "answer_id": "f019bad0-8bf6-4241-9ad3-2cfef8fe8a4f",
+      "question_id": "fcc829df-66ec-46b8-a74f-6493e4e3dba1",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T12:56:50.547646"
+    },
+    {
+      "cache_id": "605ab1e4-c74d-412a-acbc-423489975200",
+      "question_hash": "071bf51b324ac8b3c2af8edb0c9b16bb",
+      "answer_id": "c3a0275b-11b3-4fcc-ab98-6eb7ff8213e3",
+      "question_id": "f5f186da-b456-417f-ac69-f16059b5b345",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T13:06:30.520550"
+    },
+    {
+      "cache_id": "45f19aec-6f70-4fe4-8a41-4f83260b89a0",
+      "question_hash": "e1904301eaea8d785c05ac523cf5c6ca",
+      "answer_id": "9af9290d-7fbc-4ec8-a26d-4cf3ac738d03",
+      "question_id": "c988faec-d663-4b22-bcb7-7bc5b0fb7bfe",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T13:07:06.405513"
+    },
+    {
+      "cache_id": "b846ec18-3160-42c8-a233-199d431e3bdb",
+      "question_hash": "e96448ead95cfb90b79626b583e0156a",
+      "answer_id": "47565bf2-9690-4077-8f2d-431165ef4b88",
+      "question_id": "248a4637-cb51-4418-b63d-928ed899b9c6",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T13:26:53.411436"
+    },
+    {
+      "cache_id": "f5cf8b6d-9f23-4b84-a4e3-40761cfdd283",
+      "question_hash": "a887ae4c8d966db1fa4e04c0e09243ee",
+      "answer_id": "757c27af-f777-4d90-9349-9aaa912d7919",
+      "question_id": "91361d76-0920-445f-9621-94122b91c93b",
+      "cache_hits": 2,
+      "last_used": "2026-08-04T13:27:45.514873"
+    },
+    {
+      "cache_id": "c1bb0169-c73c-4838-9166-7a5c07d767c2",
+      "question_hash": "1a57ae07b46c97cc3ab05a0fb6e88c8c",
+      "answer_id": "7563c862-c11c-4a59-97e7-bfff73fb8860",
+      "question_id": "722b6d1d-fa75-4875-9810-f3e8214e7909",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T13:28:56.775837"
+    },
+    {
+      "cache_id": "2e4ee559-ec4d-40d5-afcf-c0638acb8421",
+      "question_hash": "9bee15dca81984343d757a78ee53fc91",
+      "answer_id": "acec026e-9b8d-4a63-8f70-ad041d2b820d",
+      "question_id": "f9770074-383b-4bec-a4b4-1c4473cd1f85",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T13:29:34.037984"
+    },
+    {
+      "cache_id": "6f0768b6-3728-49a5-8156-33cc3a650254",
+      "question_hash": "8d0a66a72b4a992a312c423434b0c4d2",
+      "answer_id": "9f1246d3-c0d9-4ad9-b363-fb4ff1071e8e",
+      "question_id": "9b95d971-fa2e-4cdf-83f4-5c287710d13e",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:03:14.582858"
+    },
+    {
+      "cache_id": "be17daf7-e150-4f99-8ab3-8a82a142635c",
+      "question_hash": "52a58e4c725472b37b3d13fb15ac8d5c",
+      "answer_id": "53533476-fb61-4231-99aa-5e72ccaf5846",
+      "question_id": "2a09eff4-234b-402c-bfd4-9eff92002962",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:03:47.030271"
+    },
+    {
+      "cache_id": "93aa9167-ab2e-43de-a625-3b392b64b137",
+      "question_hash": "18cc477a3af391b743999d9f6a889f6a",
+      "answer_id": "b44f13b7-a506-4c90-a57e-e0b68631006f",
+      "question_id": "71d5761f-1086-420e-9894-35b575135aa6",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:06:04.539950"
+    },
+    {
+      "cache_id": "b2ac1103-c85e-4158-9cab-cd81bbfba414",
+      "question_hash": "61370c5326566baa98276b0f3918794f",
+      "answer_id": "e99dac35-e1ca-48bd-bac0-18fe79a9ca7a",
+      "question_id": "d98fb4de-da5e-4a82-bea7-671aef4c629d",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:06:22.798078"
+    },
+    {
+      "cache_id": "9aff10c5-25f6-4654-97ba-8e90c4ed9937",
+      "question_hash": "276eb14a33f2fdecc72c8d03e21b3225",
+      "answer_id": "76344b77-6c0a-462e-ab62-2a2838555486",
+      "question_id": "b995c7c7-17f7-4b5a-8121-9b1920291a80",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:07:49.336601"
+    },
+    {
+      "cache_id": "91dc2974-be82-468c-b78d-b3603c10c795",
+      "question_hash": "058adf430e3e6ec34b35c70887077de9",
+      "answer_id": "d8b9c4b1-28fb-4024-929d-50269762198e",
+      "question_id": "3d09191d-752f-440e-a4b2-d51be4cc131c",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:12:48.277520"
+    },
+    {
+      "cache_id": "da1cae43-9f54-4548-a83b-5a4818053560",
+      "question_hash": "a8c06f04ead8b158440327ef69dfa770",
+      "answer_id": "4dcaeb9b-9022-4016-9613-6eeae58dd8c5",
+      "question_id": "38d66e99-7419-4e1e-875f-4dd3a212e703",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:13:09.564439"
+    },
+    {
+      "cache_id": "6d807e33-48df-40e9-bd5a-b02e1f3ac655",
+      "question_hash": "c8702ab55dba0836754d4055b6310a7b",
+      "answer_id": "50db1d7b-096f-46aa-8548-753c4fcc5c71",
+      "question_id": "e53b230b-ab1f-498f-ad62-73a40dcf6bab",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:13:46.938751"
     }
   ]
 }

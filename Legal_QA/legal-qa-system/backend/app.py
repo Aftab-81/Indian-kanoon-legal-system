@@ -714,17 +714,19 @@ def call_reasoner_llm(question, retrieved_cases, refinement_note=None, language=
 
     language_block = build_language_instruction(language)
 
-    prompt = REASONER_PROMPT.format(
-        question=final_question,
-        retrieved_text=retrieved_text,
-        language_block=language_block
-    )
-
     try:
+        prompt = REASONER_PROMPT.replace(
+            "{question}", final_question
+        ).replace(
+            "{retrieved_text}", retrieved_text
+        ).replace(
+            "{language_block}", language_block
+        )
+
         if OPENAI_NEW_VERSION and client:
             # New version (1.0.0+)
             response = client.chat.completions.create(
-                model="gpt-4-turbo-preview",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
                 max_tokens=2000
@@ -733,7 +735,7 @@ def call_reasoner_llm(question, retrieved_cases, refinement_note=None, language=
         else:
             # Old version
             response = openai.ChatCompletion.create(
-                model="gpt-4-turbo-preview",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.1,
                 max_tokens=2000
@@ -850,7 +852,7 @@ def detect_intent(question):
     try:
         if OPENAI_NEW_VERSION and client:
             response = client.chat.completions.create(
-                model="gpt-4.1-mini" if "gpt-4.1-mini" in str(client) else "gpt-3.5-turbo",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.0,
                 max_tokens=100
@@ -858,7 +860,7 @@ def detect_intent(question):
             answer_text = response.choices[0].message.content.strip()
         else:
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.0,
                 max_tokens=100
@@ -883,7 +885,7 @@ def call_greeting_llm(question, language="en"):
     try:
         if OPENAI_NEW_VERSION and client:
             response = client.chat.completions.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.7,
                 max_tokens=500
@@ -891,7 +893,7 @@ def call_greeting_llm(question, language="en"):
             answer_text = response.choices[0].message.content.strip()
         else:
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.7,
                 max_tokens=500
@@ -919,7 +921,7 @@ def call_summary_llm(retrieved_cases, language="en"):
     try:
         if OPENAI_NEW_VERSION and client:
             response = client.chat.completions.create(
-                model="gpt-4-turbo-preview" if "gpt-4" in str(client) else "gpt-3.5-turbo-16k",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.2,
                 max_tokens=2000
@@ -927,7 +929,7 @@ def call_summary_llm(retrieved_cases, language="en"):
             answer_text = response.choices[0].message.content.strip()
         else:
             response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo-16k",
+                model="gpt-4o-mini",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.2,
                 max_tokens=2000
@@ -1014,7 +1016,7 @@ IMPORTANT:
     # 5) Call LLM
     try:
         response = client.chat.completions.create(
-            model="gpt-4.1-mini",
+            model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.2,
             max_tokens=2200
@@ -1051,14 +1053,15 @@ def call_validator_llm(answer_json, source_text):
             "confidence_score": 0.5
         }
 
-    prompt = VALIDATOR_PROMPT.format(
-        answer_json=json.dumps(answer_json, indent=2, ensure_ascii=False),
-        source_text=source_text[:3000]
-    )
-
     try:
+        prompt = VALIDATOR_PROMPT.replace(
+            "{answer_json}", json.dumps(answer_json, indent=2, ensure_ascii=False)
+        ).replace(
+            "{source_text}", source_text[:3000]
+        )
+
         response = client.chat.completions.create(
-            model="gpt-4.1-mini",
+            model="gpt-4o-mini",
             messages=[{"role": "user", "content": prompt}],
             temperature=0.0,
             max_tokens=1000
@@ -1188,24 +1191,25 @@ def build_answer_metrics(used_mode: str, retrieved_cases: list, validator_result
 # ======================
 # QUERY HASHING & CACHE (JSON-BASED)
 # ======================
-def hash_question(question, language="en"):
+def hash_question(question, language="en", source="external", case_id=None):
     """
-    Hash question + language so that English and Marathi/Hindi versions
-    of the same query are treated as different cache keys.
+    Hash question + language + source + case_id so that external and document
+    queries, or queries for different documents, have different cache keys.
     """
     lang = (language or "en").lower()
-    base = f"{question.strip().lower()}|{lang}"
+    base = f"{question.strip().lower()}|{lang}|{source}|{case_id}"
     return hashlib.md5(base.encode()).hexdigest()
 
-def check_query_cache(question_hash):
+def check_query_cache(question_hash, source="external"):
     """
     Check query cache in JSON.
-    Ignore cache if there are no chunks uploaded.
+    Ignore cache if source='document' and there are no chunks uploaded.
     Skip answers that were REJECTED.
     """
-    cases_data = load_cases_data()
-    if not cases_data.get("chunks"):
-        return None
+    if source == "document":
+        cases_data = load_cases_data()
+        if not cases_data.get("chunks"):
+            return None
 
     store = load_store()
     cache_entries = store.get("cache", [])
@@ -1359,6 +1363,7 @@ def ask_legal_question():
     try:
         data = request.json or {}
         question = data.get('question', '').strip()
+        source = data.get('source', 'external')
         case_id = data.get('case_id')
         language = (data.get('language') or 'en').lower()
         if language not in ('en', 'mr', 'hi'):
@@ -1366,9 +1371,12 @@ def ask_legal_question():
 
         if not question:
             return jsonify({"error": "No question provided"}), 400
+            
+        if source == 'document' and not case_id:
+             return jsonify({"error": "No document selected for Document QA"}), 400
 
         store = load_store()
-        question_hash = hash_question(question, language=language)
+        question_hash = hash_question(question, language=language, source=source, case_id=case_id)
 
         # 0️⃣ — Check if a previous answer was rejected → use its review_comment to refine
         last_rejected = get_latest_rejected_answer(store, question_hash)
@@ -1377,7 +1385,7 @@ def ask_legal_question():
         # 1️⃣ — CACHE CHECK (only if no refinement needed)
         cached_answer = None
         if not refinement_note:
-            cached_answer = check_query_cache(question_hash)
+            cached_answer = check_query_cache(question_hash, source=source)
 
         if cached_answer:
             cached_answer["from_cache"] = True
@@ -1394,65 +1402,36 @@ def ask_legal_question():
             "question_text": question,
             "question_hash": question_hash,
             "language": language,
+            "source": source,
+            "case_id": case_id,
             "asked_at": datetime.now().isoformat()
         })
-
-        # 3️⃣ — Intent Detection
-        intent = detect_intent(question)
-        logger.info(f"🧠 Detected Intent: {intent}")
 
         retrieved_cases = []
         retrieval_count = 0
         validator_result = None
 
-        if intent == "GREETING":
-            used_mode = "GREETING"
-            answer_json = call_greeting_llm(question, language)
-            final_confidence = answer_json.get("confidence", 1.0)
+        if source == "external":
+            used_mode = "EXTERNAL"
+            logger.info("🌐 Using EXTERNAL reasoning (SerpAPI + general legal knowledge)")
+            answer_json = call_external_legal_reasoner(
+                question, refinement_note=refinement_note, language=language
+            )
+            final_confidence = max(0.1, min(1.0, answer_json.get("confidence", 0.6)))
             
-        elif intent == "SUMMARY":
-            used_mode = "SUMMARY"
-            retrieved_cases, retrieval_count = search_local_vector_db("summary of facts", top_k=15, case_id=case_id)
-            if case_id and retrieval_count == 0:
-                logger.warning(f"⚠️ Zero chunks retrieved for SUMMARY on case_id {case_id}.")
-                answer_json = {
-                    "conclusion": "I could not find any relevant information in the uploaded document to summarize.",
-                    "legal_reasoning": "The semantic search returned zero chunks matching your query from the active document context.",
-                    "confidence": 0.0
-                }
-            else:
-                answer_json = call_summary_llm(retrieved_cases, language)
-            final_confidence = answer_json.get("confidence", 0.9)
-            
-        else: # DOCUMENT_QA
+        else: # source == 'document'
+            used_mode = "LOCAL_PDF"
             retrieved_cases, retrieval_count = search_local_vector_db(question, top_k=10, case_id=case_id)
-            max_sim = max((rc["similarity"] for rc in retrieved_cases), default=0.0)
-            logger.info(f"🔎 Retrieval_count={retrieval_count}, max_sim={max_sim:.3f}, case_id={case_id}")
-
-            if case_id:
-                # Document is active; NEVER fallback to SerpAPI
-                use_local = True
-            else:
-                use_local = (retrieval_count >= 1 and max_sim >= 0.75)
-
-            if use_local and case_id and retrieval_count == 0:
+            
+            if retrieval_count == 0:
                 logger.warning(f"⚠️ Zero chunks retrieved for DOCUMENT_QA on case_id {case_id}. Query: '{question}'")
                 answer_json = {
                     "conclusion": "I could not find any relevant information in the uploaded document to answer your question.",
                     "legal_reasoning": "The semantic search returned zero chunks matching your query from the active document context.",
                     "confidence": 0.0
                 }
-                used_mode = "LOCAL_PDF"
                 final_confidence = 0.0
-            elif not use_local:
-                used_mode = "EXTERNAL"
-                logger.info("🌐 Using EXTERNAL reasoning (SerpAPI + general legal knowledge)")
-                answer_json = call_external_legal_reasoner(
-                    question, refinement_note=refinement_note, language=language
-                )
-                final_confidence = max(0.1, min(1.0, answer_json.get("confidence", 0.6)))
             else:
-                used_mode = "LOCAL_PDF"
                 logger.info("📚 Using LOCAL_PDF RAG reasoning (uploaded judgments)")
                 answer_json = call_reasoner_llm(
                     question, retrieved_cases, refinement_note=refinement_note, language=language
@@ -1606,6 +1585,9 @@ def approve_answer():
 @app.route('/api/history', methods=['GET'])
 def get_history():
     try:
+        source = request.args.get('source', 'external')
+        case_id = request.args.get('case_id')
+        
         store = load_store()
         questions = store.get("questions", [])
         answers = store.get("answers", [])
@@ -1616,6 +1598,15 @@ def get_history():
             qid = a.get("question_id")
             if qid and qid not in ans_by_qid:
                 ans_by_qid[qid] = a
+                
+        # Filter questions by source and case_id
+        filtered_questions = []
+        for q in questions:
+            if q.get("source", "external") == source:
+                if source == "document":
+                    if case_id and q.get("case_id") != case_id:
+                        continue
+                filtered_questions.append(q)
 
         # Sort questions by asked_at desc
         def parse_dt(s):
@@ -1625,7 +1616,7 @@ def get_history():
                 return datetime.min
 
         questions_sorted = sorted(
-            questions,
+            filtered_questions,
             key=lambda q: parse_dt(q.get("asked_at", "")),
             reverse=True
         )
