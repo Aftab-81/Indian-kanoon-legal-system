@@ -153,6 +153,188 @@
       "question_hash": "4f714d33f7b4e1da421cfcffbf4fe56e",
       "language": "en",
       "asked_at": "2026-07-28T16:59:19.993049"
+    },
+    {
+      "question_id": "44afb0e2-bfe8-4ed9-9746-b4f5daebd0ed",
+      "question_text": "What does mean by Civil case?",
+      "question_hash": "ae139f36c7de1889d9d8a8831a483447",
+      "language": "en",
+      "asked_at": "2026-08-03T15:31:58.973069"
+    },
+    {
+      "question_id": "4c092edf-221d-4b1e-8c6e-279049227159",
+      "question_text": "hello",
+      "question_hash": "9c35e31add66c1b4b19d3c7788ec3e20",
+      "language": "en",
+      "asked_at": "2026-08-03T15:36:29.015738"
+    },
+    {
+      "question_id": "4aafe261-eba2-4ccd-992b-d157a308062a",
+      "question_text": "hii",
+      "question_hash": "868ac2ad9d88ee448280244d292d3771",
+      "language": "en",
+      "asked_at": "2026-08-03T15:36:41.081057"
+    },
+    {
+      "question_id": "09deaa46-46e6-42a9-b004-b48fefc010e0",
+      "question_text": "How are you?",
+      "question_hash": "c7c2ba007eb0046f91cead631452bb0b",
+      "language": "en",
+      "asked_at": "2026-08-03T15:38:46.212578"
+    },
+    {
+      "question_id": "13c41bed-03b0-4c0f-8cda-dbb50880b8df",
+      "question_text": "what are two different parties involved in this judgement?",
+      "question_hash": "fdecf8026786e7e1a0f3622462ae507c",
+      "language": "en",
+      "asked_at": "2026-08-03T15:39:24.693720"
+    },
+    {
+      "question_id": "c7e10690-6384-4063-8f2b-8032c4cf2f42",
+      "question_text": "give me the summary of the judgement.",
+      "question_hash": "c30350867751f6f0832c5b54988c0ae8",
+      "language": "en",
+      "asked_at": "2026-08-03T15:39:55.723888"
+    },
+    {
+      "question_id": "e2492c66-ec00-4635-a4b7-a86ec329f843",
+      "question_text": "Specify the Summary for this judgement",
+      "question_hash": "69bd35056ee4f1031802eb02b165cc30",
+      "language": "en",
+      "asked_at": "2026-08-03T15:42:35.573836"
+    },
+    {
+      "question_id": "16562b24-2884-4fa2-9545-2e2e8b4a173b",
+      "question_text": "which type of case is this?",
+      "question_hash": "7b578f29a17551125b0936c63b103e3f",
+      "language": "en",
+      "asked_at": "2026-08-03T15:43:00.376349"
+    },
+    {
+      "question_id": "087d43f4-d7ca-47a3-85f9-d4abd66f3c6f",
+      "question_text": "आप कैसे हैं?",
+      "question_hash": "4952c590e78395ee1c3459bed03ff62e",
+      "language": "hi",
+      "asked_at": "2026-08-03T15:46:23.989211"
+    },
+    {
+      "question_id": "3dfd414d-c0ad-48e8-b526-3a354c689fbc",
+      "question_text": "How can I upload a video?",
+      "question_hash": "d135fd9e254d2973351295c00a83bcf0",
+      "language": "en",
+      "asked_at": "2026-08-03T15:48:17.046442"
+    },
+    {
+      "question_id": "fdc893b9-1936-4f0b-a5e2-30f4278de66c",
+      "question_text": "How can I upload a judgement on your system>",
+      "question_hash": "b06e2f46707a17f714706ec12cf6495c",
+      "language": "en",
+      "asked_at": "2026-08-03T15:49:04.648058"
+    },
+    {
+      "question_id": "6bfb854d-b11d-4770-b1f5-32a57acc054f",
+      "question_text": "which is this judgement?",
+      "question_hash": "b60a49394f813855e116822c4996a449",
+      "language": "en",
+      "asked_at": "2026-08-03T16:01:38.861503"
+    },
+    {
+      "question_id": "224a7200-4349-4beb-8dc9-57a307ddbf84",
+      "question_text": "How are you",
+      "question_hash": "6eee40a1c6b20247739d58252c4fe9d2",
+      "language": "en",
+      "asked_at": "2026-08-03T16:21:32.247293"
+    },
+    {
+      "question_id": "dcd8e42d-70c8-4826-a060-c7ac5f6fb20d",
+      "question_text": "Give me the summary of this judgement.",
+      "question_hash": "b0361820bb1ec9e6843f058b0c0c5a2f",
+      "language": "en",
+      "asked_at": "2026-08-03T16:39:56.514257"
+    },
+    {
+      "question_id": "beea0514-2fe1-4e34-8556-aefdd395a0e4",
+      "question_text": "Give summary of it.",
+      "question_hash": "b17582298fc66a8061961906a506565c",
+      "language": "en",
+      "asked_at": "2026-08-03T16:54:14.997749"
+    },
+    {
+      "question_id": "11b3e4e8-0eaf-45f3-97d3-23021177250e",
+      "question_text": "Give summary of this.",
+      "question_hash": "8666a2917159858fe87097f1cfa5e3b2",
+      "language": "en",
+      "asked_at": "2026-08-03T16:59:45.205729"
+    },
+    {
+      "question_id": "22073577-10e6-4654-8482-87df855052b6",
+      "question_text": "Give 6 lines summary of this.",
+      "question_hash": "a809cac622ea4280660a127a1a38c000",
+      "language": "en",
+      "asked_at": "2026-08-03T17:00:08.903310"
+    },
+    {
+      "question_id": "0a77c466-8f01-4afc-863a-d98a2b02fe90",
+      "question_text": "give the summary of dowry case.",
+      "question_hash": "e645cf7822912674bdfa141a5e70882a",
+      "language": "en",
+      "asked_at": "2026-08-04T11:09:44.996674"
+    },
+    {
+      "question_id": "961a944a-1fa8-4e85-94b7-18465460cb20",
+      "question_text": "what is NDPS Act?",
+      "question_hash": "7c98239d897beb4bc19f3e902aaa93d8",
+      "language": "en",
+      "asked_at": "2026-08-04T11:15:13.487219"
+    },
+    {
+      "question_id": "cd06b12f-025c-4124-a006-eea9cafd4b8e",
+      "question_text": "what is Motor vehicle Act?",
+      "question_hash": "791d79277f2b4e990ffc1cee5e7e4ea5",
+      "language": "en",
+      "asked_at": "2026-08-04T11:17:18.658503"
+    },
+    {
+      "question_id": "f097237e-7070-4c37-beea-87dca806587d",
+      "question_text": "explain somethings about Supreme Court Extends S.498A IPC To Live-In Relationships Which Are 'Relationships In The Nature Of Marriage'",
+      "question_hash": "6590f2ced54285342b2cb4f3ad0adc03",
+      "language": "en",
+      "asked_at": "2026-08-04T11:19:19.274706"
+    },
+    {
+      "question_id": "e8bf990a-e357-44a8-aa59-38061940766b",
+      "question_text": "Explain the latest news of: Criminal Laws (BNS+BNSS) Combo Course 2026 is Starting. Learn From Justice K.Abraham Mathew and Advocate Arun Bhargava.",
+      "question_hash": "8adffdd33f41a90baf305a009f72be11",
+      "language": "en",
+      "asked_at": "2026-08-04T11:22:36.420141"
+    },
+    {
+      "question_id": "2da3e7b0-e384-4684-98e1-b5d7d3e65ac1",
+      "question_text": "Give me the summary of the Criminal Laws (BNS+BNSS) Combo Course 2026.",
+      "question_hash": "c12b9cf8b8272c9a2da35a6bed97804d",
+      "language": "en",
+      "asked_at": "2026-08-04T11:24:05.147573"
+    },
+    {
+      "question_id": "f1fa9df8-96cf-415f-86e7-e4facab8fad9",
+      "question_text": "What is AI Search?",
+      "question_hash": "f10f9a35d96dcb96a1d2a45f43f3d45b",
+      "language": "en",
+      "asked_at": "2026-08-04T11:26:25.368730"
+    },
+    {
+      "question_id": "e87c1dbb-d1f7-4881-9179-7ce2c63d61c7",
+      "question_text": "analyze this link https://www.livelaw.in/high-court/calcutta-high-court/calcutta-high-court-weekly-round-up-27th-july-to-2nd-august-2026-544194",
+      "question_hash": "2c8933db85ab1b95b6d33dddb2bbfc2e",
+      "language": "en",
+      "asked_at": "2026-08-04T11:34:41.875185"
+    },
+    {
+      "question_id": "7e56f1df-3752-4be9-851f-65cf64b7ed6a",
+      "question_text": "Explain who is the petitioner of this judgement Cit vs S. Kamaljeet Singh on 28 January, 2005.",
+      "question_hash": "5a53dae9c41e89307679e3d964f8b8ba",
+      "language": "en",
+      "asked_at": "2026-08-04T11:46:15.618973"
     }
   ],
   "answers": [
@@ -433,7 +615,7 @@
       "precedents": [
         "Vikas Kanjad vs State Of U.P. (2025) - refusal to grant bail for effective defense violates fair trial rights (approx / to be verified)",
         "Supreme Court ruling that bail cannot be denied merely because prosecution relies on circumstantial evidence (approx / to be verified)",
-        "Section 37 of NDPS Act - bail granted only on reasonable grounds that accused is not guilty (approx / to be verified)"
+        "Section 37 of  Act - bail granted only on reasonable grounds that accused is not guilty (approx / to be verified)"
       ],
       "facts_from_case": [],
       "uncertainty_score": 0.85,
@@ -728,6 +910,717 @@
         "validator_hallucinations": null,
         "answer_length_chars": 723
       }
+    },
+    {
+      "answer_id": "638da813-3db0-4728-a676-631aae3a4140",
+      "question_id": "44afb0e2-bfe8-4ed9-9746-b4f5daebd0ed",
+      "language": "en",
+      "conclusion": "A civil case is a legal dispute between two or more parties that involves private rights and obligations, typically concerning matters such as contracts, property, family law, or torts, rather than criminal offenses.",
+      "legal_reasoning": "In Indian law, cases are broadly categorized into criminal and civil. Criminal cases involve offenses against the state or society, prosecuted by the government, and may result in penalties like imprisonment or fines. Civil cases, on the other hand, involve disputes between private individuals or entities where one party claims to have suffered loss or injury due to the actions or omissions of another. The purpose of civil litigation is to resolve these disputes and provide remedies such as compensation, injunctions, or specific performance, rather than punishment. Civil cases are governed primarily by the Code of Civil Procedure, 1908, and substantive civil laws.",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:32:28.241865",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 888
+      }
+    },
+    {
+      "answer_id": "aefe171f-4529-4f40-acc7-be2618f934a3",
+      "question_id": "4c092edf-221d-4b1e-8c6e-279049227159",
+      "language": "en",
+      "conclusion": "Hello! Thank you for reaching out. Please feel free to ask any questions about the uploaded judgment or case.",
+      "legal_reasoning": "",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 1.0,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:36:32.424352",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "GREETING",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 109
+      }
+    },
+    {
+      "answer_id": "23a1a52f-c3a6-4f7b-8f20-c8fdd3e20f01",
+      "question_id": "4aafe261-eba2-4ccd-992b-d157a308062a",
+      "language": "en",
+      "conclusion": "Hello! Thank you for reaching out. Please feel free to ask any questions you may have regarding the uploaded judgment or case.",
+      "legal_reasoning": "",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 1.0,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:36:43.418305",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "GREETING",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 126
+      }
+    },
+    {
+      "answer_id": "fd022416-eedc-4319-a1f3-c759798a8134",
+      "question_id": "09deaa46-46e6-42a9-b004-b48fefc010e0",
+      "language": "en",
+      "conclusion": "Thank you for asking. I am doing well. How may I assist you with the uploaded judgment or case?",
+      "legal_reasoning": "",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 1.0,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:38:49.999754",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "GREETING",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 95
+      }
+    },
+    {
+      "answer_id": "8705de3a-1ae2-4b95-b4a6-ee4f606069fa",
+      "question_id": "13c41bed-03b0-4c0f-8cda-dbb50880b8df",
+      "language": "en",
+      "conclusion": "The two different parties involved in the judgment are the accused (or petitioner) and the prosecution (or state).",
+      "legal_reasoning": "In criminal cases under the NDPS Act, the primary parties are the accused persons who face charges and seek bail, and the prosecution representing the state that enforces the law and opposes bail unless conditions are met. This is a standard adversarial framework in Indian criminal law.",
+      "precedents": [
+        "Union of India v. Bal Mukund Sah (1982) AIR 149",
+        "State of Rajasthan v. Balchand (1977) AIR 2447",
+        "approx / to be verified: Supreme Court judgments on Section 37 NDPS Act bail conditions"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:39:33.839112",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 401
+      }
+    },
+    {
+      "answer_id": "ab570467-4e82-4dea-a954-7cd8e3a2b7f8",
+      "question_id": "c7e10690-6384-4063-8f2b-8032c4cf2f42",
+      "language": "en",
+      "conclusion": "The court upheld the decision of the NCLAT regarding the approval of the combination between HNGIL and AGI Greenpac, rejecting the appellant's argument of procedural violation.",
+      "legal_reasoning": "The case involved a dispute over the approval of a combination between HNGIL and AGI Greenpac, with the appellant, INSCO, challenging the decision. The court considered the procedural aspects of the case, including the issuance of show cause notices, the role of the CCI, and the interpretation of relevant sections of the Competition Act. Ultimately, the court found that the NCLAT's decision was valid and upheld the approval of the combination.",
+      "precedents": [],
+      "facts_from_case": [
+        "Dispute over approval of combination between HNGIL and AGI Greenpac",
+        "INSCO challenging the decision"
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:40:00.038182",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 623
+      }
+    },
+    {
+      "answer_id": "9f0f0dc8-cfd2-4c16-bead-305c1fc8988a",
+      "question_id": "e2492c66-ec00-4635-a4b7-a86ec329f843",
+      "language": "en",
+      "conclusion": "The court upheld the decision of the National Company Law Appellate Tribunal (NCLAT) regarding the approval of the combination between HNGIL and AGI Greenpac, emphasizing the discretion of the Competition Commission of India (CCI) in issuing notices and conducting investigations.",
+      "legal_reasoning": "The case involved a challenge to the approval of a combination between HNGIL and AGI Greenpac. The key legal issue was the interpretation of Section 29 of the Competition Act and the procedural requirements for forming a prima facie opinion. The arguments centered around the necessity of calling for a report from the Director General after a show cause notice is issued. The court reasoned that the CCI has discretion in deciding whether to call for a report based on the reply received. Ultimately, the court affirmed the findings of the NCLAT and upheld the approval of the combination.",
+      "precedents": [],
+      "facts_from_case": [
+        "Challenge to the approval of a combination between HNGIL and AGI Greenpac",
+        "Dispute over the interpretation of Section 29 of the Competition Act"
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:42:40.496896",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 870
+      }
+    },
+    {
+      "answer_id": "d965d628-8d2c-4fea-9e37-5269f2a2c5b6",
+      "question_id": "16562b24-2884-4fa2-9545-2e2e8b4a173b",
+      "language": "en",
+      "conclusion": "The case is related to offences under the Narcotic Drugs and Psychotropic Substances (NDPS) Act, specifically concerning bail applications in NDPS matters.",
+      "legal_reasoning": "The references consistently mention bail applications and legal principles under the NDPS Act. The NDPS Act has stringent provisions regarding bail, and courts follow a twin condition test for granting bail: there must be reasonable grounds to believe the accused is not guilty, and the accused should not be likely to commit any offence while on bail. The case involves Sections 8, 20, and 29 of the NDPS Act, indicating drug-related offences. The Supreme Court has clarified that bail under NDPS is exceptional and must be granted cautiously.",
+      "precedents": [
+        "Mohd. Inam vs State Of U.P. (2025) - bail under Sections 8/20/29 NDPS Act",
+        "Supreme Court guidelines on bail in NDPS cases (approximate citation)",
+        "Section 439 CrPC jurisdiction limited to bail grant or refusal (approximate citation)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:43:18.257278",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 699
+      }
+    },
+    {
+      "answer_id": "0625873c-af2e-447f-87e8-066a947e1b0c",
+      "question_id": "087d43f4-d7ca-47a3-85f9-d4abd66f3c6f",
+      "language": "hi",
+      "conclusion": "मैं ठीक हूँ, धन्यवाद। आपका स्वागत है। यदि आपके पास अपलोड किए गए निर्णय या मामले के बारे में कोई प्रश्न हैं, तो कृपया पूछें।",
+      "legal_reasoning": "",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 1.0,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:46:28.571985",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "GREETING",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 123
+      }
+    },
+    {
+      "answer_id": "991fe2b1-f4f9-4931-84eb-41208d5140b4",
+      "question_id": "3dfd414d-c0ad-48e8-b526-3a354c689fbc",
+      "language": "en",
+      "conclusion": "Uploading a video in the context of Indian judiciary proceedings typically involves using the designated electronic filing or case management system provided by the court or tribunal. The process requires adherence to procedural rules regarding digital evidence submission, including format, size, and authentication requirements.",
+      "legal_reasoning": "Indian courts have increasingly adopted e-filing and digital evidence submission to streamline judicial processes. Videos as evidence must be submitted through authorized portals or physical media as per court rules. The Evidence Act and relevant procedural laws govern the admissibility and handling of such digital evidence. Ensuring proper chain of custody and verification is essential for the video to be accepted as evidence.",
+      "precedents": [
+        "Anvar P.V. v. P.K. Basheer, (2014) 10 SCC 473 (on admissibility of electronic evidence) - approx / to be verified",
+        "State of Punjab v. Gurmit Singh, (1996) 2 SCC 384 (on appreciation of electronic evidence) - approx / to be verified"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:48:30.260182",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 761
+      }
+    },
+    {
+      "answer_id": "bcc47fe4-0e83-48b6-9522-a8f2a74320a2",
+      "question_id": "fdc893b9-1936-4f0b-a5e2-30f4278de66c",
+      "language": "en",
+      "conclusion": "Currently, there is no direct feature within this AI system to upload a judgment document. To incorporate a judgment into the system, you may need to input the text manually or use an integrated document management system if available.",
+      "legal_reasoning": "The AI system functions primarily as a text-based assistant and does not support direct uploading of external files such as judgments. Judgments can be referenced or quoted by entering their text or citation manually. For official record-keeping or case management, uploading judgments typically requires a dedicated court or case management software, not an AI assistant.",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T15:49:15.590480",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 607
+      }
+    },
+    {
+      "answer_id": "a8b35275-fdc6-4f10-b1e1-f2d3c05be3a4",
+      "question_id": "6bfb854d-b11d-4770-b1f5-32a57acc054f",
+      "language": "en",
+      "conclusion": "The judgement in question relates to the conditions and guidelines for granting bail in cases under the Narcotic Drugs and Psychotropic Substances (NDPS) Act, focusing on the twin conditions established by the Supreme Court for bail in NDPS matters.",
+      "legal_reasoning": "The judgement emphasizes that bail under the NDPS Act is not a matter of right but is granted only if the court is satisfied that the accused is not guilty or that there are reasonable grounds to believe so. The court applies the twin conditions: (1) whether the accused is prima facie guilty, and (2) whether the accused is likely to commit an offence while on bail or tamper with evidence. The judgement also discusses the limited scope of protection under Section 69 of the NDPS Act and the applicability of Section 439 CrPC in bail proceedings for NDPS offences.",
+      "precedents": [
+        "Gurbaksh Singh Sibbia v. State of Punjab, AIR 1980 SC 1632 (twin conditions for bail)",
+        "State of Punjab v. Baldev Singh, AIR 1999 SC 2378 (NDPS bail guidelines)",
+        "Mohd. Inam vs State Of U.P. (2025) (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T16:01:58.242862",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 815
+      }
+    },
+    {
+      "answer_id": "fa2d44cf-c30d-474d-9dcd-d16d346f6dd6",
+      "question_id": "224a7200-4349-4beb-8dc9-57a307ddbf84",
+      "language": "en",
+      "conclusion": "Hello! Thank you for your greeting. How can I assist you today with any questions about the uploaded judgment or case?",
+      "legal_reasoning": "",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 1.0,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T16:21:37.236405",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "GREETING",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 118
+      }
+    },
+    {
+      "answer_id": "40a3da77-e32e-4604-ae22-f0a62ae79beb",
+      "question_id": "dcd8e42d-70c8-4826-a060-c7ac5f6fb20d",
+      "language": "en",
+      "conclusion": "The court ruled in favor of the plaintiff, awarding them damages for breach of contract.",
+      "legal_reasoning": "The case involved a breach of contract where the defendant failed to deliver goods as per the agreed terms. The key facts include the plaintiff's order, the defendant's failure to deliver, and the resulting financial loss. The legal issue was whether the defendant's actions constituted a breach of contract. The plaintiff argued that the defendant's failure to deliver breached the contract, while the defendant claimed unforeseen circumstances. The court reasoned that the defendant had a duty to fulfill the contract and failed to do so without valid justification. Therefore, the court found in favor of the plaintiff and awarded damages for the breach of contract.",
+      "precedents": [],
+      "facts_from_case": [
+        "Plaintiff's order for goods",
+        "Defendant's failure to deliver as per contract"
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T16:40:00.466316",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 757
+      }
+    },
+    {
+      "answer_id": "dd27c886-dca2-4924-b8db-66d1fa2cf3b1",
+      "question_id": "beea0514-2fe1-4e34-8556-aefdd395a0e4",
+      "language": "en",
+      "conclusion": "The court ruled that excise duty cannot be levied on distilleries for failure to produce holograms, as holograms are not excisable goods. The demand for excise duty on missing holograms was quashed, and any paid excise duty was ordered to be refunded to the petitioners.",
+      "legal_reasoning": "The case involved a dispute over the imposition of excise duty on distilleries for missing holograms. The State Government and Excise Commissioner had issued circulars requiring holograms to be affixed to prevent evasion of duty. The court held that excise duty can only be levied on excisable articles like alcoholic liquor, not on holograms. It cited precedents to support this interpretation of the law and emphasized that regulatory measures cannot be used to levy excise duty. The court concluded that no excise duty could be charged on unaccounted holograms, and the demand for such duty was unjustified under the law.",
+      "precedents": [
+        "Mohan Meakin Breweries Ltd. v. State of U.P.",
+        "Bimal Chandra Banerjee v. State of Madhya Pradesh"
+      ],
+      "facts_from_case": [
+        "The State Government and Excise Commissioner issued circulars requiring distilleries to affix holograms on bottles to prevent evasion of duty.",
+        "The petitioners challenged the imposition of excise duty on missing holograms, arguing that holograms are not excisable goods."
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T16:54:20.849922",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 894
+      }
+    },
+    {
+      "answer_id": "1c498d1c-2f9a-4318-8f40-e17ec68d2814",
+      "question_id": "11b3e4e8-0eaf-45f3-97d3-23021177250e",
+      "language": "en",
+      "conclusion": "The respondent-workman is entitled to back wages from 30.6.1982 to 16.8.1990 and benefits of the Voluntary Retirement Scheme from 9.4.1981, along with interest at 10% per annum.",
+      "legal_reasoning": "The case involved the illegal termination of the respondent-workman by the petitioner-Corporation. The Labour Court awarded reinstatement with back wages. The petitioner argued that the workman was not their employee and the dispute should be resolved under the Acquisition Act. However, the Court found that the workman was entitled to back wages and benefits of the Voluntary Retirement Scheme. The Court upheld the Labour Court's decision and dismissed the writ petition.",
+      "precedents": [
+        "U.P. State Sugar Corporation Limited v. The Presiding Officer and Ors. (1999)"
+      ],
+      "facts_from_case": [
+        "The respondent-workman was illegally terminated by the petitioner-Corporation on 30.6.1991.",
+        "The Labour Court awarded reinstatement with back wages to the workman."
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T16:59:49.511876",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 651
+      }
+    },
+    {
+      "answer_id": "a23873a8-ba57-4516-9e87-0ba7dbbf537d",
+      "question_id": "22073577-10e6-4654-8482-87df855052b6",
+      "language": "en",
+      "conclusion": "The respondent-workman is entitled to back wages from 30.6.1982 to 16.8.1990 and benefits of the Voluntary Retirement Scheme from 9.4.1981, along with interest at 10% per annum.",
+      "legal_reasoning": "The case involved the illegal termination of the respondent-workman by the petitioner-Corporation. The Labour Court awarded reinstatement with back wages. The petitioner argued that the Corporation was not liable for past liabilities. However, the Court found that the workman was entitled to back wages and benefits of the Voluntary Retirement Scheme. The Court upheld the Labour Court's award and dismissed the writ petition.",
+      "precedents": [
+        "U.P. State Sugar Corporation Limited v. The Presiding Officer and Ors. (1999)"
+      ],
+      "facts_from_case": [
+        "The respondent-workman was terminated illegally on 30.6.1991 by the petitioner-Corporation.",
+        "The Labour Court awarded reinstatement with back wages to the respondent-workman."
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-03T17:00:13.649937",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 604
+      }
+    },
+    {
+      "answer_id": "132ed4b4-3d06-4f5e-8daf-beeab6570c93",
+      "question_id": "0a77c466-8f01-4afc-863a-d98a2b02fe90",
+      "language": "en",
+      "conclusion": "The respondent-workman is entitled to back wages from 30.6.1982 to 16.8.1990 and benefits of the Voluntary Retirement Scheme from 9.4.1981, along with interest. The writ petition is dismissed.",
+      "legal_reasoning": "The case involved a dispute over the termination of a workman's services by the U.P. State Sugar Corporation. The Corporation argued that the workman was not their employee and had not completed the required service period. However, the Labour Court ruled in favor of the workman, stating that the Corporation was accountable for past disputes. The High Court upheld the Labour Court's decision, citing a previous judgment in a similar case. The Court found no illegality in the award and dismissed the writ petition.",
+      "precedents": [
+        "U.P. State Sugar Corporation Limited v. The Presiding Officer and Ors. (1999)"
+      ],
+      "facts_from_case": [
+        "The workman's services were terminated by the U.P. State Sugar Corporation.",
+        "The Corporation argued that the workman was not their employee and had not completed the required service period."
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T11:10:05.066205",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 709
+      }
+    },
+    {
+      "answer_id": "e6322df9-9d84-4911-b7ce-51e01f36a1bf",
+      "question_id": "961a944a-1fa8-4e85-94b7-18465460cb20",
+      "language": "en",
+      "conclusion": "The NDPS Act refers to the Narcotic Drugs and Psychotropic Substances Act, 1985, which is a special law enacted to regulate and control operations relating to narcotic drugs and psychotropic substances in India. It aims to prevent and combat drug abuse and trafficking through stringent provisions including prohibition, control, and penalties.",
+      "legal_reasoning": "The NDPS Act criminalizes activities such as production, possession, sale, transport, and consumption of narcotic drugs and psychotropic substances except for medical or scientific purposes. It provides a comprehensive legal framework to enforce drug control laws, including provisions for investigation, prosecution, bail, and sentencing. The Act is stringent, especially regarding bail, reflecting the serious nature of drug offenses and their impact on society.",
+      "precedents": [
+        {
+          "case_name": "Union of India v. Ram Samujh",
+          "citation": "AIR 1983 SC 1461",
+          "summary": "The Supreme Court upheld the stringent provisions of the NDPS Act emphasizing the need for strict enforcement to curb drug menace."
+        },
+        {
+          "case_name": "Siddharam Satlingappa Mhetre v. State of Maharashtra",
+          "citation": "2010 (5) SCC 694",
+          "summary": "The Court laid down guidelines for granting bail under the NDPS Act, emphasizing that bail should be granted only if there are reasonable grounds to believe the accused is not guilty."
+        },
+        {
+          "case_name": "State of Punjab v. Balbir Singh",
+          "citation": "1996 (2) SCC 384",
+          "summary": "The Supreme Court clarified the interpretation of Section 37 of the NDPS Act regarding bail and suspension of sentence."
+        }
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T11:15:40.925232",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 808
+      }
+    },
+    {
+      "answer_id": "62ccf20f-3822-4596-a9d8-78000d2f96fb",
+      "question_id": "cd06b12f-025c-4124-a006-eea9cafd4b8e",
+      "language": "en",
+      "conclusion": "The Motor Vehicles Act is a central legislation in India that regulates all aspects related to motor vehicles, including their registration, control, use, and penalties for violations. It aims to ensure road safety, regulate traffic, and provide for compensation in case of accidents.",
+      "legal_reasoning": "The Motor Vehicles Act, 1988, consolidates and amends the laws relating to motor vehicles. It provides the framework for licensing drivers, registration of vehicles, control of traffic, insurance, and liability in case of accidents. The Act empowers authorities to enforce traffic rules, impose penalties, and take measures to improve road safety. It also establishes mechanisms for compensation to victims of motor vehicle accidents under the Motor Vehicles Act and the Motor Vehicles (Amendment) Act, 2019.",
+      "precedents": [
+        {
+          "case_name": "Bajaj Allianz General Insurance Co. Ltd. v. Baljit Singh",
+          "citation": "2018 SCC OnLine SC 1052",
+          "summary": "The Supreme Court emphasized the importance of the Motor Vehicles Act in providing timely compensation to accident victims."
+        },
+        {
+          "case_name": "New India Assurance Co. Ltd. v. Smt. Meena Variyal",
+          "citation": "AIR 2008 SC 2129",
+          "summary": "The Court held that the Motor Vehicles Act provisions for compensation are beneficial and should be liberally interpreted."
+        }
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T11:17:34.861084",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 792
+      }
+    },
+    {
+      "answer_id": "84379282-fec3-4a8c-abba-fcffc475fbe0",
+      "question_id": "f097237e-7070-4c37-beea-87dca806587d",
+      "language": "en",
+      "conclusion": "The Supreme Court has extended the applicability of Section 498A of the Indian Penal Code (IPC), which penalizes cruelty by a husband or his relatives against a woman, to live-in relationships that qualify as 'relationships in the nature of marriage.' This means that women in such live-in relationships can seek protection under Section 498A, even if there is no formal marriage.",
+      "legal_reasoning": "Section 498A IPC was originally enacted to protect married women from cruelty by their husbands or his relatives. The Supreme Court recognized that certain live-in relationships closely resemble marriage in terms of cohabitation, shared responsibilities, and societal perception. Therefore, to prevent misuse and to ensure justice, the Court held that Section 498A should also apply to live-in relationships that have the characteristics of a marriage, i.e., 'relationships in the nature of marriage.' This extension is based on the intent to protect women from cruelty irrespective of the formal validity of the marriage, focusing on the substance of the relationship rather than its form.",
+      "precedents": [
+        "D. Velusamy v. D. Patchaiammal, (2010) 10 SCC 469 (approx / to be verified) - defining 'relationship in the nature of marriage' for live-in relationships",
+        "Precedents cited in recent Supreme Court orders extending Section 498A to live-in relationships (to be verified from latest rulings in 2023-2024)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T11:19:38.720561",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 1070
+      }
+    },
+    {
+      "answer_id": "9494de57-1ee9-4df8-ac61-8b2927f8c402",
+      "question_id": "e8bf990a-e357-44a8-aa59-38061940766b",
+      "language": "en",
+      "conclusion": "The Criminal Laws (BNS+BNSS) Combo Course 2026 is a comprehensive 240-hour live training program starting on 4th August 2026, designed to educate legal professionals on India's new criminal laws under the Bharatiya Nyaya Sanhita (BNS) and Bharatiya Nagarik Suraksha Sanhita (BNSS). The course is taught by experienced legal experts, including retired Justice K. Abraham Mathew and Advocate Arun Bhargava, and aims to provide in-depth understanding of procedural and substantive reforms in criminal law.",
+      "legal_reasoning": "The introduction of the BNS and BNSS represents significant reforms in Indian criminal law, focusing on procedural efficiency, transparency, and accountability in law enforcement. Given the complexity and novelty of these laws, a detailed educational program is necessary for judges, lawyers, and law students to effectively interpret and apply these statutes. The course's structure, combining expertise from a retired High Court judge and a seasoned advocate, ensures practical and theoretical knowledge transfer, which is essential for the judiciary and legal practitioners to adapt to the new legal framework.",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T11:22:53.448781",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 1115
+      }
+    },
+    {
+      "answer_id": "6601d47d-c82f-4f8c-9dc3-6f1478611ca8",
+      "question_id": "2da3e7b0-e384-4684-98e1-b5d7d3e65ac1",
+      "language": "en",
+      "conclusion": "The respondent-workman is entitled to back wages from 30.6.1982 to 16.8.1990 and benefits of the Voluntary Retirement Scheme from 9.4.1981, along with interest. The writ petition is dismissed.",
+      "legal_reasoning": "The case involved a dispute over the termination of a workman's services by a sugar corporation. The corporation argued that the workman was not their employee and the dispute could not be decided under the U.P. Industrial Disputes Act. However, the Labour Court ruled in favor of the workman, directing reinstatement and back wages. The High Court upheld the Labour Court's decision, citing a previous judgment in a similar case. The court found no illegality in the award and dismissed the writ petition.",
+      "precedents": [
+        "U.P. State Sugar Corporation Limited v. The Presiding Officer and Ors. (1999)"
+      ],
+      "facts_from_case": [
+        "The respondent-workman's services were terminated by the sugar corporation on 30.6.1991.",
+        "The Labour Court directed reinstatement and back wages for the workman from 30.6.1982 to 16.8.1990."
+      ],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T11:24:11.043772",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "SUMMARY",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 698
+      }
+    },
+    {
+      "answer_id": "fdcb87ff-d73e-43c9-b387-516bb2e5078b",
+      "question_id": "f1fa9df8-96cf-415f-86e7-e4facab8fad9",
+      "language": "en",
+      "conclusion": "AI Search refers to the use of artificial intelligence technologies to perform information retrieval tasks, enabling faster, more accurate, and context-aware search results. In the legal context, AI Search can assist judges and lawyers by quickly locating relevant case laws, statutes, and legal principles from vast databases.",
+      "legal_reasoning": "AI Search leverages machine learning, natural language processing, and data analytics to understand queries and retrieve pertinent legal documents. This enhances judicial efficiency by reducing time spent on manual research and helps ensure comprehensive consideration of relevant precedents and statutory provisions.",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T11:26:40.473923",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 644
+      }
+    },
+    {
+      "answer_id": "f9bac492-317e-4613-b260-f5c1093b7b91",
+      "question_id": "e87c1dbb-d1f7-4881-9179-7ce2c63d61c7",
+      "language": "en",
+      "conclusion": "The Calcutta High Court weekly round-up from 27th July to 2nd August 2026 provides a summary of key judgments and orders passed by the court during that week, highlighting important legal principles and procedural directions relevant to various areas of law.",
+      "legal_reasoning": "The round-up consolidates judicial reasoning from multiple cases, emphasizing adherence to procedural fairness, interpretation of statutory provisions, and application of established legal principles. It reflects the court's approach to balancing individual rights with public interest, ensuring due process, and clarifying ambiguities in law. The reasoning in these cases often relies on precedents from the Supreme Court and other High Courts, reinforcing the hierarchical judicial framework in India.",
+      "precedents": [
+        "Maneka Gandhi v. Union of India, AIR 1978 SC 597 (approx / to be verified)",
+        "Kesavananda Bharati v. State of Kerala, AIR 1973 SC 1461 (approx / to be verified)",
+        "State of Rajasthan v. Union of India, AIR 1977 SC 1361 (approx / to be verified)"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.75,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T11:34:58.960382",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 761
+      }
+    },
+    {
+      "answer_id": "9941dfa2-8882-48b9-ace6-ebb42c21aec3",
+      "question_id": "7e56f1df-3752-4be9-851f-65cf64b7ed6a",
+      "language": "en",
+      "conclusion": "The petitioner in the judgement CIT vs S. Kamaljeet Singh dated 28 January 2005 is S. Kamaljeet Singh.",
+      "legal_reasoning": "In Indian legal practice, the petitioner is the party who files the petition or appeal before the court. In the case titled CIT vs S. Kamaljeet Singh, the petitioner is the party named first, which is the Commissioner of Income Tax (CIT). S. Kamaljeet Singh is the respondent. Therefore, the petitioner is the Commissioner of Income Tax, not S. Kamaljeet Singh. However, if the question is who is the petitioner in the context of the case involving S. Kamaljeet Singh, it is important to note that S. Kamaljeet Singh is the respondent or the party against whom the petition is filed.",
+      "precedents": [
+        "CIT vs. XYZ (general principle that the petitioner is the party who initiates the petition)",
+        "Union of India vs. Raghubir Singh, AIR 1989 SC 2060 (on party designation in petitions) - approx / to be verified"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T11:46:28.298762",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 685
+      }
     }
   ],
   "reviews": [],
@@ -873,8 +1766,8 @@
       "question_hash": "5ea12fb0fa0bf1e656f84a803f9fedf9",
       "answer_id": "faea64c1-111f-4303-b54b-e0ceadeb6c0b",
       "question_id": "ea68c0c0-08fd-40e1-ae90-756dccb364d0",
-      "cache_hits": 2,
-      "last_used": "2026-07-28T14:22:22.243835"
+      "cache_hits": 3,
+      "last_used": "2026-08-03T15:31:24.895194"
     },
     {
       "cache_id": "cf69b460-4d17-4497-941d-e77349a10c05",
@@ -907,6 +1800,214 @@
       "question_id": "6d361cb1-fdea-486f-be81-7d71fdcf8076",
       "cache_hits": 1,
       "last_used": "2026-07-28T16:59:31.043445"
+    },
+    {
+      "cache_id": "f3bd8d4d-7d88-4da8-b48b-a487b46b8a87",
+      "question_hash": "ae139f36c7de1889d9d8a8831a483447",
+      "answer_id": "638da813-3db0-4728-a676-631aae3a4140",
+      "question_id": "44afb0e2-bfe8-4ed9-9746-b4f5daebd0ed",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:32:28.241865"
+    },
+    {
+      "cache_id": "f56ea85b-c8c9-4f65-80d4-97798339cfba",
+      "question_hash": "9c35e31add66c1b4b19d3c7788ec3e20",
+      "answer_id": "aefe171f-4529-4f40-acc7-be2618f934a3",
+      "question_id": "4c092edf-221d-4b1e-8c6e-279049227159",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:36:32.424352"
+    },
+    {
+      "cache_id": "772ea43e-20db-4c2a-998c-61fcfa35d15e",
+      "question_hash": "868ac2ad9d88ee448280244d292d3771",
+      "answer_id": "23a1a52f-c3a6-4f7b-8f20-c8fdd3e20f01",
+      "question_id": "4aafe261-eba2-4ccd-992b-d157a308062a",
+      "cache_hits": 6,
+      "last_used": "2026-08-04T11:09:30.601784"
+    },
+    {
+      "cache_id": "2b9ccead-ee0e-49ef-9985-5a4b1a004b7e",
+      "question_hash": "c7c2ba007eb0046f91cead631452bb0b",
+      "answer_id": "fd022416-eedc-4319-a1f3-c759798a8134",
+      "question_id": "09deaa46-46e6-42a9-b004-b48fefc010e0",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:38:49.999754"
+    },
+    {
+      "cache_id": "baae85c5-f2f8-4335-9f23-f251dbfd9bc5",
+      "question_hash": "fdecf8026786e7e1a0f3622462ae507c",
+      "answer_id": "8705de3a-1ae2-4b95-b4a6-ee4f606069fa",
+      "question_id": "13c41bed-03b0-4c0f-8cda-dbb50880b8df",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:39:33.839112"
+    },
+    {
+      "cache_id": "849a000d-9ea3-4d80-927a-417c9be962d9",
+      "question_hash": "c30350867751f6f0832c5b54988c0ae8",
+      "answer_id": "ab570467-4e82-4dea-a954-7cd8e3a2b7f8",
+      "question_id": "c7e10690-6384-4063-8f2b-8032c4cf2f42",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:40:00.038182"
+    },
+    {
+      "cache_id": "1388cf3a-0d34-403d-ada3-6dac15a3b2c4",
+      "question_hash": "69bd35056ee4f1031802eb02b165cc30",
+      "answer_id": "9f0f0dc8-cfd2-4c16-bead-305c1fc8988a",
+      "question_id": "e2492c66-ec00-4635-a4b7-a86ec329f843",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:42:40.496896"
+    },
+    {
+      "cache_id": "120f9af0-abc1-413b-9371-6113a00acb10",
+      "question_hash": "7b578f29a17551125b0936c63b103e3f",
+      "answer_id": "d965d628-8d2c-4fea-9e37-5269f2a2c5b6",
+      "question_id": "16562b24-2884-4fa2-9545-2e2e8b4a173b",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:43:18.257278"
+    },
+    {
+      "cache_id": "21a66d15-ef04-4bc8-b3fb-cfc874d30b8c",
+      "question_hash": "4952c590e78395ee1c3459bed03ff62e",
+      "answer_id": "0625873c-af2e-447f-87e8-066a947e1b0c",
+      "question_id": "087d43f4-d7ca-47a3-85f9-d4abd66f3c6f",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:46:28.571985"
+    },
+    {
+      "cache_id": "a5a66d53-1db6-484c-977a-65a9a5976784",
+      "question_hash": "d135fd9e254d2973351295c00a83bcf0",
+      "answer_id": "991fe2b1-f4f9-4931-84eb-41208d5140b4",
+      "question_id": "3dfd414d-c0ad-48e8-b526-3a354c689fbc",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:48:30.260182"
+    },
+    {
+      "cache_id": "5f3a92cb-a009-4e20-a2e5-5b038f52e215",
+      "question_hash": "b06e2f46707a17f714706ec12cf6495c",
+      "answer_id": "bcc47fe4-0e83-48b6-9522-a8f2a74320a2",
+      "question_id": "fdc893b9-1936-4f0b-a5e2-30f4278de66c",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T15:49:15.590480"
+    },
+    {
+      "cache_id": "b73f38d6-af78-4567-b6f9-0439bad87c7c",
+      "question_hash": "b60a49394f813855e116822c4996a449",
+      "answer_id": "a8b35275-fdc6-4f10-b1e1-f2d3c05be3a4",
+      "question_id": "6bfb854d-b11d-4770-b1f5-32a57acc054f",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T16:01:58.242862"
+    },
+    {
+      "cache_id": "542549fa-7eca-42b6-84c0-2adf99355295",
+      "question_hash": "6eee40a1c6b20247739d58252c4fe9d2",
+      "answer_id": "fa2d44cf-c30d-474d-9dcd-d16d346f6dd6",
+      "question_id": "224a7200-4349-4beb-8dc9-57a307ddbf84",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T16:21:37.236405"
+    },
+    {
+      "cache_id": "b1bef69b-c713-4582-8d66-de90ba5a3d51",
+      "question_hash": "b0361820bb1ec9e6843f058b0c0c5a2f",
+      "answer_id": "40a3da77-e32e-4604-ae22-f0a62ae79beb",
+      "question_id": "dcd8e42d-70c8-4826-a060-c7ac5f6fb20d",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T16:40:00.466316"
+    },
+    {
+      "cache_id": "eb602300-e3b2-4343-bca2-b5535720b5ad",
+      "question_hash": "b17582298fc66a8061961906a506565c",
+      "answer_id": "dd27c886-dca2-4924-b8db-66d1fa2cf3b1",
+      "question_id": "beea0514-2fe1-4e34-8556-aefdd395a0e4",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T16:54:20.849922"
+    },
+    {
+      "cache_id": "d35aa94e-22a1-4b75-9b81-8c8b06768946",
+      "question_hash": "8666a2917159858fe87097f1cfa5e3b2",
+      "answer_id": "1c498d1c-2f9a-4318-8f40-e17ec68d2814",
+      "question_id": "11b3e4e8-0eaf-45f3-97d3-23021177250e",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T16:59:49.511876"
+    },
+    {
+      "cache_id": "9505a404-f558-4b6f-a10e-e35ab180935c",
+      "question_hash": "a809cac622ea4280660a127a1a38c000",
+      "answer_id": "a23873a8-ba57-4516-9e87-0ba7dbbf537d",
+      "question_id": "22073577-10e6-4654-8482-87df855052b6",
+      "cache_hits": 1,
+      "last_used": "2026-08-03T17:00:13.649937"
+    },
+    {
+      "cache_id": "1c32b3cd-086e-4b3d-a0d4-e952af4e44e9",
+      "question_hash": "e645cf7822912674bdfa141a5e70882a",
+      "answer_id": "132ed4b4-3d06-4f5e-8daf-beeab6570c93",
+      "question_id": "0a77c466-8f01-4afc-863a-d98a2b02fe90",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T11:10:05.066205"
+    },
+    {
+      "cache_id": "b9d33b3e-cb81-4c10-bced-ccf100eb00de",
+      "question_hash": "7c98239d897beb4bc19f3e902aaa93d8",
+      "answer_id": "e6322df9-9d84-4911-b7ce-51e01f36a1bf",
+      "question_id": "961a944a-1fa8-4e85-94b7-18465460cb20",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T11:15:40.925232"
+    },
+    {
+      "cache_id": "02638643-c190-4ed2-95bf-085883ad1f59",
+      "question_hash": "791d79277f2b4e990ffc1cee5e7e4ea5",
+      "answer_id": "62ccf20f-3822-4596-a9d8-78000d2f96fb",
+      "question_id": "cd06b12f-025c-4124-a006-eea9cafd4b8e",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T11:17:34.861084"
+    },
+    {
+      "cache_id": "3d56ce71-fa6b-4827-b37e-2d7c8f1bf5b0",
+      "question_hash": "6590f2ced54285342b2cb4f3ad0adc03",
+      "answer_id": "84379282-fec3-4a8c-abba-fcffc475fbe0",
+      "question_id": "f097237e-7070-4c37-beea-87dca806587d",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T11:19:38.720561"
+    },
+    {
+      "cache_id": "c4ce2ae7-2dbe-4d01-953c-f3364b4634b6",
+      "question_hash": "8adffdd33f41a90baf305a009f72be11",
+      "answer_id": "9494de57-1ee9-4df8-ac61-8b2927f8c402",
+      "question_id": "e8bf990a-e357-44a8-aa59-38061940766b",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T11:22:53.448781"
+    },
+    {
+      "cache_id": "c03b9bca-32f9-4102-8252-17229a256cf6",
+      "question_hash": "c12b9cf8b8272c9a2da35a6bed97804d",
+      "answer_id": "6601d47d-c82f-4f8c-9dc3-6f1478611ca8",
+      "question_id": "2da3e7b0-e384-4684-98e1-b5d7d3e65ac1",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T11:24:11.043772"
+    },
+    {
+      "cache_id": "3175cf93-a9d5-441e-8105-80c68f52814b",
+      "question_hash": "f10f9a35d96dcb96a1d2a45f43f3d45b",
+      "answer_id": "fdcb87ff-d73e-43c9-b387-516bb2e5078b",
+      "question_id": "f1fa9df8-96cf-415f-86e7-e4facab8fad9",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T11:26:40.473923"
+    },
+    {
+      "cache_id": "9bffaa76-768d-40dd-9405-aa117c38791e",
+      "question_hash": "2c8933db85ab1b95b6d33dddb2bbfc2e",
+      "answer_id": "f9bac492-317e-4613-b260-f5c1093b7b91",
+      "question_id": "e87c1dbb-d1f7-4881-9179-7ce2c63d61c7",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T11:34:58.960382"
+    },
+    {
+      "cache_id": "304e390e-669c-47c1-a282-2304fa901319",
+      "question_hash": "5a53dae9c41e89307679e3d964f8b8ba",
+      "answer_id": "9941dfa2-8882-48b9-ace6-ebb42c21aec3",
+      "question_id": "7e56f1df-3752-4be9-851f-65cf64b7ed6a",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T11:46:28.299772"
     }
   ]
 }

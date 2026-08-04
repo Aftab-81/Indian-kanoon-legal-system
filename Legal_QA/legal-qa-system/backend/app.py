@@ -250,15 +250,33 @@ def save_vector_db(index):
 def load_vector_db():
     """
     Cached FAISS index + cases to avoid repeated disk load.
+    Checks for sync between vectors and metadata.
     """
     global _faiss_index, _cases_cache
     try:
+        # Check memory sync before returning memory cache
         if _faiss_index is not None and _cases_cache is not None:
-            return _faiss_index, _cases_cache
+            if _faiss_index.ntotal == len(_cases_cache.get("chunks", [])):
+                return _faiss_index, _cases_cache
+            else:
+                logger.warning(f"⚠️ FAISS memory desync detected! Resetting memory and disk DB...")
+                _faiss_index = None
+                _cases_cache = None
+                if os.path.exists(VECTOR_DB_FILE): os.remove(VECTOR_DB_FILE)
+                if os.path.exists(CASES_FILE): os.remove(CASES_FILE)
+                return None, {"chunks": []}
 
         if os.path.exists(VECTOR_DB_FILE):
             index = faiss.read_index(VECTOR_DB_FILE)
             cases_data = load_cases_data()
+            
+            # Check for desync between FAISS and metadata
+            if index.ntotal != len(cases_data.get("chunks", [])):
+                logger.warning(f"⚠️ FAISS disk desync detected! Vectors: {index.ntotal}, Metadata: {len(cases_data.get('chunks', []))}. Resetting DB...")
+                if os.path.exists(VECTOR_DB_FILE): os.remove(VECTOR_DB_FILE)
+                if os.path.exists(CASES_FILE): os.remove(CASES_FILE)
+                return None, {"chunks": []}
+
             _faiss_index = index
             _cases_cache = cases_data
             logger.info(f"✅ Loaded {index.ntotal} vectors")
@@ -270,7 +288,7 @@ def load_vector_db():
 # ======================
 # ENHANCED RETRIEVAL
 # ======================
-def search_local_vector_db(query, top_k=10):
+def search_local_vector_db(query, top_k=10, case_id=None):
     """
     Semantic search over uploaded judgments using FAISS + cases_metadata.json
     """
@@ -283,17 +301,25 @@ def search_local_vector_db(query, top_k=10):
     try:
         model = get_embedding_model()
         query_embedding = model.encode([query]).astype('float32')
-        distances, indices = index.search(query_embedding, min(top_k, index.ntotal))
+        
+        # If filtering by case_id, fetch all to guarantee we don't miss case_id chunks due to global ranking
+        search_k = index.ntotal if case_id else min(top_k, index.ntotal)
+        distances, indices = index.search(query_embedding, search_k)
 
         retrieved = []
 
         for idx, distance in zip(indices[0], distances[0]):
             if 0 <= idx < len(chunks_list):
                 chunk_info = chunks_list[idx]
+                
+                # Filter by case_id if provided
+                if case_id and chunk_info.get('case_id') != case_id:
+                    continue
+
                 similarity = 1 / (1 + float(distance))
 
-                # loose filter here, strict threshold later
-                if similarity > 0.35:
+                # loose filter here, strict threshold later (unless case_id provided)
+                if similarity > 0.35 or case_id:
                     retrieved.append({
                         'chunk': chunk_info['text'],
                         'case_id': chunk_info['case_id'],
@@ -301,6 +327,9 @@ def search_local_vector_db(query, top_k=10):
                         'similarity': float(similarity),
                         'chunk_type': chunk_info.get('chunk_type', 'paragraph_group')
                     })
+                    
+                    if len(retrieved) >= top_k:
+                        break
 
         retrieved = sorted(retrieved, key=lambda x: x['similarity'], reverse=True)
         return retrieved, len(retrieved)
@@ -746,6 +775,172 @@ def call_reasoner_llm(question, retrieved_cases, refinement_note=None, language=
             "confidence": 0.0
         }
 
+INTENT_DETECTION_PROMPT = """You are an intent classifier for a Legal QA system.
+Analyze the user's input and classify their intent into exactly ONE of the following categories:
+- GREETING: The user is saying hello, hi, good morning, etc.
+- SUMMARY: The user is asking for a summary, overview, or explanation of the whole case/judgment.
+- DOCUMENT_QA: The user is asking a specific question about the case, legal issues, or anything else.
+
+USER INPUT: {question}
+
+Return ONLY valid JSON:
+{{
+  "intent": "GREETING"
+}}
+OR
+{{
+  "intent": "SUMMARY"
+}}
+OR
+{{
+  "intent": "DOCUMENT_QA"
+}}
+"""
+
+GREETING_PROMPT = """You are a polite, professional Indian legal assistant.
+The user has greeted you. Respond warmly, maintain a professional tone, and invite the user to ask questions about the uploaded judgment or case.
+Do not answer any legal questions here.
+
+USER INPUT: {question}
+LANGUAGE INSTRUCTION: {language_block}
+
+Return ONLY valid JSON matching this exact structure:
+{{
+  "conclusion": "Your greeting response here in the requested language",
+  "legal_reasoning": "",
+  "facts_from_case": [],
+  "precedents_cited_in_text": [],
+  "supreme_court_precedents": [],
+  "para_references": [],
+  "recommended_next_steps": [],
+  "suggested_decision": "",
+  "missing_info": [],
+  "confidence": 1.0
+}}
+"""
+
+SUMMARY_PROMPT = """You are an expert Indian legal analyst assisting a judge.
+The user wants a summary of the uploaded case. Use the provided case text to generate a structured summary.
+Cover the following aspects: Facts, Legal Issues, Arguments, Court's Reasoning, and Final Judgement.
+
+RETRIEVED CASE TEXT:
+{retrieved_text}
+
+LANGUAGE INSTRUCTION: {language_block}
+
+Return ONLY valid JSON matching this exact structure:
+{{
+  "conclusion": "Brief 1-2 sentence overview of the final decision.",
+  "legal_reasoning": "Detailed summary covering Facts, Legal Issues, Arguments, Court's Reasoning, and Final Judgement in a structured way.",
+  "facts_from_case": ["Key fact 1", "Key fact 2"],
+  "precedents_cited_in_text": [],
+  "supreme_court_precedents": [],
+  "para_references": [],
+  "recommended_next_steps": [],
+  "suggested_decision": "",
+  "missing_info": [],
+  "confidence": 0.9
+}}
+"""
+
+def detect_intent(question):
+    if not OPENAI_API_KEY:
+        return "DOCUMENT_QA"
+    prompt = INTENT_DETECTION_PROMPT.format(question=question)
+    try:
+        if OPENAI_NEW_VERSION and client:
+            response = client.chat.completions.create(
+                model="gpt-4.1-mini" if "gpt-4.1-mini" in str(client) else "gpt-3.5-turbo",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.0,
+                max_tokens=100
+            )
+            answer_text = response.choices[0].message.content.strip()
+        else:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.0,
+                max_tokens=100
+            )
+            answer_text = response['choices'][0]['message']['content'].strip()
+
+        if answer_text.startswith("```"):
+            answer_text = answer_text.replace("```json", "").replace("```", "").strip()
+        
+        parsed = json.loads(answer_text)
+        return parsed.get("intent", "DOCUMENT_QA")
+    except Exception as e:
+        logger.error(f"❌ Intent Detection Error: {e}")
+        return "DOCUMENT_QA"
+
+def call_greeting_llm(question, language="en"):
+    if not OPENAI_API_KEY:
+        return {"conclusion": "Hello! I am ready to help. (OpenAI key missing)", "confidence": 1.0}
+    
+    language_block = build_language_instruction(language)
+    prompt = GREETING_PROMPT.format(question=question, language_block=language_block)
+    try:
+        if OPENAI_NEW_VERSION and client:
+            response = client.chat.completions.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.7,
+                max_tokens=500
+            )
+            answer_text = response.choices[0].message.content.strip()
+        else:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.7,
+                max_tokens=500
+            )
+            answer_text = response['choices'][0]['message']['content'].strip()
+
+        if answer_text.startswith("```"):
+            answer_text = answer_text.replace("```json", "").replace("```", "").strip()
+        return json.loads(answer_text)
+    except Exception as e:
+        return {"conclusion": "Hello! How can I assist you with the legal document today?", "confidence": 1.0}
+
+def call_summary_llm(retrieved_cases, language="en"):
+    if not OPENAI_API_KEY:
+        return {"conclusion": "Summary unavailable. OpenAI API key missing.", "confidence": 0.0}
+    
+    retrieved_text = "\n\n---CHUNK SEPARATOR---\n\n".join([
+        f"[{case['case_name']}]\n{case['chunk']}"
+        for case in retrieved_cases[:10]
+    ]) or "No relevant case text retrieved."
+
+    language_block = build_language_instruction(language)
+    prompt = SUMMARY_PROMPT.format(retrieved_text=retrieved_text, language_block=language_block)
+    
+    try:
+        if OPENAI_NEW_VERSION and client:
+            response = client.chat.completions.create(
+                model="gpt-4-turbo-preview" if "gpt-4" in str(client) else "gpt-3.5-turbo-16k",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.2,
+                max_tokens=2000
+            )
+            answer_text = response.choices[0].message.content.strip()
+        else:
+            response = openai.ChatCompletion.create(
+                model="gpt-3.5-turbo-16k",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.2,
+                max_tokens=2000
+            )
+            answer_text = response['choices'][0]['message']['content'].strip()
+
+        if answer_text.startswith("```"):
+            answer_text = answer_text.replace("```json", "").replace("```", "").strip()
+        return json.loads(answer_text)
+    except Exception as e:
+        logger.error(f"❌ Summary Error: {e}")
+        return {"conclusion": "Failed to generate summary.", "confidence": 0.0}
+
 def call_external_legal_reasoner(question, refinement_note=None, language="en"):
     """Fallback when LOCAL_PDF retrieval is weak. Uses SerpAPI + judge-grade reasoning."""
     if not OPENAI_API_KEY:
@@ -817,54 +1012,6 @@ IMPORTANT:
 """
 
     # 5) Call LLM
-    try:
-        response = client.chat.completions.create(
-            model="gpt-4.1-mini",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.2,
-            max_tokens=2000
-        )
-
-        answer_text = response.choices[0].message.content.strip()
-
-        # If wrapped in ```json ... ```
-        if answer_text.startswith("```"):
-            answer_text = answer_text.replace("```json", "").replace("```", "").strip()
-
-        return json.loads(answer_text)
-
-    except Exception as e:
-        logger.error(f"❌ External Reasoner Error: {e}", exc_info=True)
-        return {
-            "conclusion": f"Error: {str(e)}",
-            "legal_reasoning": "Could not produce external legal reasoning",
-            "supreme_court_precedents": [],
-            "para_references": [],
-            "recommended_next_steps": [],
-            "suggested_decision": "",
-            "missing_info": [],
-            "confidence": 0.0
-        }
-
-
-    # Real-time web search context (legal focused)
-    web_context = web_search_serpapi(question)
-
-    final_question = question
-    if refinement_note:
-        final_question = (
-            f"{question}\n\nThe previous answer to a similar question was rejected by the judge. "
-            f"Judge's review comment: {refinement_note}. Provide an improved, clearer answer."
-        )
-
-    language_block = build_language_instruction(language)
-    
-    prompt = EXTERNAL_REASONER_PROMPT.format(
-        question=final_question,
-        web_context=web_context or "No web results found or SerpAPI not configured.",
-        language_block=language_block
-    )
-
     try:
         response = client.chat.completions.create(
             model="gpt-4.1-mini",
@@ -1212,6 +1359,7 @@ def ask_legal_question():
     try:
         data = request.json or {}
         question = data.get('question', '').strip()
+        case_id = data.get('case_id')
         language = (data.get('language') or 'en').lower()
         if language not in ('en', 'mr', 'hi'):
             language = 'en'
@@ -1249,62 +1397,74 @@ def ask_legal_question():
             "asked_at": datetime.now().isoformat()
         })
 
-        # 3️⃣ — PDF-based retrieval
-        retrieved_cases, retrieval_count = search_local_vector_db(question, top_k=10)
-        max_sim = max((rc["similarity"] for rc in retrieved_cases), default=0.0)
+        # 3️⃣ — Intent Detection
+        intent = detect_intent(question)
+        logger.info(f"🧠 Detected Intent: {intent}")
 
-        logger.info(f"🔎 Retrieval_count={retrieval_count}, max_sim={max_sim:.3f}")
-
-        # AUTOMATIC decision:
-        # Use LOCAL_PDF only if at least 1 strong hit and similarity high
-        use_local = (retrieval_count >= 1 and max_sim >= 0.75)
-
-        used_mode = "LOCAL_PDF"
+        retrieved_cases = []
+        retrieval_count = 0
         validator_result = None
 
-        # 4️⃣ — Decide between LOCAL PDF vs EXTERNAL reasoning
-        if not use_local:
-            used_mode = "EXTERNAL"
-            logger.info("🌐 Using EXTERNAL reasoning (SerpAPI + general legal knowledge)")
-            answer_json = call_external_legal_reasoner(
-                question, refinement_note=refinement_note, language=language
-            )
+        if intent == "GREETING":
+            used_mode = "GREETING"
+            answer_json = call_greeting_llm(question, language)
+            final_confidence = answer_json.get("confidence", 1.0)
+            
+        elif intent == "SUMMARY":
+            used_mode = "SUMMARY"
+            retrieved_cases, retrieval_count = search_local_vector_db("summary of facts", top_k=15, case_id=case_id)
+            if case_id and retrieval_count == 0:
+                logger.warning(f"⚠️ Zero chunks retrieved for SUMMARY on case_id {case_id}.")
+                answer_json = {
+                    "conclusion": "I could not find any relevant information in the uploaded document to summarize.",
+                    "legal_reasoning": "The semantic search returned zero chunks matching your query from the active document context.",
+                    "confidence": 0.0
+                }
+            else:
+                answer_json = call_summary_llm(retrieved_cases, language)
+            final_confidence = answer_json.get("confidence", 0.9)
+            
+        else: # DOCUMENT_QA
+            retrieved_cases, retrieval_count = search_local_vector_db(question, top_k=10, case_id=case_id)
+            max_sim = max((rc["similarity"] for rc in retrieved_cases), default=0.0)
+            logger.info(f"🔎 Retrieval_count={retrieval_count}, max_sim={max_sim:.3f}, case_id={case_id}")
 
-            final_confidence = max(
-                0.1,
-                min(1.0, answer_json.get("confidence", 0.6))
-            )
+            if case_id:
+                # Document is active; NEVER fallback to SerpAPI
+                use_local = True
+            else:
+                use_local = (retrieval_count >= 1 and max_sim >= 0.75)
 
-        else:
-            used_mode = "LOCAL_PDF"
-            logger.info("📚 Using LOCAL_PDF RAG reasoning (uploaded judgments)")
-            answer_json = call_reasoner_llm(
-                question,
-                retrieved_cases,
-                refinement_note=refinement_note,
-                language=language
-            )
-
-            # Run validator only for PDF-based answers
-            source_text_for_validator = "\n\n".join(
-                [rc["chunk"] for rc in retrieved_cases[:5]]
-            )
-            validator_result = call_validator_llm(
-                answer_json,
-                source_text_for_validator
-            )
-
-            base_conf = answer_json.get("confidence", 0.5)
-            validator_conf = validator_result.get("confidence_score", 0.8)
-            hallucinations = validator_result.get("hallucinations_found", 0)
-
-            final_confidence = max(
-                0.1,
-                min(
-                    1.0,
-                    (base_conf * validator_conf) - (hallucinations * 0.1)
+            if use_local and case_id and retrieval_count == 0:
+                logger.warning(f"⚠️ Zero chunks retrieved for DOCUMENT_QA on case_id {case_id}. Query: '{question}'")
+                answer_json = {
+                    "conclusion": "I could not find any relevant information in the uploaded document to answer your question.",
+                    "legal_reasoning": "The semantic search returned zero chunks matching your query from the active document context.",
+                    "confidence": 0.0
+                }
+                used_mode = "LOCAL_PDF"
+                final_confidence = 0.0
+            elif not use_local:
+                used_mode = "EXTERNAL"
+                logger.info("🌐 Using EXTERNAL reasoning (SerpAPI + general legal knowledge)")
+                answer_json = call_external_legal_reasoner(
+                    question, refinement_note=refinement_note, language=language
                 )
-            )
+                final_confidence = max(0.1, min(1.0, answer_json.get("confidence", 0.6)))
+            else:
+                used_mode = "LOCAL_PDF"
+                logger.info("📚 Using LOCAL_PDF RAG reasoning (uploaded judgments)")
+                answer_json = call_reasoner_llm(
+                    question, retrieved_cases, refinement_note=refinement_note, language=language
+                )
+
+                source_text_for_validator = "\n\n".join([rc["chunk"] for rc in retrieved_cases[:5]])
+                validator_result = call_validator_llm(answer_json, source_text_for_validator)
+
+                base_conf = answer_json.get("confidence", 0.5)
+                validator_conf = validator_result.get("confidence_score", 0.8)
+                hallucinations = validator_result.get("hallucinations_found", 0)
+                final_confidence = max(0.1, min(1.0, (base_conf * validator_conf) - (hallucinations * 0.1)))
 
         # 5️⃣ — Normalize fields
         precedents_list = (
