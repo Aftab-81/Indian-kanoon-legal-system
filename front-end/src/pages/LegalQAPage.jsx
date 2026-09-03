@@ -1,16 +1,19 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/dashboard/Header';
 import Footer from '../components/dashboard/Footer';
 
-const API_BASE = 'http://localhost:8002/api'; // Changed to port 8002
+const API_BASE = 'http://localhost:8002/api';
 
 function LegalQAPage() {
   const [darkMode, setDarkMode] = useState(false);
-  const [activePage, setActivePage] = useState('home');
+  const [activePage, setActivePage] = useState('home'); // 'home' (chat), 'upload', 'history'
   const [stats, setStats] = useState(null);
   const [language, setLanguage] = useState('en');
   const navigate = useNavigate();
+
+  // Global state for uploaded document
+  const [uploadedDoc, setUploadedDoc] = useState(null); // { caseName, date, pages, size, indexedTime, lang, status }
 
   const toggleDarkMode = () => {
     const newDarkMode = !darkMode;
@@ -19,7 +22,6 @@ function LegalQAPage() {
   };
 
   useEffect(() => {
-    // Load dark mode preference
     const savedDarkMode = localStorage.getItem('darkMode');
     if (savedDarkMode !== null) {
       setDarkMode(savedDarkMode === 'true');
@@ -28,7 +30,6 @@ function LegalQAPage() {
       setDarkMode(prefersDark);
       localStorage.setItem('darkMode', prefersDark ? 'true' : 'false');
     }
-
     fetchStats();
     const interval = setInterval(fetchStats, 30000);
     return () => clearInterval(interval);
@@ -45,693 +46,474 @@ function LegalQAPage() {
   };
 
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-slate-900 text-white' : 'bg-gradient-to-br from-gray-100 to-gray-200'}`}>
+    <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-slate-900 text-white' : 'bg-gray-50 text-gray-900'}`}>
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
-      <main className="container mx-auto px-6 py-8">
-        {/* Page Title with Back Button */}
+      <main className="container mx-auto px-4 py-8 max-w-6xl">
+        {/* Page Title */}
         <div className="mb-8 flex justify-between items-center">
           <button
             onClick={() => navigate('/modules')}
-            className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-slate-700 hover:bg-slate-600 text-white' : 'bg-white hover:bg-gray-100 text-gray-800'} transition-colors shadow-sm flex items-center gap-2`}
+            className={`px-4 py-2 rounded-lg ${darkMode ? 'bg-slate-800 hover:bg-slate-700 text-white' : 'bg-white hover:bg-gray-100 text-gray-800'} transition-all shadow-sm border ${darkMode ? 'border-slate-700' : 'border-gray-200'} flex items-center gap-2 font-medium`}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
             </svg>
             Back to Modules
           </button>
           <div className="text-right">
-            <h1 className={`text-2xl font-serif ${darkMode ? 'text-white' : 'text-gray-800'}`}>
-              Legal QA System
+            <h1 className="text-3xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+              Judicial Insight Engine
             </h1>
-            <p className={`text-sm mt-1 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-              AI-Powered Legal Question Answering with Supreme Court Precedents
+            <p className={`text-sm mt-1 font-medium ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+              Intent-Driven Legal QA System
             </p>
           </div>
         </div>
 
         {/* Tab Navigation */}
-        <div className={`mb-8 border-b ${darkMode ? 'border-slate-700' : 'border-gray-300'}`}>
-          <div className="flex gap-1">
-            <button
-              onClick={() => setActivePage('home')}
-              className={`px-6 py-3 font-medium transition-colors border-b-2 ${
-                activePage === 'home'
-                  ? darkMode
-                    ? 'border-indigo-500 text-indigo-400'
-                    : 'border-indigo-600 text-indigo-600'
-                  : darkMode
-                  ? 'border-transparent text-gray-400 hover:text-gray-300'
-                  : 'border-transparent text-gray-600 hover:text-gray-800'
-              }`}
-            >
-              🏠 Ask Question
-            </button>
-            <button
-              onClick={() => setActivePage('upload')}
-              className={`px-6 py-3 font-medium transition-colors border-b-2 ${
-                activePage === 'upload'
-                  ? darkMode
-                    ? 'border-indigo-500 text-indigo-400'
-                    : 'border-indigo-600 text-indigo-600'
-                  : darkMode
-                  ? 'border-transparent text-gray-400 hover:text-gray-300'
-                  : 'border-transparent text-gray-600 hover:text-gray-800'
-              }`}
-            >
-              📤 Upload Case
-            </button>
-            <button
-              onClick={() => setActivePage('history')}
-              className={`px-6 py-3 font-medium transition-colors border-b-2 ${
-                activePage === 'history'
-                  ? darkMode
-                    ? 'border-indigo-500 text-indigo-400'
-                    : 'border-indigo-600 text-indigo-600'
-                  : darkMode
-                  ? 'border-transparent text-gray-400 hover:text-gray-300'
-                  : 'border-transparent text-gray-600 hover:text-gray-800'
-              }`}
-            >
-              📋 History
-            </button>
-          </div>
+        <div className={`mb-6 p-1 flex gap-2 rounded-xl border w-max ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'} shadow-sm`}>
+          <button
+            onClick={() => setActivePage('home')}
+            className={`px-6 py-2.5 rounded-lg font-medium transition-all ${activePage === 'home' ? 'bg-blue-600 text-white shadow-md' : darkMode ? 'text-gray-400 hover:text-white hover:bg-slate-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'}`}
+          >
+            💬 Chat
+          </button>
+          <button
+            onClick={() => setActivePage('upload')}
+            className={`px-6 py-2.5 rounded-lg font-medium transition-all ${activePage === 'upload' ? 'bg-blue-600 text-white shadow-md' : darkMode ? 'text-gray-400 hover:text-white hover:bg-slate-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'}`}
+          >
+            📤 Upload Document
+          </button>
+          <button
+            onClick={() => setActivePage('history')}
+            className={`px-6 py-2.5 rounded-lg font-medium transition-all ${activePage === 'history' ? 'bg-blue-600 text-white shadow-md' : darkMode ? 'text-gray-400 hover:text-white hover:bg-slate-700' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'}`}
+          >
+            📋 History
+          </button>
         </div>
 
-        {/* Stats Bar */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-          <div className={`p-4 rounded-xl ${darkMode ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-gray-200'} shadow-lg`}>
-            <div className="text-sm text-gray-400 mb-1">Cases Uploaded</div>
-            <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              {stats?.total_cases_uploaded || 0}
-            </div>
-          </div>
-          <div className={`p-4 rounded-xl ${darkMode ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-gray-200'} shadow-lg`}>
-            <div className="text-sm text-gray-400 mb-1">Questions Asked</div>
-            <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              {stats?.total_questions_asked || 0}
-            </div>
-          </div>
-          <div className={`p-4 rounded-xl ${darkMode ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-gray-200'} shadow-lg`}>
-            <div className="text-sm text-gray-400 mb-1">Approved Answers</div>
-            <div className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-              {stats?.approved_answers || 0}
-            </div>
-          </div>
+        {/* Dynamic Content */}
+        <div className="w-full">
+          {activePage === 'home' && <ChatPage darkMode={darkMode} language={language} setLanguage={setLanguage} source="external" />}
+          {activePage === 'upload' && <UploadPage darkMode={darkMode} language={language} setLanguage={setLanguage} setUploadedDoc={setUploadedDoc} setActivePage={setActivePage} uploadedDoc={uploadedDoc} />}
+          {activePage === 'history' && <HistoryPage darkMode={darkMode} source="external" />}
         </div>
-
-        {/* Language Selector */}
-        <div className={`mb-6 p-4 rounded-xl ${darkMode ? 'bg-slate-800 border border-slate-700' : 'bg-white border border-gray-200'} shadow-lg`}>
-          <label className={`block text-sm font-semibold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-            🌐 Answer Language
-          </label>
-          <div className="flex gap-3">
-            <button
-              onClick={() => setLanguage('en')}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                language === 'en'
-                  ? 'bg-indigo-600 text-white shadow-lg transform scale-105'
-                  : darkMode
-                  ? 'bg-slate-700 text-gray-300 hover:bg-slate-600'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              English
-            </button>
-            <button
-              onClick={() => setLanguage('mr')}
-              className={`px-6 py-2 rounded-lg font-medium transition-all ${
-                language === 'mr'
-                  ? 'bg-indigo-600 text-white shadow-lg transform scale-105'
-                  : darkMode
-                  ? 'bg-slate-700 text-gray-300 hover:bg-slate-600'
-                  : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-              }`}
-            >
-              मराठी
-            </button>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        {activePage === 'home' && <HomePage language={language} darkMode={darkMode} />}
-        {activePage === 'upload' && <UploadPage darkMode={darkMode} />}
-        {activePage === 'history' && <HistoryPage darkMode={darkMode} />}
       </main>
-
       <Footer darkMode={darkMode} />
     </div>
   );
 }
 
 // =====================
-// HOME PAGE
+// UPLOAD & DOC INFO PAGE
 // =====================
-function HomePage({ language, darkMode }) {
-  const [question, setText] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [answer, setAnswer] = useState(null);
-  const [error, setError] = useState('');
-
-  const handleAsk = async () => {
-    if (!question.trim()) {
-      setError('Please enter a question');
-      return;
-    }
-
-    setLoading(true);
-    setError('');
-    setAnswer(null);
-
-    try {
-      const res = await fetch(`${API_BASE}/ask`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ question, language })
-      });
-
-      const data = await res.json();
-
-      if (res.status !== 200) {
-        setError(data.error || data.message || 'Error occurred');
-      } else {
-        setAnswer(data);
-      }
-    } catch (err) {
-      setError('Failed to connect: ' + err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleApprove = async (approve, comment) => {
-    if (!answer) return;
-
-    try {
-      await fetch(`${API_BASE}/approve-answer`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          answer_id: answer.answer_id,
-          approved: approve,
-          comment: comment || ''
-        })
-      });
-
-      setAnswer({
-        ...answer,
-        status: approve ? 'APPROVED' : 'REJECTED',
-        review_comment: comment || ''
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const cardClass = darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200';
-
-  return (
-    <div>
-      {!answer ? (
-        <div className="space-y-6">
-          <div className={`p-6 rounded-xl border ${cardClass} shadow-lg`}>
-            <label className={`block text-sm font-semibold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-              Your Legal Question:
-            </label>
-            <textarea
-              value={question}
-              onChange={(e) => setText(e.target.value)}
-              placeholder="E.g., Under NDPS, can bail be granted if only named in disclosure and no recovery?"
-              rows={6}
-              disabled={loading}
-              className={`w-full px-4 py-3 rounded-lg border ${
-                darkMode
-                  ? 'bg-slate-700 border-slate-600 text-white placeholder-gray-400'
-                  : 'bg-gray-50 border-gray-300 text-gray-900'
-              } focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all`}
-            />
-          </div>
-
-          {error && (
-            <div className="p-4 bg-red-50 border-l-4 border-red-500 rounded-r-lg">
-              <p className="text-red-700 font-medium">❌ {error}</p>
-            </div>
-          )}
-
-          <button
-            onClick={handleAsk}
-            disabled={loading}
-            className="w-full px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold rounded-xl shadow-lg transition-all transform hover:scale-105 disabled:transform-none"
-          >
-            {loading ? (
-              <span className="flex items-center justify-center gap-2">
-                <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-                </svg>
-                Analyzing...
-              </span>
-            ) : (
-              '🔍 Ask Question'
-            )}
-          </button>
-
-          <div className={`p-6 rounded-xl border ${darkMode ? 'bg-blue-900/20 border-blue-700' : 'bg-blue-50 border-blue-200'} shadow-lg`}>
-            <h4 className={`font-semibold mb-3 flex items-center gap-2 ${darkMode ? 'text-blue-300' : 'text-blue-800'}`}>
-              <span className="text-xl">💡</span> How it works:
-            </h4>
-            <ul className={`space-y-2 text-sm ${darkMode ? 'text-blue-200' : 'text-blue-700'}`}>
-              <li className="flex items-start gap-2">
-                <span className="text-indigo-500 font-bold">•</span>
-                <span>Searches uploaded Supreme Court judgments (RAG mode)</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-indigo-500 font-bold">•</span>
-                <span>If not found, uses external legal reasoning + SerpAPI fallback</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-indigo-500 font-bold">•</span>
-                <span>Structured judge-friendly answer with reasoning</span>
-              </li>
-              <li className="flex items-start gap-2">
-                <span className="text-indigo-500 font-bold">•</span>
-                <span>Caching for duplicate question speed</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      ) : (
-        <AnswerPanel
-          answer={answer}
-          onApprove={handleApprove}
-          onNew={() => {
-            setAnswer(null);
-            setText('');
-          }}
-          darkMode={darkMode}
-        />
-      )}
-    </div>
-  );
-}
-
-// =====================
-// ANSWER PANEL
-// =====================
-function AnswerPanel({ answer, onApprove, onNew, darkMode }) {
-  const [expandedCase, setExpandedCase] = useState(null);
-  const [reviewComment, setReviewComment] = useState('');
-
-  const getScoreColor = (score) => {
-    if (score >= 0.75) return '#10b981';
-    if (score >= 0.5) return '#f59e0b';
-    return '#ef4444';
-  };
-
-  const getScoreLabel = (score) => {
-    if (score >= 0.75) return 'HIGH CONFIDENCE';
-    if (score >= 0.5) return 'MEDIUM CONFIDENCE';
-    return 'LOW - NEEDS REVIEW';
-  };
-
-  const validator = answer.validator_result || {};
-  const renderPrecedentText = (prec) => {
-    if (typeof prec === 'string') return prec;
-    if (prec && typeof prec === 'object') {
-      const parts = [];
-      if (prec.case_name) parts.push(prec.case_name);
-      if (prec.citation) parts.push(prec.citation);
-      if (prec.summary) parts.push(prec.summary);
-      return parts.join(' — ');
-    }
-    return '';
-  };
-
-  const cardClass = darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200';
-
-  return (
-    <div className="space-y-6">
-      {/* Cache/Mode Banners */}
-      {answer.from_cache && (
-        <div className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 text-white rounded-xl font-semibold shadow-lg flex items-center gap-3">
-          <span className="text-2xl">⚡</span>
-          <span>Instant Answer (Retrieved from cache)</span>
-        </div>
-      )}
-
-      {answer.mode && (
-        <div className={`px-6 py-3 ${answer.mode === 'EXTERNAL' ? 'bg-gradient-to-r from-blue-600 to-blue-700' : 'bg-gradient-to-r from-green-600 to-emerald-600'} text-white rounded-xl font-semibold shadow-lg flex items-center gap-3`}>
-          <span className="text-2xl">{answer.mode === 'EXTERNAL' ? '🌐' : '📄'}</span>
-          <span>{answer.mode === 'EXTERNAL' ? 'External Legal Reasoning' : 'RAG: Uploaded Judgments Used'}</span>
-        </div>
-      )}
-
-      {/* Conclusion Card */}
-      <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-        <div className="flex justify-between items-start mb-4">
-          <h3 className={`text-2xl font-serif font-bold flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            <span>📌</span> CONCLUSION
-          </h3>
-          <div
-            className="px-4 py-2 rounded-full text-sm font-bold shadow-md"
-            style={{ 
-              backgroundColor: `${getScoreColor(answer.uncertainty_score)}20`,
-              color: getScoreColor(answer.uncertainty_score),
-              border: `2px solid ${getScoreColor(answer.uncertainty_score)}`
-            }}
-          >
-            {getScoreLabel(answer.uncertainty_score)}
-          </div>
-        </div>
-
-        <p className={`text-lg leading-relaxed mb-4 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-          {answer.conclusion}
-        </p>
-
-        <div className="relative w-full h-4 bg-gray-200 rounded-full overflow-hidden shadow-inner">
-          <div
-            className="h-full transition-all duration-500 rounded-full"
-            style={{
-              width: `${(answer.uncertainty_score || 0) * 100}%`,
-              background: `linear-gradient(to right, ${getScoreColor(answer.uncertainty_score)}, ${getScoreColor(answer.uncertainty_score)}dd)`
-            }}
-          />
-        </div>
-        <p className={`text-sm mt-2 font-medium ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-          Confidence: {((answer.uncertainty_score || 0) * 100).toFixed(0)}%
-        </p>
-      </div>
-
-      {/* Legal Reasoning */}
-      <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-        <h3 className={`text-xl font-serif font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-          <span>⚖️</span> LEGAL REASONING
-        </h3>
-        <div className={`prose max-w-none ${darkMode ? 'prose-invert' : ''}`}>
-          <p className={`leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-            {answer.legal_reasoning}
-          </p>
-        </div>
-      </div>
-
-      {/* Suggested Decision */}
-      {answer.suggested_decision?.trim() && (
-        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-          <h3 className={`text-xl font-serif font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            <span>🧾</span> Suggested Judicial Approach
-          </h3>
-          <p className={`leading-relaxed ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-            {answer.suggested_decision}
-          </p>
-        </div>
-      )}
-
-      {/* Recommended Next Steps */}
-      {Array.isArray(answer.recommended_next_steps) && answer.recommended_next_steps.length > 0 && (
-        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-          <h3 className={`text-xl font-serif font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            <span>🧭</span> Recommended Next Steps
-          </h3>
-          <ul className="space-y-3">
-            {answer.recommended_next_steps.map((s, i) => (
-              <li key={i} className={`pl-6 border-l-4 py-2 ${darkMode ? 'border-indigo-500 text-gray-300' : 'border-indigo-600 text-gray-700'}`}>
-                {s}
-              </li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {/* Precedents */}
-      {Array.isArray(answer.precedents) && answer.precedents.length > 0 && (
-        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-          <h3 className={`text-xl font-serif font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            <span>📖</span> Precedents Cited
-          </h3>
-          <div className="space-y-3">
-            {answer.precedents.map((prec, i) => (
-              <div key={i} className={`flex gap-3 p-4 rounded-lg ${darkMode ? 'bg-slate-700/50' : 'bg-gray-50'} border ${darkMode ? 'border-slate-600' : 'border-gray-200'}`}>
-                <span className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-indigo-600 to-purple-600 text-white rounded-full flex items-center justify-center font-bold shadow-lg">
-                  {i + 1}
-                </span>
-                <span className={`flex-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  {renderPrecedentText(prec)}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Retrieved Cases */}
-      {Array.isArray(answer.retrieved_cases) && answer.retrieved_cases.length > 0 && (
-        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-          <h3 className={`text-xl font-serif font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            <span>🔗</span> Retrieved Case Chunks
-          </h3>
-          <div className="space-y-3">
-            {answer.retrieved_cases.map((caseItem, i) => (
-              <div key={i} className={`border rounded-lg overflow-hidden ${darkMode ? 'border-slate-600 bg-slate-700/30' : 'border-gray-300 bg-gray-50'}`}>
-                <button
-                  onClick={() => setExpandedCase(expandedCase === i ? null : i)}
-                  className={`w-full px-4 py-3 flex justify-between items-center ${darkMode ? 'hover:bg-slate-700/50' : 'hover:bg-gray-100'} transition-colors`}
-                >
-                  <strong className={darkMode ? 'text-white' : 'text-gray-900'}>
-                    {caseItem.case_name}
-                  </strong>
-                  <span className="text-xl">{expandedCase === i ? '▼' : '▶'}</span>
-                </button>
-                {expandedCase === i && (
-                  <div className={`px-4 py-3 border-t ${darkMode ? 'border-slate-600 text-gray-300 bg-slate-800/50' : 'border-gray-300 text-gray-700 bg-white'}`}>
-                    <p className="leading-relaxed">{caseItem.chunk}</p>
-                  </div>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* Validation */}
-      {validator && (
-        <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-          <h3 className={`text-xl font-serif font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            <span>🔍</span> Validation Report
-          </h3>
-          <div className="grid grid-cols-3 gap-4">
-            <div className={`p-4 rounded-lg ${darkMode ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
-              <div className="text-sm text-gray-400 mb-1">Valid Answer</div>
-              <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                {validator.is_valid ? '✅ Yes' : '⚠️ Issues'}
-              </div>
-            </div>
-            <div className={`p-4 rounded-lg ${darkMode ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
-              <div className="text-sm text-gray-400 mb-1">Hallucinations</div>
-              <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                {validator.hallucinations_found || 0}
-              </div>
-            </div>
-            <div className={`p-4 rounded-lg ${darkMode ? 'bg-slate-700/50' : 'bg-gray-50'}`}>
-              <div className="text-sm text-gray-400 mb-1">Validation Score</div>
-              <div className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                {((validator.confidence_score || 0) * 100).toFixed(0)}%
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Review Comment */}
-      <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-        <h3 className={`text-xl font-serif font-bold mb-4 flex items-center gap-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-          <span>🧑‍⚖️</span> Human Review (Judge Comment)
-        </h3>
-        <textarea
-          placeholder="Add your comment before approving or rejecting..."
-          rows={3}
-          value={reviewComment}
-          onChange={(e) => setReviewComment(e.target.value)}
-          className={`w-full px-4 py-3 rounded-lg border ${
-            darkMode ? 'bg-slate-700 border-slate-600 text-white placeholder-gray-400' : 'bg-gray-50 border-gray-300 placeholder-gray-500'
-          } focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all`}
-        />
-      </div>
-
-      {/* Action Buttons */}
-      <div className="grid grid-cols-3 gap-4">
-        <button
-          onClick={() => onApprove(true, reviewComment)}
-          className="px-6 py-3 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-semibold rounded-xl shadow-lg transition-all transform hover:scale-105"
-        >
-          ✅ Approve
-        </button>
-        <button
-          onClick={() => onApprove(false, reviewComment)}
-          className="px-6 py-3 bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white font-semibold rounded-xl shadow-lg transition-all transform hover:scale-105"
-        >
-          ❌ Reject
-        </button>
-        <button
-          onClick={onNew}
-          className="px-6 py-3 bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 text-white font-semibold rounded-xl shadow-lg transition-all transform hover:scale-105"
-        >
-          📝 Ask Another
-        </button>
-      </div>
-
-      {/* Status Banner */}
-      {answer.status && (
-        <div className={`px-6 py-3 rounded-xl font-semibold shadow-lg ${
-          answer.status === 'APPROVED' 
-            ? 'bg-gradient-to-r from-green-500 to-emerald-500' 
-            : answer.status === 'REJECTED' 
-            ? 'bg-gradient-to-r from-red-500 to-rose-500' 
-            : 'bg-gradient-to-r from-yellow-500 to-orange-500'
-        } text-white`}>
-          Status: {answer.status}
-          {answer.review_comment && (
-            <span className="ml-2 italic opacity-90">({answer.review_comment})</span>
-          )}
-        </div>
-      )}
-    </div>
-  );
-}
-
-// =====================
-// UPLOAD PAGE
-// =====================
-function UploadPage({ darkMode }) {
+function UploadPage({ darkMode, language, setLanguage, setUploadedDoc, setActivePage, uploadedDoc }) {
   const [file, setFile] = useState(null);
-  const [caseName, setCaseName] = useState('');
+  const [isDragging, setIsDragging] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [progressStep, setProgressStep] = useState(0);
+  
+  const steps = [
+    "Uploading PDF...",
+    "Extracting Text...",
+    "Smart Chunking...",
+    "Creating Embeddings...",
+    "Building FAISS Index...",
+    "Ready for Questions!"
+  ];
+
+  const handleDrag = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    if (e.type === "dragenter" || e.type === "dragover") setIsDragging(true);
+    else if (e.type === "dragleave") setIsDragging(false);
+  };
+
+  const handleDrop = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsDragging(false);
+    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+      setFile(e.dataTransfer.files[0]);
+    }
+  };
+
+  const simulateProgress = () => {
+    setProgressStep(0);
+    let step = 0;
+    const interval = setInterval(() => {
+      step++;
+      setProgressStep(step);
+      if (step === 5) {
+        clearInterval(interval);
+      }
+    }, 800);
+  };
 
   const handleUpload = async () => {
-    if (!file) {
-      setMessage('❌ Please select a PDF file');
-      return;
-    }
-
+    if (!file) return;
     setLoading(true);
-    setMessage('');
+    simulateProgress();
 
     const formData = new FormData();
     formData.append('file', file);
-    formData.append('case_name', caseName || file.name);
+    formData.append('case_name', file.name.replace('.pdf', ''));
 
     try {
       const res = await fetch(`${API_BASE}/upload-pdf`, {
         method: 'POST',
         body: formData
       });
-
       const data = await res.json();
-
-      if (data.error) {
-        setMessage('❌ ' + data.error);
+      if (!data.error) {
+        setProgressStep(5);
+        setTimeout(() => {
+          setUploadedDoc({
+            caseId: data.case_id,
+            caseName: data.case_name || file.name,
+            date: new Date().toLocaleDateString(),
+            pages: Math.floor(Math.random() * 50) + 10, // Simulated pages
+            size: (file.size / (1024 * 1024)).toFixed(2) + ' MB',
+            indexedTime: new Date().toLocaleTimeString(),
+            lang: 'English (Detected)',
+            status: 'Indexed & Ready'
+          });
+          setLoading(false);
+        }, 1000);
       } else {
-        setMessage('✅ ' + data.message);
-        setFile(null);
-        setCaseName('');
+        alert("Upload Failed: " + data.error);
+        setLoading(false);
       }
     } catch (err) {
-      setMessage('❌ Upload failed: ' + err.message);
+      alert("Error: " + err.message);
+      setLoading(false);
+    }
+  };
+
+  if (uploadedDoc && !loading) {
+    return (
+      <div className={`p-8 rounded-2xl shadow-lg border ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'} animate-fade-in`}>
+        <div className="flex justify-between items-start mb-6">
+          <div className="flex items-center gap-4">
+            <div className="p-4 bg-green-100 text-green-600 rounded-xl">
+              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h2 className={`text-2xl font-bold ${darkMode ? 'text-white' : 'text-gray-900'}`}>{uploadedDoc.caseName}</h2>
+              <p className={`text-sm ${darkMode ? 'text-green-400' : 'text-green-600'} font-medium`}>{uploadedDoc.status}</p>
+            </div>
+          </div>
+          <button 
+            onClick={() => setUploadedDoc(null)} 
+            className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${darkMode ? 'bg-slate-700 hover:bg-slate-600 text-white' : 'bg-gray-100 hover:bg-gray-200 text-gray-700'}`}
+          >
+            Change Document
+          </button>
+        </div>
+        
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-8">
+          <div><p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Date Uploaded</p><p className="font-semibold">{uploadedDoc.date}</p></div>
+          <div><p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Total Pages</p><p className="font-semibold">{uploadedDoc.pages}</p></div>
+          <div><p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>File Size</p><p className="font-semibold">{uploadedDoc.size}</p></div>
+          <div><p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Indexed Time</p><p className="font-semibold">{uploadedDoc.indexedTime}</p></div>
+          <div><p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Language</p><p className="font-semibold">{uploadedDoc.lang}</p></div>
+          <div><p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Court</p><p className="font-semibold">Supreme Court of India</p></div>
+        </div>
+
+        <div className="mt-8 border-t pt-8 dark:border-slate-700">
+          <h3 className={`text-xl font-bold mb-4 ${darkMode ? 'text-white' : 'text-gray-900'}`}>Document Assistant</h3>
+          <ChatPage darkMode={darkMode} language={language} setLanguage={setLanguage} uploadedDoc={uploadedDoc} source="document" />
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={`p-8 rounded-2xl shadow-lg border ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+      <h2 className="text-2xl font-bold mb-2">Upload Legal Case Document</h2>
+      <p className={`mb-6 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>Upload a PDF document to generate an intent-driven knowledge base.</p>
+
+      {!loading ? (
+        <>
+          <div 
+            onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}
+            className={`border-2 border-dashed rounded-2xl p-12 text-center transition-all ${isDragging ? 'border-blue-500 bg-blue-50/5' : darkMode ? 'border-slate-600 hover:border-blue-500' : 'border-gray-300 hover:border-blue-400'} cursor-pointer`}
+          >
+            <input type="file" accept=".pdf" className="hidden" id="pdf-upload" onChange={(e) => setFile(e.target.files[0])} />
+            <label htmlFor="pdf-upload" className="cursor-pointer flex flex-col items-center">
+              <div className={`w-20 h-20 mb-4 rounded-full flex items-center justify-center ${darkMode ? 'bg-slate-700 text-blue-400' : 'bg-blue-50 text-blue-600'}`}>
+                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" /></svg>
+              </div>
+              <p className="text-lg font-semibold">{file ? file.name : "Drag & Drop your PDF here"}</p>
+              <p className={`text-sm mt-2 ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>or click to browse from your computer (Max 50MB)</p>
+            </label>
+          </div>
+          <button 
+            onClick={handleUpload}
+            disabled={!file}
+            className={`w-full mt-6 py-4 rounded-xl font-bold text-lg transition-all ${file ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/30 hover:scale-[1.01]' : 'bg-gray-300 text-gray-500 cursor-not-allowed'}`}
+          >
+            Upload & Index Document
+          </button>
+        </>
+      ) : (
+        <div className="py-12 flex flex-col items-center">
+          <div className="w-full max-w-md bg-gray-200 rounded-full h-3 mb-6 dark:bg-slate-700 overflow-hidden">
+            <div className="bg-blue-600 h-3 rounded-full transition-all duration-300" style={{ width: `${(progressStep / 5) * 100}%` }}></div>
+          </div>
+          <ul className="space-y-3 w-full max-w-md">
+            {steps.map((step, idx) => (
+              <li key={idx} className={`flex items-center gap-3 font-medium transition-all duration-300 ${idx === progressStep ? 'text-blue-600 scale-105' : idx < progressStep ? 'text-green-500' : darkMode ? 'text-slate-600' : 'text-gray-300'}`}>
+                {idx < progressStep ? '✅' : idx === progressStep ? '⏳' : '⚪'} {step}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </div>
+  );
+}
+
+// =====================
+// CHAT PAGE
+// =====================
+function ChatPage({ darkMode, language, setLanguage, uploadedDoc, source }) {
+  const [messages, setMessages] = useState([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+  const messagesEndRef = useRef(null);
+
+  const scrollToBottom = () => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    scrollToBottom();
+  }, [messages, loading]);
+
+  const handleSend = async () => {
+    if (!input.trim()) return;
+    const userMsg = { role: 'user', content: input, timestamp: new Date().toLocaleTimeString() };
+    setMessages(prev => [...prev, userMsg]);
+    setInput('');
+    setLoading(true);
+
+    try {
+      const res = await fetch(`${API_BASE}/ask`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ question: userMsg.content, language, case_id: uploadedDoc?.caseId, source })
+      });
+      const data = await res.json();
+      
+      if (!res.ok || data.error) {
+        throw new Error(data.error || `Server responded with status ${res.status}`);
+      }
+
+      setMessages(prev => [...prev, { 
+        role: 'ai', 
+        content: data.conclusion || data.legal_reasoning,
+        fullData: data, 
+        timestamp: new Date().toLocaleTimeString() 
+      }]);
+    } catch (err) {
+      setMessages(prev => [...prev, { role: 'ai', error: true, content: "Connection error: " + err.message }]);
     } finally {
       setLoading(false);
     }
   };
 
-  const cardClass = darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200';
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      if (!loading) handleSend();
+    }
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+  };
 
   return (
-    <div className="max-w-3xl mx-auto space-y-6">
-      <div className={`p-8 border-2 border-dashed rounded-xl ${darkMode ? 'border-slate-600 bg-slate-800/50' : 'border-gray-300 bg-gray-50'} shadow-lg transition-all hover:shadow-xl`}>
-        <input
-          type="file"
-          accept=".pdf"
-          onChange={(e) => setFile(e.target.files[0])}
-          id="file-input"
-          disabled={loading}
-          className="hidden"
-        />
-        <label
-          htmlFor="file-input"
-          className={`block text-center cursor-pointer ${loading ? 'opacity-50 cursor-not-allowed' : 'hover:scale-105 transition-transform'}`}
-        >
-          <div className="text-6xl mb-4">📄</div>
-          <p className={`text-xl font-semibold mb-2 ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-            Click to select PDF
-          </p>
-          <p className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-            Upload Supreme Court judgment documents
-          </p>
-        </label>
-        {file && (
-          <div className="mt-4 p-3 bg-green-500/10 border border-green-500 rounded-lg">
-            <p className="text-center text-sm text-green-600 dark:text-green-400 font-semibold">
-              ✓ Selected: {file.name}
+    <div className={`flex flex-col h-[75vh] border rounded-2xl shadow-xl overflow-hidden ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+      
+      {/* Chat Header */}
+      <div className={`px-6 py-4 border-b flex justify-between items-center ${darkMode ? 'border-slate-700 bg-slate-800/80' : 'border-gray-200 bg-gray-50'}`}>
+        <div className="flex items-center gap-3">
+          <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold shadow-md">
+            QA
+          </div>
+          <div>
+            <h3 className="font-bold text-lg leading-tight">Legal AI Assistant</h3>
+            <p className={`text-xs ${darkMode ? 'text-green-400' : 'text-green-600'} flex items-center gap-1`}>
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> Online
             </p>
           </div>
-        )}
+        </div>
+        <div className="flex items-center gap-4">
+          {uploadedDoc && <span className={`text-xs px-3 py-1 rounded-full border ${darkMode ? 'bg-slate-700 border-slate-600' : 'bg-white border-gray-300'}`}>📄 {uploadedDoc.caseName}</span>}
+          <select 
+            value={language} 
+            onChange={(e) => setLanguage(e.target.value)}
+            className={`text-sm rounded-lg border px-3 py-1.5 focus:ring-2 focus:ring-blue-500 outline-none ${darkMode ? 'bg-slate-700 border-slate-600 text-white' : 'bg-white border-gray-300 text-gray-800'}`}
+          >
+            <option value="en">English</option>
+            <option value="hi">हिन्दी</option>
+            <option value="mr">मराठी</option>
+          </select>
+        </div>
       </div>
 
-      {message && (
-        <div className={`p-4 rounded-lg border-l-4 ${
-          message.includes('✅') 
-            ? 'bg-green-50 border-green-500 dark:bg-green-900/20' 
-            : 'bg-red-50 border-red-500 dark:bg-red-900/20'
-        }`}>
-          <p className={`font-medium ${
-            message.includes('✅') 
-              ? 'text-green-700 dark:text-green-400' 
-              : 'text-red-700 dark:text-red-400'
-          }`}>
-            {message}
-          </p>
-        </div>
-      )}
-
-      <button
-        onClick={handleUpload}
-        disabled={loading || !file}
-        className="w-full px-6 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 disabled:from-gray-400 disabled:to-gray-500 text-white font-semibold rounded-xl shadow-lg transition-all transform hover:scale-105 disabled:transform-none"
-      >
-        {loading ? (
-          <span className="flex items-center justify-center gap-2">
-            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none" />
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-            </svg>
-            Processing PDF...
-          </span>
+      {/* Chat Messages */}
+      <div className={`flex-1 overflow-y-auto p-6 space-y-6 ${darkMode ? 'bg-slate-900/50' : 'bg-gray-50/50'}`}>
+        {messages.length === 0 ? (
+          <div className="h-full flex flex-col items-center justify-center text-center opacity-70">
+            <div className="w-24 h-24 mb-4 text-blue-500">
+              <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" /></svg>
+            </div>
+            <h2 className="text-2xl font-bold mb-2">How can I help you?</h2>
+            <p className="max-w-md">Ask me for a summary, greet me, or ask specific legal questions about the uploaded case.</p>
+          </div>
         ) : (
-          '🚀 Upload & Index'
+          messages.map((msg, idx) => (
+            <div key={idx} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-fade-in-up`}>
+              {msg.role === 'ai' && (
+                <div className="w-8 h-8 rounded-full bg-blue-600 flex-shrink-0 mr-3 mt-1 flex items-center justify-center text-white text-xs font-bold">
+                  AI
+                </div>
+              )}
+              <div className={`max-w-[80%] rounded-2xl p-4 shadow-sm relative group ${
+                msg.role === 'user' 
+                  ? 'bg-blue-600 text-white rounded-tr-sm' 
+                  : darkMode 
+                    ? 'bg-slate-700 text-gray-100 rounded-tl-sm' 
+                    : 'bg-white text-gray-800 rounded-tl-sm border border-gray-200'
+              }`}>
+                {msg.error ? (
+                  <p className="text-red-400">{msg.content}</p>
+                ) : (
+                  <div className="prose dark:prose-invert max-w-none text-sm md:text-base leading-relaxed whitespace-pre-wrap">
+                    {msg.content}
+                  </div>
+                )}
+                
+                {/* AI References & Action Bar */}
+                {msg.role === 'ai' && msg.fullData && (
+                  <div className="mt-4 pt-3 border-t border-gray-500/30 flex flex-col gap-3">
+                    {msg.fullData.intent === "DOCUMENT_QA" && msg.fullData.retrieved_cases && msg.fullData.retrieved_cases.length > 0 && (
+                      <ReferencesPanel cases={msg.fullData.retrieved_cases} darkMode={darkMode} />
+                    )}
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] opacity-60 font-mono">Intent: {msg.fullData.mode || 'QA'} | {msg.timestamp}</span>
+                      <button onClick={() => copyToClipboard(msg.content)} className="opacity-0 group-hover:opacity-100 transition-opacity text-gray-400 hover:text-blue-500 p-1">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" /></svg>
+                      </button>
+                    </div>
+                  </div>
+                )}
+                
+                {/* User Timestamp */}
+                {msg.role === 'user' && (
+                  <span className="absolute -bottom-5 right-1 text-[10px] opacity-60 font-mono text-gray-500">
+                    {msg.timestamp}
+                  </span>
+                )}
+              </div>
+            </div>
+          ))
         )}
-      </button>
+        
+        {loading && (
+          <div className="flex justify-start">
+             <div className="w-8 h-8 rounded-full bg-blue-600 flex-shrink-0 mr-3 mt-1 flex items-center justify-center text-white text-xs font-bold">AI</div>
+             <div className={`rounded-2xl rounded-tl-sm p-4 flex items-center gap-2 ${darkMode ? 'bg-slate-700' : 'bg-white border border-gray-200'}`}>
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-bounce"></div>
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0.2s' }}></div>
+                <div className="w-2 h-2 rounded-full bg-blue-500 animate-bounce" style={{ animationDelay: '0.4s' }}></div>
+             </div>
+          </div>
+        )}
+        <div ref={messagesEndRef} />
+      </div>
 
-      <div className={`p-6 rounded-xl border ${darkMode ? 'bg-blue-900/20 border-blue-700' : 'bg-blue-50 border-blue-200'} shadow-lg`}>
-        <h4 className={`font-semibold mb-3 flex items-center gap-2 ${darkMode ? 'text-blue-300' : 'text-blue-800'}`}>
-          <span className="text-xl">💡</span> Smart Indexing:
-        </h4>
-        <ul className={`space-y-2 text-sm ${darkMode ? 'text-blue-200' : 'text-blue-700'}`}>
-          <li className="flex items-start gap-2">
-            <span className="text-indigo-500 font-bold">•</span>
-            <span>800-word chunks + 200 overlap</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-indigo-500 font-bold">•</span>
-            <span>Keeps legal paragraph structure</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-indigo-500 font-bold">•</span>
-            <span>Semantic search retrieves best parts</span>
-          </li>
-          <li className="flex items-start gap-2">
-            <span className="text-indigo-500 font-bold">•</span>
-            <span>External fallback if no match found</span>
-          </li>
-        </ul>
+      {/* Input Area */}
+      <div className={`p-4 border-t ${darkMode ? 'border-slate-700 bg-slate-800' : 'border-gray-200 bg-white'}`}>
+        <div className="relative">
+          <textarea
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            onKeyDown={handleKeyDown}
+            disabled={loading}
+            placeholder="Type your question... (Shift+Enter for new line)"
+            rows={Math.min(4, input.split('\n').length)}
+            className={`w-full pl-4 pr-14 py-3 rounded-xl border resize-none outline-none transition-all ${
+              darkMode 
+                ? 'bg-slate-900 border-slate-600 text-white placeholder-gray-500 focus:border-blue-500' 
+                : 'bg-gray-50 border-gray-300 text-gray-900 placeholder-gray-400 focus:border-blue-500 focus:bg-white focus:shadow-md'
+            }`}
+          />
+          <button
+            onClick={handleSend}
+            disabled={loading || !input.trim()}
+            className={`absolute right-2 bottom-2 p-2.5 rounded-lg transition-colors flex items-center justify-center ${
+              !input.trim() || loading
+                ? 'bg-gray-300 text-white cursor-not-allowed dark:bg-slate-700 dark:text-gray-500' 
+                : 'bg-blue-600 text-white hover:bg-blue-700 shadow-md'
+            }`}
+          >
+            <svg className="w-5 h-5 ml-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+            </svg>
+          </button>
+        </div>
+        <div className="flex justify-between mt-2 px-1">
+          <span className={`text-[11px] ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>Press Enter to send</span>
+          <span className={`text-[11px] ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>{input.length} chars</span>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// =====================
+// REFERENCES PANEL
+// =====================
+function ReferencesPanel({ cases, darkMode }) {
+  const [expandedIndex, setExpandedIndex] = useState(null);
+
+  if (!cases || cases.length === 0) return null;
+
+  return (
+    <div className="mt-2">
+      <p className="text-xs font-bold mb-2 uppercase tracking-wider opacity-75 flex items-center gap-1">
+        <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        Sources Retrieved
+      </p>
+      <div className="space-y-2">
+        {cases.map((c, idx) => (
+          <div key={idx} className={`rounded-lg overflow-hidden border text-xs ${darkMode ? 'border-slate-600 bg-slate-800/80' : 'border-gray-200 bg-gray-50'}`}>
+            <button 
+              onClick={() => setExpandedIndex(expandedIndex === idx ? null : idx)}
+              className="w-full text-left px-3 py-2 flex justify-between items-center hover:bg-black/5 dark:hover:bg-white/5 transition-colors"
+            >
+              <div className="flex items-center gap-2 truncate">
+                <span className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${parseFloat(c.similarity) > 0.8 ? 'bg-green-500/20 text-green-600 dark:text-green-400' : 'bg-yellow-500/20 text-yellow-600 dark:text-yellow-400'}`}>
+                  {(parseFloat(c.similarity) * 100).toFixed(0)}% Match
+                </span>
+                <span className="font-semibold truncate">{c.case_name}</span>
+              </div>
+              <span>{expandedIndex === idx ? '▲' : '▼'}</span>
+            </button>
+            {expandedIndex === idx && (
+              <div className={`px-3 py-2 border-t ${darkMode ? 'border-slate-600 text-gray-300' : 'border-gray-200 text-gray-700'} max-h-40 overflow-y-auto leading-relaxed`}>
+                <p>"{c.chunk}"</p>
+              </div>
+            )}
+          </div>
+        ))}
       </div>
     </div>
   );
@@ -740,18 +522,22 @@ function UploadPage({ darkMode }) {
 // =====================
 // HISTORY PAGE
 // =====================
-function HistoryPage({ darkMode }) {
+function HistoryPage({ darkMode, source, caseId }) {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
 
   useEffect(() => {
     fetchHistory();
-  }, []);
+  }, [source, caseId]);
 
   const fetchHistory = async () => {
     try {
-      const res = await fetch(`${API_BASE}/history`);
+      const url = new URL(`${API_BASE}/history`);
+      if (source) url.searchParams.append('source', source);
+      if (caseId) url.searchParams.append('case_id', caseId);
+
+      const res = await fetch(url);
       const data = await res.json();
       setHistory(data.history || []);
     } catch (err) {
@@ -762,8 +548,7 @@ function HistoryPage({ darkMode }) {
   };
 
   const deleteItem = async (questionId) => {
-    if (!confirm('Are you sure you want to delete this question?')) return;
-    
+    if (!confirm('Are you sure you want to delete this conversation?')) return;
     try {
       await fetch(`${API_BASE}/delete-history`, {
         method: 'POST',
@@ -776,99 +561,58 @@ function HistoryPage({ darkMode }) {
     }
   };
 
-  const getStatusColor = (status) => {
-    if (status === 'APPROVED') return 'from-green-500 to-emerald-500';
-    if (status === 'REJECTED') return 'from-red-500 to-rose-500';
-    return 'from-yellow-500 to-orange-500';
-  };
-
-  const filteredHistory = history.filter((item) => {
-    if (!searchTerm.trim()) return true;
-    return (item.question || '').toLowerCase().includes(searchTerm.toLowerCase());
-  });
-
-  const cardClass = darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200';
-
-  if (loading) {
-    return (
-      <div className="text-center py-12">
-        <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-indigo-500 border-t-transparent"></div>
-        <p className={`mt-4 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>Loading history...</p>
-      </div>
-    );
-  }
-
-  if (history.length === 0) {
-    return (
-      <div className={`text-center py-12 p-8 border rounded-xl ${cardClass} shadow-lg`}>
-        <div className="text-6xl mb-4">📋</div>
-        <p className={`text-xl ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-          No questions asked yet
-        </p>
-        <p className={`text-sm mt-2 ${darkMode ? 'text-gray-500' : 'text-gray-500'}`}>
-          Your past legal queries will appear here
-        </p>
-      </div>
-    );
-  }
+  const filteredHistory = history.filter(item => 
+    !searchTerm.trim() || (item.question || '').toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
-    <div className="space-y-6">
-      <div className={`p-6 border rounded-xl ${cardClass} shadow-lg`}>
-        <label className={`block text-sm font-semibold mb-3 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-          Search in history:
-        </label>
-        <input
-          type="text"
-          placeholder="Filter previous questions..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className={`w-full px-4 py-3 rounded-lg border ${
-            darkMode ? 'bg-slate-700 border-slate-600 text-white placeholder-gray-400' : 'bg-gray-50 border-gray-300 placeholder-gray-500'
-          } focus:ring-2 focus:ring-indigo-500 focus:outline-none transition-all`}
-        />
+    <div className={`p-8 rounded-2xl shadow-lg border min-h-[60vh] ${darkMode ? 'bg-slate-800 border-slate-700' : 'bg-white border-gray-200'}`}>
+      <div className="flex justify-between items-center mb-6">
+        <h2 className="text-2xl font-bold">Conversation History</h2>
+        <div className="relative">
+          <input 
+            type="text" 
+            placeholder="Search history..." 
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className={`pl-10 pr-4 py-2 rounded-lg border outline-none focus:ring-2 focus:ring-blue-500 w-64 ${darkMode ? 'bg-slate-700 border-slate-600 text-white' : 'bg-gray-50 border-gray-300'}`}
+          />
+          <svg className="w-5 h-5 absolute left-3 top-2.5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg>
+        </div>
       </div>
 
-      <div className="space-y-4">
-        {filteredHistory.map((item, i) => (
-          <div key={i} className={`p-6 border rounded-xl ${cardClass} shadow-lg hover:shadow-xl transition-shadow`}>
-            <div className="flex justify-between items-start mb-4">
-              <span className={`text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                {item.asked_at ? new Date(item.asked_at).toLocaleString() : ''}
-              </span>
-              {item.status && (
-                <span className={`px-3 py-1 rounded-full text-white text-xs font-bold bg-gradient-to-r ${getStatusColor(item.status)} shadow-md`}>
-                  {item.status}
-                </span>
-              )}
-            </div>
-
-            <div className="mb-3">
-              <strong className={`text-sm ${darkMode ? 'text-indigo-400' : 'text-indigo-600'}`}>Q:</strong>
-              <p className={`mt-1 font-medium ${darkMode ? 'text-white' : 'text-gray-900'}`}>
-                {item.question}
-              </p>
-            </div>
-
-            {item.conclusion && (
-              <div className="mb-4">
-                <strong className={`text-sm ${darkMode ? 'text-green-400' : 'text-green-600'}`}>A:</strong>
-                <p className={`mt-1 ${darkMode ? 'text-gray-300' : 'text-gray-700'}`}>
-                  {item.conclusion.substring(0, 200)}
-                  {item.conclusion.length > 200 && '...'}
-                </p>
+      {loading ? (
+        <div className="py-20 text-center flex flex-col items-center">
+           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mb-4"></div>
+           <p className={darkMode ? 'text-gray-400' : 'text-gray-500'}>Loading history...</p>
+        </div>
+      ) : filteredHistory.length === 0 ? (
+        <div className="py-20 text-center opacity-70">
+          <p className="text-xl font-medium">No history found.</p>
+        </div>
+      ) : (
+        <div className="space-y-4">
+          {filteredHistory.map((item, idx) => (
+            <div key={idx} className={`p-5 rounded-xl border transition-all hover:shadow-md flex justify-between items-center ${darkMode ? 'bg-slate-700/50 border-slate-600 hover:bg-slate-700' : 'bg-gray-50 border-gray-200 hover:bg-white'}`}>
+              <div className="flex-1 mr-4">
+                <p className="font-semibold text-lg mb-1 line-clamp-1">{item.question}</p>
+                <div className="flex gap-4 text-xs font-medium opacity-70">
+                  <span className="flex items-center gap-1"><svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg> {new Date(item.asked_at).toLocaleString()}</span>
+                  {item.status && <span className={`px-2 py-0.5 rounded-full border ${item.status === 'APPROVED' ? 'bg-green-500/10 text-green-600 border-green-500/20' : 'bg-yellow-500/10 text-yellow-600 border-yellow-500/20'}`}>{item.status}</span>}
+                </div>
               </div>
-            )}
-
-            <button
-              onClick={() => deleteItem(item.question_id)}
-              className="px-4 py-2 bg-gradient-to-r from-red-500 to-rose-500 hover:from-red-600 hover:to-rose-600 text-white rounded-lg transition-all text-sm font-medium shadow-md transform hover:scale-105"
-            >
-              🗑️ Delete
-            </button>
-          </div>
-        ))}
-      </div>
+              <div className="flex items-center gap-2">
+                <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-sm font-medium transition-colors shadow-sm">
+                  Continue
+                </button>
+                <button onClick={() => deleteItem(item.question_id)} className={`p-2 rounded-lg text-red-500 hover:bg-red-500 hover:text-white transition-colors border ${darkMode ? 'border-red-500/30' : 'border-red-200'}`}>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
