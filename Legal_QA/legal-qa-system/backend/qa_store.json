@@ -477,13 +477,103 @@
       "asked_at": "2026-08-04T14:13:05.076223"
     },
     {
-      "question_id": "e53b230b-ab1f-498f-ad62-73a40dcf6bab",
-      "question_text": "Who's Rakesh Telang?",
-      "question_hash": "c8702ab55dba0836754d4055b6310a7b",
+      "question_id": "1ca7a63b-ccd6-45fa-9774-39c1b48163be",
+      "question_text": "Actor Tabu Moves Delhi High Court Over Alleged Personality Rights Violations. What's the matter?",
+      "question_hash": "afc3bc3b7d6c67a0c04563bde2479c62",
       "language": "en",
       "source": "external",
       "case_id": null,
-      "asked_at": "2026-08-04T14:13:30.336530"
+      "asked_at": "2026-08-04T14:39:00.780821"
+    },
+    {
+      "question_id": "5b51b355-6a3a-4323-8f3a-6f8f46e3b914",
+      "question_text": "Give a detailed information.",
+      "question_hash": "2f81c425a4a255038f98383df7892bb9",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-04T14:39:43.703700"
+    },
+    {
+      "question_id": "72439250-81ff-4e87-912e-217f15a0da5e",
+      "question_text": "https://www.livelawbiz.com/personality-rights/actor-tabu-moves-delhi-high-court-over-alleged-personality-rights-violations-544226\nAnalyze this link & give info",
+      "question_hash": "c73960134079bc74f26715b4ff06f373",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-04T14:40:40.798477"
+    },
+    {
+      "question_id": "eb222691-2e7c-4a59-ab8e-8d9c26e1388a",
+      "question_text": "Why Physics Wallah Founder Alakh Pandey Moves Delhi High Court",
+      "question_hash": "d1e7abc7bf09a23a45fd1a9f1ed089fe",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-04T14:43:54.858814"
+    },
+    {
+      "question_id": "d0ee77c4-c0f1-4165-9833-26e7087482a1",
+      "question_text": "Explain this: Legal Representatives Can Claim Motor Accident Compensation Even Without Financial Dependency On Deceased : Supreme Court",
+      "question_hash": "af023d15a5450059ba7b334e2ad91a78",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-17T10:34:02.738209"
+    },
+    {
+      "question_id": "5d72670c-2f98-4fee-bea8-0722ab7502ef",
+      "question_text": "What is this judgement about?",
+      "question_hash": "c06f5ccb83ae517ec22061b8f2459ec6",
+      "language": "en",
+      "source": "document",
+      "case_id": "7d3f6feb-0f52-40df-97b9-fba5284eece3",
+      "asked_at": "2026-08-17T12:10:42.294858"
+    },
+    {
+      "question_id": "4f0c86f1-ec10-4fae-90a5-694ce329ca18",
+      "question_text": "What was the final judgement?",
+      "question_hash": "ba6666b69047e9c672f2823b5abdb0ea",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-17T12:46:34.129712"
+    },
+    {
+      "question_id": "01ca5c99-84f8-428a-a9fb-a00d2ecf43e8",
+      "question_text": "what was the outcome of the case Physics Wallah Founder Alakh Pandey moves Delhi?",
+      "question_hash": "6645e47c289676ce3fee8c1105a04f5d",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-17T12:49:18.330848"
+    },
+    {
+      "question_id": "689e0254-c1ae-45b6-a0d6-3623953fe4f8",
+      "question_text": "what's this case about?",
+      "question_hash": "50f1e6abbfea53aad95851bb39972335",
+      "language": "en",
+      "source": "document",
+      "case_id": "eb941e8b-1e9f-432f-97fb-6819826e1aa8",
+      "asked_at": "2026-08-17T12:52:32.504003"
+    },
+    {
+      "question_id": "8645db9e-25cd-474f-afa4-08935c560b34",
+      "question_text": "what was the outpcome of Daizy Kumar @ Vishal case?",
+      "question_hash": "e6edb42b89f227dd5840bbd8fb456475",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "asked_at": "2026-08-17T12:54:02.921505"
+    },
+    {
+      "question_id": "21c62709-dda7-451b-9763-9bcd667151a7",
+      "question_text": "whats this judgement about?",
+      "question_hash": "b2c82c4835752f7326de323800eaf1fe",
+      "language": "en",
+      "source": "document",
+      "case_id": "b1df1c67-68e0-4dbc-988f-3cc556b93613",
+      "asked_at": "2026-08-18T12:03:02.832532"
     }
   ],
   "answers": [
@@ -2356,19 +2446,18 @@
       }
     },
     {
-      "answer_id": "50db1d7b-096f-46aa-8548-753c4fcc5c71",
-      "question_id": "e53b230b-ab1f-498f-ad62-73a40dcf6bab",
+      "answer_id": "23d7ed02-a1dd-441b-96f8-9cd417c8ae6e",
+      "question_id": "1ca7a63b-ccd6-45fa-9774-39c1b48163be",
       "language": "en",
-      "conclusion": "Rakesh Telang appears to be a name associated with various legal cases in India, but specific details about his identity or role are not provided in the search results.",
-      "legal_reasoning": "Without additional context or specific case details, it is challenging to ascertain the significance of Rakesh Telang in the legal framework. The name may refer to a party in a legal case or a legal professional, but further information is required to clarify this.",
+      "conclusion": "The case involves Tabu seeking legal protection for her personality rights against unauthorized use of her likeness or persona.",
+      "legal_reasoning": "Personality rights protect an individual's identity and image from unauthorized commercial exploitation. Tabu's claim likely hinges on the violation of her right to control the commercial use of her persona, which is recognized under Indian law as part of the right to privacy and personal dignity.",
       "precedents": [
-        "Rakesh Kumar v. State of Himachal Pradesh (approx / to be verified)",
-        "Rakesh v. State of Uttar Pradesh (approx / to be verified)"
+        "K.S. Puttaswamy v. Union of India (2017) - Recognized the right to privacy as a fundamental right."
       ],
       "facts_from_case": [],
-      "uncertainty_score": 0.5,
+      "uncertainty_score": 0.85,
       "retrieved_chunks": [],
-      "created_at": "2026-08-04T14:13:46.937753",
+      "created_at": "2026-08-04T14:39:22.141488",
       "status": "PENDING_REVIEW",
       "review_comment": "",
       "metrics": {
@@ -2379,7 +2468,356 @@
         "grounding": null,
         "validator_confidence": null,
         "validator_hallucinations": null,
-        "answer_length_chars": 433
+        "answer_length_chars": 425
+      }
+    },
+    {
+      "answer_id": "7f22d00b-f9e2-4191-a89b-9d73f6850c46",
+      "question_id": "5b51b355-6a3a-4323-8f3a-6f8f46e3b914",
+      "language": "en",
+      "conclusion": "The application for bail under the NDPS Act should be carefully considered in light of the mandatory requirements of Section 37, while also taking into account any undue delays in the trial process.",
+      "legal_reasoning": "Under the NDPS Act, Section 37 imposes restrictions on granting bail, requiring the court to be satisfied that there are reasonable grounds for believing that the accused is not guilty of the offense. However, recent judgments have indicated that these restrictions may not apply in cases of undue delay in trial completion.",
+      "precedents": [
+        "State of Kerala vs. Rajesh",
+        "Union of India vs. Shiv Shankar",
+        "Satender Kumar Antil vs. Central Bureau of Narcotics"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T14:39:54.670535",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 522
+      }
+    },
+    {
+      "answer_id": "fcebc354-7dea-4bf6-975c-77febc151817",
+      "question_id": "72439250-81ff-4e87-912e-217f15a0da5e",
+      "language": "en",
+      "conclusion": "The case involves the protection of personality rights of actor Tabu against alleged unauthorized use of her persona, particularly through artificial intelligence.",
+      "legal_reasoning": "Personality rights are recognized under Indian law as a form of intellectual property, protecting an individual's identity and likeness from unauthorized commercial exploitation. The Delhi High Court has previously acknowledged the need to balance these rights with freedom of expression and fair use.",
+      "precedents": [
+        "approx / to be verified"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T14:40:53.587450",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 464
+      }
+    },
+    {
+      "answer_id": "dad3d955-9c60-4033-8082-5c2ed313f8ff",
+      "question_id": "eb222691-2e7c-4a59-ab8e-8d9c26e1388a",
+      "language": "en",
+      "conclusion": "Alakh Pandey's petition to the Delhi High Court seeks to challenge the National Testing Agency's decision regarding the awarding of grace marks, which he claims is arbitrary and unjust.",
+      "legal_reasoning": "The legal basis for the petition revolves around the principles of fairness and transparency in examination processes, as well as the right to equality under Article 14 of the Indian Constitution. If the grace marks were awarded without proper justification, it could undermine the integrity of the examination system.",
+      "precedents": [
+        "Union of India v. S. S. Rangappa, (2001) 6 SCC 1 - This case emphasizes the need for fairness in administrative actions.",
+        "K. K. Verma v. Union of India, (1954) 1 SCR 102 - This case discusses the importance of transparency in public examinations."
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-04T14:44:12.718651",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 503
+      }
+    },
+    {
+      "answer_id": "8e372497-a9ff-4239-a750-2be814d75c11",
+      "question_id": "d0ee77c4-c0f1-4165-9833-26e7087482a1",
+      "language": "en",
+      "conclusion": "Legal representatives can claim compensation for motor accidents even if they were not financially dependent on the deceased.",
+      "legal_reasoning": "The Supreme Court has established that the right to seek compensation for motor vehicle accidents is not limited to those who were financially dependent on the deceased. This includes claims for loss of consortium and other non-financial losses suffered by legal representatives.",
+      "precedents": [
+        "Reliance General Insurance Co.Ltd. vs John Philip",
+        "Approx / to be verified"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-17T10:34:11.768975",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 404
+      }
+    },
+    {
+      "answer_id": "c9ade14a-287c-4843-99dd-21ff458fe285",
+      "question_id": "5d72670c-2f98-4fee-bea8-0722ab7502ef",
+      "language": "en",
+      "conclusion": "The judgment quashes the criminal complaint against the petitioners due to the expiry of the drug sample and the consequent loss of their right to reanalysis.",
+      "legal_reasoning": "The court found that the sample was tested after its shelf life had expired, which deprived the petitioners of their right to have the sample reanalyzed. This was in line with the principles established in previous cases, which state that if a sample deteriorates due to delays attributable to the prosecution, any prosecution based on that sample cannot be sustained. The court also noted that the complaint was filed directly before the Additional Sessions Judge without proper cognizance procedures being followed, violating Section 193 of the Cr.P.C.",
+      "precedents": [
+        "Union of India Vs. Ashok Kumar Sharma, (2021) 12 SCC 674 – Cited for the principle that the report of the Central Drugs Laboratory is conclusive evidence.",
+        "Medicamen Biotech Ltd. Vs. Drug Inspector, (2008) 7 SCC 196 – Cited to emphasize the right of the accused to have a sample retested."
+      ],
+      "facts_from_case": [
+        "The sample was drawn on 24.2.2020 and tested after its expiry in June 2020.",
+        "The petitioners argued that the complaint was filed without proper jurisdiction and that the Drugs Inspector's appointment was invalid."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "79077374_Reserved On_ 13.03.2025 vs Union Of India on 21 March, 2025",
+          "similarity": 0.45681223606070803
+        },
+        {
+          "case": "79077374_Reserved On_ 13.03.2025 vs Union Of India on 21 March, 2025",
+          "similarity": 0.43611516307434955
+        },
+        {
+          "case": "79077374_Reserved On_ 13.03.2025 vs Union Of India on 21 March, 2025",
+          "similarity": 0.4209271960628397
+        },
+        {
+          "case": "79077374_Reserved On_ 13.03.2025 vs Union Of India on 21 March, 2025",
+          "similarity": 0.4116492817809912
+        },
+        {
+          "case": "79077374_Reserved On_ 13.03.2025 vs Union Of India on 21 March, 2025",
+          "similarity": 0.4073312366132581
+        }
+      ],
+      "created_at": "2026-08-17T12:11:00.315127",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.45681223606070803,
+        "avg_retrieval_similarity": 0.4265670227184293,
+        "cosine_answer_source": 0.6915530562400818,
+        "grounding": {
+          "answer_token_count": 97,
+          "source_token_count": 3978,
+          "overlap_token_count": 53,
+          "answer_coverage_ratio": 0.8153846153846154,
+          "source_coverage_ratio": 0.06272189349112427
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 2,
+        "answer_length_chars": 712
+      }
+    },
+    {
+      "answer_id": "1821609c-9a31-46be-9c0a-a363258d26bd",
+      "question_id": "4f0c86f1-ec10-4fae-90a5-694ce329ca18",
+      "language": "en",
+      "conclusion": "The final judgment in the case is that a re-trial in NDPS cases cannot be ordered merely to cure procedural lapses in proving electronic evidence.",
+      "legal_reasoning": "The Supreme Court emphasized that procedural lapses should not lead to a re-trial unless there are substantial grounds that warrant such an action. The integrity of the judicial process must be maintained, and re-trials should not be used as a remedy for procedural shortcomings.",
+      "precedents": [
+        "State of Punjab v. Balbir Singh, (1994) 3 SCC 299",
+        "K.K. Verma v. State of Maharashtra, (2002) 9 SCC 1"
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.95,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-17T12:46:45.598494",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 425
+      }
+    },
+    {
+      "answer_id": "02789f32-ea9e-4210-8352-c6a5e78723e7",
+      "question_id": "01ca5c99-84f8-428a-a9fb-a00d2ecf43e8",
+      "language": "en",
+      "conclusion": "The Delhi High Court has granted interim relief to Alakh Pandey, the founder of Physics Wallah, by directing the removal of infringing content and protecting his personality rights.",
+      "legal_reasoning": "The court recognized the importance of personality rights and the need to protect individuals from defamatory or infringing content that could harm their reputation and personal brand. The interim injunction serves to prevent further harm while the case is being adjudicated.",
+      "precedents": [
+        "Kiran Bedi v. Committee of Inquiry (1993) - Recognized the right to reputation as part of the right to life under Article 21 of the Constitution.",
+        "R. Rajagopal v. State of Tamil Nadu (1994) - Affirmed the right to privacy and the protection of personality rights."
+      ],
+      "facts_from_case": [],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-17T12:49:24.346755",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 456
+      }
+    },
+    {
+      "answer_id": "dc70987f-da34-415e-acaa-d5efcda7c316",
+      "question_id": "689e0254-c1ae-45b6-a0d6-3623953fe4f8",
+      "language": "en",
+      "conclusion": "The case involves the conviction of Daizy Kumar @ Vishal and others for the offences of cruelty and abetment of suicide under Sections 498A and 306 of IPC, following the suicide of Trishla Devi due to harassment for dowry.",
+      "legal_reasoning": "The court considered the evidence presented by the prosecution, including testimonies from the informant and family members of the deceased, which indicated a pattern of harassment and maltreatment by the accused. The court referenced the Supreme Court's interpretation of cruelty under Section 498A, emphasizing that any act endangering the victim's safety or compelling her to commit suicide constitutes cruelty. The court also addressed the credibility of witness testimonies and the natural reactions of individuals in traumatic situations, affirming that the absence of immediate complaints does not negate the occurrence of harassment.",
+      "precedents": [
+        "Aluri Venkata Ramana vs. Aluri Thirupathi Rao and Ors. – Cited for the definition of cruelty under Section 498A, applied to establish that the accused's actions constituted cruelty.",
+        "State of Punjab v. Hardam Singh – Cited to support that there is no set rule of natural reaction, relevant to witness credibility."
+      ],
+      "facts_from_case": [
+        "Trishla Devi was married to Daizy Kumar @ Vishal on 07.05.2006 and faced harassment for insufficient dowry shortly after marriage.",
+        "The deceased suffered a fractured arm due to beatings from the accused and ultimately committed suicide, which was attributed to the ongoing harassment."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "58240234_Daizy Kumar @ Vishal And Anr vs State Of H.P on 20 March, 2025",
+          "similarity": 0.45948791296961267
+        },
+        {
+          "case": "58240234_Daizy Kumar @ Vishal And Anr vs State Of H.P on 20 March, 2025",
+          "similarity": 0.45813101772207204
+        },
+        {
+          "case": "58240234_Daizy Kumar @ Vishal And Anr vs State Of H.P on 20 March, 2025",
+          "similarity": 0.45245827011440626
+        },
+        {
+          "case": "58240234_Daizy Kumar @ Vishal And Anr vs State Of H.P on 20 March, 2025",
+          "similarity": 0.4514957403538667
+        },
+        {
+          "case": "58240234_Daizy Kumar @ Vishal And Anr vs State Of H.P on 20 March, 2025",
+          "similarity": 0.4483224027483998
+        }
+      ],
+      "created_at": "2026-08-17T12:52:47.641220",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.45948791296961267,
+        "avg_retrieval_similarity": 0.4539790687816715,
+        "cosine_answer_source": 0.8690928816795349,
+        "grounding": {
+          "answer_token_count": 110,
+          "source_token_count": 4438,
+          "overlap_token_count": 57,
+          "answer_coverage_ratio": 0.7702702702702703,
+          "source_coverage_ratio": 0.040282685512367494
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 1,
+        "answer_length_chars": 863
+      }
+    },
+    {
+      "answer_id": "c2142b0e-c6a5-494d-994b-05af6cfd5e05",
+      "question_id": "8645db9e-25cd-474f-afa4-08935c560b34",
+      "language": "en",
+      "conclusion": "The accused, Daizy Kumar @ Vishal, was sentenced to three years of simple imprisonment and fined ₹2,000.",
+      "legal_reasoning": "The court found sufficient evidence to convict the accused under the relevant sections of law, leading to the imposition of a custodial sentence and a monetary penalty.",
+      "precedents": [],
+      "facts_from_case": [],
+      "uncertainty_score": 0.9,
+      "retrieved_chunks": [],
+      "created_at": "2026-08-17T12:54:09.414063",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 272
+      }
+    },
+    {
+      "answer_id": "e816d89f-a3e6-4365-b31a-3590d69b6d02",
+      "question_id": "21c62709-dda7-451b-9763-9bcd667151a7",
+      "language": "en",
+      "conclusion": "The judgment quashes the order rejecting the statutory complaint of the petitioner and remits the matter for a reasoned decision.",
+      "legal_reasoning": "The Court found that the impugned order dated 4.8.1993 lacked reasons for its conclusion that 'no injustice has been done' to the petitioner, which is not a valid reason. The requirement for recording reasons by an administrative authority exercising quasi-judicial functions was emphasized, as per the principles laid down in S.K. Mukherjee's case.",
+      "precedents": [
+        "Chaukas Ram v. Sub Area Commander, Allahabad and Ors., 1990 ACJ 597 – cited for procedural compliance regarding discharge.",
+        "S.K. Mukherjee v. Union of India, AIR 1990 SC 1984 – cited for the necessity of recording reasons in administrative decisions."
+      ],
+      "facts_from_case": [
+        "The petitioner was discharged under Army Rule 13 (3) Item III (IV) after earning four red entries.",
+        "The statutory complaint filed by the petitioner was dismissed without a reasoned order."
+      ],
+      "uncertainty_score": 0.1,
+      "retrieved_chunks": [
+        {
+          "case": "1913281_Ex-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005",
+          "similarity": 0.43554504397294624
+        },
+        {
+          "case": "1913281_Ex-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005",
+          "similarity": 0.43022036989910656
+        },
+        {
+          "case": "1913281_Ex-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005",
+          "similarity": 0.41993184061087346
+        }
+      ],
+      "created_at": "2026-08-18T12:03:26.478126",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "LOCAL_PDF",
+        "max_retrieval_similarity": 0.43554504397294624,
+        "avg_retrieval_similarity": 0.4285657514943087,
+        "cosine_answer_source": 0.7270212769508362,
+        "grounding": {
+          "answer_token_count": 63,
+          "source_token_count": 2115,
+          "overlap_token_count": 41,
+          "answer_coverage_ratio": 0.8541666666666666,
+          "source_coverage_ratio": 0.07884615384615384
+        },
+        "validator_confidence": 0.0,
+        "validator_hallucinations": 1,
+        "answer_length_chars": 478
       }
     }
   ],
@@ -2512,6 +2950,43 @@
       ],
       "approved": false,
       "reviewed_at": "2026-08-04T14:12:48.277520",
+      "comment": ""
+    },
+    {
+      "review_id": "81cd86cf-0848-43e7-aff8-68f2e726e9ee",
+      "answer_id": "c9ade14a-287c-4843-99dd-21ff458fe285",
+      "hallucinations_found": 2,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "The judgment quashes the criminal complaint against the petitioners due to the expiry of the drug sample and the consequent loss of their right to reanalysis.",
+        "The court found that the sample was tested after its shelf life had expired, which deprived the petitioners of their right to have the sample reanalyzed."
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-17T12:11:00.315127",
+      "comment": ""
+    },
+    {
+      "review_id": "daf461ce-bf2b-4f01-8f6b-2f025ce316f6",
+      "answer_id": "dc70987f-da34-415e-acaa-d5efcda7c316",
+      "hallucinations_found": 1,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "The court referenced the Supreme Court's interpretation of cruelty under Section 498A, emphasizing that any act endangering the victim's safety or compelling her to commit suicide constitutes cruelty."
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-17T12:52:47.641220",
+      "comment": ""
+    },
+    {
+      "review_id": "15e57433-5eb9-4d29-837c-da33a439ad44",
+      "answer_id": "e816d89f-a3e6-4365-b31a-3590d69b6d02",
+      "hallucinations_found": 1,
+      "accuracy_score": 0.0,
+      "false_claims": [
+        "The judgment quashes the order rejecting the statutory complaint of the petitioner and remits the matter for a reasoned decision."
+      ],
+      "approved": false,
+      "reviewed_at": "2026-08-18T12:03:26.478126",
       "comment": ""
     }
   ],
@@ -3029,12 +3504,92 @@
       "last_used": "2026-08-04T14:13:09.564439"
     },
     {
-      "cache_id": "6d807e33-48df-40e9-bd5a-b02e1f3ac655",
-      "question_hash": "c8702ab55dba0836754d4055b6310a7b",
-      "answer_id": "50db1d7b-096f-46aa-8548-753c4fcc5c71",
-      "question_id": "e53b230b-ab1f-498f-ad62-73a40dcf6bab",
+      "cache_id": "e8db9d2e-6e3b-4794-b597-06021b30799c",
+      "question_hash": "afc3bc3b7d6c67a0c04563bde2479c62",
+      "answer_id": "23d7ed02-a1dd-441b-96f8-9cd417c8ae6e",
+      "question_id": "1ca7a63b-ccd6-45fa-9774-39c1b48163be",
       "cache_hits": 1,
-      "last_used": "2026-08-04T14:13:46.938751"
+      "last_used": "2026-08-04T14:39:22.141488"
+    },
+    {
+      "cache_id": "6113e4b9-2a1b-4f3f-8d45-8e4ab8d98fd0",
+      "question_hash": "2f81c425a4a255038f98383df7892bb9",
+      "answer_id": "7f22d00b-f9e2-4191-a89b-9d73f6850c46",
+      "question_id": "5b51b355-6a3a-4323-8f3a-6f8f46e3b914",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:39:54.670535"
+    },
+    {
+      "cache_id": "9a0b487a-2021-49c0-8fbc-df5194a897c2",
+      "question_hash": "c73960134079bc74f26715b4ff06f373",
+      "answer_id": "fcebc354-7dea-4bf6-975c-77febc151817",
+      "question_id": "72439250-81ff-4e87-912e-217f15a0da5e",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:40:53.587450"
+    },
+    {
+      "cache_id": "36b56f7f-4b80-411b-91f0-5e4028d923e7",
+      "question_hash": "d1e7abc7bf09a23a45fd1a9f1ed089fe",
+      "answer_id": "dad3d955-9c60-4033-8082-5c2ed313f8ff",
+      "question_id": "eb222691-2e7c-4a59-ab8e-8d9c26e1388a",
+      "cache_hits": 1,
+      "last_used": "2026-08-04T14:44:12.718651"
+    },
+    {
+      "cache_id": "d60579cf-af18-468c-8f9a-b96820c682ed",
+      "question_hash": "af023d15a5450059ba7b334e2ad91a78",
+      "answer_id": "8e372497-a9ff-4239-a750-2be814d75c11",
+      "question_id": "d0ee77c4-c0f1-4165-9833-26e7087482a1",
+      "cache_hits": 1,
+      "last_used": "2026-08-17T10:34:11.768975"
+    },
+    {
+      "cache_id": "b14f8a56-e9e3-42ec-bfd4-23ce157c71c6",
+      "question_hash": "c06f5ccb83ae517ec22061b8f2459ec6",
+      "answer_id": "c9ade14a-287c-4843-99dd-21ff458fe285",
+      "question_id": "5d72670c-2f98-4fee-bea8-0722ab7502ef",
+      "cache_hits": 1,
+      "last_used": "2026-08-17T12:11:00.315127"
+    },
+    {
+      "cache_id": "459f75be-cddc-4dc4-bc13-2ac4330b81dd",
+      "question_hash": "ba6666b69047e9c672f2823b5abdb0ea",
+      "answer_id": "1821609c-9a31-46be-9c0a-a363258d26bd",
+      "question_id": "4f0c86f1-ec10-4fae-90a5-694ce329ca18",
+      "cache_hits": 1,
+      "last_used": "2026-08-17T12:46:45.598494"
+    },
+    {
+      "cache_id": "44cf79c9-fd74-47bc-8d19-db9ce7835918",
+      "question_hash": "6645e47c289676ce3fee8c1105a04f5d",
+      "answer_id": "02789f32-ea9e-4210-8352-c6a5e78723e7",
+      "question_id": "01ca5c99-84f8-428a-a9fb-a00d2ecf43e8",
+      "cache_hits": 1,
+      "last_used": "2026-08-17T12:49:24.347755"
+    },
+    {
+      "cache_id": "cfb1330f-92eb-44c6-8657-ff87cce93611",
+      "question_hash": "50f1e6abbfea53aad95851bb39972335",
+      "answer_id": "dc70987f-da34-415e-acaa-d5efcda7c316",
+      "question_id": "689e0254-c1ae-45b6-a0d6-3623953fe4f8",
+      "cache_hits": 1,
+      "last_used": "2026-08-17T12:52:47.641220"
+    },
+    {
+      "cache_id": "86919021-8e3b-41c6-98c7-a99e47263a34",
+      "question_hash": "e6edb42b89f227dd5840bbd8fb456475",
+      "answer_id": "c2142b0e-c6a5-494d-994b-05af6cfd5e05",
+      "question_id": "8645db9e-25cd-474f-afa4-08935c560b34",
+      "cache_hits": 1,
+      "last_used": "2026-08-17T12:54:09.414063"
+    },
+    {
+      "cache_id": "5d1e0ead-26db-4856-bc16-e31678a2c110",
+      "question_hash": "b2c82c4835752f7326de323800eaf1fe",
+      "answer_id": "e816d89f-a3e6-4365-b31a-3590d69b6d02",
+      "question_id": "21c62709-dda7-451b-9763-9bcd667151a7",
+      "cache_hits": 1,
+      "last_used": "2026-08-18T12:03:26.478126"
     }
   ]
 }
