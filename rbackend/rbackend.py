@@ -44,6 +44,14 @@ load_dotenv()
 
 app = FastAPI()
 
+# ── Evaluation event logger (fire-and-forget, never raises) ────────────────
+try:
+    import sys, pathlib
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / 'evaluation'))
+    from event_logger import log_event_async as _log_research_event
+except Exception:
+    def _log_research_event(*a, **k): pass
+
 # CORS configuration
 app.add_middleware(
     CORSMiddleware,
@@ -892,6 +900,23 @@ async def search_legal_query(query: str = Form(...)):
                 "from_cache": False
             }
             cache_query_result(expanded_query, result_data)
+
+            # ── Log for real-time evaluation ──────────────────────────────
+            _contexts = [
+                f"{r.get('title','')} {r.get('snippet','')}".strip()
+                for r in results[:5]
+            ]
+            _response_summary = " | ".join(
+                r.get("title", "") for r in results[:3]
+            )
+            _log_research_event(
+                module="research",
+                user_input=query,
+                response=_response_summary,
+                contexts=_contexts,
+                meta={"n_results": len(results), "source": "mixed"}
+            )
+
             return JSONResponse(result_data)
         
         logger.warning(f"No results found for query: {query}")

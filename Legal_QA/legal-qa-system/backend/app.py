@@ -12,6 +12,14 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
 
+# ── Evaluation event logger (fire-and-forget, never raises) ────────────────
+try:
+    import sys, pathlib
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[4] / 'evaluation'))
+    from event_logger import log_event_async as _log_qa_event
+except Exception:
+    def _log_qa_event(*a, **k): pass  # silent no-op if evaluation/ not found
+
 # Try new openai package first, fall back to old version
 try:
     from openai import OpenAI
@@ -1511,7 +1519,22 @@ def ask_legal_question():
 
         save_store(store)
 
-        # 8️⃣ — Final response
+        # 8️⃣ — Log interaction for real-time evaluation (non-blocking)
+        _response_text = (
+            (answer_json.get("conclusion") or "") + " " +
+            (answer_json.get("legal_reasoning") or "")
+        ).strip()
+        _contexts = [rc.get("chunk", rc.get("case", "")) for rc in retrieved_cases[:5]] if used_mode == "LOCAL_PDF" else []
+        _log_qa_event(
+            module="legal_qa",
+            user_input=question,
+            response=_response_text,
+            contexts=_contexts,
+            meta={"mode": used_mode, "confidence": round(final_confidence, 3),
+                  "language": language, "case_id": case_id}
+        )
+
+        # 9️⃣ — Final response
         return jsonify({
             "answer_id": answer_id,
             "question_id": question_id,

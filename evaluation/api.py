@@ -26,6 +26,8 @@ from fastapi.responses import JSONResponse
 EVAL_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(EVAL_DIR))
 from config import RESULT_DIR, DATASET_DIR, RAGAS_VERSION, JUDGE_MODEL, SAMPLE_LIMIT
+from event_logger import event_counts, read_events
+from config import EVAL_PORT  # noqa: F401 (imported for reference)
 
 app = FastAPI(
     title="Legal System Evaluation API",
@@ -260,3 +262,102 @@ METRIC_GLOSSARY = {
 @app.get("/api/eval/glossary")
 def glossary():
     return METRIC_GLOSSARY
+
+
+# ─────────────────────────────────────────────
+# Live evaluation (real user interactions)
+# ─────────────────────────────────────────────
+
+@app.get("/api/eval/live/events")
+def live_event_counts():
+    """
+    Returns the number of real user interactions logged per module.
+    Used by the dashboard to show 'N real interactions logged'.
+    """
+    counts = event_counts()
+    preview = {}
+    for mod in MODULES:
+        events = read_events(mod, last_n=3)
+        preview[mod] = [
+            {"user_input": e.get("user_input", "")[:80],
+             "ts": e.get("ts", "")}
+            for e in events
+        ]
+    return {"counts": counts, "recent_preview": preview}
+
+
+_live_running: dict[str, bool] = {}
+
+def _run_live_eval(module: str):
+    """Background worker: runs live_eval for one module."""
+    global _live_running
+    _live_running[module] = True
+    try:
+        result = subprocess.run(
+            [_PYTHON, str(EVAL_DIR / "live_eval.py"),
+             "--module", module,
+             "--max-samples", str(SAMPLE_LIMIT)],
+            capture_output=True,
+            text=True,
+            timeout=600,
+            cwd=str(EVAL_DIR.parent),
+        )
+        _running_jobs[f"live_{module}"] = {
+            "status": "done" if result.returncode == 0 else "error",
+            "returncode": result.returncode,
+            "stdout_tail": result.stdout[-1000:],
+            "stderr_tail": result.stderr[-500:],
+            "finished_at": datetime.utcnow().isoformat() + "Z",
+        }
+    except subprocess.TimeoutExpired:
+        _running_jobs[f"live_{module}"] = {"status": "timeout"}
+    except Exception as e:
+        _running_jobs[f"live_{module}"] = {"status": "error", "message": str(e)}
+    finally:
+        _live_running[module] = False
+
+
+@app.post("/api/eval/live/run/{module}")
+def run_live_evaluation(module: str, background_tasks: BackgroundTasks):
+    """
+    POST /api/eval/live/run/<module>
+    Scores real user interaction events with reference-free Ragas metrics.
+    Requires at least 3 real interactions to have been logged.
+    Does NOT call build_datasets or need pre-built datasets.
+    """
+    if module not in MODULES and module != "all":
+        raise HTTPException(status_code=400, detail=f"Unknown module: {module}")
+
+    mods = MODULES if module == "all" else [module]
+
+    counts = event_counts()
+    skipped = [m for m in mods if counts.get(m, 0) < 3]
+    runnable = [m for m in mods if counts.get(m, 0) >= 3]
+
+    for mod in runnable:
+        if not _live_running.get(mod):
+            background_tasks.add_task(_run_live_eval, mod)
+
+    return {
+        "status": "started" if runnable else "insufficient_data",
+        "running": runnable,
+        "skipped": skipped,
+        "event_counts": {m: counts.get(m, 0) for m in mods},
+        "message": (
+            f"Live scoring started for {runnable}. Results appear in 1-3 min."
+            if runnable else
+            "Not enough real user interactions yet. Use the system first, then re-run."
+        ),
+    }
+
+
+@app.get("/api/eval/live/status")
+def live_status():
+    """Returns event counts + whether live scoring is in progress."""
+    counts = event_counts()
+    return {
+        "event_counts": counts,
+        "scoring_in_progress": {m: _live_running.get(m, False) for m in MODULES},
+        "min_events_required": 3,
+        "ready_modules": [m for m in MODULES if counts.get(m, 0) >= 3],
+    }

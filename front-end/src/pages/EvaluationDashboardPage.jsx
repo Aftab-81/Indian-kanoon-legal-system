@@ -91,6 +91,9 @@ const ModuleCard = ({ module, data, selected, onClick }) => {
   const scores = Object.values(agg).filter((v) => v !== null);
   const mean = scores.length ? scores.reduce((a, b) => a + b, 0) / scores.length : null;
   const nSamples = data?.metadata?.n_samples || '—';
+  const refType = data?.metadata?.reference_type || null;
+  const isLive = refType === 'live_users';
+  const isDemo = refType === 'demo_seed';
 
   return (
     <button
@@ -113,6 +116,13 @@ const ModuleCard = ({ module, data, selected, onClick }) => {
           <span className="stat-value">{nSamples}</span>
         </div>
       </div>
+      {data && (
+        <div className="module-card-source">
+          {isLive && <span className="source-badge live">⚡ Live Data</span>}
+          {isDemo && <span className="source-badge demo">🧉 Demo Data</span>}
+          {!isLive && !isDemo && refType && <span className="source-badge other">{refType}</span>}
+        </div>
+      )}
       {data ? (
         <span className="module-status ready">Results ready ✓</span>
       ) : (
@@ -178,6 +188,7 @@ export default function EvaluationDashboardPage() {
   const [results, setResults] = useState({});
   const [status, setStatus] = useState({});
   const [glossary, setGlossary] = useState({});
+  const [liveStatus, setLiveStatus] = useState({ event_counts: {}, ready_modules: [] });
   const [selectedModule, setSelectedModule] = useState(null);
   const [detailData, setDetailData] = useState(null);
   const [running, setRunning] = useState({});
@@ -191,14 +202,16 @@ export default function EvaluationDashboardPage() {
   // ── fetch overview ─────────────────────────────────────────
   const fetchAll = useCallback(async () => {
     try {
-      const [resR, statusR, glossR] = await Promise.all([
+      const [resR, statusR, glossR, liveR] = await Promise.all([
         fetch(`${EVAL_API}/results`),
         fetch(`${EVAL_API}/status`),
         fetch(`${EVAL_API}/glossary`),
+        fetch(`${EVAL_API}/live/status`).catch(() => null),
       ]);
       if (resR.ok) setResults(await resR.json());
       if (statusR.ok) setStatus(await statusR.json());
       if (glossR.ok) setGlossary(await glossR.json());
+      if (liveR && liveR.ok) setLiveStatus(await liveR.json());
     } catch (e) {
       setError('Evaluation API offline. Start it with: python -m uvicorn evaluation.api:app --port 8005');
     } finally {
@@ -243,6 +256,27 @@ export default function EvaluationDashboardPage() {
       alert('Could not reach evaluation API');
     } finally {
       setTimeout(() => setRunning((p) => ({ ...p, [mod]: false })), 3000);
+    }
+  };
+
+  const triggerLiveRun = async (mod) => {
+    setRunning((p) => ({ ...p, [`live_${mod}`]: true }));
+    try {
+      const r = await fetch(`${EVAL_API}/live/run/${mod}`, { method: 'POST' });
+      const body = await r.json().catch(() => ({}));
+      if (!r.ok) alert(body.detail || 'Failed to start live evaluation');
+      else if (body.status === 'insufficient_data') {
+        const cnt = body.event_counts || {};
+        alert(`Not enough real interactions yet.\n\n` +
+          Object.entries(cnt).map(([m, c]) => `${m}: ${c} interactions logged`).join('\n') +
+          '\n\nUse each module first, then try again.');
+      } else {
+        setTimeout(fetchAll, 5000);
+      }
+    } catch {
+      alert('Could not reach evaluation API');
+    } finally {
+      setTimeout(() => setRunning((p) => ({ ...p, [`live_${mod}`]: false })), 4000);
     }
   };
 
@@ -307,16 +341,24 @@ export default function EvaluationDashboardPage() {
         <div className="eval-header-left">
           <span className="eval-badge">🧪 RAGAS</span>
           <h1>Evaluation Dashboard</h1>
-          <span className="eval-subtitle">Automated quality metrics for the Judicial Insight Engine</span>
+          <span className="eval-subtitle">Real-time quality metrics for the Judicial Insight Engine</span>
         </div>
         <div className="eval-header-right">
           <button className="btn-ghost" onClick={() => setShowGlossary(!showGlossary)}>
             {showGlossary ? 'Hide Glossary' : '📚 Glossary'}
           </button>
-          <button className="btn-primary" onClick={() => triggerRun('all')} disabled={running['all']}>
-            {running['all'] ? '⏳ Running…' : '▶ Run All'}
+          <button
+            className="btn-live"
+            onClick={() => triggerLiveRun('all')}
+            disabled={running['live_all']}
+            title="Score from real user interactions (reference-free, instant)">
+            {running['live_all'] ? '⏳ Scoring…' : '⚡ Score Live Data'}
           </button>
-          <button className="btn-ghost small" onClick={fetchAll}>↻ Refresh</button>
+          <button className="btn-primary" onClick={() => triggerRun('all')} disabled={running['all']}
+            title="Full Ragas evaluation with dataset generation (requires backends + OpenAI)">
+            {running['all'] ? '⏳ Running…' : '▶ Full Ragas Run'}
+          </button>
+          <button className="btn-ghost small" onClick={fetchAll}>↻</button>
         </div>
       </header>
 
@@ -325,6 +367,36 @@ export default function EvaluationDashboardPage() {
           <span>⚠️</span> {error}
         </div>
       )}
+
+      {/* ── LIVE INTERACTIONS PANEL ── */}
+      <section className="live-panel">
+        <div className="live-panel-title">
+          <span className="live-dot" />
+          <strong>Real User Interactions Logged</strong>
+          <span className="live-hint">Every time a user uses a module, the interaction is recorded. Click ⚡ Score Live Data to compute real Ragas scores.</span>
+        </div>
+        <div className="live-counts">
+          {['legal_qa','research','summary','comprehension'].map(mod => {
+            const n = liveStatus.event_counts?.[mod] ?? 0;
+            const ready = n >= 3;
+            return (
+              <div key={mod} className={`live-count-item ${ready ? 'ready' : 'waiting'}`}>
+                <span className="live-count-icon">{MODULE_META[mod].icon}</span>
+                <span className="live-count-label">{MODULE_META[mod].label}</span>
+                <span className="live-count-n">{n}</span>
+                <span className="live-count-unit">interactions</span>
+                {ready
+                  ? <button className="btn-live-sm" onClick={() => triggerLiveRun(mod)}
+                      disabled={running[`live_${mod}`]}>
+                      {running[`live_${mod}`] ? '⏳' : '⚡ Score'}
+                    </button>
+                  : <span className="live-count-hint">need {3 - n} more</span>
+                }
+              </div>
+            );
+          })}
+        </div>
+      </section>
 
       {/* ── GLOSSARY PANEL ── */}
       {showGlossary && (
@@ -434,10 +506,15 @@ export default function EvaluationDashboardPage() {
                       ['Judge', selectedResult.metadata?.judge_model],
                       ['Ragas', selectedResult.metadata?.ragas_version],
                       ['Run at', selectedResult.metadata?.run_timestamp?.slice(0, 19).replace('T', ' ')],
+                      ['Data Source', selectedResult.metadata?.reference_type === 'live_users'
+                        ? '⚡ Real Users'
+                        : selectedResult.metadata?.reference_type === 'demo_seed'
+                        ? '🧪 Demo (not real)'
+                        : selectedResult.metadata?.reference_type || '—'],
                     ].map(([l, v]) => (
-                      <div key={l} className="meta-item">
+                      <div key={l} className={`meta-item${l === 'Data Source' ? ' meta-source' : ''}`}>
                         <span className="meta-label">{l}</span>
-                        <span className="meta-value">{v ?? '—'}</span>
+                        <span className={`meta-value${l === 'Data Source' && selectedResult.metadata?.reference_type === 'live_users' ? ' meta-live' : ''}${l === 'Data Source' && selectedResult.metadata?.reference_type === 'demo_seed' ? ' meta-demo' : ''}`}>{v ?? '—'}</span>
                       </div>
                     ))}
                   </div>

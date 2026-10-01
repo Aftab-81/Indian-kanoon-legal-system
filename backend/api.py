@@ -15,6 +15,14 @@ from logger_setup import get_logger
 
 logger = get_logger(__name__)
 
+# ── Evaluation event logger (fire-and-forget, never raises) ────────────────
+try:
+    import sys, pathlib
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / 'evaluation'))
+    from event_logger import log_event_async as _log_comp_event
+except Exception:
+    def _log_comp_event(*a, **k): pass
+
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
@@ -389,6 +397,26 @@ def process_existing_pdf():
                 'status': status
             })
         
+        # Log extraction events for real-time evaluation (non-blocking)
+        for case_details, _fname in case_results:
+            _fields = [
+                "Case Title & Citation", "Bench / Court", "Date",
+                "Facts of the Case", "Issues Framed",
+                "Arguments by Parties", "Court's Analysis / Reasoning",
+                "Final Decision (Ratio Decidendi)"
+            ]
+            for field in _fields:
+                val = case_details.get(field, "")
+                if val and str(val).strip():
+                    _log_comp_event(
+                        module="comprehension",
+                        user_input=f"Extract '{field}' from: {os.path.basename(file_path)}",
+                        response=str(val)[:2000],
+                        contexts=[str(case_details.get("raw_text", ""))[:2000]],
+                        meta={"field": field, "filename": os.path.basename(file_path),
+                              "confidence": case_details.get("confidence_scores", {}).get(field, 0)}
+                    )
+
         return jsonify({
             'success': True,
             'message': 'Successfully processed judgment',
