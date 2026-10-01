@@ -1,9 +1,9 @@
 @echo off
-REM filepath: d:\Backup\Jugement_fixed\start_all.bat
-REM Batch script to start all backend and frontend services
+REM Starts all 7 services: 5 backends (8000-8004), Evaluation API (8005), Frontend (5173)
 
 echo ========================================
-echo Starting Legal Case Analysis System
+echo   Legal Case Analysis System
+echo   Starting all 7 services...
 echo ========================================
 echo.
 
