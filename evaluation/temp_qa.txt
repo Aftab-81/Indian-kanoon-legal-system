@@ -1,0 +1,24 @@
+--- SAMPLE ---
+Q: what is jiah khan case status
+A: जिया खान प्रकरण सध्या न्यायालयीन प्रक्रियेत आहे आणि अंतिम निकाल अद्याप स्पष्ट नाही. प्रकरणात गुन्हा दाखल असून तपास सुरू आहे, त्यामुळे स्थिती 'प्रलंबित' आहे.
+
+Legal Reasoning: जिया खान प्रकरणात मृत्यूची कारणे आणि गुन्ह्याचा प्रकार तपासण्यासाठी भारतीय दंड संहिता (IPC) आणि संबंधित कायदे लागू होतात. मृत्यू संदर्भातील तपासात Sections 174 CrPC (असामान्य मृत्यूची नोंद) आणि Sections 302/304 IPC (खून किंवा अपघातजन्य मृत्यू) यांचा विचार होतो. तसेच, न्यायालयाने पुराव्यांच्या आधारे आरोपींच्या दोषीपणाचा निर्
+CTX: None
+Faithfulness: 0.0
+Relevancy: 0.0
+--- SAMPLE ---
+Q: Explain Section 41A CrPC as discussed in this judgment.
+A: Section 41A CrPC mandates issuance of a notice to the accused before arrest in certain cases, promoting arrest as a last resort; compliance is mandatory unless exceptions apply.
+
+Legal Reasoning: Section 41A CrPC was inserted by the Criminal Law (Amendment) Act, 2008, to prevent unnecessary arrests and protect personal liberty. It requires the police to issue a notice of appearance to the accused before arresting them in cases where the offence is punishable with imprisonment up to seven years o
+CTX: None
+Faithfulness: 0.0
+Relevancy: 0.7227
+--- SAMPLE ---
+Q: What does Section 20(3) of the Constitution (right against self-incrimination) mean here?
+A: Section 20(3) चा अर्थ असा आहे की एखाद्या व्यक्तीला स्वतःच्या विरोधात साक्ष देण्यास भाग पाडू शकत नाहीत; हा अधिकार आत्मसंरक्षणाचा आहे आणि तो भारतीय संविधानाच्या अनुच्छेद 20(3) अंतर्गत संरक्षित आहे.
+
+Legal Reasoning: भारतीय संविधानाचा अनुच्छेद 20(3) म्हणतो की कोणत्याही व्यक्तीला स्वतःच्या विरोधात साक्ष देण्यास भाग पाडले जाऊ शकत नाही. याचा अर्थ असा की एखाद्या आरोपीला त्याच्या स्वतःच्या अपराधाबाबत बोलण्यास किंवा साक्ष देण्यास जबरदस्ती करता येणार नाही. हा अधिकार गुन्हेगारी प्रक्रियेत अत्यंत महत्त्वाचा
+CTX: None
+Faithfulness: 0.0
+Relevancy: 0.8623

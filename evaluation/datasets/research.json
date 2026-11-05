@@ -1,0 +1,352 @@
+{
+  "module": "research",
+  "metadata": {
+    "reference_type": "auto_generated",
+    "ragas_version": "0.2.15",
+    "judge_model": "gpt-4o-mini",
+    "run_timestamp": "2026-10-12T09:05:32.322368Z",
+    "n_samples": 20
+  },
+  "samples": [
+    {
+      "id": "0862a523",
+      "user_input": "Section 302 IPC murder conviction evidence",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Section 302 IPC prescribes punishment for murder; courts require proof of intention/knowledge and direct evidence linking accused to the act.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "7c773850",
+      "user_input": "Article 21 Constitution right to life bail",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Article 21 guarantees right to life and personal liberty; bail cannot be denied as a punitive measure without judicial application of mind.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "1da63d52",
+      "user_input": "Section 498A IPC dowry harassment cruelty",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Section 498A IPC deals with cruelty by husband or relatives; requires mental or physical harassment related to dowry demands.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "2e21abf6",
+      "user_input": "NDPS Act Section 37 bail narcotic drug",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Section 37 NDPS Act imposes stringent conditions for bail in narcotic offences; bail shall not ordinarily be granted unless court is satisfied of innocence.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "c79187bc",
+      "user_input": "Service law seniority promotion high court",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Seniority in service law is determined by date of appointment; promotions follow roster rules and cannot override seniority without valid legal basis.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "4aee4847",
+      "user_input": "Income tax appeal reassessment escaped assessment",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Under Section 147 IT Act, reassessment is valid only when AO has 'reason to believe' income has escaped assessment; belief must be based on tangible material.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "d56dd527",
+      "user_input": "Motor vehicle accident compensation negligence",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Motor Accidents Claims Tribunals award compensation based on negligence, contributory negligence, age of victim, and notional income as per statutory formula.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "fc0730f2",
+      "user_input": "Anticipatory bail Section 438 CrPC conditions",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Anticipatory bail under Section 438 CrPC may be granted considering: nature of accusation, antecedents, possibility of fleeing, and co-operation with investigation.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "c296573c",
+      "user_input": "Contempt of court jurisdiction High Court",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "High Courts exercise inherent contempt jurisdiction under Article 215 Constitution; civil contempt requires wilful disobedience of court order.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "a2d954a9",
+      "user_input": "Land acquisition compensation market value",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Land acquisition compensation is determined at market value on date of notification under Land Acquisition Act; solatium of 30% is added to compensation.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "f2eeb055",
+      "user_input": "Section 313 CrPC examination accused statement",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Section 313 CrPC provides accused right to explain circumstances in evidence against them; failure to examine accused is an infirmity.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "45c0091f",
+      "user_input": "Writ of mandamus Article 226 High Court",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Writ of mandamus under Article 226 lies to compel performance of public duty; petitioner must show legal right and respondent has corresponding duty.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "6dc92580",
+      "user_input": "Consumer protection act deficiency service",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Consumer Protection Act 1986/2019 defines deficiency as inadequacy in quality or performance; forums can award compensation and punitive damages.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "b4aeead8",
+      "user_input": "Child witness testimony POCSO Section 164 CrPC",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Child witness testimony in POCSO cases is recorded under Section 164 CrPC before magistrate; courts apply rule of prudence before relying on uncorroborated child testimony.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "f6c45ccd",
+      "user_input": "Arbitration award Section 34 Arbitration Act challenge",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Award can be set aside under Section 34 only on grounds of incapacity, invalid agreement, improper notice, beyond scope, or conflict with public policy.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "b456aefb",
+      "user_input": "Dishonour cheque Section 138 Negotiable Instruments Act",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Section 138 NI Act creates criminal liability for dishonour of cheque; complainant must prove legally enforceable debt and proper notice of demand.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "f20606a8",
+      "user_input": "Sexual assault rape victim testimony corroboration",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Supreme Court held victim's testimony in rape cases need not be corroborated; conviction can rest on sole testimony if it inspires confidence.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "469e4efd",
+      "user_input": "Right to education Article 21A fundamental right",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Article 21A inserted by 86th Amendment makes education for children 6-14 years a fundamental right; RTE Act 2009 operationalizes this right.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "21e076bd",
+      "user_input": "Natural justice audi alteram partem opportunity of hearing",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Audi alteram partem (hear the other side) is a cardinal principle of natural justice; no order adverse to a party can be passed without giving opportunity of hearing.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    },
+    {
+      "id": "62216d06",
+      "user_input": "Locus standi public interest litigation Article 32",
+      "response": "[document] admin_judgement_file_judgement_pdf_2025_volume 3_Part II_2025_3_419-431_1743055596.pdf | [2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve... | confidence: 100.0",
+      "retrieved_contexts": [
+        "[2025] 3 S.C.R. 419 : 2025 INSC 327\nJoyi Kitty Joseph\nv.\nUnion of India & Ors.\n(Criminal Appeal No.1180 of 2025)\n06 March 2025\n[Sudhanshu Dhulia and K. Vinod Chandran, JJ.]\nIssue for Consideration\nThe wife of the detenu; detained under the provisions of the\nConservation of Foreign Exchange and Preve...\nDetention order set aside due to lack of examination of bail conditions by detaining authority.",
+        "Allahabad High Court\nSaraya Industries Ltd. vs State Of U.P. And Ors. on 6 January, 2005\nEquivalent citations: 2005(1)AWC911\nAuthor: V.M. Sahai\nBench: V.M. Sahai, Poonam Srivastava\nJUDGMENT\nV.M. Sahai, J.\n1. The question that arises for consideration in these petitions is whether excise duty could b...\nThe case involved a legal challenge to the policy decision requiring distilleries to affix security holograms on liquor containers to prevent duty evasion and smuggling. The court considered the obligations of distilleries regarding wasted holograms and the State Government's authority under the U.P. Excise Act, 1910.",
+        "Allahabad High Court\nEx-Naik Upendra Kumar Tomar vs Union Of India (Uoi) And Ors. on 25 January, 2005\nEquivalent citations: 2005(1)ESC797\nAuthor: Shishir Kumar\nBench: Shishir Kumar\nJUDGMENT\nShishir Kumar, J.\nBy means of the present writ petition the petitioner has approached this Court for issuing a...\nThe petitioner sought relief from Allahabad High Court to quash an order of discharge and reinstate with benefits. The Court considered the lack of reasons in the dismissal of the statutory complaint, emphasizing the importance of recording reasons for fairness in decision-making."
+      ],
+      "reference": "Locus standi in PIL is liberalized; Supreme Court under Article 32 entertains petitions by any public-spirited citizen acting in genuine public interest.",
+      "metadata": {
+        "n_results": 5,
+        "from_cache": false
+      },
+      "scores": {},
+      "flag": "ok"
+    }
+  ]
+}

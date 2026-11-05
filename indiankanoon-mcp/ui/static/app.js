@@ -11,6 +11,10 @@ let downloadedCount = 0;
 let skippedCount = 0;
 let failedCount = 0;
 let totalAvailable = 0;
+let indexedKbCount = 0;
+let skippedKbCount = 0;
+let failedKbCount = 0;
+let htmlNotIndexedCount = 0;
 
 // ─── DOM Refs ─────────────────────────────────────────────
 const form         = document.getElementById("download-form");
@@ -133,8 +137,13 @@ function setFormat(fmt) {
   btnPdf.classList.toggle("active", fmt === "pdf");
   btnHtml.classList.toggle("active", fmt === "html");
   formatNote.textContent = fmt === "pdf"
-    ? "PDF requires wkhtmltopdf installed."
-    : "HTML files open directly in your browser.";
+    ? "PDF format is required for Semantic Knowledge Base indexing."
+    : "HTML downloads are not added to the knowledge base. Choose PDF to index.";
+  if (fmt === "html") {
+    formatNote.style.color = "#f6ad55";
+  } else {
+    formatNote.style.color = "";
+  }
 }
 
 // ─── Form Submit ──────────────────────────────────────────
@@ -232,9 +241,21 @@ function handleEvent(data) {
         skippedCount++;
       } else {
         downloadedCount++;
-        addFileCard(data, false);
       }
-      tagSuccess.textContent = `${downloadedCount} saved`;
+
+      // Track indexing status
+      if (data.index_status === "INDEXED") {
+        indexedKbCount++;
+      } else if (data.index_status === "SKIPPED_DUPLICATE") {
+        skippedKbCount++;
+      } else if (data.index_status === "NOT_INDEXED_HTML") {
+        htmlNotIndexedCount++;
+      } else if (data.index_status && (data.index_status.startsWith("FAILED_") || data.index_status.startsWith("INDEX_FAILED_"))) {
+        failedKbCount++;
+      }
+
+      addFileCard(data, false);
+      tagSuccess.textContent = `${downloadedCount} saved (${indexedKbCount} indexed)`;
       countDone.textContent = downloadedCount + skippedCount;
       updateSummary();
       break;
@@ -310,9 +331,21 @@ function updateSummary() {
   const summaryBlock = document.getElementById("download-summary");
   if (summaryBlock) {
     summaryBlock.style.display = "block";
-    document.getElementById("summary-total").textContent = totalAvailable;
-    document.getElementById("summary-downloaded").textContent = downloadedCount;
-    document.getElementById("summary-skipped").textContent = skippedCount;
+    const elTotal = document.getElementById("summary-total");
+    const elDownloaded = document.getElementById("summary-downloaded");
+    const elSkipped = document.getElementById("summary-skipped");
+    const elIndexed = document.getElementById("summary-indexed");
+    const elSkippedKb = document.getElementById("summary-skipped-kb");
+    const elFailedKb = document.getElementById("summary-failed-kb");
+    const elHtmlNotIndexed = document.getElementById("summary-html-not-indexed");
+
+    if (elTotal) elTotal.textContent = totalAvailable;
+    if (elDownloaded) elDownloaded.textContent = downloadedCount;
+    if (elSkipped) elSkipped.textContent = skippedCount;
+    if (elIndexed) elIndexed.textContent = indexedKbCount;
+    if (elSkippedKb) elSkippedKb.textContent = skippedKbCount;
+    if (elFailedKb) elFailedKb.textContent = failedKbCount;
+    if (elHtmlNotIndexed) elHtmlNotIndexed.textContent = htmlNotIndexedCount;
   }
 }
 
@@ -344,6 +377,11 @@ function resetUI() {
   skippedCount = 0;
   failedCount = 0;
   totalAvailable = 0;
+  indexedKbCount = 0;
+  skippedKbCount = 0;
+  failedKbCount = 0;
+  htmlNotIndexedCount = 0;
+
   fileList.innerHTML = "";
   fileList.appendChild(emptyState);
   emptyState.innerHTML = `
@@ -404,6 +442,23 @@ function addFileCard(data, isError) {
   if (data.date && !isError)  meta.push(data.date);
   if (data.file_type && !isError)  meta.push(`<span class="file-type-badge">${data.file_type}</span>`);
   if (data.skipped)           meta.push('<span style="color:#f6ad55;font-size:10px">↩ Skipped (cached)</span>');
+
+  // Knowledge base indexing badge
+  if (!isError && data.index_status) {
+    if (data.index_status === "INDEXED") {
+      meta.push('<span style="color:#48bb78;font-weight:600;font-size:11px">⚡ Indexed in Knowledge Base</span>');
+    } else if (data.index_status === "SKIPPED_DUPLICATE") {
+      meta.push('<span style="color:#ecc94b;font-weight:600;font-size:11px">↩ Duplicate in Knowledge Base</span>');
+    } else if (data.index_status === "NOT_INDEXED_HTML") {
+      meta.push('<span style="color:#a0aec0;font-size:11px">🌐 HTML - Not Indexed</span>');
+    } else if (data.index_status === "FAILED_NO_TEXT") {
+      meta.push('<span style="color:#f56565;font-weight:600;font-size:11px">⚠️ Index Skipped: No Text (Scanned)</span>');
+    } else if (data.index_status === "INDEX_FAILED_QA_UNREACHABLE") {
+      meta.push('<span style="color:#f56565;font-weight:600;font-size:11px">⚠️ QA Backend Unreachable</span>');
+    } else if (data.index_status === "FAILED_ERROR") {
+      meta.push('<span style="color:#f56565;font-weight:600;font-size:11px">⚠️ Indexing Failed</span>');
+    }
+  }
 
   card.innerHTML = `
     <div class="file-card-icon">${icon}</div>

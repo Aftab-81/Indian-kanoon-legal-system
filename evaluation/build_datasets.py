@@ -114,7 +114,6 @@ def save_dataset(module: str, data: dict):
 
 def _generate_qa_questions(case_text: str, case_name: str) -> list[dict]:
     """Ask LLM to generate 2-3 factual QA pairs from case text."""
-    snippet = case_text[:8000]
     prompt = f"""You are a legal analyst. Based on the following court judgment text, 
 generate exactly 3 factual questions that have CLEAR answers explicitly stated in the text.
 For each question write a concise reference answer (1-2 sentences) drawn DIRECTLY from the text.
@@ -122,7 +121,7 @@ Focus on: parties to the case, legal sections applied, court's final order, benc
 
 Judgment text:
 \"\"\"
-{snippet}
+{case_text}
 \"\"\"
 
 Return JSON array ONLY – no prose, no markdown fences:
@@ -318,30 +317,45 @@ def build_research_dataset():
 
         results = data.get("results", [])
         contexts = []
-        for res in results[:3]:
-            snippet = res.get("snippet") or ""
+        for res in results[:5]:
+            snippet = res.get("snippet") or res.get("text") or ""
             analysis = res.get("analysis", {})
             summary_txt = analysis.get("summary", "") if isinstance(analysis, dict) else ""
-            contexts.append(f"{snippet}\n{summary_txt}".strip())
+            ctx = f"{snippet}\n{summary_txt}".strip()
+            if ctx:
+                contexts.append(ctx)
 
-        top_response = ""
+        # Distinguish retrieval-only search results from synthesized generation:
+        # Document Research (/api/search/query) is a legal retrieval & ranking endpoint.
+        # It returns ranked search candidates (snippets, analysis summaries, citations),
+        # not a free-form synthesized generative answer.
+        # If an analytical summary was generated for the top retrieved document, use that
+        # substantive summary as the answer text; otherwise, mark response as empty string
+        # to ensure Ragas evaluation does not evaluate metadata strings as answers.
+        top_substantive_answer = ""
+        has_substantive_answer = False
         if results:
             top = results[0]
-            top_response = (
-                f"[{top.get('source','')}] {top.get('title','')} | "
-                f"{top.get('snippet','')} | confidence: {top.get('confidence', 0):.1f}"
-            )
+            analysis = top.get("analysis", {})
+            summary = analysis.get("summary", "") if isinstance(analysis, dict) else ""
+            if summary and summary.strip() and not summary.lower().startswith("failed to analyze"):
+                top_substantive_answer = summary.strip()
+                has_substantive_answer = True
 
         sample_id = hashlib.md5(f"res_{q}".encode()).hexdigest()[:8]
         return {
             "id": sample_id,
             "user_input": q,
-            "response": top_response,
-            "retrieved_contexts": [c for c in contexts if c],
+            "response": top_substantive_answer,
+            "retrieved_contexts": contexts,
             "reference": ref,
             "metadata": {
                 "n_results": len(results),
                 "from_cache": data.get("from_cache", False),
+                "has_substantive_answer": has_substantive_answer,
+                "is_retrieval_only": not has_substantive_answer,
+                "top_source": results[0].get("source") if results else None,
+                "top_title": results[0].get("title") or results[0].get("filename") if results else None
             },
             "scores": {},
             "flag": "ok",
@@ -383,7 +397,7 @@ Be factually precise and only include what is explicitly in the text.
 Judgment: {case_name}
 Text:
 \"\"\"
-{case_text[:10000]}
+{case_text}
 \"\"\"
 
 Return ONLY the summary paragraph, no headings."""
@@ -502,9 +516,9 @@ def _generate_reference_field(field: str, case_text: str) -> str:
 Be precise and concise (2-4 sentences max). Only include what is explicitly stated in the text.
 If the field is not present, write "Not specified in the document".
 
-Judgment text (first 8000 chars):
+Judgment text:
 \"\"\"
-{case_text[:8000]}
+{case_text}
 \"\"\"
 
 Return ONLY the extracted value for "{field}", no labels, no markdown."""
@@ -543,13 +557,22 @@ def build_comprehension_dataset():
 
         # Find corresponding PDF text (best effort)
         case_text = ""
+        stop_words = {"vs", "state", "of", "and", "ors", "the", "in", "to", "for", "on", "another", "anr", "ors.", "anr.", "v.", "ltd", "ltd.", "union", "india"}
+        
         # Try to find PDF by matching case title keywords
-        title_words = set(case_title.lower().split())
+        title_words = set([w for w in case_title.lower().replace(",", "").replace(".", "").split() if w not in stop_words])
+        best_match = None
+        best_score = 0
+        
         for stem, pdf_path in uploads_by_stem.items():
-            stem_words = set(stem.lower().split())
-            if len(title_words & stem_words) >= 2:
-                case_text = extract_pdf_text(str(pdf_path))
-                break
+            stem_words = set([w for w in stem.lower().replace("_", " ").replace(",", "").replace(".", "").split() if w not in stop_words])
+            overlap = len(title_words & stem_words)
+            if overlap > best_score:
+                best_score = overlap
+                best_match = pdf_path
+                
+        if best_match and best_score >= 2:
+            case_text = extract_pdf_text(str(best_match))
 
         if not case_text:
             # Fall back: use the extracted text as context

@@ -607,7 +607,14 @@ def generate_summary(preferences: Dict[str, Any], case_text: str, extraction_qua
     result = {
         "metadata": metadata,
         "detailed_available": True,
-        "confidence_score": confidence
+        "confidence_score": confidence,
+        "retrieved_chunks": [
+            {
+                "text": case_text,
+                "source": metadata.get("case_title", "Unknown"),
+                "chunk_id": "0"
+            }
+        ]
     }
     
     # Save to history
@@ -666,7 +673,14 @@ def generate_detailed_summary(case_text: str, extraction_quality: Dict[str, Any]
         "one_page_summary_for_judges": detailed.get("one_page_summary_for_judges", ""),
         "risk_flags": detailed.get("risk_flags", {}),
         "extracted_entities": detailed.get("extracted_entities", {}),
-        "confidence_score": detailed_confidence
+        "confidence_score": detailed_confidence,
+        "retrieved_chunks": [
+            {
+                "text": case_text,
+                "source": detailed.get("case_title", "Unknown Case"),
+                "chunk_id": "0"
+            }
+        ]
     }
     
     # Save to history

@@ -268,6 +268,14 @@ def glossary():
 # Live evaluation (real user interactions)
 # ─────────────────────────────────────────────
 
+from store_reader import reader
+
+@app.get("/api/eval/stats")
+def system_stats():
+    """Return comprehensive cross-module dataset counts, link rates, and live activity."""
+    return reader.get_stats()
+
+
 @app.get("/api/eval/live/events")
 def live_event_counts():
     """
@@ -275,6 +283,7 @@ def live_event_counts():
     Used by the dashboard to show 'N real interactions logged'.
     """
     counts = event_counts()
+    stats = reader.get_stats()
     preview = {}
     for mod in MODULES:
         events = read_events(mod, last_n=3)
@@ -283,7 +292,11 @@ def live_event_counts():
              "ts": e.get("ts", "")}
             for e in events
         ]
-    return {"counts": counts, "recent_preview": preview}
+    return {
+        "counts": counts,
+        "store_counts": stats["counts"],
+        "recent_preview": preview,
+    }
 
 
 _live_running: dict[str, bool] = {}
@@ -321,18 +334,15 @@ def _run_live_eval(module: str):
 def run_live_evaluation(module: str, background_tasks: BackgroundTasks):
     """
     POST /api/eval/live/run/<module>
-    Scores real user interaction events with reference-free Ragas metrics.
-    Requires at least 3 real interactions to have been logged.
-    Does NOT call build_datasets or need pre-built datasets.
+    Scores real data (store records + user interaction events) with reference-free Ragas metrics.
+    Runs on genuine system records with zero artificial gating.
     """
     if module not in MODULES and module != "all":
         raise HTTPException(status_code=400, detail=f"Unknown module: {module}")
 
     mods = MODULES if module == "all" else [module]
-
-    counts = event_counts()
-    skipped = [m for m in mods if counts.get(m, 0) < 3]
-    runnable = [m for m in mods if counts.get(m, 0) >= 3]
+    stats = reader.get_stats()
+    runnable = [m for m in mods if stats["counts"].get(m, 0) > 0 or event_counts().get(m, 0) > 0]
 
     for mod in runnable:
         if not _live_running.get(mod):
@@ -341,23 +351,25 @@ def run_live_evaluation(module: str, background_tasks: BackgroundTasks):
     return {
         "status": "started" if runnable else "insufficient_data",
         "running": runnable,
-        "skipped": skipped,
-        "event_counts": {m: counts.get(m, 0) for m in mods},
+        "store_counts": stats["counts"],
+        "event_counts": event_counts(),
         "message": (
-            f"Live scoring started for {runnable}. Results appear in 1-3 min."
+            f"Real data scoring started for {runnable}. Genuine Ragas metrics will appear in ~1-2 min."
             if runnable else
-            "Not enough real user interactions yet. Use the system first, then re-run."
+            "No data found in module stores or event logs."
         ),
     }
 
 
 @app.get("/api/eval/live/status")
 def live_status():
-    """Returns event counts + whether live scoring is in progress."""
+    """Returns store counts, cross-module links, event counts + scoring progress."""
     counts = event_counts()
+    stats = reader.get_stats()
     return {
         "event_counts": counts,
+        "store_counts": stats["counts"],
+        "total_records": stats["total_records"],
         "scoring_in_progress": {m: _live_running.get(m, False) for m in MODULES},
-        "min_events_required": 3,
-        "ready_modules": [m for m in MODULES if counts.get(m, 0) >= 3],
+        "ready_modules": [m for m in MODULES if stats["counts"].get(m, 0) > 0 or counts.get(m, 0) > 0],
     }

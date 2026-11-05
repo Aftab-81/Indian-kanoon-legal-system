@@ -41,6 +41,63 @@ from scraper import (
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger(__name__)
 
+import requests
+from dotenv import load_dotenv
+
+load_dotenv()
+
+# QA Backend URL (default: http://localhost:8002/api)
+QA_API_URL = os.getenv("QA_API_URL", "http://localhost:8002/api").rstrip("/")
+
+def send_to_qa_indexer(file_path: str, doc_id: str, title: str, court: str, year: int, month: str) -> dict:
+    """
+    Send a downloaded judgment PDF to Legal QA Backend (port 8002) for plain-text indexing.
+    Retries at most 2 times, only on network errors.
+    """
+    endpoint = f"{QA_API_URL}/index-judgment"
+    max_retries = 2
+
+    for attempt in range(max_retries + 1):
+        try:
+            with open(file_path, "rb") as f:
+                files = {"file": (os.path.basename(file_path), f, "application/pdf")}
+                data = {
+                    "doc_id": str(doc_id),
+                    "case_name": title,
+                    "court": court,
+                    "year": str(year),
+                    "month": str(month),
+                    "source_path": file_path
+                }
+                resp = requests.post(endpoint, files=files, data=data, timeout=180)
+                try:
+                    res_json = resp.json()
+                except Exception:
+                    res_json = {"status": "FAILED_ERROR", "reason": resp.text[:200]}
+                
+                return res_json
+
+        except (requests.ConnectionError, requests.Timeout) as net_err:
+            if attempt < max_retries:
+                logger.warning(f"Network error calling QA backend for doc {doc_id} (attempt {attempt+1}/{max_retries}): {net_err}. Retrying in 1s...")
+                time.sleep(1.0)
+            else:
+                logger.error(f"QA backend unreachable after {max_retries} retries for doc {doc_id}: {net_err}")
+                return {
+                    "status": "INDEX_FAILED_QA_UNREACHABLE",
+                    "doc_id": str(doc_id),
+                    "chunks_added": 0,
+                    "reason": "Legal QA backend unreachable on port 8002."
+                }
+        except Exception as exc:
+            logger.error(f"Unexpected error while calling QA indexer for doc {doc_id}: {exc}", exc_info=True)
+            return {
+                "status": "FAILED_ERROR",
+                "doc_id": str(doc_id),
+                "chunks_added": 0,
+                "reason": str(exc)
+            }
+
 app = Flask(__name__)
 CORS(app)
 
@@ -118,6 +175,38 @@ def download_worker(task_id: str, year: int, month: str, court: str, max_count: 
             )
 
             if result["success"]:
+                file_path = result["path"]
+                is_pdf = file_path.endswith(".pdf")
+                is_file_cached = result.get("skipped", False)
+
+                index_status = "NOT_INDEXED_HTML" if not is_pdf else "PENDING"
+                index_details = {}
+
+                # Only newly downloaded PDF files go into the knowledge base (Decisions 2 & 6)
+                if is_pdf and not is_file_cached:
+                    try:
+                        logger.info(f"📤 Automatically indexing downloaded PDF into Legal QA KB: {os.path.basename(file_path)}")
+                        idx_res = send_to_qa_indexer(
+                            file_path=file_path,
+                            doc_id=j["id"],
+                            title=j["title"],
+                            court=j.get("court", court_name),
+                            year=year,
+                            month=month
+                        )
+                        index_status = idx_res.get("status", "FAILED_ERROR")
+                        index_details = idx_res
+                    except Exception as idx_err:
+                        logger.error(f"Failed to auto-index doc {j['id']}: {idx_err}")
+                        index_status = "FAILED_ERROR"
+                        index_details = {"reason": str(idx_err)}
+                elif is_pdf and is_file_cached:
+                    index_status = "SKIPPED_EXISTING_DOWNLOAD"
+                    index_details = {"reason": "File was already in downloads folder; only newly downloaded files are indexed."}
+                else:
+                    index_status = "NOT_INDEXED_HTML"
+                    index_details = {"reason": "HTML downloads are not added to the knowledge base. Choose PDF to index."}
+
                 file_entry = {
                     "id": j["id"],
                     "title": j["title"],
@@ -125,8 +214,10 @@ def download_worker(task_id: str, year: int, month: str, court: str, max_count: 
                     "date": j["date"],
                     "path": result["path"],
                     "filename": os.path.basename(result["path"]),
-                    "skipped": result.get("skipped", False),
-                    "file_type": "PDF" if result["path"].endswith(".pdf") else "HTML",
+                    "skipped": is_file_cached,
+                    "file_type": "PDF" if is_pdf else "HTML",
+                    "index_status": index_status,
+                    "index_details": index_details,
                 }
                 downloaded_files.append(file_entry)
                 push_event(task_id, "file_done", file_entry)
@@ -135,15 +226,34 @@ def download_worker(task_id: str, year: int, month: str, court: str, max_count: 
                 errors.append(err)
                 push_event(task_id, "file_error", err)
 
+        # Compute summary metrics for UI
+        indexed_count = sum(1 for f in downloaded_files if f.get("index_status") == "INDEXED")
+        skipped_kb_count = sum(1 for f in downloaded_files if f.get("index_status") == "SKIPPED_DUPLICATE")
+        failed_kb_count = sum(1 for f in downloaded_files if f.get("index_status") in ("FAILED_ERROR", "FAILED_NO_TEXT", "INDEX_FAILED_QA_UNREACHABLE"))
+        html_not_indexed_count = sum(1 for f in downloaded_files if f.get("index_status") == "NOT_INDEXED_HTML")
+
         # Done!
         task["status"] = "done"
         task["files"] = downloaded_files
         task["errors"] = errors
+        task["summary"] = {
+            "downloaded": len(downloaded_files),
+            "indexed": indexed_count,
+            "skipped_kb": skipped_kb_count,
+            "failed_kb": failed_kb_count,
+            "not_indexed_html": html_not_indexed_count,
+            "failed_download": len(errors)
+        }
+
         push_event(task_id, "done", {
             "downloaded": len(downloaded_files),
             "failed": len(errors),
+            "indexed": indexed_count,
+            "skipped_kb": skipped_kb_count,
+            "failed_kb": failed_kb_count,
+            "not_indexed_html": html_not_indexed_count,
             "save_dir": save_dir,
-            "message": f"✅ Complete! {len(downloaded_files)} downloaded, {len(errors)} failed.",
+            "message": f"✅ Complete! {len(downloaded_files)} downloaded ({indexed_count} indexed in KB), {len(errors)} failed.",
         })
 
     except Exception as e:
@@ -173,6 +283,13 @@ def start_download():
 
     if month not in MONTH_MAP:
         return jsonify({"error": "Invalid month"}), 400
+
+    # Requirement 1: Disallow starting a second download task while one is already running
+    for tid, t in download_tasks.items():
+        if t.get("status") in ("running", "queued") and not t.get("done") and not t.get("cancelled"):
+            return jsonify({
+                "error": "A download task is already in progress. Please wait for it to complete or cancel it before starting a new one."
+            }), 409
 
     task_id = str(uuid.uuid4())
     download_tasks[task_id] = {

@@ -75,9 +75,9 @@ python api.py
 
 # Terminal 2 - Research Backend
 cd rbackend
-python rbackend.py
+python backend.py
 
-# Terminal 3 - Legal QA Backend
+# Terminal 3 - Legal QA Backend (Port 8002)
 cd Legal_QA\legal-qa-system\backend
 python app.py
 
@@ -93,10 +93,31 @@ python app.py
 ### Frontend
 
 ```batch
-# Terminal 6 - Frontend
+# Terminal 6 - Frontend (Port 5173)
 cd front-end
 npm run dev
 ```
+
+### Running Legal QA Backend & Frontend Together
+
+To run the **Legal QA System** specifically:
+1. **Start the Legal QA Backend**:
+   ```powershell
+   venv\Scripts\activate
+   cd "Legal_QA\legal-qa-system\backend"
+   python app.py
+   ```
+   *Binds to `http://0.0.0.0:8002` (Flask).*
+
+2. **Start the Frontend**:
+   ```powershell
+   cd front-end
+   npm run dev
+   ```
+   *Runs on `http://localhost:5173`.*
+
+3. Open your browser and navigate to:
+   - `http://localhost:5173/legal-qa`
 
 ## Port Reference
 
@@ -107,7 +128,7 @@ npm run dev
 | Legal QA Backend | 8002 | http://localhost:8002 |
 | Summary Backend | 8003 | http://localhost:8003 |
 | Document Retrieval Backend | 8004 | http://localhost:8004 |
+| Evaluation Service | 8005 | http://localhost:8005 |
 | Frontend | 5173 | http://localhost:5173 |
 
-## Project Structure
 

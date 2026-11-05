@@ -576,9 +576,18 @@ def preprocess_query_terms(query: str) -> Tuple[List[str], List[str]]:
         matches = re.finditer(pattern, query, re.IGNORECASE)
         critical_terms.extend(match.group().strip() for match in matches)
     
+    # Deduplicate critical terms while preserving order
+    seen_critical = set()
+    deduped_critical = []
+    for t in critical_terms:
+        if t.lower() not in seen_critical:
+            seen_critical.add(t.lower())
+            deduped_critical.append(t)
+    critical_terms = deduped_critical
+
     remaining_text = query
     for term in critical_terms:
-        remaining_text = remaining_text.replace(term, '')
+        remaining_text = remaining_text.replace(term, ' ')
     
     non_critical_terms = [word.strip() for word in remaining_text.split() 
                          if len(word.strip()) > 2 and word.strip().lower() not in STOPWORDS]
@@ -594,38 +603,44 @@ def is_law_related_query(query: str) -> bool:
     legal_keywords = [
         'case', 'court', 'judgment', 'petition', 'appeal', 'plaintiff', 'defendant',
         'lawyer', 'attorney', 'statute', 'provision', 'citation', 'legal', 'constitution',
-        'amendment', 'treaty', 'convention', 'supreme court', 'high court'
+        'amendment', 'treaty', 'convention', 'supreme court', 'high court', 'act', 'bill',
+        'bail', 'murder', 'dowry', 'cruelty', 'conviction', 'evidence', 'accused', 'witness',
+        'ndps', 'narcotic', 'seniority', 'promotion', 'service law', 'tax', 'reassessment',
+        'negligence', 'accident', 'motor vehicle', 'anticipatory', 'crpc', 'ipc', 'cpc',
+        'contempt', 'jurisdiction', 'land acquisition', 'compensation', 'mandamus', 'writ',
+        'consumer', 'pocso', 'arbitration', 'negotiable', 'cheque', 'rape', 'corroboration',
+        'education', 'natural justice', 'audi alteram partem', 'locus standi', 'public interest',
+        'pil', 'fundamental right'
     ]
-    # Check if critical terms include legal patterns or if non-critical terms include legal keywords
+    # Check if critical terms include legal patterns or if query includes legal keywords
     has_legal_pattern = any(
         re.match(r'(section\s+\d+|article\s+\d+|v[s]?\.?|\d{4}\s+(?:act|bill|law)|air\s+\d{4}|\(\d{4}\)\s+\d+\s+scc\s+\d+)', term, re.IGNORECASE)
         for term in critical_terms
     )
-    has_legal_keyword = any(keyword in query.lower() for keyword in legal_keywords)
+    query_lower = query.lower()
+    has_legal_keyword = any(keyword in query_lower for keyword in legal_keywords)
     return has_legal_pattern or has_legal_keyword
 
 def check_term_matches(text: str, critical_terms: List[str], non_critical_terms: List[str]) -> Tuple[bool, float]:
     """
     Check if text contains required terms and calculate match score.
     Returns tuple of (is_valid, match_score).
+    Lexical matching provides relevance boosting without arbitrarily rejecting
+    semantically relevant candidates that do not have exact verbatim phrasing.
     """
     text = text.lower()
     
     if critical_terms:
         critical_matches = sum(1 for term in critical_terms if term.lower() in text)
         critical_score = critical_matches / len(critical_terms)
-        if critical_score < 0.8:  # Require 80% of critical terms
-            return False, 0.0
     else:
-        critical_score = 1.0
+        critical_score = 0.5  # Neutral default when no critical terms specified
     
     if non_critical_terms:
         non_critical_matches = sum(1 for term in non_critical_terms if term.lower() in text)
         non_critical_score = non_critical_matches / len(non_critical_terms)
-        if non_critical_score < 0.5:  # Require 50% of non-critical terms
-            return False, 0.0
     else:
-        non_critical_score = 1.0
+        non_critical_score = 0.5
     
     final_score = (critical_score * 0.7) + (non_critical_score * 0.3)
     return True, final_score
@@ -787,52 +802,52 @@ def search_external_sources(query: str) -> List[Dict[str, Any]]:
     return sorted(results, key=lambda x: x["confidence"], reverse=True)
 
 def semantic_search(query: str, k: int = 5) -> List[Dict[str, Any]]:
-    """Search the vector database with enhanced term-matching."""
-    if vector_index is None or vector_index.ntotal == 0:
-        return []
-    
-    query_embedding = generate_embedding(query)
-    
-    critical_terms, non_critical_terms = preprocess_query_terms(query)
-    pre_filtered = []
-    for file_hash, meta in vector_metadata.items():
-        search_text = f"{meta['filename']} {meta['text']} {json.dumps(meta['analysis'])}"
-        is_valid, match_score = check_term_matches(search_text, critical_terms, non_critical_terms)
-        if is_valid:
-            pre_filtered.append((file_hash, match_score))
-    
-    if not pre_filtered:
+    """Search the vector database with enhanced semantic similarity and term-matching boost."""
+    if vector_index is None or vector_index.ntotal == 0 or not vector_metadata:
         return []
     
     query_embedding = generate_embedding(query)
     query_vector = np.array([query_embedding], dtype='float32')
-    filtered_indices = [list(vector_metadata.keys()).index(file_hash) for file_hash, _ in pre_filtered]
-    filtered_vectors = np.array([vector_metadata[file_hash]['embedding'] for file_hash, _ in pre_filtered], dtype='float32')
     
-    temp_index = faiss.IndexFlatL2(EMBEDDING_DIM)
-    temp_index.add(filtered_vectors)
-    distances, indices = temp_index.search(query_vector, min(k, len(filtered_vectors)))
+    # Check for valid query vector
+    if np.all(query_vector == 0) or np.linalg.norm(query_vector) < 1e-6:
+        logger.warning("Query embedding is all zeros; skipping vector search")
+        return []
+        
+    search_k = min(k * 2, vector_index.ntotal)
+    distances, indices = vector_index.search(query_vector, search_k)
+    
+    critical_terms, non_critical_terms = preprocess_query_terms(query)
+    meta_keys = list(vector_metadata.keys())
     
     results = []
     for i, idx in enumerate(indices[0]):
-        if idx >= 0:
-            file_hash = pre_filtered[idx][0]
-            meta = vector_metadata[file_hash]
-            match_score = pre_filtered[idx][1]
-            base_confidence = max(0, min(100, 100 * (1 - distances[0][i])))
-            confidence = base_confidence * 0.4 + match_score * 60  # Increased term-matching weight
+        if 0 <= idx < len(meta_keys):
+            file_hash = meta_keys[idx]
+            meta = vector_metadata.get(file_hash)
+            if not meta:
+                continue
+            
+            search_text = f"{meta.get('filename', '')} {meta.get('text', '')} {json.dumps(meta.get('analysis', {}))}"
+            _, match_score = check_term_matches(search_text, critical_terms, non_critical_terms)
+            
+            # L2 distance converted to base similarity (0-100)
+            base_confidence = max(0.0, min(100.0, 100.0 * (1.0 - (distances[0][i] / 2.0))))
+            # Blended confidence: 60% semantic similarity + 40% lexical alignment
+            confidence = (base_confidence * 0.6) + (match_score * 40.0)
             
             results.append({
                 "file_hash": file_hash,
-                "filename": meta["filename"],
-                "text": meta["text"][:500] + "...",
-                "analysis": meta["analysis"],
-                "confidence": confidence,
+                "filename": meta.get("filename", "Unknown"),
+                "text": (meta.get("text", "")[:500] + "...") if meta.get("text") else "",
+                "analysis": meta.get("analysis", {}),
+                "confidence": float(confidence),
                 "source": meta.get("source", "document"),
                 "url": meta.get("url", None)
             })
     
-    return sorted(results, key=lambda x: x["confidence"], reverse=True)
+    sorted_results = sorted(results, key=lambda x: x["confidence"], reverse=True)
+    return sorted_results[:k]
 
 @app.post("/api/search/query")
 async def search_legal_query(query: str = Form(...)):
@@ -864,28 +879,43 @@ async def search_legal_query(query: str = Form(...)):
             result_data["timestamp"] = datetime.now().isoformat()
             return JSONResponse(result_data)
         
-        year_match = re.search(r'\b(?:19|20)\d{2}\b', expanded_query)
-        query_year = year_match.group(0) if year_match else None
-        location_match = re.search(r'\b[A-Z][a-z]+(?:\s+[A-Z][a-z]+)*\b', expanded_query)
-        query_location = location_match.group(0) if location_match and location_match.group(0).lower() not in STOPWORDS else None
-        logger.info(f"Extracted year: {query_year}, location: {query_location}")
+        # Distinguish explicit constraint requests in query from casual words
+        # e.g., "in 2005", "year 2005", "dated 2005", "(2005)", "Allahabad High Court", "in Delhi"
+        explicit_year_match = re.search(r'\b(?:in|year|dated|from|of)\s+((?:19|20)\d{2})\b|\(((?:19|20)\d{2})\)', query, re.IGNORECASE)
+        query_year = (explicit_year_match.group(1) or explicit_year_match.group(2)) if explicit_year_match else None
+        
+        # Explicit jurisdiction or court or state
+        court_keywords = ['delhi', 'allahabad', 'bombay', 'calcutta', 'madras', 'karnataka', 'supreme court', 'high court', 'uttar pradesh']
+        query_location = next((kw for kw in court_keywords if re.search(r'\b' + re.escape(kw) + r'\b', query.lower())), None)
+        logger.info(f"Extracted explicit constraints -> year: {query_year}, jurisdiction: {query_location}")
         
         local_results = semantic_search(expanded_query)
-        filtered_local = [r for r in local_results if r["confidence"] >= 60]
-        logger.info(f"Local results: {len(filtered_local)} after confidence filter")
+        # Retain local matches with reasonable semantic relevance
+        filtered_local = [r for r in local_results if r["confidence"] >= 40]
+        logger.info(f"Local results: {len(filtered_local)} after relevance check")
         
         external_results = search_external_sources(expanded_query)
         logger.info(f"External results: {len(external_results)} before filtering")
         
-        def filter_result(result):
-            text = f"{result.get('title', '')} {result.get('snippet', '')} {json.dumps(result.get('analysis', ''))}"
-            year_ok = not query_year or (query_year and query_year in text)
-            location_ok = not query_location or (query_location and query_location.lower() in text.lower())
-            logger.debug(f"Filtering result {result.get('title', '')}: year_ok={year_ok}, location_ok={location_ok}")
-            return year_ok and location_ok
+        verified_external = []
+        fallback_external = []
+        for result in external_results:
+            text = f"{result.get('title', '')} {result.get('snippet', '')} {result.get('court', '')} {result.get('year', '')} {json.dumps(result.get('analysis', ''))}".lower()
+            year_matches = (not query_year) or (query_year in text)
+            location_matches = (not query_location) or (query_location in text)
+            
+            if year_matches and location_matches:
+                result["constraint_verified"] = True
+                verified_external.append(result)
+            else:
+                # Mark as unverified fallback candidate with reduced confidence
+                result["constraint_verified"] = False
+                result["confidence"] = max(10.0, result.get("confidence", 50.0) * 0.6)
+                fallback_external.append(result)
         
-        filtered_external = [r for r in external_results if filter_result(r)]
-        logger.info(f"Filtered external results: {len(filtered_external)}")
+        # Present verified matches first, followed by clearly identified fallback candidates
+        filtered_external = verified_external + fallback_external
+        logger.info(f"External results: {len(verified_external)} verified, {len(fallback_external)} fallback")
         
         results = filtered_local + filtered_external
         if results:
@@ -1020,137 +1050,93 @@ async def get_document(file_hash: str):
         raise HTTPException(status_code=500, detail=str(e))
 
 
-@app.route('/api/documents', methods=['GET'])
-def get_documents():
+@app.get('/api/documents')
+async def get_documents():
     """Get list of all analyzed documents"""
     try:
         documents = []
+        remarks = load_remarks()
         
-        # Check if documents directory exists
-        if os.path.exists(DOCUMENTS_DIR):
-            for filename in os.listdir(DOCUMENTS_DIR):
-                if filename.endswith('.json'):
-                    filepath = os.path.join(DOCUMENTS_DIR, filename)
-                    try:
-                        with open(filepath, 'r', encoding='utf-8') as f:
-                            doc_data = json.load(f)
-                        
-                        documents.append({
-                            'id': filename.replace('.json', ''),
-                            'file_hash': doc_data.get('file_hash', ''),
-                            'title': doc_data.get('title', 'Untitled'),
-                            'url': doc_data.get('url', ''),
-                            'analyzed_at': doc_data.get('analyzed_at', ''),
-                            'summary': doc_data.get('summary', '')[:200] + '...' if doc_data.get('summary', '') else 'No summary'
-                        })
-                    except Exception as e:
-                        print(f"Error loading document {filename}: {str(e)}")
-                        continue
+        for file_hash, meta in sorted(vector_metadata.items(), 
+                                      key=lambda x: x[1].get("timestamp", ""), reverse=True):
+            documents.append({
+                "id": file_hash,
+                "file_hash": file_hash,
+                "title": meta.get("filename", "Unknown"),
+                "filename": meta.get("filename", "Unknown"),
+                "analyzed_at": meta.get("timestamp", ""),
+                "summary": meta.get("analysis", {}).get("summary", "No summary")[:200],
+                "source": meta.get("source", "document"),
+                "url": meta.get("url"),
+                "remark": remarks.get(file_hash, {}).get("remark")
+            })
         
-        # Sort by analyzed_at (most recent first)
-        documents.sort(key=lambda x: x.get('analyzed_at', ''), reverse=True)
-        
-        return jsonify({
-            'success': True,
-            'documents': documents,
-            'total': len(documents)
+        return JSONResponse({
+            "success": True,
+            "documents": documents,
+            "total": len(documents)
         })
-    
     except Exception as e:
-        print(f"Error fetching documents: {str(e)}")
-        return jsonify({
-            'success': False,
-            'error': str(e),
-            'documents': []
-        }), 500
+        logger.error(f"Error fetching documents: {str(e)}", exc_info=True)
+        return JSONResponse({
+            "success": False,
+            "error": str(e),
+            "documents": []
+        }, status_code=500)
 
-@app.route('/api/history', methods=['GET'])
-def get_history():
+@app.get('/api/history')
+async def get_history():
     """Get search/analysis history"""
     try:
         history = []
+        remarks = load_remarks()
         
-        # Check if history directory exists
-        history_dir = os.path.join(DOCUMENTS_DIR, 'history')
-        if not os.path.exists(history_dir):
-            os.makedirs(history_dir, exist_ok=True)
+        for file_hash, meta in sorted(vector_metadata.items(), 
+                                      key=lambda x: x[1].get("timestamp", ""), reverse=True):
+            history.append({
+                "file_hash": file_hash,
+                "filename": meta.get("filename", "Unknown"),
+                "timestamp": meta.get("timestamp", ""),
+                "summary": meta.get("analysis", {}).get("summary", "No summary")[:200],
+                "source": meta.get("source", "document"),
+                "url": meta.get("url"),
+                "remark": remarks.get(file_hash, {}).get("remark")
+            })
         
-        # Load history from file
-        history_file = os.path.join(history_dir, 'search_history.json')
-        if os.path.exists(history_file):
-            try:
-                with open(history_file, 'r', encoding='utf-8') as f:
-                    history = json.load(f)
-            except Exception as e:
-                print(f"Error loading history: {str(e)}")
-                history = []
-        
-        return jsonify({
-            'success': True,
-            'history': history,
-            'total': len(history)
+        return JSONResponse({
+            "success": True,
+            "history": history,
+            "total": len(history)
         })
-    
     except Exception as e:
-        print(f"Error fetching history: {str(e)}")
-        return jsonify({
-            'success': False,
-            'error': str(e),
-            'history': []
-        }), 500
+        logger.error(f"History error: {str(e)}", exc_info=True)
+        return JSONResponse({
+            "success": False,
+            "error": str(e),
+            "history": []
+        }, status_code=500)
 
-@app.route('/api/document/<file_hash>', methods=['GET'])
-def get_document_details(file_hash):
-    """Get details of a specific document"""
-    try:
-        filepath = os.path.join(DOCUMENTS_DIR, f"{file_hash}.json")
-        
-        if not os.path.exists(filepath):
-            return jsonify({
-                'success': False,
-                'error': 'Document not found'
-            }), 404
-        
-        with open(filepath, 'r', encoding='utf-8') as f:
-            doc_data = json.load(f)
-        
-        return jsonify({
-            'success': True,
-            'document': doc_data
-        })
-    
-    except Exception as e:
-        print(f"Error fetching document details: {str(e)}")
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
-
-@app.route('/api/document/<file_hash>', methods=['DELETE'])
-def delete_document(file_hash):
+@app.delete('/api/document/{file_hash}')
+async def delete_document(file_hash: str):
     """Delete a document"""
     try:
-        filepath = os.path.join(DOCUMENTS_DIR, f"{file_hash}.json")
+        if file_hash not in vector_metadata:
+            raise HTTPException(status_code=404, detail="Document not found")
         
-        if not os.path.exists(filepath):
-            return jsonify({
-                'success': False,
-                'error': 'Document not found'
-            }), 404
+        del vector_metadata[file_hash]
+        save_vector_metadata()
         
-        os.remove(filepath)
+        remarks = load_remarks()
+        if file_hash in remarks:
+            del remarks[file_hash]
+            save_remarks(remarks)
         
-        return jsonify({
-            'success': True,
-            'message': 'Document deleted successfully'
-        })
-    
+        return JSONResponse({"status": "success", "message": "Document deleted successfully"})
+    except HTTPException:
+        raise
     except Exception as e:
-        print(f"Error deleting document: {str(e)}")
-        return jsonify({
-            'success': False,
-            'error': str(e)
-        }), 500
+        logger.error(f"Error deleting document: {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 if __name__ == "__main__":
     import uvicorn

@@ -62,12 +62,15 @@ RUN_TIMESTAMP = datetime.utcnow().isoformat() + "Z"
 LOW_SCORE_THRESHOLD = 0.6
 
 
+from ragas.llms import LangchainLLMWrapper
+from ragas.embeddings import LangchainEmbeddingsWrapper
+
 def _make_llm():
-    return ChatOpenAI(model=JUDGE_MODEL, api_key=OPENAI_API_KEY, temperature=0.0)
+    return LangchainLLMWrapper(ChatOpenAI(model=JUDGE_MODEL, api_key=OPENAI_API_KEY, temperature=0.0))
 
 
 def _make_embeddings():
-    return OpenAIEmbeddings(model=EMBED_MODEL, api_key=OPENAI_API_KEY)
+    return LangchainEmbeddingsWrapper(OpenAIEmbeddings(model=EMBED_MODEL, api_key=OPENAI_API_KEY))
 
 
 def _build_dataset(samples: list[dict]) -> EvaluationDataset:
@@ -143,7 +146,7 @@ def _attach_scores(samples: list[dict], scores_by_metric: dict[str, list]) -> li
 
         valid_scores = [v for v in sample["scores"].values() if v is not None]
         mean_score = _mean_of_nullables(valid_scores)
-        sample["flag"] = "low" if (mean_score is not None and mean_score < LOW_SCORE_THRESHOLD) else "ok"
+        sample["flag"] = "low" if (mean_score is not None and mean_score < LOW_SCORE_THRESHOLD) else "moderate" if (mean_score is not None and mean_score < 0.85) else "ok"
     return samples
 
 

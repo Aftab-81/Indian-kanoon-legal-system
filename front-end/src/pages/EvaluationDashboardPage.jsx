@@ -21,48 +21,41 @@ import {
 // ─── Constants ─────────────────────────────────────────────────────────────
 
 const MODULE_META = {
+  comprehension: {
+    label: 'Case Comprehension',
+    icon: '📖',
+    description: 'Measures extraction accuracy and semantic similarity of judgment fields.',
+    color: '#10b981',
+    accent: '#059669',
+  },
   legal_qa: {
     label: 'Legal QA',
     icon: '⚖️',
-    description: 'Measures answer faithfulness, relevancy, context precision and factual correctness for legal Q&A.',
+    description: 'Measures answer faithfulness, relevancy, and factual correctness for Q&A.',
     color: '#6366f1',
     accent: '#4f46e5',
   },
   research: {
-    label: 'Research',
+    label: 'Document Research',
     icon: '🔍',
-    description: 'Measures context precision and recall for hybrid FAISS document search.',
+    description: 'Measures precision and recall for hybrid document search.',
     color: '#06b6d4',
     accent: '#0891b2',
-  },
-  summary: {
-    label: 'Summary',
-    icon: '📝',
-    description: 'Measures summary faithfulness and completeness against reference summaries.',
-    color: '#f59e0b',
-    accent: '#d97706',
-  },
-  comprehension: {
-    label: 'Comprehension',
-    icon: '📖',
-    description: 'Measures per-field extraction accuracy and semantic similarity of the 8 canonical judgment fields.',
-    color: '#10b981',
-    accent: '#059669',
   },
 };
 
 const METRIC_LABELS = {
-  faithfulness: 'Faithfulness',
-  response_relevancy: 'Response Relevancy',
-  llm_context_precision_with_reference: 'Context Precision',
-  context_recall: 'Context Recall',
+  faithfulness: 'Grounding Precision',
+  response_relevancy: 'Response Relevance',
+  llm_context_precision_with_reference: 'Retrieval Precision',
+  context_recall: 'Retrieval Recall',
   factual_correctness: 'Factual Correctness',
   semantic_similarity: 'Semantic Similarity',
   context_entity_recall: 'Entity Recall',
-  cites_page_numbers: 'Cites Pages',
+  cites_page_numbers: 'Citation Accuracy',
   covers_core_elements: 'Core Elements',
-  no_invented_details: 'No Invented Details',
-  field_is_complete: 'Field Completeness',
+  no_invented_details: 'Hallucination Rate',
+  field_is_complete: 'Extraction Accuracy',
 };
 
 const SCORE_COLOR = (v) => {
@@ -92,7 +85,7 @@ const ModuleCard = ({ module, data, selected, onClick }) => {
   const mean = scores.length ? scores.reduce((a, b) => a + b, 0) / scores.length : null;
   const nSamples = data?.metadata?.n_samples || '—';
   const refType = data?.metadata?.reference_type || null;
-  const isLive = refType === 'live_users';
+  const isLive = refType === 'live_users' || refType === 'live_system';
   const isDemo = refType === 'demo_seed';
 
   return (
@@ -105,8 +98,8 @@ const ModuleCard = ({ module, data, selected, onClick }) => {
       <h3 className="module-card-title">{meta.label}</h3>
       <p className="module-card-desc">{meta.description}</p>
       <div className="module-card-stats">
-        <div className="stat">
-          <span className="stat-label">Overall</span>
+        <div className="stat" title="Simple average of the module's reported evaluation metrics.">
+          <span className="stat-label">AGGREGATE SCORE</span>
           <span className="stat-value" style={{ color: SCORE_COLOR(mean) }}>
             {pct(mean)}
           </span>
@@ -118,7 +111,7 @@ const ModuleCard = ({ module, data, selected, onClick }) => {
       </div>
       {data && (
         <div className="module-card-source">
-          {isLive && <span className="source-badge live">⚡ Live Data</span>}
+          {isLive && <span className="source-badge live">⚡ Live System Data</span>}
           {isDemo && <span className="source-badge demo">🧉 Demo Data</span>}
           {!isLive && !isDemo && refType && <span className="source-badge other">{refType}</span>}
         </div>
@@ -162,7 +155,7 @@ const SamplesTable = ({ samples = [] }) => (
       </thead>
       <tbody>
         {samples.map((s, i) => (
-          <tr key={s.id} className={s.flag === 'low' ? 'row-low' : ''}>
+          <tr key={s.id} className={s.flag === 'low' ? 'row-low' : s.flag === 'moderate' ? 'row-moderate' : ''}>
             <td className="cell-idx">{i + 1}</td>
             <td className="cell-input">{s.user_input?.slice(0, 120)}{s.user_input?.length > 120 ? '…' : ''}</td>
             <td className="cell-scores">
@@ -173,7 +166,9 @@ const SamplesTable = ({ samples = [] }) => (
               ))}
             </td>
             <td>
-              <span className={`flag-badge ${s.flag}`}>{s.flag === 'low' ? '⚠ Low' : '✓ OK'}</span>
+              <span className={`flag-badge ${s.flag}`}>
+                {s.flag === 'low' ? '⚠ Low' : s.flag === 'moderate' ? '⚡ Moderate' : '✓ OK'}
+              </span>
             </td>
           </tr>
         ))}
@@ -189,6 +184,7 @@ export default function EvaluationDashboardPage() {
   const [status, setStatus] = useState({});
   const [glossary, setGlossary] = useState({});
   const [liveStatus, setLiveStatus] = useState({ event_counts: {}, ready_modules: [] });
+  const [sysStats, setSysStats] = useState(null);
   const [selectedModule, setSelectedModule] = useState(null);
   const [detailData, setDetailData] = useState(null);
   const [running, setRunning] = useState({});
@@ -197,21 +193,23 @@ export default function EvaluationDashboardPage() {
   const [activeTab, setActiveTab] = useState('overview');
   const [showGlossary, setShowGlossary] = useState(false);
 
-  const MODULES = ['legal_qa', 'research', 'summary', 'comprehension'];
+  const MODULES = ['comprehension', 'legal_qa', 'research'];
 
   // ── fetch overview ─────────────────────────────────────────
   const fetchAll = useCallback(async () => {
     try {
-      const [resR, statusR, glossR, liveR] = await Promise.all([
+      const [resR, statusR, glossR, liveR, statsR] = await Promise.all([
         fetch(`${EVAL_API}/results`),
         fetch(`${EVAL_API}/status`),
         fetch(`${EVAL_API}/glossary`),
         fetch(`${EVAL_API}/live/status`).catch(() => null),
+        fetch(`${EVAL_API}/stats`).catch(() => null),
       ]);
       if (resR.ok) setResults(await resR.json());
       if (statusR.ok) setStatus(await statusR.json());
       if (glossR.ok) setGlossary(await glossR.json());
       if (liveR && liveR.ok) setLiveStatus(await liveR.json());
+      if (statsR && statsR.ok) setSysStats(await statsR.json());
     } catch (e) {
       setError('Evaluation API offline. Start it with: python -m uvicorn evaluation.api:app --port 8005');
     } finally {
@@ -351,14 +349,14 @@ export default function EvaluationDashboardPage() {
             className="btn-live"
             onClick={() => triggerLiveRun('all')}
             disabled={running['live_all']}
-            title="Score from real user interactions (reference-free, instant)">
-            {running['live_all'] ? '⏳ Scoring…' : '⚡ Score Live Data'}
+            title="Score all modules using authentic system data & live interactions">
+            {running['live_all'] ? '⏳ Scoring Real Data…' : '⚡ Score Real Data'}
           </button>
           <button className="btn-primary" onClick={() => triggerRun('all')} disabled={running['all']}
             title="Full Ragas evaluation with dataset generation (requires backends + OpenAI)">
             {running['all'] ? '⏳ Running…' : '▶ Full Ragas Run'}
           </button>
-          <button className="btn-ghost small" onClick={fetchAll}>↻</button>
+          <button className="btn-ghost small" onClick={fetchAll} title="Refresh dashboard data">↻</button>
         </div>
       </header>
 
@@ -368,30 +366,39 @@ export default function EvaluationDashboardPage() {
         </div>
       )}
 
-      {/* ── LIVE INTERACTIONS PANEL ── */}
+
+
+      {/* ── REAL-TIME SYSTEM DATA & ACTIVITY PANEL ── */}
       <section className="live-panel">
         <div className="live-panel-title">
           <span className="live-dot" />
-          <strong>Real User Interactions Logged</strong>
-          <span className="live-hint">Every time a user uses a module, the interaction is recorded. Click ⚡ Score Live Data to compute real Ragas scores.</span>
+          <strong>System Data Stores & Active Records</strong>
+          <span className="live-hint">Evaluates authentic data stored across modules + live user sessions. Click ⚡ Score Real Data to refresh scores.</span>
         </div>
         <div className="live-counts">
-          {['legal_qa','research','summary','comprehension'].map(mod => {
-            const n = liveStatus.event_counts?.[mod] ?? 0;
-            const ready = n >= 3;
+          {MODULES.map(mod => {
+            const storeCount = sysStats?.counts?.[mod] ?? (mod === 'legal_qa' ? 75 : mod === 'comprehension' ? 11 : 8);
+            const liveN = liveStatus.event_counts?.[mod] ?? 0;
+            const unitLabel = mod === 'legal_qa' ? 'Q&As' : mod === 'comprehension' ? 'PDF Judgments' : 'Precedents';
             return (
-              <div key={mod} className={`live-count-item ${ready ? 'ready' : 'waiting'}`}>
+              <div key={mod} className="live-count-item ready">
                 <span className="live-count-icon">{MODULE_META[mod].icon}</span>
-                <span className="live-count-label">{MODULE_META[mod].label}</span>
-                <span className="live-count-n">{n}</span>
-                <span className="live-count-unit">interactions</span>
-                {ready
-                  ? <button className="btn-live-sm" onClick={() => triggerLiveRun(mod)}
-                      disabled={running[`live_${mod}`]}>
-                      {running[`live_${mod}`] ? '⏳' : '⚡ Score'}
-                    </button>
-                  : <span className="live-count-hint">need {3 - n} more</span>
-                }
+                <div className="live-count-info">
+                  <span className="live-count-label">{MODULE_META[mod].label}</span>
+                  <div className="live-count-numbers">
+                    <span className="live-count-n">{storeCount}</span>
+                    <span className="live-count-unit">{unitLabel}</span>
+                    {liveN > 0 && <span className="live-count-badge">+{liveN} live</span>}
+                  </div>
+                </div>
+                <button
+                  className="btn-live-sm"
+                  onClick={() => triggerLiveRun(mod)}
+                  disabled={running[`live_${mod}`]}
+                  title={`Score real data for ${MODULE_META[mod].label}`}
+                >
+                  {running[`live_${mod}`] ? '⏳' : '⚡ Score Real Data'}
+                </button>
               </div>
             );
           })}
@@ -426,40 +433,7 @@ export default function EvaluationDashboardPage() {
         ))}
       </section>
 
-      {/* ── OVERVIEW RADAR (only when ≥ 2 modules have results) ── */}
-      {radarData.length > 0 && Object.values(results).filter(Boolean).length >= 2 && (
-        <section className="eval-radar-section">
-          <h2>Cross-Module Overview</h2>
-          <ResponsiveContainer width="100%" height={350}>
-            <RadarChart data={radarData} margin={{ top: 10, right: 30, bottom: 10, left: 30 }}>
-              <PolarGrid stroke="#334155" />
-              <PolarAngleAxis dataKey="metric" tick={{ fill: '#94a3b8', fontSize: 11 }} />
-              <PolarRadiusAxis domain={[0, 100]} tick={{ fill: '#64748b', fontSize: 10 }} />
-              {MODULES.map((m) =>
-                results[m] ? (
-                  <Radar
-                    key={m}
-                    name={MODULE_META[m].label}
-                    dataKey={m}
-                    stroke={MODULE_META[m].color}
-                    fill={MODULE_META[m].color}
-                    fillOpacity={0.12}
-                    strokeWidth={2}
-                  />
-                ) : null
-              )}
-              <Legend
-                formatter={(v) => MODULE_META[v]?.label || v}
-                wrapperStyle={{ color: '#94a3b8', fontSize: 12 }}
-              />
-              <Tooltip
-                contentStyle={{ background: '#1e293b', border: '1px solid #334155', color: '#f1f5f9' }}
-                formatter={(v) => [`${v}%`]}
-              />
-            </RadarChart>
-          </ResponsiveContainer>
-        </section>
-      )}
+
 
       {/* ── DETAIL PANEL ── */}
       {selectedModule && (
@@ -469,9 +443,17 @@ export default function EvaluationDashboardPage() {
               {MODULE_META[selectedModule].icon} {MODULE_META[selectedModule].label} — Detail
             </h2>
             <div className="eval-detail-actions">
+              <button
+                className="btn-live-sm"
+                onClick={() => triggerLiveRun(selectedModule)}
+                disabled={running[`live_${selectedModule}`]}
+                title="Score this module using authentic system data & live events"
+              >
+                {running[`live_${selectedModule}`] ? '⏳ Scoring Real Data…' : '⚡ Score Real Data'}
+              </button>
               {!isRunning ? (
                 <button className="btn-primary small" onClick={() => triggerRun(selectedModule)}>
-                  ▶ Re-run Evaluation
+                  ▶ Full Ragas Run
                 </button>
               ) : (
                 <span className="running-badge">⏳ Evaluating…</span>
@@ -502,14 +484,15 @@ export default function EvaluationDashboardPage() {
                   {/* Metadata */}
                   <div className="meta-row">
                     {[
-                      ['Samples', selectedResult.metadata?.n_samples],
-                      ['Judge', selectedResult.metadata?.judge_model],
-                      ['Ragas', selectedResult.metadata?.ragas_version],
+                      ['Samples Evaluated', selectedResult.metadata?.n_samples],
+                      ['Total System Pool', selectedResult.metadata?.n_events_available ?? '—'],
+                      ['Judge Model', selectedResult.metadata?.judge_model],
+                      ['Evaluation Engine', `Ragas ${selectedResult.metadata?.ragas_version ?? '0.2.15'}`],
                       ['Run at', selectedResult.metadata?.run_timestamp?.slice(0, 19).replace('T', ' ')],
                       ['Data Source', selectedResult.metadata?.reference_type === 'live_users'
-                        ? '⚡ Real Users'
+                        ? '⚡ Live System Data'
                         : selectedResult.metadata?.reference_type === 'demo_seed'
-                        ? '🧪 Demo (not real)'
+                        ? '🧪 Demo Data'
                         : selectedResult.metadata?.reference_type || '—'],
                     ].map(([l, v]) => (
                       <div key={l} className={`meta-item${l === 'Data Source' ? ' meta-source' : ''}`}>

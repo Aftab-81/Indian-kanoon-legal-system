@@ -9,14 +9,18 @@ const stripHtml = (html) => {
   return doc.body.textContent || "";
 };
 
-export const UnifiedSearch = ({ darkMode, onResultSelect }) => {
+export const UnifiedSearch = ({ darkMode, onResultSelect, searchType: initialSearchType = 'both' }) => {
   const navigate = useNavigate();
 
   // Common state
   const [query, setQuery] = useState('');
-  const [searchType, setSearchType] = useState('both'); // 'google', 'indiankanoon', or 'both'
+  const [searchType, setSearchType] = useState(initialSearchType); // 'google', 'indiankanoon', or 'both'
   const [isSearching, setIsSearching] = useState(false);
-  const [error, setError] = useState(null);
+  
+  // Independent error states
+  const [googleError, setGoogleError] = useState(null);
+  const [ikError, setIkError] = useState(null);
+  const [generalError, setGeneralError] = useState(null);
   
   // Google search state
   const [googleResults, setGoogleResults] = useState([]);
@@ -31,73 +35,119 @@ export const UnifiedSearch = ({ darkMode, onResultSelect }) => {
   const [isSaving, setIsSaving] = useState(false);
   const [saveSuccess, setSaveSuccess] = useState(null);
 
-  const handleSearch = async () => {
+  const fetchWithTimeout = async (url, options = {}, timeoutMs = 20000) => {
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), timeoutMs);
+    try {
+      const response = await fetch(url, {
+        ...options,
+        signal: controller.signal
+      });
+      clearTimeout(timeoutId);
+      return response;
+    } catch (err) {
+      clearTimeout(timeoutId);
+      if (err.name === 'AbortError') {
+        throw new Error('Request timed out after 20 seconds');
+      }
+      throw err;
+    }
+  };
+
+  const handleSearch = async (forcedSource = null) => {
+    const activeSearchType = forcedSource || searchType;
     if (!query.trim()) return;
 
     setIsSearching(true);
-    setError(null);
-    setGoogleResults([]);
-    setIkResults([]);
-    setModifiedQuery(null);
+    setGeneralError(null);
 
-    try {
-      const performGoogleSearch = searchType === 'google' || searchType === 'both';
-      const performIKSearch = searchType === 'indiankanoon' || searchType === 'both';
-      
-      const searchPromises = [];
-      
-      if (performGoogleSearch) {
-        const googlePromise = fetch(`${API_BASE}/google-search`, {
+    const performGoogleSearch = activeSearchType === 'google' || activeSearchType === 'both';
+    const performIKSearch = activeSearchType === 'indiankanoon' || activeSearchType === 'both';
+
+    if (performGoogleSearch) {
+      setGoogleResults([]);
+      setGoogleError(null);
+      setModifiedQuery(null);
+    }
+    if (performIKSearch) {
+      setIkResults([]);
+      setIkError(null);
+    }
+
+    const tasks = [];
+    if (performGoogleSearch) {
+      tasks.push(
+        fetchWithTimeout(`${API_BASE}/google-search`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ query: query.trim(), num_results: 10 }),
-        }).then(res => res.json());
-        searchPromises.push(googlePromise);
-      }
-      
-      if (performIKSearch) {
-        const ikPromise = fetch(`${API_BASE}/ik-search`, {
+        }, 20000)
+          .then(async (res) => {
+            const data = await res.json().catch(() => ({}));
+            return { source: 'google', ok: res.ok, status: res.status, data };
+          })
+          .catch((err) => ({
+            source: 'google',
+            ok: false,
+            error: err.message || 'Network error while contacting Google Search'
+          }))
+      );
+    }
+
+    if (performIKSearch) {
+      tasks.push(
+        fetchWithTimeout(`${API_BASE}/ik-search`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ query: query.trim(), max_pages: 2 }),
-        }).then(res => res.json());
-        searchPromises.push(ikPromise);
-      }
-      
-      const results = await Promise.all(searchPromises);
-      
-      if (performGoogleSearch) {
-        const googleData = results[0];
-        if (googleData.success) {
-          if (Array.isArray(googleData.results)) {
-            setGoogleResults(googleData.results);
-            if (googleData.modified_query && googleData.original_query !== googleData.modified_query) {
-              setModifiedQuery(googleData.modified_query);
+        }, 20000)
+          .then(async (res) => {
+            const data = await res.json().catch(() => ({}));
+            return { source: 'indiankanoon', ok: res.ok, status: res.status, data };
+          })
+          .catch((err) => ({
+            source: 'indiankanoon',
+            ok: false,
+            error: err.message || 'Network error while contacting Indian Kanoon'
+          }))
+      );
+    }
+
+    try {
+      const settled = await Promise.allSettled(tasks);
+
+      for (const outcome of settled) {
+        if (outcome.status === 'fulfilled') {
+          const item = outcome.value;
+          if (item.source === 'google') {
+            if (item.ok && item.data && item.data.success) {
+              const resList = Array.isArray(item.data.results) ? item.data.results : [];
+              setGoogleResults(resList);
+              if (item.data.modified_query && item.data.original_query !== item.data.modified_query) {
+                setModifiedQuery(item.data.modified_query);
+              }
+            } else {
+              const errMsg = (item.data && (item.data.error || (item.data.errors && item.data.errors[0]))) || item.error || 'Google search failed';
+              setGoogleError(errMsg);
             }
-          } else {
-            setError('Received unexpected data format from Google search');
+          } else if (item.source === 'indiankanoon') {
+            if (item.ok && item.data && item.data.success) {
+              let resList = [];
+              if (Array.isArray(item.data.results)) {
+                resList = item.data.results;
+              } else if (item.data.results && item.data.results.docs && Array.isArray(item.data.results.docs)) {
+                resList = item.data.results.docs;
+              }
+              setIkResults(resList);
+            } else {
+              const errMsg = (item.data && (item.data.error || (item.data.errors && item.data.errors[0]))) || item.error || 'Indian Kanoon search failed';
+              setIkError(errMsg);
+            }
           }
-        } else {
-          setError(googleData.error || 'Failed to search Google');
-        }
-      }
-      
-      if (performIKSearch) {
-        const ikData = performGoogleSearch ? results[1] : results[0];
-        if (ikData.success) {
-          if (Array.isArray(ikData.results)) {
-            setIkResults(ikData.results);
-          } else if (ikData.results && ikData.results.docs && Array.isArray(ikData.results.docs)) {
-            setIkResults(ikData.results.docs);
-          } else {
-            setError('Received unexpected data format from Indian Kanoon search');
-          }
-        } else {
-          setError(ikData.error || 'Failed to search Indian Kanoon');
         }
       }
     } catch (err) {
-      setError('Network error while performing search');
+      setGeneralError(err.message || 'An unexpected error occurred during search');
     } finally {
       setIsSearching(false);
     }
@@ -251,12 +301,51 @@ export const UnifiedSearch = ({ darkMode, onResultSelect }) => {
             </div>
           </div>
           
-          {error && (
-             <div className="mt-4 p-3 bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 rounded flex items-center">
-               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-               {error}
-             </div>
+          {generalError && (
+            <div className="mt-4 p-3 bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-300 rounded flex items-center justify-between">
+              <div className="flex items-center">
+                <svg className="w-5 h-5 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>Search failed: {generalError}</span>
+              </div>
+              <button 
+                onClick={() => handleSearch()}
+                className="ml-4 px-3 py-1 bg-red-200 dark:bg-red-800 hover:bg-red-300 dark:hover:bg-red-700 text-red-900 dark:text-red-100 rounded text-xs font-semibold uppercase tracking-wider"
+              >
+                Retry
+              </button>
+            </div>
           )}
+
+          {googleError && (
+            <div className="mt-4 p-3 bg-red-50 dark:bg-red-950/40 border border-red-200 dark:border-red-800/50 text-red-800 dark:text-red-300 rounded flex items-center justify-between">
+              <div className="flex items-center">
+                <span className="font-semibold mr-2">[Google Search failed]:</span>
+                <span>{googleError}</span>
+              </div>
+              <button 
+                onClick={() => handleSearch('google')}
+                className="ml-4 px-3 py-1 bg-red-100 dark:bg-red-900/60 hover:bg-red-200 text-red-900 dark:text-red-200 rounded text-xs font-semibold uppercase tracking-wider"
+              >
+                Retry Google
+              </button>
+            </div>
+          )}
+
+          {ikError && (
+            <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/50 text-amber-800 dark:text-amber-300 rounded flex items-center justify-between">
+              <div className="flex items-center">
+                <span className="font-semibold mr-2">[Indian Kanoon Search failed]:</span>
+                <span>{ikError}</span>
+              </div>
+              <button 
+                onClick={() => handleSearch('indiankanoon')}
+                className="ml-4 px-3 py-1 bg-amber-100 dark:bg-amber-900/60 hover:bg-amber-200 text-amber-900 dark:text-amber-200 rounded text-xs font-semibold uppercase tracking-wider"
+              >
+                Retry Indian Kanoon
+              </button>
+            </div>
+          )}
+
           {modifiedQuery && searchType !== 'indiankanoon' && (
             <p className={`mt-3 text-sm ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>
               Showing legal results for: <span className="font-medium text-purple-600 dark:text-purple-400">{modifiedQuery}</span>
@@ -442,8 +531,15 @@ export const UnifiedSearch = ({ darkMode, onResultSelect }) => {
               </div>
             )}
             
-            {/* No Results State */}
-            {!isSearching && googleResults.length === 0 && ikResults.length === 0 && query.trim() !== '' && !error && (
+            {/* No Results State (only shown when genuinely empty and without full failure) */}
+            {!isSearching &&
+              googleResults.length === 0 &&
+              ikResults.length === 0 &&
+              query.trim() !== '' &&
+              !generalError &&
+              !((searchType === 'google' && googleError) ||
+                (searchType === 'indiankanoon' && ikError) ||
+                (searchType === 'both' && googleError && ikError)) && (
               <div className="flex flex-col items-center justify-center py-16 text-center">
                 <div className={`p-4 rounded-full mb-4 ${darkMode ? 'bg-slate-700' : 'bg-gray-100'}`}>
                   <svg className={`w-10 h-10 ${darkMode ? 'text-gray-400' : 'text-gray-400'}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -41,34 +41,43 @@ class IKApi:
         if self.maxpages > 100:
             self.maxpages = 100
 
-    def call_api_direct(self, url):
+    def call_api_direct(self, url, timeout=15):
         self.logger.info(f"IndianKanoon API request to: {url}")
-        connection = http.client.HTTPSConnection(self.basehost)
-        connection.request('POST', url, headers = self.headers)
-        response = connection.getresponse()
-        results = response.read()
-
-        if isinstance(results, bytes):
-            results = results.decode('utf8')
-        return results 
-   
-    def call_api(self, url):
-        count = 0
-
-        while count < 10:
+        connection = http.client.HTTPSConnection(self.basehost, timeout=timeout)
+        try:
+            connection.request('POST', url, headers=self.headers)
+            response = connection.getresponse()
+            results = response.read()
+            if isinstance(results, bytes):
+                results = results.decode('utf8')
+            return results
+        finally:
             try:
-                results = self.call_api_direct(url)
+                connection.close()
+            except Exception:
+                pass
+   
+    def call_api(self, url, timeout=15):
+        count = 0
+        results = None
+
+        while count < 3:
+            try:
+                results = self.call_api_direct(url, timeout=timeout)
             except Exception as e:
                 self.logger.error('Error in call_api %s: %s', url, e, exc_info=True)
                 count += 1
-                time.sleep(count * 100)
+                if count >= 3:
+                    raise e
+                time.sleep(1)
                 continue
 
-            if results == None or (isinstance(results, str) and \
-                                   re.match('error code:', results)):
+            if results is None or (isinstance(results, str) and re.match(r'error code:', results, re.IGNORECASE)):
                 self.logger.warning('Error in call_api %s %s', url, results)
                 count += 1
-                time.sleep(count * 100)
+                if count >= 3:
+                    break
+                time.sleep(1)
             else:
                 break 
 

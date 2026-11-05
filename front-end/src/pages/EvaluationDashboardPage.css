@@ -373,6 +373,7 @@
 .samples-table tr:last-child td { border-bottom: none; }
 .samples-table tr:hover td { background: #111827; }
 .samples-table tr.row-low td { background: rgba(239, 68, 68, 0.04); }
+.samples-table tr.row-moderate td { background: rgba(245, 158, 11, 0.04); }
 .cell-idx { color: #475569; font-variant-numeric: tabular-nums; width: 30px; }
 .cell-input { color: #cbd5e1; max-width: 360px; }
 .cell-scores { max-width: 280px; }
@@ -387,6 +388,7 @@
 }
 .flag-badge { font-size: 11px; padding: 2px 8px; border-radius: 10px; white-space: nowrap; }
 .flag-badge.ok  { background: rgba(16, 185, 129, 0.12); color: #34d399; }
+.flag-badge.moderate { background: rgba(245, 158, 11, 0.12); color: #fbbf24; }
 .flag-badge.low { background: rgba(239, 68, 68, 0.12);  color: #f87171; }
 
 /* Notes tab */
@@ -525,3 +527,95 @@
 .meta-live { color: #34d399 !important; font-weight: 700; }
 .meta-demo { color: #fbbf24 !important; font-weight: 600; }
 .meta-source .meta-label { color: #475569; }
+
+/* ── Cross-Module Intelligence Banner ── */
+.cross-module-banner {
+  margin: 20px 40px;
+  padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7) 0%, rgba(15, 23, 42, 0.85) 100%);
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  border-radius: 14px;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.3);
+}
+
+.cross-module-banner-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.cross-module-badge {
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+
+.cross-module-subtitle {
+  font-size: 12px;
+  color: #94a3b8;
+}
+
+.cross-module-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.cross-metric-card {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cross-metric-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.02em;
+}
+
+.cross-metric-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+}
+
+.cross-metric-detail {
+  font-size: 11px;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+/* Enhanced Live Item styles */
+.live-count-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.live-count-numbers {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.live-count-badge {
+  font-size: 10px;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  padding: 1px 6px;
+  border-radius: 4px;
+}
+

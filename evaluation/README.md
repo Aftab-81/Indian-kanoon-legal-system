@@ -98,7 +98,7 @@ venv\Scripts\python.exe evaluation\run_eval.py       --module legal_qa
 ┌─────────────────────────────────────────────────────────────┐
 │  React Frontend  (port 5173)                                 │
 │  /evaluation → EvaluationDashboardPage.jsx                   │
-│    - RadarChart (cross-module overview)                      │
+│    - RadarChart (multi-module overview)                       │
 │    - BarChart (per-metric scores)                            │
 │    - BarChart (per-field accuracy, comprehension only)       │
 │    - Sample table with flag=low highlighting                 │
@@ -108,7 +108,7 @@ venv\Scripts\python.exe evaluation\run_eval.py       --module legal_qa
 ┌───────────────────▼─────────────────────────────────────────┐
 │  Evaluation API  (port 8005) — evaluation/api.py             │
 │  GET  /api/eval/health                                       │
-│  GET  /api/eval/results                (all modules, agg)    │
+│  GET  /api/eval/results                (independent metrics) │
 │  GET  /api/eval/results/{module}       (full samples)        │
 │  GET  /api/eval/results/{module}/samples?flag=low            │
 │  GET  /api/eval/status                 (job status)          │
