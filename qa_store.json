@@ -1,0 +1,254 @@
+{
+  "questions": [
+    {
+      "question_id": "a8677257-d71f-486d-bfc5-a2ac0d430a47",
+      "question_text": "what are the legal grounds for bail?",
+      "question_hash": "dc834d9befed0d08b3db58773a780f69",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "case_name": null,
+      "asked_at": "2026-10-23T12:17:23.594321"
+    },
+    {
+      "question_id": "8cee6c8f-c756-46c9-8266-caaf6c0f0e85",
+      "question_text": "What was the dispute regarding security holograms in Saraya Industries Ltd?",
+      "question_hash": "212e75aeb4fccfc36825f3aec9b27984",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "case_name": null,
+      "asked_at": "2026-10-23T12:18:05.113799"
+    },
+    {
+      "question_id": "10dc8cae-34f5-42d1-b9d7-564c94d7cef9",
+      "question_text": "Saraya Industries wastage of security holograms and excise duty",
+      "question_hash": "7a8157d7c14a8e9cfd135b132992b049",
+      "language": "en",
+      "source": "external",
+      "case_id": null,
+      "case_name": null,
+      "asked_at": "2026-10-23T12:18:29.153582"
+    }
+  ],
+  "answers": [
+    {
+      "answer_id": "c7a087e9-4d75-4a7d-b72b-96bbe0846243",
+      "question_id": "a8677257-d71f-486d-bfc5-a2ac0d430a47",
+      "language": "en",
+      "conclusion": "Based on Indian legal sources from web search: Grounds for granting bail:- Nature and gravity of the offense: While serious offenses may lead to bail denial, courts may grant bail if the ... Legal Grounds for Granting Bail · Medical Grounds · Lack of Evidence · Parity with Co-Accused · Delay in Trial · Age and Vulnerability. Juveniles and elderly ... (1) When any person has reason to believe that he may be arrested on an accusation of having committed a non-bailable offence, he may apply to the High Court or ...",
+      "legal_reasoning": "Web search retrieved 6 relevant legal references regarding this inquiry. Key provisions and judicial principles extracted: Grounds for granting bail:- Nature and gravity of the offense: While serious offenses may lead to bail denial, courts may grant bail if the ... Legal Grounds for Granting Bail · Medical Grounds · Lack of Evidence · Parity with Co-Accused · Delay in Trial · Age and Vulnerability. Juveniles and elderly ... (1) When any person has reason to believe that he may be arrested on an accusation of having committed a non-bailable offence, he may apply to the High Court or ...",
+      "precedents": [
+        "[RESULT 1] b). Grounds on which Bailcan be granted/rejected. ...",
+        "[RESULT 2] Different Grounds for Bail in India – Legal Explanation with ...",
+        "[RESULT 3] Bail in the Criminal Justice System"
+      ],
+      "facts_from_case": [],
+      "mode": "EXTERNAL",
+      "source": "external",
+      "sources": [
+        "https://cdnbbsr.s3waas.gov.in/s3ec030b6ace9e8971cf36f1782aa982a7/uploads/2025/09/2025090822.pdf",
+        "https://www.leadindia.law/blog/en/different-grounds-for-the-bail-in-india/",
+        "https://gsja.nic.in/gsjanew/files/Bail%20in%20the%20Criminal%20Justice%20System.pdf",
+        "https://www.iilsindia.com/study-material/320679_1601207180.pdf",
+        "https://www.facebook.com/MishraTheRahul/videos/perfect-grounds-for-bail-in-criminal-matters-bailmatters-criminallaw-bailgrounds/1230935975663355/",
+        "https://jajharkhand.in/wp-content/uploads/2025/07/Bail-Jurisprudence.pdf"
+      ],
+      "case_id": null,
+      "case_name": null,
+      "page_references": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [
+        {
+          "case": "https://cdnbbsr.s3waas.gov.in/s3ec030b6ace9e8971cf36f1782aa982a7/uploads/2025/09/2025090822.pdf",
+          "similarity": 1.0,
+          "chunk": "https://cdnbbsr.s3waas.gov.in/s3ec030b6ace9e8971cf36f1782aa982a7/uploads/2025/09/2025090822.pdf"
+        },
+        {
+          "case": "https://www.leadindia.law/blog/en/different-grounds-for-the-bail-in-india/",
+          "similarity": 1.0,
+          "chunk": "https://www.leadindia.law/blog/en/different-grounds-for-the-bail-in-india/"
+        },
+        {
+          "case": "https://gsja.nic.in/gsjanew/files/Bail%20in%20the%20Criminal%20Justice%20System.pdf",
+          "similarity": 1.0,
+          "chunk": "https://gsja.nic.in/gsjanew/files/Bail%20in%20the%20Criminal%20Justice%20System.pdf"
+        },
+        {
+          "case": "https://www.iilsindia.com/study-material/320679_1601207180.pdf",
+          "similarity": 1.0,
+          "chunk": "https://www.iilsindia.com/study-material/320679_1601207180.pdf"
+        },
+        {
+          "case": "https://www.facebook.com/MishraTheRahul/videos/perfect-grounds-for-bail-in-criminal-matters-bailmatters-criminallaw-bailgrounds/1230935975663355/",
+          "similarity": 1.0,
+          "chunk": "https://www.facebook.com/MishraTheRahul/videos/perfect-grounds-for-bail-in-criminal-matters-bailmatters-criminallaw-bailgrounds/1230935975663355/"
+        },
+        {
+          "case": "https://jajharkhand.in/wp-content/uploads/2025/07/Bail-Jurisprudence.pdf",
+          "similarity": 1.0,
+          "chunk": "https://jajharkhand.in/wp-content/uploads/2025/07/Bail-Jurisprudence.pdf"
+        }
+      ],
+      "created_at": "2026-10-23T12:17:27.755969",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 1110
+      }
+    },
+    {
+      "answer_id": "e99379db-8e46-438a-a19c-6697a44f8f0d",
+      "question_id": "8cee6c8f-c756-46c9-8266-caaf6c0f0e85",
+      "language": "en",
+      "conclusion": "Based on Indian legal sources from web search: The meaning of DISPUTE is to engage in argument : debate; especially : to argue irritably or with irritating persistence. How to use dispute in a sentence. DISPUTE definition: 1. an argument or disagreement, especially an official one between, for example, workers and…. Learn more. The panel also concluded that the challenged grants provided by national and regional authorities in Germany and Spain for the construction of manufacturing and ...",
+      "legal_reasoning": "Web search retrieved 6 relevant legal references regarding this inquiry. Key provisions and judicial principles extracted: The meaning of DISPUTE is to engage in argument : debate; especially : to argue irritably or with irritating persistence. How to use dispute in a sentence. DISPUTE definition: 1. an argument or disagreement, especially an official one between, for example, workers and…. Learn more. The panel also concluded that the challenged grants provided by national and regional authorities in Germany and Spain for the construction of manufacturing and ...",
+      "precedents": [
+        "[RESULT 1] DISPUTE Definition & Meaning",
+        "[RESULT 2] DISPUTE | English meaning - Cambridge Dictionary",
+        "[RESULT 3] WTO | dispute settlement - DS316: European Communities"
+      ],
+      "facts_from_case": [],
+      "mode": "EXTERNAL",
+      "source": "external",
+      "sources": [
+        "https://www.merriam-webster.com/dictionary/dispute",
+        "https://dictionary.cambridge.org/dictionary/english/dispute",
+        "https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds316_e.htm",
+        "https://support.google.com/youtube/answer/2797454?hl=en&co=GENIE.Platform%3DAndroid",
+        "https://www.law.cornell.edu/wex/dispute",
+        "https://iccwbo.org/dispute-resolution/dispute-resolution-services/"
+      ],
+      "case_id": null,
+      "case_name": null,
+      "page_references": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [
+        {
+          "case": "https://www.merriam-webster.com/dictionary/dispute",
+          "similarity": 1.0,
+          "chunk": "https://www.merriam-webster.com/dictionary/dispute"
+        },
+        {
+          "case": "https://dictionary.cambridge.org/dictionary/english/dispute",
+          "similarity": 1.0,
+          "chunk": "https://dictionary.cambridge.org/dictionary/english/dispute"
+        },
+        {
+          "case": "https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds316_e.htm",
+          "similarity": 1.0,
+          "chunk": "https://www.wto.org/english/tratop_e/dispu_e/cases_e/ds316_e.htm"
+        },
+        {
+          "case": "https://support.google.com/youtube/answer/2797454?hl=en&co=GENIE.Platform%3DAndroid",
+          "similarity": 1.0,
+          "chunk": "https://support.google.com/youtube/answer/2797454?hl=en&co=GENIE.Platform%3DAndroid"
+        },
+        {
+          "case": "https://www.law.cornell.edu/wex/dispute",
+          "similarity": 1.0,
+          "chunk": "https://www.law.cornell.edu/wex/dispute"
+        },
+        {
+          "case": "https://iccwbo.org/dispute-resolution/dispute-resolution-services/",
+          "similarity": 1.0,
+          "chunk": "https://iccwbo.org/dispute-resolution/dispute-resolution-services/"
+        }
+      ],
+      "created_at": "2026-10-23T12:18:08.314652",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 1064
+      }
+    },
+    {
+      "answer_id": "4cc13ea9-e959-4990-9bf9-f21bdb2d3074",
+      "question_id": "10dc8cae-34f5-42d1-b9d7-564c94d7cef9",
+      "language": "en",
+      "conclusion": "Based on Indian legal sources from web search: The demand of excise duty on missing or unaccounted security holograms are quashed. If any excise duty on security holograms had been paid or deposited by ... The Court found that the circulars effectively created a presumption of duty owing due to wastage of holograms, which was not a concept ... However, if the wasted holograms were not produced for verification, the same shall be presumed to have been misused as a result whereof the ...",
+      "legal_reasoning": "Web search retrieved 6 relevant legal references regarding this inquiry. Key provisions and judicial principles extracted: The demand of excise duty on missing or unaccounted security holograms are quashed. If any excise duty on security holograms had been paid or deposited by ... The Court found that the circulars effectively created a presumption of duty owing due to wastage of holograms, which was not a concept ... However, if the wasted holograms were not produced for verification, the same shall be presumed to have been misused as a result whereof the ...",
+      "precedents": [
+        "[RESULT 1] Saraya Industries Ltd. vs State Of U.P. And Ors. on 6 ...",
+        "[RESULT 2] State Of U.P And Others v. Saraya Industries Ltd.",
+        "[RESULT 3] State of U.P. and Others Vs Saraya Industries Ltd."
+      ],
+      "facts_from_case": [],
+      "mode": "EXTERNAL",
+      "source": "external",
+      "sources": [
+        "https://indiankanoon.org/doc/1822728/",
+        "https://www.casemine.com/commentary/in/state-of-u.p-and-others-v.-saraya-industries-ltd.%3A-reinforcing-statutory-boundaries-in-excise-duty-imposition/view",
+        "https://courtkutchehry.com/judgments/state-of-up-and-others-appellant-hash-saraya-industries-ltd-respondent",
+        "https://caseminister.com/judgment/sc/state-of-u-p-v-saraya-industries-ltd-2006-1c8a89/",
+        "https://www.legalstreet.in/ratio/case/2006-insc-343/",
+        "https://cornelia.in/app/judgments/161812"
+      ],
+      "case_id": null,
+      "case_name": null,
+      "page_references": [],
+      "uncertainty_score": 0.85,
+      "retrieved_chunks": [
+        {
+          "case": "https://indiankanoon.org/doc/1822728/",
+          "similarity": 1.0,
+          "chunk": "https://indiankanoon.org/doc/1822728/"
+        },
+        {
+          "case": "https://www.casemine.com/commentary/in/state-of-u.p-and-others-v.-saraya-industries-ltd.%3A-reinforcing-statutory-boundaries-in-excise-duty-imposition/view",
+          "similarity": 1.0,
+          "chunk": "https://www.casemine.com/commentary/in/state-of-u.p-and-others-v.-saraya-industries-ltd.%3A-reinforcing-statutory-boundaries-in-excise-duty-imposition/view"
+        },
+        {
+          "case": "https://courtkutchehry.com/judgments/state-of-up-and-others-appellant-hash-saraya-industries-ltd-respondent",
+          "similarity": 1.0,
+          "chunk": "https://courtkutchehry.com/judgments/state-of-up-and-others-appellant-hash-saraya-industries-ltd-respondent"
+        },
+        {
+          "case": "https://caseminister.com/judgment/sc/state-of-u-p-v-saraya-industries-ltd-2006-1c8a89/",
+          "similarity": 1.0,
+          "chunk": "https://caseminister.com/judgment/sc/state-of-u-p-v-saraya-industries-ltd-2006-1c8a89/"
+        },
+        {
+          "case": "https://www.legalstreet.in/ratio/case/2006-insc-343/",
+          "similarity": 1.0,
+          "chunk": "https://www.legalstreet.in/ratio/case/2006-insc-343/"
+        },
+        {
+          "case": "https://cornelia.in/app/judgments/161812",
+          "similarity": 1.0,
+          "chunk": "https://cornelia.in/app/judgments/161812"
+        }
+      ],
+      "created_at": "2026-10-23T12:18:30.691409",
+      "status": "PENDING_REVIEW",
+      "review_comment": "",
+      "metrics": {
+        "mode": "EXTERNAL",
+        "max_retrieval_similarity": 0.0,
+        "avg_retrieval_similarity": 0.0,
+        "cosine_answer_source": null,
+        "grounding": null,
+        "validator_confidence": null,
+        "validator_hallucinations": null,
+        "answer_length_chars": 1056
+      }
+    }
+  ],
+  "reviews": [],
+  "cache": []
+}

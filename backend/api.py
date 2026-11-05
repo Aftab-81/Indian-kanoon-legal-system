@@ -6,6 +6,13 @@ from case_index import CaseIndex
 from ikapi import IKApi, FileStorage
 from exceptions import InvalidPDFError, OpenAIExtractionError
 import os
+from pathlib import Path
+from dotenv import load_dotenv
+
+# Load environment variables from backend/.env using absolute path
+env_path = Path(__file__).resolve().parent / '.env'
+load_dotenv(dotenv_path=env_path)
+
 import json
 import time
 import uuid
@@ -14,6 +21,14 @@ from serpapi import GoogleSearch
 from logger_setup import get_logger
 
 logger = get_logger(__name__)
+
+# ── Evaluation event logger (fire-and-forget, never raises) ────────────────
+try:
+    import sys, pathlib
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[1] / 'evaluation'))
+    from event_logger import log_event_async as _log_comp_event
+except Exception:
+    def _log_comp_event(*a, **k): pass
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
@@ -241,31 +256,58 @@ def upload_file():
         logger.error(f"Upload endpoint error: {str(e)}", exc_info=True)
         return jsonify({'error': f'Server error: {str(e)}'}), 500
 
+def build_serpapi_queries(query):
+    """
+    Build search queries with fallback strategies for case names.
+    Strategy 1: "PARTY A" "PARTY B" site:indiankanoon.org
+    Strategy 2: PARTY A vs PARTY B
+    Strategy 3: Original query
+    """
+    parties = extract_party_names(query)
+    candidates = []
+    if parties:
+        p1, p2 = parties
+        # 1. Quoted party names targeting Indian Kanoon
+        candidates.append(f'"{p1}" "{p2}" site:indiankanoon.org')
+        # 2. Quoted party names general
+        candidates.append(f'"{p1}" "{p2}"')
+        # 3. Party names without quotes and without vs
+        candidates.append(f'{p1} {p2} court judgment')
+    
+    # Always include the raw query as fallback
+    if query not in candidates:
+        candidates.append(query)
+    return candidates
+
 @app.route('/api/google-search', methods=['POST'])
 def google_search():
-    """Endpoint to search Google using SerpAPI with restriction to legal terms"""
-    # Check if GoogleSearch is available
+    """Endpoint to search Google using SerpAPI with case-name query fallbacks"""
     if GoogleSearch is None:
         return jsonify({
             'success': False, 
-            'error': 'SerpAPI package not properly installed. Please run: pip install google-search-results'
+            'results': [],
+            'errors': ['SerpAPI package not properly installed. Please run: pip install google-search-results'],
+            'error': 'SerpAPI package not properly installed'
         }), 500
     
-    data = request.json
+    data = request.json or {}
     logger.info(f"Received Google search request: {data}")
     
     if not data or 'query' not in data:
-        return jsonify({'error': 'No query provided'}), 400
+        return jsonify({'success': False, 'results': [], 'errors': ['No query provided'], 'error': 'No query provided'}), 400
     
-    # Get API key from environment variable or request
+    # Get API key from request or env (strip any extraneous whitespace/newlines)
     api_key = data.get('api_key') or os.environ.get('SERPAPI_API_KEY')
+    if api_key:
+        api_key = api_key.strip()
     
     if not api_key:
-        return jsonify({'error': 'API key not found'}), 400
+        return jsonify({'success': False, 'results': [], 'errors': ['API key not found'], 'error': 'API key not found'}), 400
     
-    original_query = data['query']
+    original_query = data['query'].strip()
+    is_case_name = extract_party_names(original_query) is not None
     
-    # List of legal-related keywords to check against
+    # List of legal-related keywords for general searches
     legal_keywords = [
         "law", "legal", "court", "judge", "judgment", "judicial", "justice", 
         "statute", "legislation", "constitution", "rights", "plaintiff", 
@@ -276,75 +318,93 @@ def google_search():
         "witness", "affidavit", "decree", "injunction", "writ", "summons"
     ]
     
-    # Check if the query contains any legal terms
-    contains_legal_term = any(keyword in original_query.lower() for keyword in legal_keywords)
-    
-    # If the query doesn't contain legal terms, check if it's a legal concept that might not be in our keywords
-    if not contains_legal_term:
-        # We'll proceed but add legal context to the search
-        modified_query = f"{original_query} legal law court case"
-        logger.info(f"Modified query to include legal context: {modified_query}")
-    else:
-        # Query already has legal terms, use as is
-        modified_query = original_query
-    
-    logger.info(f"Searching Google for: {modified_query}")
-    
-    # Optional parameters
     engine = data.get('engine', 'google')
     num_results = data.get('num_results', 10)
     
-    try:
-        # Set up search parameters
-        params = {
-            "engine": engine,
-            "q": modified_query,
-            "api_key": api_key,
-            "num": num_results,
-            # Add a filter to focus on legal websites
-            "lr": "lang_en",  # Restrict to English results
-        }
-        
-        # Add any additional parameters from the request
-        for key, value in data.items():
-            if key not in ['query', 'api_key', 'engine', 'num_results']:
-                params[key] = value
-        
-        # Perform the search
-        search = GoogleSearch(params)
-        results = search.get_dict()
-        
-        # Extract organic results
-        if 'organic_results' in results:
-            # Post-process results to filter out non-legal content if needed
-            filtered_results = []
-            for result in results['organic_results']:
-                # Check if the result seems to be related to legal content
-                title = result.get('title', '').lower()
-                snippet = result.get('snippet', '').lower()
-                combined_text = title + ' ' + snippet
+    candidate_queries = build_serpapi_queries(original_query) if is_case_name else [original_query]
+    
+    final_results = []
+    used_query = original_query
+    search_metadata = {}
+    errors = []
+    
+    for q_cand in candidate_queries:
+        try:
+            params = {
+                "engine": engine,
+                "q": q_cand,
+                "api_key": api_key,
+                "num": num_results,
+                "lr": "lang_en",
+            }
+            # Add custom params
+            for key, value in data.items():
+                if key not in ['query', 'api_key', 'engine', 'num_results']:
+                    params[key] = value
+            
+            logger.info(f"Attempting SerpAPI query: {q_cand}")
+            search = GoogleSearch(params)
+            results = search.get_dict()
+            
+            if 'error' in results:
+                err_msg = results.get('error', 'Unknown SerpAPI error')
+                errors.append(f"SerpAPI query '{q_cand}': {err_msg}")
+                logger.warning(f"SerpAPI returned error for '{q_cand}': {err_msg}")
+                continue
                 
-                # If the original query had legal terms or the result contains legal terms, include it
-                if contains_legal_term or any(keyword in combined_text for keyword in legal_keywords):
-                    filtered_results.append(result)
+            organic = results.get('organic_results', [])
+            if not organic:
+                continue
+                
+            # Filtering: For case names, do not filter out party matches.
+            # Only filter general non-case queries if legal terms are absent.
+            if is_case_name:
+                final_results = organic
+            else:
+                contains_legal_term = any(keyword in original_query.lower() for keyword in legal_keywords)
+                if contains_legal_term:
+                    final_results = organic
+                else:
+                    filtered = [
+                        res for res in organic
+                        if any(k in (res.get('title', '') + ' ' + res.get('snippet', '')).lower() for k in legal_keywords)
+                    ]
+                    final_results = filtered if filtered else organic
             
-            return jsonify({
-                'success': True,
-                'results': filtered_results,
-                'search_metadata': results.get('search_metadata', {}),
-                'original_query': original_query,
-                'modified_query': modified_query
-            })
-        else:
-            return jsonify({
-                'success': True,
-                'results': [],
-                'message': 'No results found'
-            })
-            
-    except Exception as e:
-        logger.error(f"Google search error: {str(e)}", exc_info=True)
-        return jsonify({'success': False, 'error': str(e)}), 500
+            if final_results:
+                used_query = q_cand
+                search_metadata = results.get('search_metadata', {})
+                break
+        except Exception as e:
+            err_msg = str(e)
+            logger.error(f"Error querying SerpAPI for '{q_cand}': {err_msg}", exc_info=True)
+            errors.append(f"SerpAPI query '{q_cand}' failed: {err_msg}")
+    
+    if final_results:
+        return jsonify({
+            'success': True,
+            'results': final_results,
+            'errors': errors,
+            'search_metadata': search_metadata,
+            'original_query': original_query,
+            'modified_query': used_query
+        })
+    elif errors and not final_results:
+        return jsonify({
+            'success': False,
+            'results': [],
+            'errors': errors,
+            'error': errors[0]
+        }), 502
+    else:
+        return jsonify({
+            'success': True,
+            'results': [],
+            'errors': [],
+            'message': 'No results found',
+            'original_query': original_query,
+            'modified_query': used_query
+        })
 
 @app.route('/api/process', methods=['POST'])
 def process_existing_pdf():
@@ -389,6 +449,26 @@ def process_existing_pdf():
                 'status': status
             })
         
+        # Log extraction events for real-time evaluation (non-blocking)
+        for case_details, _fname in case_results:
+            _fields = [
+                "Case Title & Citation", "Bench / Court", "Date",
+                "Facts of the Case", "Issues Framed",
+                "Arguments by Parties", "Court's Analysis / Reasoning",
+                "Final Decision (Ratio Decidendi)"
+            ]
+            for field in _fields:
+                val = case_details.get(field, "")
+                if val and str(val).strip():
+                    _log_comp_event(
+                        module="comprehension",
+                        user_input=f"Extract '{field}' from: {os.path.basename(file_path)}",
+                        response=str(val)[:2000],
+                        contexts=[str(case_details.get("raw_text", ""))[:2000]],
+                        meta={"field": field, "filename": os.path.basename(file_path),
+                              "confidence": case_details.get("confidence_scores", {}).get(field, 0)}
+                    )
+
         return jsonify({
             'success': True,
             'message': 'Successfully processed judgment',
@@ -526,59 +606,84 @@ def update_case_remarks(case_file):
 @app.route('/api/ik-search', methods=['POST'])
 def ik_search():
     """Endpoint to search Indian Kanoon"""
-    data = request.json
-    print(f"Received search request: {data}")
+    data = request.json or {}
+    logger.info(f"Received Indian Kanoon search request: {data}")
     
     if not data or 'query' not in data:
-        return jsonify({'error': 'No query provided'}), 400
+        return jsonify({'success': False, 'results': [], 'errors': ['No query provided'], 'error': 'No query provided'}), 400
     
-    # Use environment variable for token if not provided
+    # Use environment variable for token if not provided (strip whitespace)
     token = data.get('token') or os.environ.get('INDIA_KANNON_API_KEY')
-    print(f"Using token: {token[:5]}...{token[-5:] if token else None}")
+    if token:
+        token = token.strip()
     
     if not token:
-        return jsonify({'error': 'API token not found'}), 400
+        return jsonify({'success': False, 'results': [], 'errors': ['Indian Kanoon API token not found'], 'error': 'API token not found'}), 400
     
-    query = data['query']
-    print(f"Searching for: {query}")
-    
-    # Optional parameters
+    query = data['query'].strip()
     max_pages = data.get('max_pages', 2)
     from_date = data.get('from_date')
     to_date = data.get('to_date')
     
-    # Initialize IKApi with the token
-    args = IKArgs(token)
-    args.maxpages = min(max_pages, 10)  # Limit to 10 pages max
-    args.fromdate = from_date
-    args.todate = to_date
-    
-    ikapi = IKApi(args, ik_storage)
-    
     try:
-        # Perform the search
-        print("Calling IKApi search...")
-        results = ikapi.search(query, 0, args.maxpages)
-        print(f"Search results received (length: {len(results) if results else 0})")
+        # Initialize IKApi with the token
+        args = IKArgs(token)
+        args.maxpages = min(max_pages, 10)  # Limit to 10 pages max
+        args.fromdate = from_date
+        args.todate = to_date
         
-        # Parse the JSON results
+        ikapi = IKApi(args, ik_storage)
+        
+        logger.info(f"Calling IKApi search for query: {query}")
+        results = ikapi.search(query, 0, args.maxpages)
+        
+        if not results:
+            return jsonify({
+                'success': True,
+                'results': [],
+                'errors': [],
+                'message': 'No results found'
+            })
+            
         parsed_results = json.loads(results)
         
-        # Ensure we're returning the docs array
+        if 'error' in parsed_results or 'errmsg' in parsed_results or 'detail' in parsed_results:
+            err_msg = parsed_results.get('detail') or parsed_results.get('errmsg') or parsed_results.get('error') or 'Unknown Indian Kanoon error'
+            return jsonify({
+                'success': False,
+                'results': [],
+                'errors': [err_msg],
+                'error': err_msg
+            }), 502
+            
+        docs = []
         if 'docs' in parsed_results and isinstance(parsed_results['docs'], list):
-            return jsonify({
-                'success': True,
-                'results': parsed_results['docs']  # Return just the docs array
-            })
-        else:
-            return jsonify({
-                'success': True,
-                'results': parsed_results  # Return the whole object if no docs array
-            })
+            docs = parsed_results['docs']
+        elif isinstance(parsed_results, list):
+            docs = parsed_results
+            
+        return jsonify({
+            'success': True,
+            'results': docs,
+            'errors': []
+        })
         
+    except json.JSONDecodeError as jde:
+        logger.error(f"IK JSON decode error: {jde}", exc_info=True)
+        return jsonify({
+            'success': False,
+            'results': [],
+            'errors': [f'Invalid response from Indian Kanoon: {str(jde)}'],
+            'error': str(jde)
+        }), 502
     except Exception as e:
-        print(f"Search error: {str(e)}")
-        return jsonify({'error': str(e)}), 500
+        logger.error(f"Indian Kanoon search error: {str(e)}", exc_info=True)
+        return jsonify({
+            'success': False,
+            'results': [],
+            'errors': [str(e)],
+            'error': str(e)
+        }), 500
 
 @app.route('/api/ik-document/<int:doc_id>', methods=['GET'])
 def ik_document(doc_id):

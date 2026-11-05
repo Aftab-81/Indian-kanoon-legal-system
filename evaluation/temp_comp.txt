@@ -1,0 +1,35 @@
+--- SAMPLE ---
+Q: What is the final decision and ratio decidendi in Om Prakash Verma vs State Of U.P. And Ors. [Alongwith Civil ... on 7 January, 2005, Equivalent citations: (2005)1UPLBEC774?
+A: The court directed that Om Prakash Verma should be given the charge of Principal, considering his seniority and qualifications, and found the appointment of Ram Swaroop Singh based on the earlier order as inappropriate.
+CTX: Allahabad High Court
+U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005
+Equivalent citations: (2005)2UPLBEC1809
+Author: V.C. Misra
+Bench: V.C. Misra
+JUDGM
+Faithfulness: 0.0
+Relevancy: 0.5659
+--- SAMPLE ---
+Q: Analyze the court's reasoning and statutory interpretation for the issues framed in Om Prakash Verma vs State Of U.P. And Ors. [Alongwith Civil ... on 7 January, 2005, Equivalent citations: (2005)1UPLBEC774.
+A: The court analyzed the qualifications required under the U.P. Intermediate Education Act, 1921, and the seniority and service records of both parties. It considered the procedural fairness and the regulations governing the appointment of principals.
+CTX: Allahabad High Court
+U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005
+Equivalent citations: (2005)2UPLBEC1809
+Author: V.C. Misra
+Bench: V.C. Misra
+JUDGM
+Faithfulness: 0.0
+Relevancy: 0.4127
+--- SAMPLE ---
+Q: State the material facts and legal issues framed in Om Prakash Verma vs State Of U.P. And Ors. [Alongwith Civil ... on 7 January, 2005, Equivalent citations: (2005)1UPLBEC774.
+A: Facts: Om Prakash Verma was appointed as Assistant Teacher in Lal Bahadur Shastri Smarak Inter College, Sultanpurdost, Thakurdwara, District Moradabad on 1.7.1968. The institution was upgraded and the post of Principal became vacant. Ram Swaroop Singh, appointed later than Verma, was given the charge of Principal based on his qualifications, leading Verma to challenge this decision through a writ petition.
+
+Issues Framed: The main issue is whether Om Prakash Verma, being senior and having requis
+CTX: Allahabad High Court
+U.P. State Sugar Corporation Ltd. vs The Presiding Officer, Labour Court, ... on 6 January, 2005
+Equivalent citations: (2005)2UPLBEC1809
+Author: V.C. Misra
+Bench: V.C. Misra
+JUDGM
+Faithfulness: 0.0
+Relevancy: 0.6376

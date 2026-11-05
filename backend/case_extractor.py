@@ -348,6 +348,17 @@ class CaseExtractor:
             
         # Extract the 8 key fields using LLM
         case_details = self.extract_case_details(case, source_identifier=filename)
+        
+        # Add metadata and exact source text for evaluation tracking
+        case_details["_source_file"] = file_path if file_path else filename
+        case_details["retrieved_chunks"] = [
+            {
+                "text": case,
+                "source": file_path if file_path else filename,
+                "chunk_id": fingerprint if fingerprint else "0"
+            }
+        ]
+        
         results.append((case_details, filename))
         
         return results

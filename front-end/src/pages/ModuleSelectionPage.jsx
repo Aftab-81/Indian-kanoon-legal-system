@@ -229,6 +229,39 @@ function ModuleSelectionPage() {
           </Link>
 
 
+          {/* Evaluation Dashboard - Ragas */}
+          <Link
+            to="/evaluation"
+            className={`${darkMode ? 'bg-slate-800 border-slate-700 hover:bg-slate-700' : 'bg-white border-gray-200 hover:bg-gray-50'} 
+              border rounded-2xl shadow-lg overflow-hidden relative p-8 transition-all duration-300 transform hover:scale-105 hover:shadow-xl`}
+          >
+            <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-violet-500/10 to-indigo-500/10 rounded-bl-full"></div>
+
+            <div className="relative z-10">
+              <div className="p-3 bg-violet-100 text-violet-700 rounded-xl w-fit mb-4">
+                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+              </div>
+
+              <h2 className={`text-2xl font-medium mb-3 ${darkMode ? 'text-white' : 'text-gray-800'}`}>
+                Evaluation Dashboard
+              </h2>
+
+              <p className={`mb-6 ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                Automated Ragas quality metrics for Legal QA, Research, Summary, and Comprehension modules with interactive charts.
+              </p>
+
+              <div className={`inline-flex items-center gap-2 ${darkMode ? 'text-violet-400' : 'text-violet-600'}`}>
+                <span>Open Module</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </div>
+            </div>
+          </Link>
+
+
         </div>
       </main>
 

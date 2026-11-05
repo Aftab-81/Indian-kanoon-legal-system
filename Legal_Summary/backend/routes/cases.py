@@ -1,7 +1,7 @@
 from logger_setup import get_logger
 logger = get_logger(__name__)
 
-from fastapi import APIRouter, HTTPException, UploadFile, File, Form
+from fastapi import APIRouter, HTTPException, UploadFile, File, Form, BackgroundTasks
 from schemas import Preferences, SummarizeResponse, DetailedResponse
 from services import generate_summary, generate_detailed_summary
 from utils.pdf_extractor import extract_text_from_pdf, extract_text_with_metadata
@@ -9,7 +9,13 @@ import json
 import os
 from datetime import datetime
 
-router = APIRouter()
+# ── Evaluation event logger (fire-and-forget, never raises) ────────────────
+try:
+    import sys, pathlib
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[4] / 'evaluation'))
+    from event_logger import log_event_async as _log_summary_event
+except Exception:
+    def _log_summary_event(*a, **k): pass
 
 # Storage directory for summaries
 HISTORY_DIR = "./history"
@@ -51,7 +57,23 @@ async def summarize(
         
         logger.info(f"[API] Summary generated successfully")
         logger.info(f"[API] Result metadata: {result.get('metadata', {}).get('case_title', 'N/A')}")
-        
+
+        # ── Log for real-time evaluation ──────────────────────────────
+        _summary_text = ""
+        if isinstance(result, dict):
+            _summary_text = result.get("summary") or result.get("brief_summary") or ""
+        elif hasattr(result, "summary"):
+            _summary_text = getattr(result, "summary", "") or ""
+        _log_summary_event(
+            module="summary",
+            user_input=f"Summarize: {pdf_file.filename}",
+            response=str(_summary_text)[:3000],
+            contexts=[case_text[:3000]],
+            meta={"filename": pdf_file.filename,
+                  "length": prefs_dict.get("summary_length", ""),
+                  "focus": prefs_dict.get("focus_area", "")}
+        )
+
         return result
     except json.JSONDecodeError:
         logger.info(f"[API] ERROR: Invalid preferences JSON")

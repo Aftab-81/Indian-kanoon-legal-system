@@ -11,6 +11,7 @@ import ReferenceAboutPage from './ReferenceModule/pages/AboutPage';
 import LegalQAPage from './pages/LegalQAPage';
 import SummaryExtractorPage from './pages/SummaryExtractorPage';
 import DocumentRetrievalPage from './pages/DocumentRetrievalPage';
+import EvaluationDashboardPage from './pages/EvaluationDashboardPage';
 import { MAIN_API } from './config/api';
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
 
         {/* Document Retrieval Module Route - NEW */}
         <Route path="/document-retrieval" element={<DocumentRetrievalPage />} />
+
+        {/* Evaluation Dashboard - Ragas */}
+        <Route path="/evaluation" element={<EvaluationDashboardPage />} />
 
         {/* Reference Module Routes */}
         <Route path="/reference" element={<ReferenceMainDashboard />} />

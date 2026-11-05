@@ -2,6 +2,8 @@ from fastapi import FastAPI, File, UploadFile, HTTPException, Form
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
+from dotenv import load_dotenv
+load_dotenv()
 # Handle both old and new versions of openai package
 try:
     from openai import OpenAI
@@ -419,9 +421,26 @@ def preprocess_query_terms(query: str) -> Tuple[List[str], List[str]]:
     return critical_terms, non_critical_terms
 
 def is_law_related_query(query: str) -> bool:
-    legal_keywords = ['case', 'court', 'law', 'legal', 'statute', 'section', 
-                      'article', 'constitution', 'criminal', 'civil', 'ipc', 'petition', 'rights']
-    return any(keyword in query.lower() for keyword in legal_keywords)
+    legal_keywords = [
+        'case', 'court', 'law', 'legal', 'statute', 'section', 'article', 'constitution', 
+        'criminal', 'civil', 'ipc', 'petition', 'rights', 'tax', 'appeal', 'reassessment', 
+        'assessment', 'negligence', 'compensation', 'murder', 'bail', 'dowry', 'harassment', 
+        'service', 'promotion', 'seniority', 'anticipatory', 'vehicle', 'accident', 'acquisition', 
+        'market value', 'contempt', 'jurisdiction', 'consumer', 'deficiency', 'examination', 
+        'accused', 'statement', 'mandamus', 'writ', 'arbitration', 'award', 'dishonour', 'cheque', 
+        'negotiable', 'instrument', 'child', 'witness', 'testimony', 'pocso', 'rape', 'victim', 
+        'corroboration', 'natural justice', 'hearing', 'locus standi', 'public interest', 'litigation', 
+        'pil', 'income', 'property', 'divorce', 'marriage', 'custody', 'adoption', 'contract', 
+        'agreement', 'breach', 'damages', 'fraud', 'forgery', 'cheating', 'trespass', 'injunction', 
+        'specific relief', 'tenant', 'eviction', 'rent', 'lease', 'license', 'mortgage', 'partnership', 
+        'company', 'incorporation', 'shares', 'dividend', 'liquidation', 'insolvency', 'bankruptcy', 
+        'debt', 'recovery', 'tribunal', 'commission', 'police', 'fir', 'investigation', 'charge sheet', 
+        'trial', 'evidence', 'proof', 'burden', 'presumption', 'estoppel', 'res judicata', 'warrant', 
+        'summons', 'arrest', 'remand', 'jail', 'prison', 'parole', 'furlough', 'probation', 'offence', 
+        'crime', 'penalty', 'fine', 'imprisonment', 'pardon', 'commutation', 'remission'
+    ]
+    query_lower = query.lower()
+    return any(keyword in query_lower for keyword in legal_keywords)
 
 def check_term_matches(text: str, critical_terms: List[str], non_critical_terms: List[str]) -> Tuple[bool, float]:
     text = text.lower()
@@ -484,6 +503,9 @@ def semantic_search(query: str, k: int = 5) -> List[Dict[str, Any]]:
     try:
         query_embedding = generate_embedding(query)
         query_vector = np.array([query_embedding], dtype='float32')
+        if np.all(query_vector == 0) or np.linalg.norm(query_vector) < 1e-6:
+            logger.warning("Query embedding is all zeros; skipping vector search")
+            return []
         k = min(k, vector_index.ntotal)
         distances, indices = vector_index.search(query_vector, k)
         
@@ -612,6 +634,97 @@ async def analyze_legal_document(file: UploadFile = File(...), background_tasks:
         logger.error(f"Analyze error: {str(e)}", exc_info=True)
         raise HTTPException(status_code=500, detail=str(e))
 
+def fallback_external_search(query: str) -> list:
+    results = []
+    try:
+        import os, requests
+        from bs4 import BeautifulSoup
+        IK_API_TOKEN = os.getenv('IK_API_TOKEN', '')
+        logger.info(f"Fallback IK_API_TOKEN loaded? {'YES' if IK_API_TOKEN else 'NO'}")
+        if not IK_API_TOKEN: return []
+        
+        headers = {'Authorization': 'Token ' + IK_API_TOKEN}
+        params = {'formInput': query}
+        r = requests.post('https://api.indiankanoon.org/search/', headers=headers, data=params, timeout=10)
+        logger.info(f"Fallback IK response status: {r.status_code}")
+        
+        if r.status_code == 200:
+            all_docs = r.json().get('docs', [])
+            logger.info(f"Fallback IK docs found total: {len(all_docs)}")
+            
+            # Headline pre-ranking
+            query_terms = set([t.lower() for t in query.split() if len(t) > 3])
+            scored_docs = []
+            for doc in all_docs:
+                headline_text = doc.get('headline', '').replace('<b>', '').replace('</b>', '').lower()
+                title_text = doc.get('title', '').replace('<b>', '').replace('</b>', '').lower()
+                combined_text = headline_text + " " + title_text
+                score = sum(1 for qt in query_terms if qt in combined_text)
+                scored_docs.append((score, doc))
+            
+            scored_docs.sort(key=lambda x: x[0], reverse=True)
+            docs = [doc for score, doc in scored_docs[:2]] # Take top 2 highest snippet match
+            logger.info(f"Fallback IK selected docs: {len(docs)}")
+            
+            for doc in docs:
+                title = doc.get('title', '').replace('<b>', '').replace('</b>', '')
+                headline = doc.get('headline', '').replace('<b>', '').replace('</b>', '')
+                
+                full_text = headline
+                tid = doc.get('tid')
+                if tid:
+                    try:
+                        url = f'https://indiankanoon.org/doc/{tid}/'
+                        doc_r = requests.get(url, headers={'User-Agent': 'Mozilla/5.0'}, timeout=5)
+                        if doc_r.status_code == 200:
+                            soup = BeautifulSoup(doc_r.text, 'lxml')
+                            for tag in soup(['script', 'style', 'nav', 'header', 'footer', 'aside', 'a']): 
+                                tag.decompose()
+                            clean_text = soup.get_text(separator=' ', strip=True)
+                            
+                            idx = clean_text.find('Translation')
+                            if idx != -1:
+                                clean_text = clean_text[idx + 11:]
+                            elif clean_text.find('Premium') != -1:
+                                clean_text = clean_text[clean_text.find('Premium') + 7:]
+                            
+                            # Semantic Chunking logic for Document Research
+                            import textwrap
+                            import numpy as np
+                            chunks = textwrap.wrap(clean_text, width=1500, break_long_words=False, break_on_hyphens=False)
+                            if chunks:
+                                # Simple keyword matching to find most relevant chunks
+                                query_terms = set([t.lower() for t in query.split() if len(t) > 3])
+                                scored_chunks = []
+                                for chunk in chunks:
+                                    chunk_lower = chunk.lower()
+                                    score = sum(1 for qt in query_terms if qt in chunk_lower)
+                                    scored_chunks.append((score, chunk))
+                                scored_chunks.sort(key=lambda x: x[0], reverse=True)
+                                best_chunks = [c for s, c in scored_chunks[:2]] # Take top 2 chunks (up to 3000 chars total)
+                                full_text = "... ".join(best_chunks)
+                            else:
+                                full_text = headline
+                            
+                            if len(full_text) < 50:
+                                full_text = headline
+                    except Exception as e:
+                        logger.error(f'Failed to fetch doc {tid}: {e}')
+
+                results.append({
+                    'file_hash': 'external_' + str(tid),
+                    'filename': title,
+                    'text': full_text,
+                    'snippet': full_text,
+                    'analysis': {'summary': headline},
+                    'confidence': 85.0,
+                    'source': 'indian_kanoon',
+                    'url': f"https://indiankanoon.org/doc/{tid}/"
+                })
+    except Exception as e:
+        logger.error(f'External search failed: {e}')
+    return results
+
 @app.post("/api/search/query")
 async def search_legal_query(query: str = Form(...)):
     try:
@@ -626,6 +739,12 @@ async def search_legal_query(query: str = Form(...)):
             })
         
         results = semantic_search(query)
+        
+        if not results or results[0].get('confidence', 0) < 50:
+            logger.info('Falling back to external search...')
+            ext_results = fallback_external_search(query)
+            if ext_results:
+                results = ext_results
         
         return JSONResponse({
             "status": "success",

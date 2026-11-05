@@ -1,0 +1,190 @@
+{
+  "module": "summary",
+  "metadata": {
+    "reference_type": "live_users",
+    "ragas_version": "0.2.15",
+    "judge_model": "gpt-4o-mini",
+    "run_timestamp": "2026-10-08T07:12:49.175966+00:00",
+    "n_samples": 11,
+    "n_events_available": 15,
+    "metrics_used": [
+      "faithfulness",
+      "answer_relevancy"
+    ]
+  },
+  "aggregate": {
+    "faithfulness": 0.0248,
+    "answer_relevancy": 0.4795
+  },
+  "samples": [
+    {
+      "id": "live_summary_0000",
+      "user_input": "Summarize the judicial ruling and ratio for Commissioner Of Income Tax vs Khan And Sirohi Steel Rolling Mills delivered by Allahabad High Court.",
+      "response": "The case involved questions of law referred by the Tribunal under the IT Act, 1961 regarding addition of Rs. 13,96,080 and inflated stock figures. The assessee, engaged in re-rolling of M.S. rods, had discrepancies in stock valuation against the overdraft obtained. The Tribunal, CIT(A), and the Tribunal again differed in their decisions on the additions made by the ITO. The Tribunal accepted the explanation of inflating stock values for bank drafts, citing precedents. The Court upheld the Tribun",
+      "retrieved_contexts": [
+        "Precedent Case: Commissioner Of Income Tax vs Khan And Sirohi Steel Rolling Mills (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.4963
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0001",
+      "user_input": "Summarize the judicial ruling and ratio for सराया इंडस्ट्रीज लिमिटेड व. उत्तर प्रदेश राज्य आणि इतर delivered by इलाहाबाद उच्च न्यायालय.",
+      "response": "मुख्य तथ्य, वक्तव्य आणि निर्णयांचे सारांश: प्रारंभिक न्यायाधीशांच्या विचारांमध्ये उद्यापन झालेल्या प्रश्नाची तपासणी करण्यात येते की, जर डिस्टिलरीज द्वारे बाउंडवर बोतल्यांवर, पाउचेस आणि केन्सवर अफिक्स केलेले सुरक्षा होलोग्राम्स व्यर्थ झालेले असतील आणि त्यांनी त्यांच्या खात्यात उत्पादित करण्यास असमर्थ झाले तर उद्यापनातून येणारे उत्पादन विभागाच्या जागतिकरणासाठी डिस्टिलरीजविरुद्ध उत्पादक शुल्क लागू केले जाऊ शकते का.",
+      "retrieved_contexts": [
+        "Precedent Case: सराया इंडस्ट्रीज लिमिटेड व. उत्तर प्रदेश राज्य आणि इतर (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.0
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0002",
+      "user_input": "Summarize the judicial ruling and ratio for Independent Sugar Corporation Limited vs Girish Sriram Juneja delivered by Supreme Court of India.",
+      "response": "These statutory appeals under Section 62 of the Insolvency and Bankruptcy Code, 2016 involve the Corporate Insolvency Resolution Process of Hindustan National Glass and Industries Ltd. and the approval of the combination between HNGIL and AGI Greenpac. The key issue revolves around the potential adverse impact on competition due to the merger. The Appellant, Independent Sugar Corporation Ltd., challenges the approval granted to AGI Greenpac's Resolution Plan, citing non-compliance with mandatory",
+      "retrieved_contexts": [
+        "Precedent Case: Independent Sugar Corporation Limited vs Girish Sriram Juneja (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.2727,
+        "answer_relevancy": 0.4834
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0003",
+      "user_input": "Summarize the judicial ruling and ratio for Commissioner Of Income-Tax vs Braj Bhushan Cold Storage delivered by Allahabad High Court.",
+      "response": "The case involved the revision of an order dropping penalty proceedings under section 271(1)(c) of the Income Tax Act, 1961, due to nil tax payable by the assessee. The Commissioner of Income-tax revised the order under section 263, holding the penalty imposable. The Tribunal allowed the appeal, questioning the revision under section 263 and the time bar for penalty imposition. The court held that the order revision was justified as the penalty was applicable, but the penalty order was time-barr",
+      "retrieved_contexts": [
+        "Precedent Case: Commissioner Of Income-Tax vs Braj Bhushan Cold Storage (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.6205
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0004",
+      "user_input": "Summarize the judicial ruling and ratio for भैयालाल श्याम बेहारी vs कर आयकर आयुक्त delivered by Allahabad High Court.",
+      "response": "The case involved a reference under Section 256(1) of the Income-tax Act, 1961 regarding additions towards unexplained deposits. The Tribunal rejected the plea that only peak credit should be added if deposits are treated as unexplained. The Court held that the applicant must establish the source of deposits before claiming peak credit. As the cash credits were in the names of different persons claimed to be genuine, withdrawals to different persons in previous years did not entitle the applican",
+      "retrieved_contexts": [
+        "Precedent Case: भैयालाल श्याम बेहारी vs कर आयकर आयुक्त (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.319
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0005",
+      "user_input": "Summarize the judicial ruling and ratio for Rajnish Singh @ Soni v. State of U.P. and Another delivered by Supreme Court.",
+      "response": "The Supreme Court quashed the criminal proceedings against the appellant, Rajnish Singh @ Soni, in a case involving allegations of rape based on a false promise of marriage. The Court found that the complainant, a highly qualified and major woman, had been in a consensual sexual relationship with the appellant for 16 years, which negated the element of force or deceit. The allegations were deemed full of contradictions and unbelievable, especially considering the complainant's silence over the p",
+      "retrieved_contexts": [
+        "Precedent Case: Rajnish Singh @ Soni v. State of U.P. and Another (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.7461
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0006",
+      "user_input": "Summarize the judicial ruling and ratio for Om Prakash Verma vs State Of U.P. And Ors. delivered by Allahabad High Court.",
+      "response": "The case involved a dispute regarding the appointment of a Principal at Lal Bahadur Shastri Smarak Inter College in Moradabad, Uttar Pradesh. Om Prakash Verma, an Assistant Teacher, challenged the appointment of Ram Swaroop Singh as Principal, claiming he was more qualified. The court examined the educational qualifications required for the Principal's position as per the U.P. Intermediate Education Act, 1921. It was found that Om Prakash Verma met the eligibility criteria based on his experienc",
+      "retrieved_contexts": [
+        "Precedent Case: Om Prakash Verma vs State Of U.P. And Ors. (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.4637
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0007",
+      "user_input": "Summarize the judicial ruling and ratio for Commissioner Of Income-Tax vs Braj Bhushan Cold Storage delivered by Allahabad High Court.",
+      "response": "The case involved penalty proceedings under section 271(1)(c) of the Income Tax Act, 1961, where the assessing authority had dropped the penalty due to nil tax payable by the assessee. The Commissioner of Income-tax revised the order under section 263, holding that the penalty should have been imposed. The Tribunal initially held that the revision was not valid, but the High Court disagreed. It was argued that the order was erroneous and prejudicial to revenue as the tax effect was not considere",
+      "retrieved_contexts": [
+        "Precedent Case: Commissioner Of Income-Tax vs Braj Bhushan Cold Storage (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.5686
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0008",
+      "user_input": "Summarize the judicial ruling and ratio for Saraya Industries Ltd. vs State Of U.P. And Ors. delivered by Allahabad High Court.",
+      "response": "The case involves a dispute regarding the imposition of excise duty on wasted security holograms by distilleries in Uttar Pradesh. Saraya Industries Ltd., a liquor manufacturer, challenged the State Government's policy decision and circulars requiring hologram affixation. The petitioner argued that excise duty cannot be levied on holograms and no evasion was committed. The State contended that the duty was justified to prevent evasion and safeguard public health. The court considered the legal p",
+      "retrieved_contexts": [
+        "Precedent Case: Saraya Industries Ltd. vs State Of U.P. And Ors. (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.5973
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0009",
+      "user_input": "Summarize the judicial ruling and ratio for MYAKALA DHARMARAJAM & ORS. ETC. vs THE STATE OF TELANGANA & ANR. delivered by Supreme Court of India.",
+      "response": "Respondent No.2 filed a complaint under various sections of the IPC alleging that the Appellants attacked her husband resulting in his death. The Appellants were granted bail by the Sessions Judge with certain conditions. However, the High Court cancelled the bail citing reasons of not considering criminal antecedents and witness tampering. The Supreme Court emphasized the factors to be considered while granting bail and held that the Sessions Court's decision was not perverse. The complaint of ",
+      "retrieved_contexts": [
+        "Precedent Case: MYAKALA DHARMARAJAM & ORS. ETC. vs THE STATE OF TELANGANA & ANR. (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.4332
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    },
+    {
+      "id": "live_summary_0010",
+      "user_input": "Summarize the judicial ruling and ratio for Cit vs S. Kamaljeet Singh delivered by Allahabad High Court.",
+      "response": "The case involved the Income-tax Appellate Tribunal referring questions of law under section 256(1) of the Income-tax Act, 1961 to the Allahabad High Court. The matter related to the assessment year 1974-75 and concerned undisclosed business transactions of the assessee. The High Court found that the assessee had adequately explained the cash credits in question, leading to the Tribunal's decision to reverse the order of the AAC. Consequently, the first question was answered in favor of the asse",
+      "retrieved_contexts": [
+        "Precedent Case: Cit vs S. Kamaljeet Singh (Actual chunk text missing from historical logs)"
+      ],
+      "reference": "",
+      "scores": {
+        "faithfulness": 0.0,
+        "answer_relevancy": 0.5461
+      },
+      "flag": "low",
+      "logged_at": "2026-10-08T07:12:49.175966+00:00"
+    }
+  ],
+  "notes": [
+    "Scores computed from real judicial data across modules (11 samples evaluated).",
+    "Metrics: Faithfulness + ResponseRelevancy (reference-free, verified against case judgments)."
+  ]
+}
